@@ -1,0 +1,1586 @@
+========================================================================
+RUNNING DELAWARE AI REGRESSION SUITE
+========================================================================
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_marchand_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight']
+NAMED SOURCES: ['caremark.txt', 'marchand.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- marchand.txt (case_score=0.9154, role=modern_application, line=oversight) *
+- caremark.txt (case_score=0.9057, role=foundation, line=oversight) *
+- stone.txt (case_score=0.6042, role=supreme_refinement, line=oversight)
+- disney.txt (case_score=0.3712, role=related_case, line=oversight)
+- metro.txt (case_score=0.3473, role=modern_application, line=sale_of_control)
+- rural metro.txt (case_score=0.3459, role=related_case, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.9057)
+    stone.txt (supreme_refinement, 0.6042)
+    marchand.txt (modern_application, 0.9154)
+    disney.txt (related_case, 0.3712)
+- Sale of Control:
+    metro.txt (modern_application, 0.3473)
+    rural metro.txt (related_case, 0.3459)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.9057)
+    stone.txt (role=supreme_refinement, case_score=0.6042)
+    marchand.txt (role=modern_application, case_score=0.9154)
+- Sale of Control:
+    metro.txt (role=modern_application, case_score=0.3473)
+    rural metro.txt (role=related_case, case_score=0.3459)
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - ctor cannot act loyally towards the cor inadequacies these in illegal would result poration unless in good she acts the faith activity, and that chose to do the board belief that h
+DEBUG PICKED QUOTE FOR stone.txt: 
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Although Caremark may not require as much as some commentators wish,115 it does require that a board make a good faith effort to put in place a reasonable system of monitoring and 
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+modern_application -> {'case': 'Marchand', 'quote': 'having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy their duty of loyalty, directors must make a good faith effort to implement an oversight system and then monitor it.', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+modern_application -> good faith effort to implement an oversight system
+DEBUG CAREMARK TREE:
+Doctrine: oversight
+Path: reporting_system_exists -> monitoring_exists -> basic_oversight_present
+Outcome: lower_oversight_risk
+Risk Level: low
+Primary Failure: none
+Reason: The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory.
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- Marchand: "good faith effort to implement an oversight system"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 100/100
+VALIDATION ERRORS:
+- Rule Comparison must be exactly three sentences
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Caremark requires utter failure, whereas Marchand requires good faith monitoring.
+
+Key Distinction:  
+Caremark addresses absence of oversight systems, whereas Marchand addresses failure to monitor implemented systems.
+
+Rule Comparison:  
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:  
+A board breaches the duty of loyalty where either its that undertakes that pliance report must officers semi a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a failure to act in good faith, requiring a good faith effort to implement an oversight system.
+
+Analysis:  
+This matters because utter failure to attempt to assure a reasonable reporting or information system states the baseline implementation failure, whereas the later cases clarify the distinct monitoring branch. The significance is that directors act inconsistently with the duty of loyalty where good faith effort to implement an oversight system is absent or their conduct constitutes a failure to act in good faith. As a result, oversight liability may arise both from the absence of a reporting system and from a failure to monitor or respond in good faith once such a system exists.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+caremark_marchand_comparison PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: mfw_corwin_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['controller_transactions', 'stockholder_vote_cleansing']
+NAMED SOURCES: ['mfw.txt', 'corwin.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- corwin.txt (case_score=0.6167, role=supreme_refinement, line=stockholder_vote_cleansing) *
+- paramount.txt (case_score=0.4945, role=related_case, line=unknown)
+- mfw.txt (case_score=0.4613, role=supreme_refinement, line=controller_transactions) *
+- tesla.txt (case_score=0.4380, role=modern_application, line=controller_transactions)
+- kahn.txt (case_score=0.4344, role=foundation, line=controller_transactions)
+- airgas.txt (case_score=0.3748, role=modern_application, line=takeover_defense)
+- disney.txt (case_score=0.3707, role=related_case, line=oversight)
+
+DOCTRINE BUCKETS:
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.6167)
+- Unknown:
+    paramount.txt (related_case, 0.4945)
+- Controller Transactions:
+    kahn.txt (foundation, 0.4344)
+    mfw.txt (supreme_refinement, 0.4613)
+    tesla.txt (modern_application, 0.4380)
+- Takeover Defense:
+    airgas.txt (modern_application, 0.3748)
+- Oversight:
+    disney.txt (related_case, 0.3707)
+
+DOCTRINE LEADERS:
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.6167)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.4945)
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.4344)
+    mfw.txt (role=supreme_refinement, case_score=0.4613)
+    tesla.txt (role=modern_application, case_score=0.4380)
+- Takeover Defense:
+    airgas.txt (role=modern_application, case_score=0.3748)
+- Oversight:
+    disney.txt (role=related_case, case_score=0.3707)
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - 17 proper remains Entire fairness the 551, (1992), J.Corp.L.
+  - definitive regard answer with to the of policy Court for 110 The rationale the Chancery’s “differing is in this views” found application of the entire fairness exclusive opinions W
+  - g regarding the effect that an views” proving the of entire fairness.
+  - agreement,” is not replicated a independent committee but also the case present in circumstances Under the contending process though each of the “as Chancery in judice, of erred th
+DEBUG PICKED QUOTE FOR kahn.txt: is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+
+DEBUG RAW QUOTES FOR corwin.txt:
+  - In a well-reasoned opinion, the Court of Chancery held that the business judgment rule is invoked as the appropriate standard of review for a post-closing damages action when a mer
+DEBUG PICKED QUOTE FOR corwin.txt: 
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 
+  - The court also decided that, because the Defendants failed to disclose material information concerning director conflicts and process flaws in the first proxy, the 2018 Grant was n
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - that it is the preferred remedial measure when a transaction fails to meet the burden of entire fairness” and rescission is not available.124 Here, the Plaintiff did not seek resci
+DEBUG PICKED QUOTE FOR tesla.txt: 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 2018 Grant, the Court of Chancery subjec
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Kahn', 'quote': 'is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.', 'source': 'kahn.txt'}
+supreme_refinement -> {'case': 'MFW', 'quote': 'Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.', 'source': 'mfw.txt'}
+modern_application -> {'case': 'Tesla', 'quote': '13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 2018 Grant, the Court of Chancery subjected it to the entire fairness standard of review.', 'source': 'tesla.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> this views found application entire fairness exclusive opinions
+supreme_refinement -> business judgment review applies transaction conditioned from outset
+modern_application -> decisionmakers magnitude difference between sizes grant comparable plans
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "this views found application entire fairness exclusive opinions"
+- MFW: "business judgment review applies transaction conditioned from outset"
+- Tesla: "decisionmakers magnitude difference between sizes grant comparable plans"
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - 17 proper remains Entire fairness the 551, (1992), J.Corp.L.
+  - definitive regard answer with to the of policy Court for 110 The rationale the Chancery’s “differing is in this views” found application of the entire fairness exclusive opinions W
+  - g regarding the effect that an views” proving the of entire fairness.
+  - agreement,” is not replicated a independent committee but also the case present in circumstances Under the contending process though each of the “as Chancery in judice, of erred th
+DEBUG PICKED QUOTE FOR kahn.txt: is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 
+  - The court also decided that, because the Defendants failed to disclose material information concerning director conflicts and process flaws in the first proxy, the 2018 Grant was n
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - that it is the preferred remedial measure when a transaction fails to meet the burden of entire fairness” and rescission is not available.124 Here, the Plaintiff did not seek resci
+DEBUG PICKED QUOTE FOR tesla.txt: 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 2018 Grant, the Court of Chancery subjec
+
+DEBUG RAW QUOTES FOR corwin.txt:
+  - In a well-reasoned opinion, the Court of Chancery held that the business judgment rule is invoked as the appropriate standard of review for a post-closing damages action when a mer
+DEBUG PICKED QUOTE FOR corwin.txt: 
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 94/100
+VALIDATION ERRORS:
+- Key Distinction must use 'whereas'
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Stockholder Vote Cleansing governs a distinct one.
+
+Key Distinction:  
+MFW governs conflicted controller transactions through dual cleansing protections, whereas Corwin governs the effect of a fully informed and uncoerced stockholder vote.
+
+Controller Transactions:  
+A controller transaction receives business judgment deference only where, from the outset, it is conditioned on approval by both an independent special committee and an informed, uncoerced majority of the minority stockholders.
+
+Stockholder Vote Cleansing:  
+A fully informed, uncoerced vote of disinterested stockholders generally invokes business judgment review and extinguishes claims subject to Corwin cleansing.
+
+Rule Comparison:  
+Controller Transactions (MFW) establishes the governing framework for conflicted controller transactions by restoring business judgment review only if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote. Stockholder Vote Cleansing (Corwin) defines when business judgment review applies to a non-controller transaction after a fully informed and uncoerced vote of disinterested stockholders. Taken together, Controller Transactions requires dual cleansing protections for controller conflict, whereas Stockholder Vote Cleansing turns on stockholder approval through a fully informed and uncoerced vote.
+
+Analysis:  
+This matters because controller transactions require approval by both a special committee and a majority-of-the-minority vote, whereas stockholder vote cleansing depends on a fully informed and uncoerced vote of disinterested stockholders. The significance is that each doctrine invokes business judgment review through a different mechanism tailored to a distinct fiduciary risk. As a result, the applicable standard of review depends on whether the transaction implicates controller conflict requiring MFW protections or instead turns on stockholder approval under Corwin.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+mfw_corwin_comparison PASSED (score=94)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_unocal_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight', 'takeover_defense']
+NAMED SOURCES: ['caremark.txt', 'unocal.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=0.8880, role=foundation, line=oversight) *
+- unocal.txt (case_score=0.7275, role=foundation, line=takeover_defense) *
+- unitrin.txt (case_score=0.6660, role=supreme_refinement, line=takeover_defense)
+- airgas.txt (case_score=0.6587, role=modern_application, line=takeover_defense)
+- marchand.txt (case_score=0.6549, role=modern_application, line=oversight)
+- Airgas v .txt (case_score=0.6058, role=related_case, line=unknown)
+- stone.txt (case_score=0.6044, role=supreme_refinement, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.8880)
+    stone.txt (supreme_refinement, 0.6044)
+    marchand.txt (modern_application, 0.6549)
+- Takeover Defense:
+    unocal.txt (foundation, 0.7275)
+    unitrin.txt (supreme_refinement, 0.6660)
+    airgas.txt (modern_application, 0.6587)
+- Unknown:
+    Airgas v .txt (related_case, 0.6058)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.8880)
+    stone.txt (role=supreme_refinement, case_score=0.6044)
+    marchand.txt (role=modern_application, case_score=0.6549)
+- Takeover Defense:
+    unocal.txt (role=foundation, case_score=0.7275)
+    unitrin.txt (role=supreme_refinement, case_score=0.6660)
+    airgas.txt (role=modern_application, case_score=0.6587)
+- Unknown:
+    Airgas v .txt (role=related_case, case_score=0.6058)
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+  - The Court of tional business Repurchase Program, response the in to concluded, however, Chancery that the UnitOffer, American General’s did not constitute perceived rin Board Ameri
+  - requires by proportionality review Unocal Repurchase focusing upon Pro whether the “unnecessary” re gram was an defensive Contentions Unitrin’s Communications, sponse.
+  - 1391 disproportionate rerepurchase program clearly gram was a defensive eate that a is faulty predireasonableness, sponse, on factual range of if was based within the even it cates
+  - is not coercive or circumstance, by application of an erroambiguous was exacerbated its an factual the “necessity” to Chancery of the properly legal of neous standard Court could c
+DEBUG PICKED QUOTE FOR unitrin.txt: The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+
+DEBUG RAW QUOTES FOR airgas.txt:
+  - a majority of outside independent directors In essence, TW Services appeared to supcoupled with a showing of reliance on ad- port the view that a well-informed board vice by legal 
+  - fore “Uno- [Even when] a defensive measure to cal’s heightened standard of review does thwart or impede a takeover is indeed not apply here.”304 motivated by a good faith concern f
+  - What the Supreme Court actual- stockholders, which in all circumstances ly said in Unocal, without taking snippets must be free of any fraud or other misof quotes out of context, w
+  - 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment r
+  - Process 367 sale.” Importantly, “[t]hose cases did Under the first prong of Unocal, not involve circumstances in which a defendants bear the burden of showing had, elected, board i
+DEBUG PICKED QUOTE FOR airgas.txt: 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+supreme_refinement -> {'case': 'Unitrin', 'quote': 'The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.', 'source': 'unitrin.txt'}
+modern_application -> {'case': 'Airgas', 'quote': '94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards be acting fied and no further inquiry is undertak- in their own self-interest to perpetuate is, itself, en.309 themselves in office in and of the “omnipresent specter” justifying enhanced Accor.', 'source': 'airgas.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+supreme_refinement -> court repurchase conduct unitrin board should exhad board
+modern_application -> judgment rule must reasonable wanting objectivity good faith
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- Unitrin: "court repurchase conduct unitrin board should exhad board"
+- Airgas: "judgment rule must reasonable wanting objectivity good faith"
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - Failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+DEBUG PICKED QUOTE FOR stone.txt: Failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Although Caremark may not require as much as some commentators wish,115 it does require that a board make a good faith effort to put in place a reasonable system of monitoring and 
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+
+DEBUG RAW QUOTES FOR unocal.txt:
+  - This burden is satisfied by demonstrating good faith and reasonable investigation.
+  - The defensive response must then be reasonable in relation to the threat posed.
+DEBUG PICKED QUOTE FOR unocal.txt: This burden is satisfied by demonstrating good faith and reasonable investigation.
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+  - The Court of tional business Repurchase Program, response the in to concluded, however, Chancery that the UnitOffer, American General’s did not constitute perceived rin Board Ameri
+  - requires by proportionality review Unocal Repurchase focusing upon Pro whether the “unnecessary” re gram was an defensive Contentions Unitrin’s Communications, sponse.
+  - 1391 disproportionate rerepurchase program clearly gram was a defensive eate that a is faulty predireasonableness, sponse, on factual range of if was based within the even it cates
+  - is not coercive or circumstance, by application of an erroambiguous was exacerbated its an factual the “necessity” to Chancery of the properly legal of neous standard Court could c
+DEBUG PICKED QUOTE FOR unitrin.txt: The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+
+DEBUG RAW QUOTES FOR airgas.txt:
+  - a majority of outside independent directors In essence, TW Services appeared to supcoupled with a showing of reliance on ad- port the view that a well-informed board vice by legal 
+  - fore “Uno- [Even when] a defensive measure to cal’s heightened standard of review does thwart or impede a takeover is indeed not apply here.”304 motivated by a good faith concern f
+  - What the Supreme Court actual- stockholders, which in all circumstances ly said in Unocal, without taking snippets must be free of any fraud or other misof quotes out of context, w
+  - 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment r
+  - Process 367 sale.” Importantly, “[t]hose cases did Under the first prong of Unocal, not involve circumstances in which a defendants bear the burden of showing had, elected, board i
+DEBUG PICKED QUOTE FOR airgas.txt: 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 88/100
+VALIDATION ERRORS:
+- Key Distinction must be exactly one sentence
+- Key Distinction is too long
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Oversight establishes the governing framework for one fiduciary setting, whereas Takeover Defense governs a distinct one.
+
+Key Distinction:  
+Caremark addresses internal board oversight obligations, whereas Unocal addresses defensive action in response to external takeover threats.
+
+Oversight:  
+A board breaches the duty of loyalty where either its that undertakes that pliance report must officers semi a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a failure to act in good faith, requiring a good faith effort to implement an oversight system.
+
+Takeover Defense:  
+A board's defensive response to a perceived threat is subject to enhanced scrutiny where it identifies a threat to corporate policy and effectiveness and adopts a response that is neither coercive nor preclusive and falls within a range of reasonableness.
+
+Rule Comparison:  
+Oversight (Caremark) governs board-level monitoring failure by requiring a good faith effort to implement and monitor a reporting system. Takeover Defense (Unocal) governs defensive action in response to an external threat by requiring a response that is neither coercive nor preclusive and falls within a range of reasonableness. Taken together, Oversight addresses internal monitoring obligations, whereas Takeover Defense addresses external defensive measures adopted in response to takeover pressure.
+
+Analysis:  
+This matters because oversight doctrine focuses on the board's obligation to implement and monitor a reporting system in good faith, whereas takeover-defense doctrine focuses on defensive measures adopted in response to a threat. The significance is that the doctrines regulate different board functions and apply different standards to internal monitoring failure and external defensive action. As a result, a board may satisfy one doctrine's requirements while still failing the other.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+caremark_unocal_comparison PASSED (score=88)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: controller_vs_sale_of_control
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['sale_of_control', 'controller_transactions']
+NAMED SOURCES: ['revlon.txt', 'mfw.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- revlon.txt (case_score=0.6477, role=foundation, line=sale_of_control) *
+- barkan.txt (case_score=0.5145, role=related_case, line=unknown)
+- metro.txt (case_score=0.5115, role=modern_application, line=sale_of_control)
+- rural metro.txt (case_score=0.4928, role=related_case, line=sale_of_control)
+- qvc.txt (case_score=0.4855, role=supreme_refinement, line=sale_of_control)
+- paramount.txt (case_score=0.4671, role=related_case, line=unknown)
+- lyondell.txt (case_score=0.4566, role=modern_application, line=sale_of_control)
+- airgas.txt (case_score=0.4513, role=modern_application, line=takeover_defense)
+
+DOCTRINE BUCKETS:
+- Sale of Control:
+    revlon.txt (foundation, 0.6477)
+    qvc.txt (supreme_refinement, 0.4855)
+    metro.txt (modern_application, 0.5115)
+    lyondell.txt (modern_application, 0.4566)
+    rural metro.txt (related_case, 0.4928)
+- Unknown:
+    barkan.txt (related_case, 0.5145)
+    paramount.txt (related_case, 0.4671)
+    paramount v qvc.txt (related_case, 0.4461)
+- Takeover Defense:
+    airgas.txt (modern_application, 0.4513)
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.4390)
+
+DOCTRINE LEADERS:
+- Sale of Control:
+    revlon.txt (role=foundation, case_score=0.6477)
+    qvc.txt (role=supreme_refinement, case_score=0.4855)
+    metro.txt (role=modern_application, case_score=0.5115)
+- Unknown:
+    barkan.txt (role=related_case, case_score=0.5145)
+    paramount.txt (role=related_case, case_score=0.4671)
+    paramount v qvc.txt (role=related_case, case_score=0.4461)
+- Takeover Defense:
+    airgas.txt (role=modern_application, case_score=0.4513)
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.4390)
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatab
+  - 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+  - Ha- the entire fairness test to actions taken by zelett Strip-Casting Corp., 28 A.3d 442, directors to resist a hostile takeover.
+DEBUG PICKED QUOTE FOR metro.txt: 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+DEBUG ROLE QUOTE MAP:
+supreme_refinement -> {'case': 'QVC', 'quote': '[that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.', 'source': 'qvc.txt'}
+modern_application -> {'case': 'Metro', 'quote': '82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.', 'source': 'metro.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+supreme_refinement -> that action cannot paramount defendants have inter withstand
+modern_application -> business judgment rule enhanced apply either business judgment
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- QVC: "that action cannot paramount defendants have inter withstand"
+- Metro: "business judgment rule enhanced apply either business judgment"
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatab
+  - 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+  - Ha- the entire fairness test to actions taken by zelett Strip-Casting Corp., 28 A.3d 442, directors to resist a hostile takeover.
+DEBUG PICKED QUOTE FOR metro.txt: 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Sale of Control establishes the governing framework for one fiduciary setting, whereas Controller Transactions governs a distinct one.
+
+Key Distinction:
+Sale of Control establishes the governing framework for one fiduciary setting, whereas Controller Transactions governs a distinct one.
+
+Controller Transactions:
+A controller transaction receives business judgment deference only where, from the outset, it is conditioned on approval by both an independent special committee and an informed, uncoerced majority of the minority stockholders.
+
+Sale of Control:
+Where the corporation is for sale or a transaction will effect a change of control, directors must act reasonably to secure the transaction offering the best value reasonably available to stockholders.
+
+Rule Comparison:
+Sale of Control governs one fiduciary setting under its own doctrinal standard. Controller Transactions governs a distinct fiduciary setting under a different doctrinal standard. Taken together, Sale of Control addresses one form of board conduct, whereas Controller Transactions addresses another.
+
+Analysis:
+This matters because Sale of Control and Controller Transactions regulate different fiduciary settings. The significance is that each doctrine applies a different standard or cleansing mechanism to a different form of board conduct. As a result, identifying the correct doctrinal bucket is necessary before the governing standard can be applied.
+
+Confidence:
+High
+
+
+
+==============================================
+
+controller_vs_sale_of_control PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_revlon_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight', 'sale_of_control']
+NAMED SOURCES: ['caremark.txt', 'revlon.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- revlon.txt (case_score=0.7455, role=foundation, line=sale_of_control) *
+- caremark.txt (case_score=0.7377, role=foundation, line=oversight) *
+- rural metro.txt (case_score=0.6455, role=related_case, line=sale_of_control)
+- marchand.txt (case_score=0.5789, role=modern_application, line=oversight)
+- metro.txt (case_score=0.5785, role=modern_application, line=sale_of_control)
+- barkan.txt (case_score=0.5771, role=related_case, line=unknown)
+- qvc.txt (case_score=0.5487, role=supreme_refinement, line=sale_of_control)
+- stone.txt (case_score=0.5301, role=supreme_refinement, line=oversight)
+
+DOCTRINE BUCKETS:
+- Sale of Control:
+    revlon.txt (foundation, 0.7455)
+    qvc.txt (supreme_refinement, 0.5487)
+    metro.txt (modern_application, 0.5785)
+    rural metro.txt (related_case, 0.6455)
+- Oversight:
+    caremark.txt (foundation, 0.7377)
+    stone.txt (supreme_refinement, 0.5301)
+    marchand.txt (modern_application, 0.5789)
+- Unknown:
+    barkan.txt (related_case, 0.5771)
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.5148)
+- Takeover Defense:
+    airgas.txt (modern_application, 0.5118)
+
+DOCTRINE LEADERS:
+- Sale of Control:
+    revlon.txt (role=foundation, case_score=0.7455)
+    qvc.txt (role=supreme_refinement, case_score=0.5487)
+    metro.txt (role=modern_application, case_score=0.5785)
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.7377)
+    stone.txt (role=supreme_refinement, case_score=0.5301)
+    marchand.txt (role=modern_application, case_score=0.5789)
+- Unknown:
+    barkan.txt (role=related_case, case_score=0.5771)
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.5148)
+- Takeover Defense:
+    airgas.txt (role=modern_application, case_score=0.5118)
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Because the complaint pleads particularized facts that raise a reasonable doubt as to Rankin’s indepen dence, we reverse the Court of Chancery’s dismissal of the plaintiff’s claims
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+supreme_refinement -> {'case': 'QVC', 'quote': '[that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.', 'source': 'qvc.txt'}
+modern_application -> {'case': 'Marchand', 'quote': 'having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy their duty of loyalty, directors must make a good faith effort to implement an oversight system and then monitor it.', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+supreme_refinement -> that action cannot paramount defendants have inter withstand
+modern_application -> good faith effort to implement an oversight system
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- QVC: "that action cannot paramount defendants have inter withstand"
+- Marchand: "good faith effort to implement an oversight system"
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - Failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+DEBUG PICKED QUOTE FOR stone.txt: Failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Because the complaint pleads particularized facts that raise a reasonable doubt as to Rankin’s indepen dence, we reverse the Court of Chancery’s dismissal of the plaintiff’s claims
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatab
+DEBUG PICKED QUOTE FOR metro.txt: Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatable, have subjectively believed that they
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 88/100
+VALIDATION ERRORS:
+- Key Distinction must be exactly one sentence
+- Key Distinction is too long
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Oversight establishes the governing framework for one fiduciary setting, whereas Sale of Control governs a distinct one.
+
+Key Distinction:
+Caremark addresses the board's obligation to monitor risk, whereas Revlon addresses the board's obligation to maximize value in a sale setting.
+
+Oversight:
+A board breaches the duty of loyalty where either its that undertakes that pliance report must officers semi a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a failure to act in good faith, requiring a good faith effort to implement an oversight system.
+
+Sale of Control:
+Where the corporation is for sale or a transaction will effect a change of control, directors must act reasonably to secure the transaction offering the best value reasonably available to stockholders.
+
+Rule Comparison:
+Oversight (Caremark) governs the board's obligation to implement and monitor internal reporting systems in good faith. Sale of Control (Revlon) governs the board's obligation to secure the best value reasonably available once a sale or change of control is underway. Taken together, Oversight addresses internal monitoring failure, whereas Sale of Control addresses transactional conduct directed toward value maximization.
+
+Analysis:
+This matters because oversight doctrine governs the board's obligation to implement and monitor internal reporting systems, whereas sale-of-control doctrine governs the obligation to secure the best value reasonably available in a change-of-control setting. The significance is that the doctrines address different fiduciary problems and evaluate different forms of board conduct. As a result, the governing standard depends on whether the alleged failure concerns internal monitoring or transactional value maximization.
+
+Confidence:
+High
+
+
+
+==============================================
+
+caremark_revlon_comparison PASSED (score=88)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: aronson_rales_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['demand_futility']
+NAMED SOURCES: ['aronson.txt', 'rales.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- rales.txt (case_score=0.4532, role=refinement, line=demand_futility) *
+- aronson.txt (case_score=0.4372, role=foundation, line=demand_futility) *
+- metro.txt (case_score=0.3400, role=modern_application, line=sale_of_control)
+- kahn.txt (case_score=0.3396, role=foundation, line=controller_transactions)
+- paramount.txt (case_score=0.3364, role=related_case, line=unknown)
+- marchand.txt (case_score=0.3331, role=modern_application, line=oversight)
+- unitrin.txt (case_score=0.3296, role=supreme_refinement, line=takeover_defense)
+
+DOCTRINE BUCKETS:
+- Demand Futility:
+    aronson.txt (foundation, 0.4372)
+    rales.txt (refinement, 0.4532)
+- Sale of Control:
+    metro.txt (modern_application, 0.3400)
+- Controller Transactions:
+    kahn.txt (foundation, 0.3396)
+- Unknown:
+    paramount.txt (related_case, 0.3364)
+- Oversight:
+    marchand.txt (modern_application, 0.3331)
+- Takeover Defense:
+    unitrin.txt (supreme_refinement, 0.3296)
+
+DOCTRINE LEADERS:
+- Demand Futility:
+    aronson.txt (role=foundation, case_score=0.4372)
+    rales.txt (role=refinement, case_score=0.4532)
+- Sale of Control:
+    metro.txt (role=modern_application, case_score=0.3400)
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.3396)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.3364)
+- Oversight:
+    marchand.txt (role=modern_application, case_score=0.3331)
+- Takeover Defense:
+    unitrin.txt (role=supreme_refinement, case_score=0.3296)
+
+DEBUG RAW QUOTES FOR aronson.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR aronson.txt: 
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - ss Weinberger ing entire fairness will not shift.
+  - In of this Alcatel’s Entire Burden Fairness ment, proceeding upon Kahn relies another Not to Did Kahn Shift Chancery wherein the Court of has been previously presented with factual
+DEBUG PICKED QUOTE FOR kahn.txt: is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - J.Corp.Law fairness 792 The entire Supr., entire 473 A.2d 812-17 The by this requires judiand has been construed exacting test is codified standard is and fairness 144(a)(3).
+DEBUG PICKED QUOTE FOR unitrin.txt: J.Corp.Law fairness 792 The entire Supr., entire 473 A.2d 812-17 The by this requires judiand has been construed exacting test is codified standard is and fairness 144(a)(3).
+
+DEBUG RAW QUOTES FOR rales.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR rales.txt: 
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+  - Ha- the entire fairness test to actions taken by zelett Strip-Casting Corp., 28 A.3d 442, directors to resist a hostile takeover.
+  - low directors to conclude that, as a pracWhen the plain language of a stat- tical matter, there is no risk that, if they ute produces a rational result, a court’s act in good faith
+DEBUG PICKED QUOTE FOR metro.txt: 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Kahn', 'quote': 'is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.', 'source': 'kahn.txt'}
+supreme_refinement -> {'case': 'Unitrin', 'quote': 'J.Corp.Law fairness 792 The entire Supr., entire 473 A.2d 812-17 The by this requires judiand has been construed exacting test is codified standard is and fairness 144(a)(3).', 'source': 'unitrin.txt'}
+modern_application -> {'case': 'Metro', 'quote': '82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.', 'source': 'metro.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> this views found application entire fairness exclusive opinions
+supreme_refinement -> corp fairness entire supr entire this requires judiand
+modern_application -> business judgment rule enhanced apply either business judgment
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "this views found application entire fairness exclusive opinions"
+- Unitrin: "corp fairness entire supr entire this requires judiand"
+- Metro: "business judgment rule enhanced apply either business judgment"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 82/100
+VALIDATION ERRORS:
+- Key Distinction must use 'whereas'
+- Rule Comparison must be exactly three sentences
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+The answer depends on the governing doctrinal standard.
+
+Key Distinction:
+The earlier doctrine states the baseline rule, whereas the later doctrine refines its application.
+
+Rule Comparison:
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:
+Directors breach the duty of loyalty where their conduct constitutes a failure to act in good faith.
+
+Analysis:
+This matters because Delaware doctrine distinguishes baseline fiduciary obligations from conduct that crosses into breach. The significance is that directors act inconsistently with the duty of loyalty where their conduct constitutes a failure to act in good faith. As a result, breach arises only when inaction or conscious disregard moves beyond imperfection and into disloyal conduct.
+
+Confidence:
+High
+
+
+
+==============================================
+
+aronson_rales_comparison PASSED (score=82)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_pleading_standard
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: general
+TARGET LINES: ['oversight']
+NAMED SOURCES: ['caremark.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=1.0061, role=foundation, line=oversight) *
+- marchand.txt (case_score=0.8834, role=modern_application, line=oversight)
+- stone.txt (case_score=0.7339, role=supreme_refinement, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 1.0061)
+    stone.txt (supreme_refinement, 0.7339)
+    marchand.txt (modern_application, 0.8834)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=1.0061)
+    stone.txt (role=supreme_refinement, case_score=0.7339)
+    marchand.txt (role=modern_application, case_score=0.8834)
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - ctor cannot act loyally towards the cor inadequacies these in illegal would result poration unless in good she acts the faith activity, and that chose to do the board belief that h
+  - absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond
+DEBUG PICKED QUOTE FOR stone.txt: absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in 
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Because the complaint pleads particularized facts that raise a reasonable doubt as to Rankin’s indepen dence, we reverse the Court of Chancery’s dismissal of the plaintiff’s claims
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+supreme_refinement -> {'case': 'Stone', 'quote': 'absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in ployee conduct that results an unintend A.', 'source': 'stone.txt'}
+modern_application -> {'case': 'Marchand', 'quote': 'having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy their duty of loyalty, directors must make a good faith effort to implement an oversight system and then monitor it.', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+supreme_refinement -> absence oversight flags good faith context actions must
+modern_application -> good faith effort to implement an oversight system
+DEBUG CAREMARK TREE:
+Doctrine: oversight
+Path: reporting_system_exists -> monitoring_exists -> basic_oversight_present
+Outcome: lower_oversight_risk
+Risk Level: low
+Primary Failure: none
+Reason: The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory.
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- Stone: "absence oversight flags good faith context actions must"
+- Marchand: "good faith effort to implement an oversight system"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+The facts suggest lower oversight risk, not a likely Caremark breach.
+
+Key Distinction:
+The facts indicate monitored oversight rather than either a true implementation failure or a true monitoring failure.
+
+Rule Comparison:
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:
+A board breaches the duty of loyalty where either its that undertakes that pliance report must officers semi a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a absence oversight flags good faith context actions must, requiring a good faith effort to implement an oversight system.
+
+Analysis:
+This matters because utter failure to attempt to assure a reasonable reporting or information system states the baseline implementation failure, whereas the later cases clarify the distinct monitoring branch. The significance is that directors act inconsistently with the duty of loyalty where good faith effort to implement an oversight system is absent or their conduct constitutes a failure to act in good faith. As a result, oversight liability may arise both from the absence of a reporting system and from a failure to monitor or respond in good faith once such a system exists.
+
+Confidence:
+High
+
+
+
+==============================================
+
+caremark_pleading_standard PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_evolution
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: doctrine_evolution
+TARGET LINES: ['oversight']
+NAMED SOURCES: ['caremark.txt', 'stone.txt', 'marchand.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=0.8965, role=foundation, line=oversight) *
+- marchand.txt (case_score=0.8408, role=modern_application, line=oversight) *
+- stone.txt (case_score=0.7663, role=supreme_refinement, line=oversight) *
+- disney.txt (case_score=0.4824, role=related_case, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.8965)
+    stone.txt (supreme_refinement, 0.7663)
+    marchand.txt (modern_application, 0.8408)
+    disney.txt (related_case, 0.4824)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.8965)
+    stone.txt (role=supreme_refinement, case_score=0.7663)
+    marchand.txt (role=modern_application, case_score=0.8408)
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond
+DEBUG PICKED QUOTE FOR stone.txt: absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in 
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - 37 If Caremark means anything, it is that a corporate board must make a good faith effort to exercise its duty of care.
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+supreme_refinement -> {'case': 'Stone', 'quote': 'absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in ployee conduct that results an unintend A.', 'source': 'stone.txt'}
+modern_application -> {'case': 'Marchand', 'quote': 'having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy their duty of loyalty, directors must make a good faith effort to implement an oversight system and then monitor it.', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+supreme_refinement -> absence oversight flags good faith context actions must
+modern_application -> good faith effort to implement an oversight system
+DEBUG CAREMARK TREE:
+Doctrine: oversight
+Path: reporting_system_exists -> monitoring_exists -> basic_oversight_present
+Outcome: lower_oversight_risk
+Risk Level: low
+Primary Failure: none
+Reason: The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory.
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- Stone: "absence oversight flags good faith context actions must"
+- Marchand: "good faith effort to implement an oversight system"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+The facts suggest lower oversight risk, not a likely Caremark breach.
+
+Key Distinction:
+The facts indicate monitored oversight rather than either a true implementation failure or a true monitoring failure.
+
+Rule Comparison:
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:
+A board breaches the duty of loyalty where either its that undertakes that pliance report must officers semi a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a absence oversight flags good faith context actions must, requiring a good faith effort to implement an oversight system.
+
+Analysis:
+This matters because utter failure to attempt to assure a reasonable reporting or information system states the baseline implementation failure, whereas the later cases clarify the distinct monitoring branch. The significance is that directors act inconsistently with the duty of loyalty where good faith effort to implement an oversight system is absent or their conduct constitutes a failure to act in good faith. As a result, oversight liability may arise both from the absence of a reporting system and from a failure to monitor or respond in good faith once such a system exists.
+
+Confidence:
+High
+
+
+
+==============================================
+
+caremark_evolution PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: red_flags_plus_defensive_measures
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['oversight', 'takeover_defense']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- unocal.txt (case_score=0.8305, role=foundation, line=takeover_defense)
+- marchand.txt (case_score=0.7882, role=modern_application, line=oversight)
+- airgas.txt (case_score=0.7515, role=modern_application, line=takeover_defense)
+- stone.txt (case_score=0.7445, role=supreme_refinement, line=oversight)
+- unitrin.txt (case_score=0.7385, role=supreme_refinement, line=takeover_defense)
+- Airgas v .txt (case_score=0.7105, role=related_case, line=unknown)
+
+DOCTRINE BUCKETS:
+- Takeover Defense:
+    unocal.txt (foundation, 0.8305)
+    unitrin.txt (supreme_refinement, 0.7385)
+    airgas.txt (modern_application, 0.7515)
+- Oversight:
+    stone.txt (supreme_refinement, 0.7445)
+    marchand.txt (modern_application, 0.7882)
+- Unknown:
+    Airgas v .txt (related_case, 0.7105)
+
+DOCTRINE LEADERS:
+- Takeover Defense:
+    unocal.txt (role=foundation, case_score=0.8305)
+    unitrin.txt (role=supreme_refinement, case_score=0.7385)
+    airgas.txt (role=modern_application, case_score=0.7515)
+- Oversight:
+    stone.txt (role=supreme_refinement, case_score=0.7445)
+    marchand.txt (role=modern_application, case_score=0.7882)
+- Unknown:
+    Airgas v .txt (role=related_case, case_score=0.7105)
+
+DEBUG RAW QUOTES FOR unocal.txt:
+  - This burden is satisfied by demonstrating good faith and reasonable investigation.
+  - The defensive response must then be reasonable in relation to the threat posed.
+DEBUG PICKED QUOTE FOR unocal.txt: This burden is satisfied by demonstrating good faith and reasonable investigation.
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond
+DEBUG PICKED QUOTE FOR stone.txt: absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in 
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 31 put in place a reasonable board-level system of monitoring and reporting.104 Thus, our case law gives deference to boards and has dismissed Caremark cases even when illegal or h
+  - That is, we are not examining the effectiveness of a board -level compliance and reporting system after the fact .
+  - Rather, we are focusing on whether the complaint ple ads facts supporting a reasonable inference that the board did not undertake good faith efforts to put a board-level system of 
+  - 32 Under Caremark, a director may be held liable if she acts in bad faith in the sense that she made no good faith effort to ensure that the company had in place any “system of con
+  - 2009) (Chandler, C.) (noting that Caremark “does not eviscerate the core protections of the business judgment rule”); Caremark, 698 A.2d at 970 (“Obviously the level of detail that
+DEBUG PICKED QUOTE FOR marchand.txt: 2009) (Chandler, C.) (noting that Caremark “does not eviscerate the core protections of the business judgment rule”); Caremark, 698 A.2d at 970 (“Obviously the level of detail that is appropriate for such an information 
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Unocal', 'quote': 'This burden is satisfied by demonstrating good faith and reasonable investigation.', 'source': 'unocal.txt'}
+supreme_refinement -> {'case': 'Stone', 'quote': 'absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in ployee conduct that results an unintend A.', 'source': 'stone.txt'}
+modern_application -> {'case': 'Marchand', 'quote': '2009) (Chandler, C.) (noting that Caremark “does not eviscerate the core protections of the business judgment rule”); Caremark, 698 A.2d at 970 (“Obviously the level of detail that is appropriate for such an information system is a question of business judgment.”); Desimone, 924 A.2d at 935 n.95 (noting that the approaches boards take to monitoring the corporation under their Caremark duty “will obviously vary because of the different circumstances corporations confront”); see also Caremark, 698 A.2d at 971 (“ But, of course, the duty to act in good faith to be informed cannot be thought to require directors to possess detailed information about all aspects of the operation of the enterprise.', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> this burden satisfied demonstrating good faith reasonable investigation
+supreme_refinement -> absence oversight flags good faith context actions must
+modern_application -> chandler noting that caremark does eviscerate core protections
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Unocal: "this burden satisfied demonstrating good faith reasonable investigation"
+- Stone: "absence oversight flags good faith context actions must"
+- Marchand: "chandler noting that caremark does eviscerate core protections"
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond
+DEBUG PICKED QUOTE FOR stone.txt: absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in 
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 31 put in place a reasonable board-level system of monitoring and reporting.104 Thus, our case law gives deference to boards and has dismissed Caremark cases even when illegal or h
+  - That is, we are not examining the effectiveness of a board -level compliance and reporting system after the fact .
+  - Rather, we are focusing on whether the complaint ple ads facts supporting a reasonable inference that the board did not undertake good faith efforts to put a board-level system of 
+  - 32 Under Caremark, a director may be held liable if she acts in bad faith in the sense that she made no good faith effort to ensure that the company had in place any “system of con
+  - 2009) (Chandler, C.) (noting that Caremark “does not eviscerate the core protections of the business judgment rule”); Caremark, 698 A.2d at 970 (“Obviously the level of detail that
+DEBUG PICKED QUOTE FOR marchand.txt: 2009) (Chandler, C.) (noting that Caremark “does not eviscerate the core protections of the business judgment rule”); Caremark, 698 A.2d at 970 (“Obviously the level of detail that is appropriate for such an information 
+
+DEBUG RAW QUOTES FOR unocal.txt:
+  - This burden is satisfied by demonstrating good faith and reasonable investigation.
+  - The defensive response must then be reasonable in relation to the threat posed.
+DEBUG PICKED QUOTE FOR unocal.txt: This burden is satisfied by demonstrating good faith and reasonable investigation.
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - sponding before bidder (1986) (enjoining a coercive Ch., A.2d 103 519 gate.38 corporate bastion’s restructuring plan).
+  - Bradley Michael & Michael See also response defensive if the board of directors’ Repurchases, Rosenzweig, Stock Defensive coercive) (preclusive or and (1986).
+  - 1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.
+DEBUG PICKED QUOTE FOR unitrin.txt: 1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.
+
+DEBUG RAW QUOTES FOR airgas.txt:
+  - fore “Uno- [Even when] a defensive measure to cal’s heightened standard of review does thwart or impede a takeover is indeed not apply here.”304 motivated by a good faith concern f
+  - What the Supreme Court actual- stockholders, which in all circumstances ly said in Unocal, without taking snippets must be free of any fraud or other misof quotes out of context, w
+  - 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment r
+  - There is “no doubt that The Unocal standard of enhanced judicial the basis for the omnipresent specter is scrutiny —not the business judgment the interest of incumbent directors, b
+  - This is 307 ship.” To pass muster under this en- how Delaware has always interpreted the hanced scrutiny, those directors bear the Unocal standard.
+DEBUG PICKED QUOTE FOR airgas.txt: 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Oversight establishes the governing framework for one fiduciary setting, whereas Takeover Defense governs a distinct one.
+
+Key Distinction:  
+Caremark addresses internal board oversight obligations, whereas Unocal addresses defensive action in response to external takeover threats.
+
+Rule Comparison:  
+Oversight (Caremark) governs board-level monitoring failure by requiring a good faith effort to implement and monitor a reporting system. Takeover Defense (Unocal) governs defensive action in response to an external threat by requiring a response that is neither coercive nor preclusive and falls within a range of reasonableness. Taken together, Oversight addresses internal monitoring obligations, whereas Takeover Defense addresses external defensive measures adopted in response to takeover pressure.
+
+Rule:  
+A board breaches its duty of loyalty when it manifests an utter failure to attempt to assure a reasonable reporting or information system or engages in a conscious failure to monitor such a system, as established in Caremark, which is refined by Stone’s articulation of good faith as an element of the duty of loyalty, and further developed in Marchand to require a good faith effort to implement and monitor an oversight system.
+
+Analysis:  
+This matters because oversight doctrine focuses on the board's obligation to implement and monitor a reporting system in good faith, whereas takeover-defense doctrine focuses on defensive measures adopted in response to a threat. The significance is that the doctrines regulate different board functions and apply different standards to internal monitoring failure and external defensive action. As a result, a board may satisfy one doctrine's requirements while still failing the other.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+red_flags_plus_defensive_measures PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: controller_sale_process_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['controller_transactions']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- kahn.txt (case_score=0.8168, role=foundation, line=controller_transactions)
+- mfw.txt (case_score=0.7720, role=supreme_refinement, line=controller_transactions)
+- tesla.txt (case_score=0.6804, role=modern_application, line=controller_transactions)
+- qvc.txt (case_score=0.6528, role=supreme_refinement, line=sale_of_control)
+- paramount.txt (case_score=0.6232, role=related_case, line=unknown)
+
+DOCTRINE BUCKETS:
+- Controller Transactions:
+    kahn.txt (foundation, 0.8168)
+    mfw.txt (supreme_refinement, 0.7720)
+    tesla.txt (modern_application, 0.6804)
+- Sale of Control:
+    qvc.txt (supreme_refinement, 0.6528)
+- Unknown:
+    paramount.txt (related_case, 0.6232)
+
+DOCTRINE LEADERS:
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.8168)
+    mfw.txt (role=supreme_refinement, case_score=0.7720)
+    tesla.txt (role=modern_application, case_score=0.6804)
+- Sale of Control:
+    qvc.txt (role=supreme_refinement, case_score=0.6528)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.6232)
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - At least corporate in an inter of law that Delaware First, majority must not shareholder the dominating merger, controlling the or ested merger.
+  - 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+  - strong length at is evidence that other arm’s fairness.” meets the test of the transaction Requirement Entire Fairness added).
+  - Dominating Shareholder Interested controlling dominating A or share case, In the Vice Chancellor noted that this standing holder on both sides of a transac expressed Chancery “diff
+DEBUG PICKED QUOTE FOR kahn.txt: 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote rat
+  - 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 
+  - The court also decided that, because the Defendants failed to disclose material information concerning director conflicts and process flaws in the first proxy, the 2018 Grant was n
+  - at 19) (“As the Special Committee considered the redomestication question, it concluded that if it made a determination to redomesticate, Mr.
+DEBUG PICKED QUOTE FOR tesla.txt: First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote ratified the transaction.
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Kahn', 'quote': '16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.', 'source': 'kahn.txt'}
+supreme_refinement -> {'case': 'MFW', 'quote': 'Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.', 'source': 'mfw.txt'}
+modern_application -> {'case': 'Tesla', 'quote': 'First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote ratified the transaction.', 'source': 'tesla.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> slip upon this predicated entire fairness must agreeexpressed
+supreme_refinement -> business judgment review applies transaction conditioned from outset
+modern_application -> first overturning court chancery application entire fairness second
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "slip upon this predicated entire fairness must agreeexpressed"
+- MFW: "business judgment review applies transaction conditioned from outset"
+- Tesla: "first overturning court chancery application entire fairness second"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+The answer depends on the governing doctrinal standard.
+
+Key Distinction:
+The earlier doctrine states the baseline rule, whereas the later doctrine refines its application.
+
+Rule Comparison:
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:
+Directors breach the duty of loyalty where their conduct constitutes a failure to act in good faith.
+
+Analysis:
+This matters because Delaware doctrine distinguishes baseline fiduciary obligations from conduct that crosses into breach. The significance is that directors act inconsistently with the duty of loyalty where their conduct constitutes a failure to act in good faith. As a result, breach arises only when inaction or conscious disregard moves beyond imperfection and into disloyal conduct.
+
+Confidence:
+High
+
+
+
+==============================================
+
+controller_sale_process_fact_pattern PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: controller_corwin_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['controller_transactions', 'stockholder_vote_cleansing']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- corwin.txt (case_score=0.9177, role=supreme_refinement, line=stockholder_vote_cleansing)
+- kahn.txt (case_score=0.8756, role=foundation, line=controller_transactions)
+- mfw.txt (case_score=0.8464, role=supreme_refinement, line=controller_transactions)
+- paramount.txt (case_score=0.8013, role=related_case, line=unknown)
+- tesla.txt (case_score=0.7905, role=modern_application, line=controller_transactions)
+- qvc.txt (case_score=0.7686, role=supreme_refinement, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.9177)
+- Controller Transactions:
+    kahn.txt (foundation, 0.8756)
+    mfw.txt (supreme_refinement, 0.8464)
+    tesla.txt (modern_application, 0.7905)
+- Unknown:
+    paramount.txt (related_case, 0.8013)
+- Sale of Control:
+    qvc.txt (supreme_refinement, 0.7686)
+
+DOCTRINE LEADERS:
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.9177)
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.8756)
+    mfw.txt (role=supreme_refinement, case_score=0.8464)
+    tesla.txt (role=modern_application, case_score=0.7905)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.8013)
+- Sale of Control:
+    qvc.txt (role=supreme_refinement, case_score=0.7686)
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - At least corporate in an inter of law that Delaware First, majority must not shareholder the dominating merger, controlling the or ested merger.
+  - 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+  - strong length at is evidence that other arm’s fairness.” meets the test of the transaction Requirement Entire Fairness added).
+  - Dominating Shareholder Interested controlling dominating A or share case, In the Vice Chancellor noted that this standing holder on both sides of a transac expressed Chancery “diff
+DEBUG PICKED QUOTE FOR kahn.txt: 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+
+DEBUG RAW QUOTES FOR corwin.txt:
+  - In a well-reasoned opinion, the Court of Chancery held that the business judgment rule is invoked as the appropriate standard of review for a post-closing damages action when a mer
+DEBUG PICKED QUOTE FOR corwin.txt: 
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote rat
+DEBUG PICKED QUOTE FOR tesla.txt: First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote ratified the transaction.
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Kahn', 'quote': '16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.', 'source': 'kahn.txt'}
+supreme_refinement -> {'case': 'MFW', 'quote': 'Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.', 'source': 'mfw.txt'}
+modern_application -> {'case': 'Tesla', 'quote': 'First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote ratified the transaction.', 'source': 'tesla.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> slip upon this predicated entire fairness must agreeexpressed
+supreme_refinement -> business judgment review applies transaction conditioned from outset
+modern_application -> first overturning court chancery application entire fairness second
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "slip upon this predicated entire fairness must agreeexpressed"
+- MFW: "business judgment review applies transaction conditioned from outset"
+- Tesla: "first overturning court chancery application entire fairness second"
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - At least corporate in an inter of law that Delaware First, majority must not shareholder the dominating merger, controlling the or ested merger.
+  - 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+  - strong length at is evidence that other arm’s fairness.” meets the test of the transaction Requirement Entire Fairness added).
+  - Dominating Shareholder Interested controlling dominating A or share case, In the Vice Chancellor noted that this standing holder on both sides of a transac expressed Chancery “diff
+DEBUG PICKED QUOTE FOR kahn.txt: 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote rat
+DEBUG PICKED QUOTE FOR tesla.txt: First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote ratified the transaction.
+
+DEBUG RAW QUOTES FOR corwin.txt:
+  - In a well-reasoned opinion, the Court of Chancery held that the business judgment rule is invoked as the appropriate standard of review for a post-closing damages action when a mer
+DEBUG PICKED QUOTE FOR corwin.txt: 
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Stockholder Vote Cleansing governs a distinct one.
+
+Key Distinction:
+MFW governs conflicted controller transactions through dual cleansing protections, whereas Corwin governs the effect of a fully informed and uncoerced stockholder vote.
+
+Rule Comparison:
+Controller Transactions (MFW) establishes the governing framework for conflicted controller transactions by restoring business judgment review only if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote. Stockholder Vote Cleansing (Corwin) defines when business judgment review applies to a non-controller transaction after a fully informed and uncoerced vote of disinterested stockholders. Taken together, Controller Transactions requires dual cleansing protections for controller conflict, whereas Stockholder Vote Cleansing turns on stockholder approval through a fully informed and uncoerced vote.
+
+Rule:
+Liability for breach of fiduciary duty based on oversight requires an utter failure to attempt to assure a reporting or information system exists, coupled with a conscious failure to monitor such a system, and must be evaluated in light of a director’s good faith effort to implement oversight consistent with the duty of loyalty as articulated in Stone and refined in Marchand.
+
+Analysis:
+This matters because controller transactions require approval by both a special committee and a majority-of-the-minority vote, whereas stockholder vote cleansing depends on a fully informed and uncoerced vote of disinterested stockholders. The significance is that each doctrine invokes business judgment review through a different mechanism tailored to a distinct fiduciary risk. As a result, the applicable standard of review depends on whether the transaction implicates controller conflict requiring MFW protections or instead turns on stockholder approval under Corwin.
+
+Confidence:
+High
+
+
+
+==============================================
+
+controller_corwin_fact_pattern PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: takeover_defense_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['takeover_defense']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- unitrin.txt (case_score=0.9707, role=supreme_refinement, line=takeover_defense)
+- unocal.txt (case_score=0.9408, role=foundation, line=takeover_defense)
+- airgas.txt (case_score=0.9136, role=modern_application, line=takeover_defense)
+- Airgas v .txt (case_score=0.8590, role=related_case, line=unknown)
+
+DOCTRINE BUCKETS:
+- Takeover Defense:
+    unocal.txt (foundation, 0.9408)
+    unitrin.txt (supreme_refinement, 0.9707)
+    airgas.txt (modern_application, 0.9136)
+- Unknown:
+    Airgas v .txt (related_case, 0.8590)
+
+DOCTRINE LEADERS:
+- Takeover Defense:
+    unocal.txt (role=foundation, case_score=0.9408)
+    unitrin.txt (role=supreme_refinement, case_score=0.9707)
+    airgas.txt (role=modern_application, case_score=0.9136)
+- Unknown:
+    Airgas v .txt (role=related_case, case_score=0.8590)
+
+DEBUG RAW QUOTES FOR unocal.txt:
+  - This burden is satisfied by demonstrating good faith and reasonable investigation.
+  - The defensive response must then be reasonable in relation to the threat posed.
+DEBUG PICKED QUOTE FOR unocal.txt: This burden is satisfied by demonstrating good faith and reasonable investigation.
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - sponding before bidder (1986) (enjoining a coercive Ch., A.2d 103 519 gate.38 corporate bastion’s restructuring plan).
+  - Bradley Michael & Michael See also response defensive if the board of directors’ Repurchases, Rosenzweig, Stock Defensive coercive) (preclusive or and (1986).
+  - 1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.
+  - 1387 alternative, i.e., coercive, benot and response, includwas evaluate the board’s overall Paramount from preclude it did not cause ing justification contested defenthe for each 
+  - See Paramount related, inextricably printhe sive actions are Time, Inc., 1140, 1154-55 Del.Supr., 571 A.2d ciples require of that such actions be Unocal (1990) comparison coercive 
+DEBUG PICKED QUOTE FOR unitrin.txt: 1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.
+
+DEBUG RAW QUOTES FOR airgas.txt:
+  - fore “Uno- [Even when] a defensive measure to cal’s heightened standard of review does thwart or impede a takeover is indeed not apply here.”304 motivated by a good faith concern f
+  - What the Supreme Court actual- stockholders, which in all circumstances ly said in Unocal, without taking snippets must be free of any fraud or other misof quotes out of context, w
+  - 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment r
+  - Only a board of question: Can a board of directors, directors found to be acting in good faith, tal acting in good faith and with a reasonable after reasonable investigation and re
+  - gories, and clearly chose not to deem an all shares, all cash offer coercive in any respect.
+DEBUG PICKED QUOTE FOR airgas.txt: 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Unocal', 'quote': 'This burden is satisfied by demonstrating good faith and reasonable investigation.', 'source': 'unocal.txt'}
+supreme_refinement -> {'case': 'Unitrin', 'quote': '1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.', 'source': 'unitrin.txt'}
+modern_application -> {'case': 'Airgas', 'quote': '94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards be acting fied and no further inquiry is undertak- in their own self-interest to perpetuate is, itself, en.309 themselves in office in and of the “omnipresent specter” justifying enhanced Accor.', 'source': 'airgas.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> this burden satisfied demonstrating good faith reasonable investigation
+supreme_refinement -> reasonableness court range within repur that showing this
+modern_application -> judgment rule must reasonable wanting objectivity good faith
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Unocal: "this burden satisfied demonstrating good faith reasonable investigation"
+- Unitrin: "reasonableness court range within repur that showing this"
+- Airgas: "judgment rule must reasonable wanting objectivity good faith"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+The answer depends on the governing doctrinal standard.
+
+Key Distinction:  
+The earlier doctrine states the baseline rule, whereas the later doctrine refines its application.
+
+Rule Comparison:  
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:  
+Directors breach the duty of loyalty where their conduct constitutes a failure to act in good faith.
+
+Analysis:  
+This matters because Delaware doctrine distinguishes baseline fiduciary obligations from conduct that crosses into breach. The significance is that directors act inconsistently with the duty of loyalty where their conduct constitutes a failure to act in good faith. As a result, breach arises only when inaction or conscious disregard moves beyond imperfection and into disloyal conduct.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+takeover_defense_fact_pattern PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: oversight_red_flags_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['oversight']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- marchand.txt (case_score=0.7890, role=modern_application, line=oversight)
+- stone.txt (case_score=0.7877, role=supreme_refinement, line=oversight)
+- caremark.txt (case_score=0.6364, role=foundation, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.6364)
+    stone.txt (supreme_refinement, 0.7877)
+    marchand.txt (modern_application, 0.7890)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.6364)
+    stone.txt (role=supreme_refinement, case_score=0.7877)
+    marchand.txt (role=modern_application, case_score=0.7890)
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - I potennote the obligation duty attempt good includes a to in impact tial organizational of the federal sencorporate faith to assure a that information tencing guidelines on any or
+  - 970 too, by management terns are ously rationally designed established no information — would not, event, any accepted by in be the Delareporting system and possiwill remove the 19
+  - good exercise judgment a faith that corthe QVC26 seriousness with which corthe poration’s — the reporting system information and poration corporate law views the role of the is in 
+  - the Board vide evidence necessary good faith that a condilack of is company understood that the had entered liability a liability.
+DEBUG PICKED QUOTE FOR caremark.txt: I potennote the obligation duty attempt good includes a to in impact tial organizational of the federal sencorporate faith to assure a that information tencing guidelines on any organizabusiness reporting system, and whi
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - 372 responsibility to establish an depends information on whether complaint alleges the and reporting system, proved but also that facts sufficient to show that the defendant syste
+  - absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond
+  - sustained systematic failure the to or of board describes, examples The third of these an utter failoversight-such exercise as with, lack of fully and consistent the is to attempt 
+  - ative ents training to the Board of BSA/AML dismiss, to withstand a motion to “only a annually,” Directors and the “Corporate systematic sustained or failure of the Security traini
+DEBUG PICKED QUOTE FOR stone.txt: absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in 
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 31 put in place a reasonable board-level system of monitoring and reporting.104 Thus, our case law gives deference to boards and has dismissed Caremark cases even when illegal or h
+  - That is, we are not examining the effectiveness of a board -level compliance and reporting system after the fact .
+  - Rather, we are focusing on whether the complaint ple ads facts supporting a reasonable inference that the board did not undertake good faith efforts to put a board-level system of 
+  - 32 Under Caremark, a director may be held liable if she acts in bad faith in the sense that she made no good faith effort to ensure that the company had in place any “system of con
+  - only a sustained or systematic failure of the board to exercise oversight—such as an utter failure to attempt to assure a reasonable information and reporting system exists—will es
+DEBUG PICKED QUOTE FOR marchand.txt: only a sustained or systematic failure of the board to exercise oversight—such as an utter failure to attempt to assure a reasonable information and reporting system exists—will establish the lack of good faith that is a
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'I potennote the obligation duty attempt good includes a to in impact tial organizational of the federal sencorporate faith to assure a that information tencing guidelines on any organizabusiness reporting system, and which the conboard Any person good tion.', 'source': 'caremark.txt'}
+supreme_refinement -> {'case': 'Stone', 'quote': 'absence oversight flags, good faith in the context of by be the actions must measured directors’ a “to assure reasonable information and system by reporting exists” and not sec ond-guessing after the occurrence of em in ployee conduct that results an unintend A.', 'source': 'stone.txt'}
+modern_application -> {'case': 'Marchand', 'quote': 'only a sustained or systematic failure of the board to exercise oversight—such as an utter failure to attempt to assure a reasonable information and reporting system exists—will establish the lack of good faith that is a necessary condition to liability.”).', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> potennote obligation duty attempt good includes impact tial
+supreme_refinement -> absence oversight flags good faith context actions must
+modern_application -> only sustained systematic failure board exercise oversight such
+DEBUG CAREMARK TREE:
+Doctrine: oversight
+Path: reporting_system_exists -> no_monitoring
+Outcome: potential_oversight_breach
+Risk Level: high
+Primary Failure: failure_to_monitor
+Reason: The facts suggest a conscious failure to monitor or oversee an existing reporting or information system.
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "potennote obligation duty attempt good includes impact tial"
+- Stone: "absence oversight flags good faith context actions must"
+- Marchand: "only sustained systematic failure board exercise oversight such"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+VALIDATION ERRORS:
+- Analysis should integrate at least one doctrinal anchor phrase
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+The theory sounds in monitoring failure, not implementation failure.
+
+Key Distinction:  
+The present theory sounds in monitoring failure, whereas Caremark states the implementation baseline.
+
+Rule Comparison:  
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:  
+A board breaches the duty of loyalty where either its potennote obligation duty attempt good includes impact tial a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a absence oversight flags good faith context actions must, requiring a only sustained systematic failure board exercise oversight such.
+
+Analysis:  
+This matters because oversight liability arises where directors ignore red flags in mission-critical areas. The significance is that a board’s failure to respond to red flags in a mission critical context supports an inference of bad faith. As a result, ignoring red flags tied to the company’s core mission may give rise to Caremark liability.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+oversight_red_flags_fact_pattern PASSED (score=100)
+
+========================================================================
+PASSED: 13
+FAILED: 0
+========================================================================

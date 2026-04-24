@@ -1,0 +1,135 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['controller_transactions', 'stockholder_vote_cleansing']
+NAMED SOURCES: ['mfw.txt', 'corwin.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- corwin.txt (case_score=0.6167, role=supreme_refinement, line=stockholder_vote_cleansing) *
+- paramount.txt (case_score=0.4945, role=related_case, line=unknown)
+- mfw.txt (case_score=0.4613, role=supreme_refinement, line=controller_transactions) *
+- tesla.txt (case_score=0.4380, role=modern_application, line=controller_transactions)
+- kahn.txt (case_score=0.4344, role=foundation, line=controller_transactions)
+- airgas.txt (case_score=0.3748, role=modern_application, line=takeover_defense)
+- disney.txt (case_score=0.3707, role=related_case, line=oversight)
+
+DOCTRINE BUCKETS:
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.6167)
+- Unknown:
+    paramount.txt (related_case, 0.4945)
+- Controller Transactions:
+    kahn.txt (foundation, 0.4344)
+    mfw.txt (supreme_refinement, 0.4613)
+    tesla.txt (modern_application, 0.4380)
+- Takeover Defense:
+    airgas.txt (modern_application, 0.3748)
+- Oversight:
+    disney.txt (related_case, 0.3707)
+
+DOCTRINE LEADERS:
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.6167)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.4945)
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.4344)
+    mfw.txt (role=supreme_refinement, case_score=0.4613)
+    tesla.txt (role=modern_application, case_score=0.4380)
+- Takeover Defense:
+    airgas.txt (role=modern_application, case_score=0.3748)
+- Oversight:
+    disney.txt (role=related_case, case_score=0.3707)
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - 17 proper remains Entire fairness the 551, (1992), J.Corp.L.
+  - definitive regard answer with to the of policy Court for 110 The rationale the Chancery’s “differing is in this views” found application of the entire fairness exclusive opinions W
+  - g regarding the effect that an views” proving the of entire fairness.
+  - agreement,” is not replicated a independent committee but also the case present in circumstances Under the contending process though each of the “as Chancery in judice, of erred th
+DEBUG PICKED QUOTE FOR kahn.txt: is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+
+DEBUG RAW QUOTES FOR corwin.txt:
+  - In a well-reasoned opinion, the Court of Chancery held that the business judgment rule is invoked as the appropriate standard of review for a post-closing damages action when a mer
+DEBUG PICKED QUOTE FOR corwin.txt: 
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 
+  - The court also decided that, because the Defendants failed to disclose material information concerning director conflicts and process flaws in the first proxy, the 2018 Grant was n
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - that it is the preferred remedial measure when a transaction fails to meet the burden of entire fairness” and rescission is not available.124 Here, the Plaintiff did not seek resci
+DEBUG PICKED QUOTE FOR tesla.txt: 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 2018 Grant, the Court of Chancery subjec
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Kahn', 'quote': 'is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.', 'source': 'kahn.txt'}
+supreme_refinement -> {'case': 'MFW', 'quote': 'Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.', 'source': 'mfw.txt'}
+modern_application -> {'case': 'Tesla', 'quote': '13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 2018 Grant, the Court of Chancery subjected it to the entire fairness standard of review.', 'source': 'tesla.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> this views found application entire fairness exclusive opinions
+supreme_refinement -> business judgment review applies transaction conditioned from outset
+modern_application -> decisionmakers magnitude difference between sizes grant comparable plans
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "this views found application entire fairness exclusive opinions"
+- MFW: "business judgment review applies transaction conditioned from outset"
+- Tesla: "decisionmakers magnitude difference between sizes grant comparable plans"
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - 17 proper remains Entire fairness the 551, (1992), J.Corp.L.
+  - definitive regard answer with to the of policy Court for 110 The rationale the Chancery’s “differing is in this views” found application of the entire fairness exclusive opinions W
+  - g regarding the effect that an views” proving the of entire fairness.
+  - agreement,” is not replicated a independent committee but also the case present in circumstances Under the contending process though each of the “as Chancery in judice, of erred th
+DEBUG PICKED QUOTE FOR kahn.txt: is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 
+  - The court also decided that, because the Defendants failed to disclose material information concerning director conflicts and process flaws in the first proxy, the 2018 Grant was n
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - that it is the preferred remedial measure when a transaction fails to meet the burden of entire fairness” and rescission is not available.124 Here, the Plaintiff did not seek resci
+DEBUG PICKED QUOTE FOR tesla.txt: 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 2018 Grant, the Court of Chancery subjec
+
+DEBUG RAW QUOTES FOR corwin.txt:
+  - In a well-reasoned opinion, the Court of Chancery held that the business judgment rule is invoked as the appropriate standard of review for a post-closing damages action when a mer
+DEBUG PICKED QUOTE FOR corwin.txt: 
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 94/100
+VALIDATION ERRORS:
+- Key Distinction must use 'whereas'
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Stockholder Vote Cleansing governs a distinct one.
+
+Key Distinction:
+MFW governs conflicted controller transactions through dual cleansing protections, whereas Corwin governs the effect of a fully informed and uncoerced stockholder vote.
+
+Controller Transactions:
+A controller transaction receives business judgment deference only where, from the outset, it is conditioned on approval by both an independent special committee and an informed, uncoerced majority of the minority stockholders.
+
+Stockholder Vote Cleansing:
+A fully informed, uncoerced vote of disinterested stockholders generally invokes business judgment review and extinguishes claims subject to Corwin cleansing.
+
+Rule Comparison:
+Controller Transactions (MFW) establishes the governing framework for conflicted controller transactions by restoring business judgment review only if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote. Stockholder Vote Cleansing (Corwin) defines when business judgment review applies to a non-controller transaction after a fully informed and uncoerced vote of disinterested stockholders. Taken together, Controller Transactions requires dual cleansing protections for controller conflict, whereas Stockholder Vote Cleansing turns on stockholder approval through a fully informed and uncoerced vote.
+
+Analysis:
+This matters because controller transactions require approval by both a special committee and a majority-of-the-minority vote, whereas stockholder vote cleansing depends on a fully informed and uncoerced vote of disinterested stockholders. The significance is that each doctrine invokes business judgment review through a different mechanism tailored to a distinct fiduciary risk. As a result, the applicable standard of review depends on whether the transaction implicates controller conflict requiring MFW protections or instead turns on stockholder approval under Corwin.
+
+Confidence:
+High
+

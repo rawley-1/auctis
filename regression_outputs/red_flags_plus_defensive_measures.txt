@@ -1,0 +1,61 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['oversight', 'takeover_defense']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- unocal.txt (case_score=0.8305, role=foundation, line=takeover_defense)
+- marchand.txt (case_score=0.7882, role=modern_application, line=oversight)
+- airgas.txt (case_score=0.7515, role=modern_application, line=takeover_defense)
+- stone.txt (case_score=0.7445, role=supreme_refinement, line=oversight)
+- unitrin.txt (case_score=0.7385, role=supreme_refinement, line=takeover_defense)
+- Airgas v .txt (case_score=0.7105, role=related_case, line=unknown)
+
+DOCTRINE BUCKETS:
+- Takeover Defense:
+    unocal.txt (foundation, 0.8305)
+    unitrin.txt (supreme_refinement, 0.7385)
+    airgas.txt (modern_application, 0.7515)
+- Oversight:
+    stone.txt (supreme_refinement, 0.7445)
+    marchand.txt (modern_application, 0.7882)
+- Unknown:
+    Airgas v .txt (related_case, 0.7105)
+
+DOCTRINE LEADERS:
+- Takeover Defense:
+    unocal.txt (role=foundation, case_score=0.8305)
+    unitrin.txt (role=supreme_refinement, case_score=0.7385)
+    airgas.txt (role=modern_application, case_score=0.7515)
+- Oversight:
+    stone.txt (role=supreme_refinement, case_score=0.7445)
+    marchand.txt (role=modern_application, case_score=0.7882)
+- Unknown:
+    Airgas v .txt (role=related_case, case_score=0.7105)
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Unocal: "this burden satisfied demonstrating good faith reasonable investigation"
+- Stone: "absence oversight flags good faith context actions must"
+- Marchand: "chandler noting that caremark does eviscerate core protections"
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Oversight establishes the governing framework for one fiduciary setting, whereas Takeover Defense governs a distinct one.
+
+
+Rule:
+A board breaches its fiduciary duty of loyalty under oversight doctrine only upon an utter failure to attempt to assure that a reasonable reporting or information system exists, which constitutes a conscious failure to monitor, whereas Stone establishes that such failure implicates the duty of loyalty through lack of good faith, and Marchand requires a good faith effort to implement and monitor an oversight system; thus, liability arises only when directors consciously fail to monitor or make a good faith effort, linking oversight obligations to the duty of loyalty and good faith.
+
+Analysis:
+This matters because oversight doctrine addresses internal board monitoring, where directors breach the duty of loyalty through utter failure to attempt to assure that a reasonable reporting or information system exists, and where failure to act in good faith includes the obligation to make a good faith effort to implement an oversight system. The significance is that takeover-defense doctrine instead addresses external defensive action, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed, and that their response was neither coercive nor preclusive and within a range of reasonableness. As a result, oversight doctrine governs internal monitoring obligations, whereas takeover-defense doctrine governs defensive responses to takeover threats.
+
+Confidence:
+High
+

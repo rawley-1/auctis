@@ -1,0 +1,143 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight', 'takeover_defense']
+NAMED SOURCES: ['caremark.txt', 'unocal.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=0.8879, role=foundation, line=oversight) *
+- unocal.txt (case_score=0.7275, role=foundation, line=takeover_defense) *
+- unitrin.txt (case_score=0.6660, role=supreme_refinement, line=takeover_defense)
+- airgas.txt (case_score=0.6587, role=modern_application, line=takeover_defense)
+- marchand.txt (case_score=0.6549, role=modern_application, line=oversight)
+- Airgas v .txt (case_score=0.6058, role=related_case, line=unknown)
+- stone.txt (case_score=0.6044, role=supreme_refinement, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.8879)
+    stone.txt (supreme_refinement, 0.6044)
+    marchand.txt (modern_application, 0.6549)
+- Takeover Defense:
+    unocal.txt (foundation, 0.7275)
+    unitrin.txt (supreme_refinement, 0.6660)
+    airgas.txt (modern_application, 0.6587)
+- Unknown:
+    Airgas v .txt (related_case, 0.6058)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.8879)
+    stone.txt (role=supreme_refinement, case_score=0.6044)
+    marchand.txt (role=modern_application, case_score=0.6549)
+- Takeover Defense:
+    unocal.txt (role=foundation, case_score=0.7275)
+    unitrin.txt (role=supreme_refinement, case_score=0.6660)
+    airgas.txt (role=modern_application, case_score=0.6587)
+- Unknown:
+    Airgas v .txt (role=related_case, case_score=0.6058)
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+  - The Court of tional business Repurchase Program, response the in to concluded, however, Chancery that the UnitOffer, American General’s did not constitute perceived rin Board Ameri
+  - requires by proportionality review Unocal Repurchase focusing upon Pro whether the “unnecessary” re gram was an defensive Contentions Unitrin’s Communications, sponse.
+  - 1391 disproportionate rerepurchase program clearly gram was a defensive eate that a is faulty predireasonableness, sponse, on factual range of if was based within the even it cates
+  - is not coercive or circumstance, by application of an erroambiguous was exacerbated its an factual the “necessity” to Chancery of the properly legal of neous standard Court could c
+DEBUG PICKED QUOTE FOR unitrin.txt: The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+
+DEBUG RAW QUOTES FOR airgas.txt:
+  - a majority of outside independent directors In essence, TW Services appeared to supcoupled with a showing of reliance on ad- port the view that a well-informed board vice by legal 
+  - fore “Uno- [Even when] a defensive measure to cal’s heightened standard of review does thwart or impede a takeover is indeed not apply here.”304 motivated by a good faith concern f
+  - What the Supreme Court actual- stockholders, which in all circumstances ly said in Unocal, without taking snippets must be free of any fraud or other misof quotes out of context, w
+  - 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment r
+  - Process 367 sale.” Importantly, “[t]hose cases did Under the first prong of Unocal, not involve circumstances in which a defendants bear the burden of showing had, elected, board i
+DEBUG PICKED QUOTE FOR airgas.txt: 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+supreme_refinement -> {'case': 'Unitrin', 'quote': 'The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.', 'source': 'unitrin.txt'}
+modern_application -> {'case': 'Airgas', 'quote': '94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards be acting fied and no further inquiry is undertak- in their own self-interest to perpetuate is, itself, en.309 themselves in office in and of the “omnipresent specter” justifying enhanced Accor.', 'source': 'airgas.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+supreme_refinement -> court repurchase conduct unitrin board should exhad board
+modern_application -> judgment rule must reasonable wanting objectivity good faith
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- Unitrin: "court repurchase conduct unitrin board should exhad board"
+- Airgas: "judgment rule must reasonable wanting objectivity good faith"
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - The failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+DEBUG PICKED QUOTE FOR stone.txt: The failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Although Caremark may not require as much as some commentators wish,115 it does require that a board make a good faith effort to put in place a reasonable system of monitoring and 
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+
+DEBUG RAW QUOTES FOR unocal.txt:
+  - This burden is satisfied by demonstrating good faith and reasonable investigation.
+  - The defensive response must then be reasonable in relation to the threat posed.
+DEBUG PICKED QUOTE FOR unocal.txt: This burden is satisfied by demonstrating good faith and reasonable investigation.
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+  - The Court of tional business Repurchase Program, response the in to concluded, however, Chancery that the UnitOffer, American General’s did not constitute perceived rin Board Ameri
+  - requires by proportionality review Unocal Repurchase focusing upon Pro whether the “unnecessary” re gram was an defensive Contentions Unitrin’s Communications, sponse.
+  - 1391 disproportionate rerepurchase program clearly gram was a defensive eate that a is faulty predireasonableness, sponse, on factual range of if was based within the even it cates
+  - is not coercive or circumstance, by application of an erroambiguous was exacerbated its an factual the “necessity” to Chancery of the properly legal of neous standard Court could c
+DEBUG PICKED QUOTE FOR unitrin.txt: The Court of Repurchase conduct of the Unitrin Board should be exhad the Board enacted the Proamined under the entire fairness standard.
+
+DEBUG RAW QUOTES FOR airgas.txt:
+  - a majority of outside independent directors In essence, TW Services appeared to supcoupled with a showing of reliance on ad- port the view that a well-informed board vice by legal 
+  - fore “Uno- [Even when] a defensive measure to cal’s heightened standard of review does thwart or impede a takeover is indeed not apply here.”304 motivated by a good faith concern f
+  - What the Supreme Court actual- stockholders, which in all circumstances ly said in Unocal, without taking snippets must be free of any fraud or other misof quotes out of context, w
+  - 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment r
+  - Process 367 sale.” Importantly, “[t]hose cases did Under the first prong of Unocal, not involve circumstances in which a defendants bear the burden of showing had, elected, board i
+DEBUG PICKED QUOTE FOR airgas.txt: 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 88/100
+VALIDATION ERRORS:
+- Key Distinction must be exactly one sentence
+- Key Distinction is too long
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Oversight establishes the governing framework for one fiduciary setting, whereas Takeover Defense governs a distinct one.
+
+Key Distinction:  
+Caremark addresses internal board oversight obligations, whereas Unocal addresses defensive action in response to external takeover threats.
+
+Oversight:  
+A board breaches the duty of loyalty where either its that undertakes that pliance report must officers semi a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a failure to act in good faith, requiring a good faith effort to implement an oversight system.
+
+Takeover Defense:  
+A board's defensive response to a perceived threat is subject to enhanced scrutiny where it identifies a threat to corporate policy and effectiveness and adopts a response that is neither coercive nor preclusive and falls within a range of reasonableness.
+
+Rule Comparison:  
+Oversight (Caremark) governs board-level monitoring failure by requiring a good faith effort to implement and monitor a reporting system. Takeover Defense (Unocal) governs defensive action in response to an external threat by requiring a response that is neither coercive nor preclusive and falls within a range of reasonableness. Taken together, Oversight addresses internal monitoring obligations, whereas Takeover Defense addresses external defensive measures adopted in response to takeover pressure.
+
+Analysis:  
+This matters because oversight doctrine focuses on the board's obligation to implement and monitor a reporting system in good faith, whereas takeover-defense doctrine focuses on defensive measures adopted in response to a threat. The significance is that the doctrines regulate different board functions and apply different standards to internal monitoring failure and external defensive action. As a result, a board may satisfy one doctrine's requirements while still failing the other.
+
+Confidence:  
+High
+

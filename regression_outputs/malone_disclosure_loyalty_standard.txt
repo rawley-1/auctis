@@ -1,0 +1,59 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['disclosure_loyalty']
+NAMED SOURCES: ['malone.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- malone.txt (case_score=0.9622, role=foundation, line=disclosure_loyalty) *
+- metro.txt (case_score=0.5667, role=modern_application, line=sale_of_control)
+- tesla.txt (case_score=0.5228, role=modern_application, line=controller_transactions)
+- rural metro.txt (case_score=0.5162, role=related_case, line=sale_of_control)
+- marchand.txt (case_score=0.5135, role=modern_application, line=oversight)
+
+DOCTRINE BUCKETS:
+- Disclosure Loyalty:
+    malone.txt (foundation, 0.9622)
+- Sale of Control:
+    metro.txt (modern_application, 0.5667)
+    rural metro.txt (related_case, 0.5162)
+- Controller Transactions:
+    tesla.txt (modern_application, 0.5228)
+- Oversight:
+    marchand.txt (modern_application, 0.5135)
+
+DOCTRINE LEADERS:
+- Disclosure Loyalty:
+    malone.txt (role=foundation, case_score=0.9622)
+- Sale of Control:
+    metro.txt (role=modern_application, case_score=0.5667)
+    rural metro.txt (role=related_case, case_score=0.5162)
+- Controller Transactions:
+    tesla.txt (role=modern_application, case_score=0.5228)
+- Oversight:
+    marchand.txt (role=modern_application, case_score=0.5135)
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Malone: "information duty charted disclosure course conduct that must"
+- Metro: "entire fairness test actions taken zelett strip casting"
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Disclosure Loyalty supplies the governing doctrinal framework.
+
+
+Rule:
+Disclosure Loyalty doctrine governs what directors owe when communicating with stockholders, where directors who communicate with stockholders owe a duty to speak truthfully and completely. It also recognizes that disclosure that is materially misleading may constitute a breach of the duty of loyalty. Accordingly, directors may not knowingly disseminate false information to stockholders.
+
+Analysis:
+This matters because Disclosure Loyalty doctrine governs what directors owe when communicating with stockholders, where directors who communicate with stockholders owe a duty to speak truthfully and completely. The significance is that disclosure that is materially misleading may constitute a breach of the duty of loyalty. As a result, directors may not knowingly disseminate false information to stockholders.
+
+Confidence:
+High
+

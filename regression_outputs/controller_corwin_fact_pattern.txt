@@ -1,0 +1,63 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['controller_transactions', 'stockholder_vote_cleansing']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- corwin.txt (case_score=0.9180, role=supreme_refinement, line=stockholder_vote_cleansing)
+- kahn.txt (case_score=0.8762, role=foundation, line=controller_transactions)
+- mfw.txt (case_score=0.8468, role=supreme_refinement, line=controller_transactions)
+- paramount.txt (case_score=0.8017, role=related_case, line=unknown)
+- tesla.txt (case_score=0.7906, role=modern_application, line=controller_transactions)
+- qvc.txt (case_score=0.7691, role=supreme_refinement, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.9180)
+- Controller Transactions:
+    kahn.txt (foundation, 0.8762)
+    mfw.txt (supreme_refinement, 0.8468)
+    tesla.txt (modern_application, 0.7906)
+- Unknown:
+    paramount.txt (related_case, 0.8017)
+- Sale of Control:
+    qvc.txt (supreme_refinement, 0.7691)
+
+DOCTRINE LEADERS:
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.9180)
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.8762)
+    mfw.txt (role=supreme_refinement, case_score=0.8468)
+    tesla.txt (role=modern_application, case_score=0.7906)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.8017)
+- Sale of Control:
+    qvc.txt (role=supreme_refinement, case_score=0.7691)
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "slip upon this predicated entire fairness must agreeexpressed"
+- MFW: "business judgment review applies transaction conditioned from outset"
+- Tesla: "first overturning court chancery application entire fairness second"
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Stockholder Vote Cleansing governs a distinct one.
+
+Rule:  
+The standard of review for controller transactions requires entire fairness unless the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority, thereby invoking business judgment review. In contrast, where no controller conflict exists, a fully informed and uncoerced vote of disinterested stockholders cleanses the transaction, shifting review to the business judgment rule. Thus, the duty of loyalty and good faith are satisfied when stockholders, acting with full information and without coercion, ratify the board’s decision, obviating the need for heightened scrutiny.
+
+
+Analysis:  
+This matters because controller-transactions doctrine addresses transactions involving controller conflict, where entire fairness is the standard of review for a controller transaction and business judgment review is restored only if the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. The significance is that stockholder-vote cleansing doctrine instead asks whether a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review. As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas stockholder-vote cleansing governs the legal effect of stockholder approval.
+
+Confidence:  
+High
+

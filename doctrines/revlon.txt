@@ -1,0 +1,12 @@
+﻿SECTION: Governing legal standard
+
+
+CASE: Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc.
+COURT: Delaware Supreme Court
+YEAR: 1986
+DOCTRINE: Revlon duties / sale of control
+AUTHORITY: Binding precedent
+KEY TOPIC: Maximization of shareholder value, auction duty
+
+
+The duty of the board changes from preservation of the corporate entity to maximization of the company's value at a sale for the stockholders' benefit. Directors become auctioneers charged with getting the best price reasonably available when sale or breakup of the company becomes inevitable.

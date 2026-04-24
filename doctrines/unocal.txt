@@ -1,0 +1,12 @@
+﻿SECTION: Governing legal standard
+
+
+CASE: Unocal Corp. v. Mesa Petroleum Co.
+COURT: Delaware Supreme Court
+YEAR: 1985
+DOCTRINE: Defensive measures / enhanced scrutiny
+AUTHORITY: Binding precedent
+KEY TOPIC: Threat assessment, proportional defensive response
+
+
+When a board of directors adopts defensive measures in response to a takeover threat, it bears the burden of showing that it had reasonable grounds for believing that a danger to corporate policy and effectiveness existed. This burden is satisfied by demonstrating good faith and reasonable investigation. The defensive response must then be reasonable in relation to the threat posed.

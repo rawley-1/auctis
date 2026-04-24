@@ -1,0 +1,119 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['sale_of_control', 'controller_transactions']
+NAMED SOURCES: ['revlon.txt', 'mfw.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- revlon.txt (case_score=0.6477, role=foundation, line=sale_of_control) *
+- barkan.txt (case_score=0.5145, role=related_case, line=unknown)
+- metro.txt (case_score=0.5116, role=modern_application, line=sale_of_control)
+- rural metro.txt (case_score=0.4929, role=related_case, line=sale_of_control)
+- qvc.txt (case_score=0.4855, role=supreme_refinement, line=sale_of_control)
+- paramount.txt (case_score=0.4672, role=related_case, line=unknown)
+- lyondell.txt (case_score=0.4567, role=modern_application, line=sale_of_control)
+- airgas.txt (case_score=0.4514, role=modern_application, line=takeover_defense)
+
+DOCTRINE BUCKETS:
+- Sale of Control:
+    revlon.txt (foundation, 0.6477)
+    qvc.txt (supreme_refinement, 0.4855)
+    metro.txt (modern_application, 0.5116)
+    lyondell.txt (modern_application, 0.4567)
+    rural metro.txt (related_case, 0.4929)
+- Unknown:
+    barkan.txt (related_case, 0.5145)
+    paramount.txt (related_case, 0.4672)
+    paramount v qvc.txt (related_case, 0.4461)
+- Takeover Defense:
+    airgas.txt (modern_application, 0.4514)
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.4391)
+
+DOCTRINE LEADERS:
+- Sale of Control:
+    revlon.txt (role=foundation, case_score=0.6477)
+    qvc.txt (role=supreme_refinement, case_score=0.4855)
+    metro.txt (role=modern_application, case_score=0.5116)
+- Unknown:
+    barkan.txt (role=related_case, case_score=0.5145)
+    paramount.txt (role=related_case, case_score=0.4672)
+    paramount v qvc.txt (role=related_case, case_score=0.4461)
+- Takeover Defense:
+    airgas.txt (role=modern_application, case_score=0.4514)
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.4391)
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatab
+  - 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+  - Ha- the entire fairness test to actions taken by zelett Strip-Casting Corp., 28 A.3d 442, directors to resist a hostile takeover.
+DEBUG PICKED QUOTE FOR metro.txt: 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+DEBUG ROLE QUOTE MAP:
+supreme_refinement -> {'case': 'QVC', 'quote': '[that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.', 'source': 'qvc.txt'}
+modern_application -> {'case': 'Metro', 'quote': '82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.', 'source': 'metro.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+supreme_refinement -> that action cannot paramount defendants have inter withstand
+modern_application -> business judgment rule enhanced apply either business judgment
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- QVC: "that action cannot paramount defendants have inter withstand"
+- Metro: "business judgment rule enhanced apply either business judgment"
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatab
+  - 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+  - Ha- the entire fairness test to actions taken by zelett Strip-Casting Corp., 28 A.3d 442, directors to resist a hostile takeover.
+DEBUG PICKED QUOTE FOR metro.txt: 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Sale of Control establishes the governing framework for one fiduciary setting, whereas Controller Transactions governs a distinct one.
+
+Key Distinction:
+Sale of Control establishes the governing framework for one fiduciary setting, whereas Controller Transactions governs a distinct one.
+
+Controller Transactions:
+A controller transaction receives business judgment deference only where, from the outset, it is conditioned on approval by both an independent special committee and an informed, uncoerced majority of the minority stockholders.
+
+Sale of Control:
+Where the corporation is for sale or a transaction will effect a change of control, directors must act reasonably to secure the transaction offering the best value reasonably available to stockholders.
+
+Rule Comparison:
+Sale of Control governs one fiduciary setting under its own doctrinal standard. Controller Transactions governs a distinct fiduciary setting under a different doctrinal standard. Taken together, Sale of Control addresses one form of board conduct, whereas Controller Transactions addresses another.
+
+Analysis:
+This matters because Sale of Control and Controller Transactions regulate different fiduciary settings. The significance is that each doctrine applies a different standard or cleansing mechanism to a different form of board conduct. As a result, identifying the correct doctrinal bucket is necessary before the governing standard can be applied.
+
+Confidence:
+High
+

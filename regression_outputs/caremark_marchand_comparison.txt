@@ -1,0 +1,72 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight']
+NAMED SOURCES: ['caremark.txt', 'marchand.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- marchand.txt (case_score=0.9154, role=modern_application, line=oversight) *
+- caremark.txt (case_score=0.9057, role=foundation, line=oversight) *
+- stone.txt (case_score=0.6042, role=supreme_refinement, line=oversight)
+- disney.txt (case_score=0.3712, role=related_case, line=oversight)
+- metro.txt (case_score=0.3473, role=modern_application, line=sale_of_control)
+- rural metro.txt (case_score=0.3459, role=related_case, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.9057)
+    stone.txt (supreme_refinement, 0.6042)
+    marchand.txt (modern_application, 0.9154)
+    disney.txt (related_case, 0.3712)
+- Sale of Control:
+    metro.txt (modern_application, 0.3473)
+    rural metro.txt (related_case, 0.3459)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.9057)
+    stone.txt (role=supreme_refinement, case_score=0.6042)
+    marchand.txt (role=modern_application, case_score=0.9154)
+- Sale of Control:
+    metro.txt (role=modern_application, case_score=0.3473)
+    rural metro.txt (role=related_case, case_score=0.3459)
+DEBUG CAREMARK TREE:
+Doctrine: oversight
+Path: reporting_system_exists -> monitoring_exists -> basic_oversight_present
+Outcome: lower_oversight_risk
+Risk Level: low
+Primary Failure: none
+Reason: The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory.
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- Marchand: "good faith effort to implement an oversight system"
+VALIDATION SCORE: 100/100
+VALIDATION ERRORS:
+- Key Distinction must use 'whereas'
+- Analysis must reflect doctrinal anchor fragments
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Caremark requires utter failure, whereas Marchand requires good faith monitoring.
+
+Key Distinction:  
+The doctrine identifies the governing fiduciary standard.
+
+Rule Comparison:  
+Caremark establishes that liability arises from an utter failure to attempt to assure a reporting or information system or controls exist. Marchand refines this standard by incorporating Stone’s good-faith duty-of-loyalty bridge, requiring a good faith effort to implement an oversight system and to monitor its operations. Taken together, Caremark governs liability based on an utter failure to implement any system, whereas Marchand governs liability based on a conscious failure to monitor a system despite a good faith effort to implement it.
+
+Rule:  
+Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+
+Analysis:  
+This matters because Oversight doctrine supplies the governing fiduciary framework for this category of conduct. The significance is that Oversight applies a doctrine-specific standard rather than a generalized fiduciary rule. As a result, the analysis turns on the elements of that doctrinal framework.
+
+Confidence:  
+High
+

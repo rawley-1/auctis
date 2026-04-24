@@ -1,0 +1,93 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['controller_transactions']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- kahn.txt (case_score=0.8168, role=foundation, line=controller_transactions)
+- mfw.txt (case_score=0.7720, role=supreme_refinement, line=controller_transactions)
+- tesla.txt (case_score=0.6804, role=modern_application, line=controller_transactions)
+- qvc.txt (case_score=0.6528, role=supreme_refinement, line=sale_of_control)
+- paramount.txt (case_score=0.6232, role=related_case, line=unknown)
+
+DOCTRINE BUCKETS:
+- Controller Transactions:
+    kahn.txt (foundation, 0.8168)
+    mfw.txt (supreme_refinement, 0.7720)
+    tesla.txt (modern_application, 0.6804)
+- Sale of Control:
+    qvc.txt (supreme_refinement, 0.6528)
+- Unknown:
+    paramount.txt (related_case, 0.6232)
+
+DOCTRINE LEADERS:
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.8168)
+    mfw.txt (role=supreme_refinement, case_score=0.7720)
+    tesla.txt (role=modern_application, case_score=0.6804)
+- Sale of Control:
+    qvc.txt (role=supreme_refinement, case_score=0.6528)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.6232)
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - At least corporate in an inter of law that Delaware First, majority must not shareholder the dominating merger, controlling the or ested merger.
+  - 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+  - strong length at is evidence that other arm’s fairness.” meets the test of the transaction Requirement Entire Fairness added).
+  - Dominating Shareholder Interested controlling dominating A or share case, In the Vice Chancellor noted that this standing holder on both sides of a transac expressed Chancery “diff
+DEBUG PICKED QUOTE FOR kahn.txt: 16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.
+
+DEBUG RAW QUOTES FOR mfw.txt:
+  - Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+DEBUG PICKED QUOTE FOR mfw.txt: Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.
+
+DEBUG RAW QUOTES FOR tesla.txt:
+  - The court also dismissed the Defendants’ arguments that the transaction satisfied the so-called MFW framework, which required approval by an independent, disinterested, and fully e
+  - First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote rat
+  - 13 decisionmakers of the magnitude of difference between the sizes of the 2018 Grant and comparable plans.32 Having found that Musk exercised transaction-specific control over the 
+  - The court also decided that, because the Defendants failed to disclose material information concerning director conflicts and process flaws in the first proxy, the 2018 Grant was n
+  - at 19) (“As the Special Committee considered the redomestication question, it concluded that if it made a determination to redomesticate, Mr.
+DEBUG PICKED QUOTE FOR tesla.txt: First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote ratified the transaction.
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Kahn', 'quote': '16 slip at upon this predicated be entire fairness must agreeexpressed its This Court 861-62.6 Getty v.', 'source': 'kahn.txt'}
+supreme_refinement -> {'case': 'MFW', 'quote': 'Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a majority-of-the-minority vote.', 'source': 'mfw.txt'}
+modern_application -> {'case': 'Tesla', 'quote': 'First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission was an improper remedy; or third, finding that the Second Stockholder Vote ratified the transaction.', 'source': 'tesla.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> slip upon this predicated entire fairness must agreeexpressed
+supreme_refinement -> business judgment review applies transaction conditioned from outset
+modern_application -> first overturning court chancery application entire fairness second
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "slip upon this predicated entire fairness must agreeexpressed"
+- MFW: "business judgment review applies transaction conditioned from outset"
+- Tesla: "first overturning court chancery application entire fairness second"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+The answer depends on the governing doctrinal standard.
+
+Key Distinction:
+The earlier doctrine states the baseline rule, whereas the later doctrine refines its application.
+
+Rule Comparison:
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:
+Directors breach the duty of loyalty where their conduct constitutes a failure to act in good faith.
+
+Analysis:
+This matters because Delaware doctrine distinguishes baseline fiduciary obligations from conduct that crosses into breach. The significance is that directors act inconsistently with the duty of loyalty where their conduct constitutes a failure to act in good faith. As a result, breach arises only when inaction or conscious disregard moves beyond imperfection and into disloyal conduct.
+
+Confidence:
+High
+

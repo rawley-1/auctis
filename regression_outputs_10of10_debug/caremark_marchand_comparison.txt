@@ -1,0 +1,96 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight']
+NAMED SOURCES: ['caremark.txt', 'marchand.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- marchand.txt (case_score=0.9154, role=modern_application, line=oversight) *
+- caremark.txt (case_score=0.9057, role=foundation, line=oversight) *
+- stone.txt (case_score=0.6042, role=supreme_refinement, line=oversight)
+- disney.txt (case_score=0.3712, role=related_case, line=oversight)
+- metro.txt (case_score=0.3473, role=modern_application, line=sale_of_control)
+- rural metro.txt (case_score=0.3459, role=related_case, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.9057)
+    stone.txt (supreme_refinement, 0.6042)
+    marchand.txt (modern_application, 0.9154)
+    disney.txt (related_case, 0.3712)
+- Sale of Control:
+    metro.txt (modern_application, 0.3473)
+    rural metro.txt (related_case, 0.3459)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.9057)
+    stone.txt (role=supreme_refinement, case_score=0.6042)
+    marchand.txt (role=modern_application, case_score=0.9154)
+- Sale of Control:
+    metro.txt (role=modern_application, case_score=0.3473)
+    rural metro.txt (role=related_case, case_score=0.3459)
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - ctor cannot act loyally towards the cor inadequacies these in illegal would result poration unless in good she acts the faith activity, and that chose to do the board belief that h
+DEBUG PICKED QUOTE FOR stone.txt: 
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Although Caremark may not require as much as some commentators wish,115 it does require that a board make a good faith effort to put in place a reasonable system of monitoring and 
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+modern_application -> {'case': 'Marchand', 'quote': 'having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy their duty of loyalty, directors must make a good faith effort to implement an oversight system and then monitor it.', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+modern_application -> good faith effort to implement an oversight system
+DEBUG CAREMARK TREE:
+Doctrine: oversight
+Path: reporting_system_exists -> monitoring_exists -> basic_oversight_present
+Outcome: lower_oversight_risk
+Risk Level: low
+Primary Failure: none
+Reason: The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory.
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- Marchand: "good faith effort to implement an oversight system"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 100/100
+VALIDATION ERRORS:
+- Rule Comparison must be exactly three sentences
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Caremark requires utter failure, whereas Marchand requires good faith monitoring.
+
+Key Distinction:
+Caremark addresses absence of oversight systems, whereas Marchand addresses failure to monitor implemented systems.
+
+Rule Comparison:
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:
+A board breaches the duty of loyalty where either its that undertakes that pliance report must officers semi a reasonable reporting or information system exists or its conscious failure to monitor such a system constitutes a failure to act in good faith, requiring a good faith effort to implement an oversight system.
+
+Analysis:
+This matters because utter failure to attempt to assure a reasonable reporting or information system states the baseline implementation failure, whereas the later cases clarify the distinct monitoring branch. The significance is that directors act inconsistently with the duty of loyalty where good faith effort to implement an oversight system is absent or their conduct constitutes a failure to act in good faith. As a result, oversight liability may arise both from the absence of a reporting system and from a failure to monitor or respond in good faith once such a system exists.
+
+Confidence:
+High
+

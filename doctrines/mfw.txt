@@ -1,0 +1,15 @@
+﻿SECTION: Governing legal standard
+
+
+CASE: Kahn v. M&F Worldwide Corp.
+COURT: Delaware Supreme Court
+YEAR: 2014
+DOCTRINE: Controller transactions / standard of review
+AUTHORITY: Binding precedent
+KEY TOPIC: Entire fairness, business judgment rule, dual protections
+
+
+business judgment replaces entire fairness when these protections are present
+
+
+To summarize our holding, in controller buyouts, the business judgment standard of review will be applied if and only if: (i) the controller conditions the procession of the transaction on the approval of both a Special Committee and a majority of the minority stockholders; (ii) the Special Committee is independent; (iii) the Special Committee is empowered to freely select its own advisors and to say no definitively; (iv) the Special Committee meets its duty of care in negotiating a fair price; (v) the vote of the minority is informed; and (vi) there is no coercion of the minority

@@ -1,0 +1,1291 @@
+IN THE SUPREME COURT OF THE STATE OF DELAWARE 
+ 
+IN RE TESLA, INC.  
+DERIVATIVE LITIGATION 
+§ 
+§ 
+§ 
+§ 
+§ 
+§ 
+§ 
+§ 
+§ 
+§ 
+ 
+ 
+No. 534, 2024 
+No. 10, 2025 
+No. 11, 2025 
+No. 12, 2025 
+ 
+Court Below: Court of Chancery      
+of the State of Delaware 
+ 
+C.A. No. 2018-0408 
+    Submitted:  October 15, 2025 
+Decided:     December 19, 2025 
+ 
+Before SEITZ, Chief Justice; VALIHURA, TRAYNOR, LEGROW, and 
+GRIFFITHS, Justices, constituting the Court en Banc. 
+ 
+Upon appeal from the Court of Chancery.  AFFIRMED IN PART, REVERSED 
+IN PART. 
+ 
+David E. Ross , Esquire, Garrett B. Moritz , Esquire, Thomas C. Mandracchia, 
+Esquire, ROSS ARONSTAM & MORITZ LLP, Wilmington, Delaware; Michael A. 
+Barlow, Esquire, QUINN EMANUEL URQUHART & SULLIVAN, LLP , 
+Wilmington, Delaware ; Alex Spiro, Esquire, Christopher D. Kercher, Esquire, 
+QUINN EMANUEL URQUHART & SULLIVAN, LLP , New York, New York; 
+Christopher G. Michel, Esquire  (argued), QUINN EMANUEL URQUHART  & 
+SULLIVAN, LLP, Washington, D.C.; Daniel Slifkin, Esquire, Vanessa A. Lavely, 
+Esquire, CRAVATH, SWAINE  & MOORE LLP , New York, New York  for 
+Defendants Below/Appellants Elon Musk, Robyn M. Denholm, Antonio J. Gracias, 
+James Murdoch, Linda Johnson Rice, Brad W. Buss, and Ira Ehrenpreis. 
+ 
+Rudolf Koch, Esquire, John D. Hendershot, Esquire, RICHARDS, LAYTON & 
+FINGER, P.A. , Wilmington, Delaware; William M. Lafferty, Esquire, Susan W. 
+Waesco, Esquire, MORRIS, NICHOLS, ARSHT & TUNNELL LLP, Wilmington, 
+Delaware; John L. Reed, Esquire, Ronald N. Brown, III, Esquire, DLA PIPER LLP 
+(US), Wilmington, Delaware ; Catherine A. Gaul, Esquire, ASHBY & GEDDES, 
+P.A., Wilmington, Delaware; Jeffrey B. Wall, Esquire (argued), Morgan L. Ratner, 
+Esquire, SULLIVAN & CROMWELL LLP, Washington, D.C.;  Brian T. Frawley, 
+
+2 
+Esquire, Matthew A. Schwartz, Esquire, SULLIVAN & CROMWELL LLP, New 
+York, New York for Defendants Below/Appellants Tesla, Inc. 
+ 
+Gregory V. Varallo, Esquire  (argued), BER NSTEIN LITOWITZ BERGER & 
+GROSSMANN LLP, Wilmington, Delaware; Peter B. Andrews, Esquire, Craig J. 
+Springer, Esquire, David M. Sborz, Esquire, Andrew J. Peach, Esquire, Jackson E. 
+Warren, Esquire, ANDREWS & SPRINGER LLC, Wilmington, Delaware; Jeroen 
+van Kwawegen, Esquire,  Thomas G. James, Esquire,  BERNSTEIN LITOWITZ 
+BERGER & GROSSMAN LLP, New York, New York; Jeremy S. Friedman, 
+Esquire, Spencer M. Oster, Esquire, David F.E. Tejtel, Esquire , FRIEDMAN 
+OSTER & TEJTEL PLLC, Bedford Hills, New York for Plaintiff-Below/Appellee. 
+ 
+Anthony A. Rickey, Esquire, MARGRAVE LAW LLC, Wilmington, Delaware; 
+Donald B. Verrilli, Esquire, Elaine J. Goldenberg, Esquire, MUNGER, TOLLES & 
+OLSON LLP, Washington, D.C.; Achyut J. Phadke, Esquire, MUNGER, TOLLES 
+& OLSON LLP, San Francisco, California ; Joseph A. Grundfest , Esquire, 
+STANFORD LAW SCHOOL, Stanford, California for Objector -Appellant Amy 
+Steffens. 
+ 
+David S. Eagle, Esquire, Sally E. Veghte, Esquire, KLEHR HARRISON HARVEY 
+BRANZBURG LLP, Wilmington, Delaware; Thomas R. Grady, Esquire, 
+GRADYLAW, Naples, Florida  for Objector -Appellants ARK Investment 
+Management LLC, David Israel, and Kurt Panouses. 
+ 
+Francis G.X. Pileggi, Esquire, Scott D. Cousins, Esquire, Sean B. Brennecke, 
+Esquire, LEWIS BRISBOIS BISGAARD & SMITH LLP, Wilmington, Delaware; 
+Ari Holtzblatt, Esquire, Peter A. Kallis, Esquire, WILMER CUTLER PICKERING 
+HALE AND DORR LLP, Washington, D.C.; Kyle T. Edwards, Esquire, WILMER 
+CUTLER PICKERING HALE AND DORR LLP, San Francisco, California for 
+Amici Curiae Tesla Retail Stockholders, in support of Appellants. 
+ 
+Laura H. McNally, Esquire, MORGAN, LEWIS & BOCKIUS LLP, Wilmington, 
+Delaware for Amici Curiae Current and Retired Practitioners and Professors, in 
+support of Appellants. 
+ 
+Daniel A. Griffith, Esquire, WHITEFORD TAYLOR & PRESTON LLC, 
+Wilmington, Delaware; Steven M. Haas, Esquire, Johnathon E. Schronce, Esquire, 
+James M. Lockerby, Esquire, HUNTON ANDREWS KURTH LLP, Richmond, 
+Virginia for Amicus Curiae, Chamber of Commerce of the United States of America, 
+in support of Appellants. 
+
+3 
+Theodore A. Kittila, Esquire, HALLORAN FARKAS + KITTILA LLP, 
+Wilmington, Delaware; Randy D. Gordon, Esquire, Lucas C. Wohlford, Esquire, 
+DUANE MORRIS LLP, Dallas, Texas for Amicus Curiae Texas Association of 
+Business, in support of Appellants. 
+ 
+Rebecca L. Butcher, Esquire, LANDIS RATH & COBB LLP, Wilmington, 
+Delaware; Cory L. Andrews, Esquire, WASHINGTON LEGAL FOUNDATION, 
+Washington, D.C. for Amicus Curiae Washington Legal Foundation , in support of 
+Appellants. 
+ 
+Michael L. Vild, Esquire, CROSS & SIMON, LLC, Wilmington, Delaware; Stephen 
+Blake, Esquire, SIMPSON THACHER & BARTLETT LLP, Palo Alto, California 
+for Amicus Curiae Sequoia Capital Operations, LLC, in support of Appellants. 
+ 
+Ned Weinberger, Esquire, Mark D. Richardson, Esquire, LABATON KELLER 
+SUCHAROW LLP, Wilmington, Delaware for Amici Curiae Corporate Law 
+Academics, in support of Appellee. 
+ 
+Christine M. Mackintosh, Esquire, GRANT & EISENHOFER, P.A., Wilmington, 
+Delaware; Joel Fleming, Esquire, Amanda Crawford, Esquire, EQUITY 
+LITIGATION GROUP LLP, Boston, Massachusetts for Amicus Curiae Charles M. 
+Elson, in support of Appellee. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+4 
+PER CURIAM: 
+I. INTRODUCTION 
+In 2018, the Tesla, Inc. Board of Directors and Tesla stockholders approved 
+an equity compensation plan for Elon Musk, the company’s chief executive officer.  
+The plan included twelve tranches of stock options that vested after reaching market 
+capitalization and operational milestones.   
+A Tesla stockholder filed a derivative lawsuit against Musk and the Tesla 
+directors who approved the plan.   The Plaintiff alleged that Musk, as a controlling 
+stockholder, forced the Tesla  Board to grant him excessive compensation.  
+Following a  five-day trial, t he Court of Chancery agreed.  Applying the most 
+rigorous standard of review  for conflicted corporate transactions , the court 
+concluded that the Director Defendants failed to prove that the compensation plan 
+was entirely fair to Tesla and its stockholders.  The court also faulted the Board for 
+misleading disclosures to stockholders who approved the compensation plan .  It 
+ordered rescission of the plan. 
+After a special committee process, the Tesla Board resubmitted the rescinded 
+compensation plan for a second stockholder vote  along with new disclosures, 
+including a copy of the court’s opinion granting rescission .  A majority of 
+disinterested shares voted for the plan.  With a second stockholder approval in hand, 
+the Director Defendants asked the Court of Chancery to undo its post-trial opinion.  
+
+5 
+The court refused, entered judgment for the Plaintiff granting rescission of the plan, 
+and awarded attorneys’ fees to the Plaintiff’s counsel.    
+On appeal, the Director Defendants argue that the Court of Chancery erred by 
+finding that Musk was a controlling stockholder and therefore entire fairness review 
+applied, holding that the award was  unfair, and granting rescission.  Tesla argues 
+that the court erred by refusing to revise its post -trial opinion to give effect to the 
+second stockholder vote and awarding the Plaintiff’s counsel excessive fees. 
+For the reasons explained below, we reverse the remedy chosen by the Court 
+of Chancery – rescission of the 2018 compensation plan.  We reinstate the 2018 plan 
+and award the Plaintiff nominal damages.  We also award the Plaintiff’s counsel fees 
+based on quantum meruit and expenses. 
+II. FACTUAL AND PROCEDURAL BACKGROUND 
+We rely on the facts as found by the Court of Chancery after trial.1  Tesla is a 
+clean-energy company that designs, develops, manufactures, sells, and leases 
+electric vehicles and energy products.  Musk invested in Tesla in 2004, served as 
+chairman of the Board between 2004 and 2018, and became chief executive officer 
+in 2008.  Before the 2018 transaction in question, the Board awarded Musk two 
+ 
+1 Tornetta v. Musk, 310 A.3d 430 (Del. Ch. 2024) [ Post-Trial Op.]; Tornetta v. Musk, 326 A.3d 
+1203 (Del. Ch. 2024) [Ratification and Fee Op.].  
+
+6 
+previous equity-linked compensation plans, the first in 2009 (“2009 Grant”), and 
+another in 2012 (“2012 Grant”). 
+A. The 2009 Grant. 
+The 2009 Grant, which the Tesla Board approved in December 2009, was 
+divided into two parts, “each of which offered Musk stock options to purchase 4% 
+of Tesla’s fully diluted shares as measured at the grant date.” 2  The first part was 
+employment-based: 1/4th vested at the grant date ; and 1/48th vested each month 
+over the next three years contingent on Musk’s continued employment with Tesla.3  
+The second part was performance-based: it required Tesla to meet certain milestones 
+(within four years) related to the Model S, culminating in “completion of the 
+10,000th Model S Production Vehicle.”4  It is undisputed that Musk timely satisfied 
+each of the 2009 Grant’s performance milestones. 
+B. The 2012 Grant. 
+The 2012 Grant, which the Tesla Board approved in August 2012, was entirely 
+performance-based, and included ten tranches, “each offering options representing 
+0.5% of Tesla’s outstanding common stock as of August 2012.” 5  Each tranche 
+ 
+2 Post-Trial Op. at 453. 
+3 Id.  
+4 Id.  
+5 Id.  
+
+7 
+required Musk to pair an “operational milestone” (or, “specified product -related 
+goals”) with a “market capitalization mil estone.”6  Notably, each market 
+capitalization milestone required Tesla’s market capitalization to increase by $4 
+billion – not an insignificant amount considering at the time the 2012 Grant was 
+approved, Tesla’s market capitalization was $3.2 billion. 7  Musk had ten years to 
+complete these milestones.  It is undisputed that by March 2017, seven of the ten 
+tranches had vested, and Tesla’s market capitalization was about $53 billion.8 
+C. The Challenged 2018 Grant. 
+As Musk closed in on completion of the 2012 Grant milestones, on January 
+21, 2018, the Board held a special meeting to approve Musk’s third compensation 
+plan (the “2018 Grant”  or the “Grant” ).9  Musk and his brother, Kimbal Musk, 
+recused themselves from the meeting.  Steve Jurvetson was on leave.  The rest of the 
+Board – Ira Ehrenpreis, Robyn Denholm, Antonio Gracias, Brad Buss, James 
+Murdoch, and Linda Johnson Rice – unanimously approved the 2018 Grant.10     
+ 
+6 Id. 
+7 Id. 
+8 Id. at 453–54. 
+9 Id. at 485. 
+10 Id. at 485–86. 
+
+8 
+The 2018 Grant has twelve vesting tranches. 11  Each tranche vest ed upon 
+meeting one market capitalization milestone and one operational milestone. 12  The 
+market capitalization milestones beg an at $100 billion and increase in $50 billion 
+increments before ending at $650 billion. 13  Of the sixteen operational milestones, 
+eight were revenue-based and eight are adjusted EBITDA -based.14  To vest, 
+achieving any one of the operational milestones could be paired with achieving any 
+one of the market capitalization milestones.15  The operational milestones increments 
+are shown in the table below.16  
+ 
+11 Joint App. to Opening Brs. at A4150 [hereinafter A_] (JX -878 at 52 (Feb. 18, 2018 Schedule 
+14A Proxy Statement) [JX-878]).   
+12 Id. 
+13 Id. at A4151 (JX-878 at 53).   
+14 Post-Trial Op. at 486.  
+15 A4150 (JX-878 at 52). 
+16 Post-Trial Op. at 486. 
+
+
+9 
+Tesla had to achieve one market capitalization milestone and one operational 
+milestone to complete each tranche. 17  With each completed tranche, Musk earned 
+options to purchase 1% of Tesla’s common stock outstanding as of January 19, 2018.  
+Before a five-for-one stock split in 2020 and a three-for-one stock split in 2022, the 
+1% equaled 1,688,670 shares. 18  The fully-vested 2018 Grant would give Musk 
+options to purchase 20,264,042 (pre -split) shares.19  The strike price was $350.02, 
+Tesla common stock’s closing price on January 19, 2018.20  Adjusting for two stock 
+splits, the strike price was $23.33.21  The 2018 Grant included a claw back provision, 
+a leadership requirement, an M&A adjustment, and a five -year hold period.  Like 
+the 2012 Grant, the 2018 Grant expired after ten years.22 
+D. A Majority of Disinterested Stockholders Approve the 2018 Grant. 
+The Board conditioned the 2018 Grant on approval by a majority vote of 
+disinterested stockholders.  The stockholders approved the 2018 Grant at a special 
+ 
+17 Id.  
+18 Id. at 486–87. 
+19 Id.  
+20 Id.  
+21 Calculated as $350.02 divided by (5 x 3).  
+22 A4150 (JX-878 at 52) (stating that the 2018 Grant expires on January 20, 2028); Post-Trial Op. 
+at 453 n.74 (citing JX-137 at 1 (noting that the 2012 Grant expired on August 13, 2022)).   
+
+10 
+stockholder meeting on March 21, 2018, with 73 % of votes cast in favor at the 
+meeting (excluding Musk’s and Kimbal’s ownership).23  
+E. Musk Meets All Requirements Under the 2018 Grant. 
+The parties stipulated in the pre -trial order that, as of June 30, 2022, all market 
+capitalization milestones  and eleven operational milestones had been achieved, 
+along with one revenue milestone ( i.e., $75 billion in revenue) which “remained 
+probable of achievement.”24  Tesla’s Form 10-K for the fiscal year ended December 
+31, 2023 reported that the $75 billion revenue milestone had been achieved.25  Since 
+then, the Plaintiff has acknowledged that “[b]y January 2023, all 303,960,630 
+options were vested and in -the-money.”26  Thus, Musk fully performed under the 
+2018 Grant. 
+F. The Court of Chancery Lawsuit. 
+On June 5, 2018, a Tesla stockholder filed suit in the Court of Chancery.  In 
+Count I, the Plaintiff alleged that Musk breached his fiduciary duties as a controlling 
+stockholder of Tesla  by forcing the Board to approve the  2018 Grant.  Count II  
+claimed that Tesla’s Board – including Musk, Kimbal, and Jurvetson  – breached 
+their fiduciary duties by approving the 2018 Grant.  In Count III, the Plaintiff alleged 
+ 
+23 Post-Trial Op. at 490. 
+24 A0486 (Stipulation and Pre-Trial Order ¶ 276).  
+25 A2603 (Decl. of Daniel R. Fischel at 40). 
+26 Answering Br. 24.  
+
+11 
+unjust enrichment against Musk.  Finally, in Count IV, the Plaintiff alleged waste.  
+Counts I and II were asserted as both direct and derivative claims.  Counts III and 
+IV were asserted as derivative claims only. 
+After the Court of Chancery denied the Defendants’ motion to dismiss Counts 
+I through III, the case proceeded to discovery.  On September 20, 2021, this Court 
+issued Brookfield Asset Management, Inc. v. Rosson .27  In Brookfield, we held that 
+overpayment or dilution of voting power claims are derivative, not direct, claims.28  
+As a result of Brookfield, the Court of Chancery permitted the Plaintiff to file an 
+amended complaint asserting the same claims, with Counts I and II recast as entirely 
+derivative.  The court approved a stipulation that dismissed the direct components 
+of Counts I and II and dismiss ed the  claims against Kimbal and Jurvetson with 
+prejudice.29 
+1. The Post-Trial Liability Determination. 
+In November 2022, t he Court of Chancery held a five -day trial.  In its post -
+trial opinion, the Court of Chancery found for the Plaintiff.  The court first examined 
+whether Musk was a controlling stockholder.  It concluded that Musk controlled only 
+ 
+27 261 A.3d 1251 (Del. 2021). 
+28 Id. at 1267–68. 
+29 Stipulation and Order Governing Decertification of Class, Dismissal with Prejudice of Direct 
+Claims, and Schedule and Terms for Plaintiff’s Mot. for Leave to File Verified Am. Deriv. Compl. 
+¶ 3, Tornetta v. Musk , C.A. No. 2018 -0408 (Del. Ch. Oct. 27, 2021), Dkt. No. 175 (dismissing 
+claims with prejudice). 
+
+12 
+21.9% of Tesla’s voting power and therefore lacked mathematical voting control, or 
+“hard” control.  But the court found that Musk exercised transaction-specific control 
+over the 2018 Grant.  The court observed that “Musk wield[ed] considerable power 
+in the boardroom by virtue of his high-status roles and managerial supremacy.”30   
+The Court of Chancery pointed to several aspects of the approval process 
+which led it to conclude that Musk controlled the negotiations over the 2018 Grant.  
+The court found that Musk controlled the timing of the process, accelerating and 
+decelerating the pace as he requested.  The court also stated that “[t]he most striking 
+omission from the process is the absence of any evidence of adversarial negotiations 
+between the Board and Musk concerning the size of the Grant.”31  And, according 
+to the court, there was no meaningful negotiation over other aspects of the Grant.  
+Finally, the court noted the lack of a traditional benchmarking analysis comparing 
+the 2018 Grant to plans at comparable firms.  The court was not persuaded by the 
+Defendants’ argument that no comparable firms existed.  According to the court, 
+“the extraordinary nature of the Grant  should have made benchmarking more 
+critical, not less,” because, if nothing else, it would have informed the 
+ 
+30 Post-Trial Op. at 504. 
+31 Id. at 513. 
+
+13 
+decisionmakers of the magnitude of difference between the sizes of the 2018 Grant 
+and comparable plans.32  
+Having found that Musk exercised transaction-specific control over the 2018 
+Grant, the Court of Chancery subjected it to the entire fairness standard of review.  
+First, the court declined to permit the Defendants to shift the burden of persuasion 
+under Kahn v. Lynch Communication Systems, Inc .33  According to the court, the 
+2018 Grant  was not approved by a well -functioning committee of independent 
+directors.  The court also decided that, because the Defendants failed to disclose 
+material information concerning director conflicts and process flaws in the first 
+proxy, the 2018 Grant was not approved by an informed vote of a majority of the 
+minority shareholders.  The court also concluded that the Defendants failed to 
+demonstrate that the transaction was entirely fair.34 
+2. The Parties’ Rescission Arguments Before the Court of Chancery. 
+In his original complaint, the Plaintiff sought to rescind the 2018 Grant or to 
+reform it to correlate with comparable CEO pay packages.  But in his post-trial brief, 
+the Plaintiff abandoned the alternative remedy and sought only to rescind the 2018 
+Grant.  The Plaintiff argued that because the process leading to the 2018 Grant was 
+ 
+32 Id. at 519. 
+33 638 A.2d 1110 (Del. 1994). 
+34 Post-Trial Op. at 544. 
+
+14 
+“so divorced” from fair dealing and fair compensation, it should be invalidated and 
+the stock options rescinded. 35  In the alternative, t he Plaintiff argued that, at a 
+minimum, the court should equitably modify the 2018 Grant’s terms and rescind the 
+options underlying the 2018 Grant’s first three tranches.  According to the Plaintiff, 
+the first three tranches should have been  equitably rescinded because the first 
+proxy’s claims about the feasibility of reaching those milestones were false, and 
+therefore, the stockholder approval was invalid.  The Plaintiff also argued that, 
+because the 2018 Grant  was conditioned upon stockholder approval, a single 
+material disclosure failure was sufficient to invalidate the Grant. 
+In their post -trial answering brief, the Director Defendants argued that the 
+Plaintiff’s proposed rescission remedy of the entire 2018 Grant, or his alternative 
+remedy of nullifying its first three tranches, “would be inequitable.” 36  They 
+contended that both of the Plaintiff’s proposed remedies were inequitable because 
+Musk had already “delivered on his end of the bargain” by completing those 
+tranches’ milestones.37 
+ 
+ 
+ 
+35 A1401 (Plaintiff’s Post-Trial Br. 2). 
+36 A1596 (Director Defendants’ Answering Post-Trial Br. 7). 
+37 Id. 
+
+15 
+3. The Court of Chancery Orders Rescission. 
+As a remedy for breach of fiduciary duties, the Court of Chancery ordered 
+rescission of the 2018 Grant.  It found that rescission was “reasonable, appropriate, 
+and practicable” because the 2018 Grant was “not ‘too complex to unscramble[.]’”38  
+Rescission was an appropriate remedy, or “uniquely available,” according to the 
+court, because it was possible for all parties in the transaction to be restored to the 
+status quo ante.  Relying on its broad discretion to grant rescission, the court found 
+that “no third-party interests are implicated, the entire Grant sits unexercised and 
+undisturbed, and exercised shares would be subject to the Five-Year Hold Period.”39  
+The court also observed that rescission is the “preferrable remedy” in the context of 
+a breach of fiduciary duty when one party has materially misled and induced a party 
+to enter into a contract.40   
+Finally, the court dismissed the Defendants’ argument that rescission was an 
+inappropriate remedy because it would leave Musk uncompensated for his almost 
+six years of effort.  It pointed to Musk’s preexisting equity stake that would provide 
+ 
+38 Post-Trial Op. at 547 (quoting In re Sunbelt Beverage Corp. S’holder Litig. , 2010 WL 26539, 
+at *14 (Del. Ch. Jan. 5, 2010), as revised (Feb. 15, 2010)) (alteration in original).  
+39 Id. 
+40 Id. (citing Lynch v. Vickers Energy Corp., 429 A.2d 497, 501 (Del. 1981) (noting that rescission 
+“calls for the cancellation of the bargain and the reform of the parties to the status quo”), overruled 
+on other grounds by Weinberger v. UOP, Inc., 457 A.2d 701, 703–04, 714 (Del. 1983)). 
+
+16 
+him with “tens of billions of dollars” for his work.41  The court also emphasized that 
+the Defendants did not offer a viable alternative remedy to leaving the entirety of the 
+2018 Grant intact.   
+4. The Second Stockholder Vote. 
+After the Court of Chancery issued its post -trial opinion, Musk declared that 
+Tesla would “move immediately to hold a shareholder vote to transfer state of 
+incorporation to Texas.”42  On February 10, 2024, the Tesla Board formed a special 
+committee to consider Musk’s reincorporation proposal.  At first, the special 
+committee consisted of Kathleen Wilson -Thompson and Joe Gebbia, but Gebbia 
+later stepped down due to potential independen ce concerns.  Wilson -Thompson 
+became the only special committee member. 
+The Board initially tasked the special committee  with making 
+recommendations on whether, and if so where , Tesla should reincorporate. 43  The 
+special committee, however, decided that the decision whether to reincorporate was 
+ 
+41 Id. 
+42 Elon Musk (@elonmusk), X F/K/A TWITTER (Feb. 1, 2024, 12:09 AM), 
+https://x.com/elonmusk/status/1752922071229722990. 
+43 App. to Answering Br. at B3967 [hereinafter B_] (April 29, 2024 Tesla, Inc. Schedule 14A 
+Proxy at 18 [“Second Proxy”]) (“The Board charged the Committee with considering whether it 
+would be in the best interests of the Company and its stockholders to change its corporate domicile, 
+and if so, to which jurisdiction.”). 
+
+17 
+intertwined with the question of Musk’s compensation.44  It therefore requested that 
+the Board also consider whether stockholders should vote to  “ratify” the 2018 
+Grant.45  The Board approved the request.   
+After eight weeks, the special committee concluded that “reincorporating in 
+Texas and ratifying Musk’s [2018 Grant] compensation are in the best interests of 
+Tesla and all of its stockholders, and should be voted for by stockholders at Tesla’s 
+2024 annual meeting.”46  The special committee also recommended that both Elon 
+and Kimbal Musk recuse themselves from decision-making on either vote, that each 
+initiative be conditioned on a majority vote of disinterested stockholders,47 and that 
+“the Board recommend that stockholders vote for reincorporation [and] . . . . 
+ratification based on the Committee’s determination that” each initiative was “in the 
+best interests of Tesla and all of its stockholders.”48 
+ 
+44 B3968 (Id. at 19) (“As the Special Committee considered the redomestication question, it 
+concluded that if it made a determination to redomesticate, Mr. Musk’s compensation should also 
+be addressed in some way at the same time.”). 
+45 Id. (“[T]he Board delegated additional authority to the Special Committee to decide whether, if 
+there is a stockholder vote on redomestication, Mr. Musk’s 2018 CEO Performance Award should 
+be ratified at the same time . . . .”). 
+46 B4197 (JX-878 at E-40 (Annex E to Second Proxy – Special Committee Report)). 
+47 Described in the Special Committee Report  as “non -Musk-affiliated stockholders” for the 
+reincorporation vote.  Id. 
+48 Id. 
+
+18 
+On April 29, 2024, Tesla filed a proxy statement (“Second Proxy”) 
+recommending that its stockholders “ratify” the rescinded 2018 Grant.49  The Second 
+Proxy provided several reasons for ratification, including a potential “accounting 
+charge in excess of $25 billion” if Tesla had to formulate a new pay package.50  The 
+Second Proxy also included a complete copy of the Court of Chancery’s opinion , 
+finding that Musk and the Director Defendants breached their fiduciary duties by 
+approving the 2018 Grant.  A majority of Tesla’s present and disinterested shares 
+voted in favor of the proposal at Tesla’s June 13, 2024 annual meeting (“Second 
+Stockholder Vote”). 
+5. The Motion to Revise. 
+On June 28, 2024, the Director Defendants filed a motion to revise the post -
+trial opinion (“Motion to Revise”).  They argued that the Second Stockholder Vote 
+effectively ratified the 2018 Grant.  Tesla joined the argument and added that the 
+Second Stockholder Vote mooted this action. 
+ 
+49 Concerned that Tesla would use the reincorporation vote to evade the court’s judgment, the 
+Plaintiff filed four emergency motions. Ratification and Fee Op . at 1218.  Tesla responded that 
+the reincorporation vote would “not affect any obligations or liabilities [Tesla] incurred prior to 
+the conversion or the personal liability of any person incurred prior to the conversion, nor will it 
+affect the choice of law ap plicable to [Tesla] with respect to matters arising prior to the 
+conversion.”  Letter Decision at 5, Tornetta v. Musk, C.A. No. 2018-0408 (Del. Ch. May 28, 2024), 
+Dkt. No. 340.  Relying on Tesla’s representations, the Court of Chancery denied the Plaintiff’s 
+emergency motions.  Id. at 7.   
+50 B4036 (Second Proxy at 87). 
+
+19 
+The court denied Tesla’s Motion to Revise its opinion.  First, the court 
+considered whether the post-trial opinion could be revised under Court of Chancery 
+Rules 54(b), 59(a), and 60(b).  As the court observed, only Rules 59(a) and 60(b) 
+allowed the court to reopen the trial record to consider newly discovered evidence 
+existing at the time of trial.  Because the Second Stockholder Vote came after trial, 
+the court could not consider it under the Rules.  The court also turned away the 
+Defendants’ attempt to revise the judgment under Rule 54(b).  The court concluded 
+that, although the law -of-the-case doctrine does not necessarily preclude the court 
+from revisiting its prior adjudication, a new fact developed by the Defendants solely 
+for the purposes of reversin g a judicial ruling cannot change the outcome of that 
+ruling. 
+Next, the court considered whether the Defendants waived the stockholder 
+ratification argument.  The court held that, as an affirmative defense, stockholder 
+ratification can be waived if not timely raised.  The court observed that, although 
+parties have been permitted to raise affirmative defenses based on a stockholder vote 
+that occurred during litigation, “[n]o Delaware decision . . . has ever allowed a party 
+to raise the defense of stockholder ratification after trial for the purpose of 
+persuading the co urt to alter (much less flip) its judgment.” 51  Consequently, the 
+ 
+51 Ratification and Fee Op. at 1229–30. 
+
+20 
+court declined to permit the Defendants to raise the affirmative defense of 
+stockholder ratification months after the court had issued its post-trial opinion. 
+The court also examined the merits of the stockholder ratification argument.  
+According to the court, stockholders can express their view, through an affirmative 
+vote, that a corporate act is consistent with their interests.  As the court held, this 
+kind o f “fiduciary ratification” may have different effects depending on context, 
+including serving as a complete defense, changing the standard of review, shifting 
+the burden of proof, or having no effect at all.  The court concluded that, because the 
+2018 Gran t was a conflicted -controlling stockholder transaction, fiduciary 
+ratification was insufficient to address the risks to minority stockholders.  The court 
+also dismissed the Defendants’ arguments that the transaction satisfied the so-called 
+MFW framework, which required approval by an independent, disinterested, and 
+fully empowered special committee and an effective majority -of-the-minority vote 
+before any economic negotiations began.   
+Finally, the court rejected the stockholder ratification argument because it 
+concluded that the Second Proxy was materially misleading.  The court identified 
+what it found to be several materially false or misleading statements, many of which 
+echoed the Defendants’ legal positions in  their motion to revise.  The court 
+
+21 
+determined that the Second Proxy’s hedging statements were insufficient to 
+counteract the effects of the defective disclosures.52 
+6. Attorneys’ Fees. 
+After the court denied the Defendants’ Motion to Revise, it considered the 
+Plaintiff’s counsel’s fee petition.  Applying the factors from Sugarland Industries, 
+Inc. v. Thomas,53 and to avoid a windfall, the court adopted the grant-date-fair-value 
+approach, which valued the benefit of the rescission at $2.3 billion.  The court 
+applied a 15% baseline percentage to the $2.3 billion litigation benefit, resulting in 
+a $345 million fee award. 
+III. THE PARTIES’ CONTENTIONS ON APPEAL 
+The Director Defendants argue on appeal that the trial court made two legal 
+errors in determining that rescission was warranted: (1) finding that rescission could 
+restore Musk, Tesla, and the stockholders to the status quo ante, and (2) improperly 
+placing the burden on the Defendants to establish a viable alternative to total 
+rescission of the award.  The Plaintiff responds that the “Defendants failed to (i) 
+timely and directly object to rescission as a legally improper remedy, (ii) identify 
+ 
+52 Id. at 1234–35. 
+53 420 A.2d 142 (Del. 1980). 
+
+22 
+any legal error in the trial court’s granting of rescission, or (iii) carry their burden of 
+identifying an alternative remedy.”54  We expand on their arguments below. 
+A. The Status Quo Ante Arguments. 
+First, the Defendants argue that for rescission to be proper, “ [t]he rescinding 
+party must restore everything of value it has received under contract from the 
+party.”55  Here, the Defendants contend that rescission is an improper remedy  
+because it is impossible to restore the status quo ante for any party to the transaction.  
+The Defendants argue that the Court of Chancery erred in considering only the 
+unexercised stock options in its analysis of whether restoring the parties to the status 
+quo was feasible.  They identify several ways in which rescission would not restore 
+the parties to their prior positions.56   
+In response, the Plaintiff argues that the Defendants inaccurately cast 
+rescission as requiring a literal status quo ante restoration, which they find “foreign 
+to the strictures of equity.”57  The Plaintiff emphasizes that rescission is justified as 
+ 
+54 Answering Br. 84. 
+55 Director Defendants’ Reply Br. 24 (quoting Geronta Funding v. Brighthouse Life Ins. Co., 284 
+A.3d 47, 63–64 (Del. 2022)). 
+56 Director Defendants’ Opening Br. 49–50 (“Musk cannot ‘unscramble’ the years of work he did 
+. . . . Nor can Tesla’s stockholders return the benefits they received from Musk’s performance . . . 
+. Tesla cannot be returned to a status quo where an incentive structure valued at $2.3 billion was 
+sufficient to compensate Musk for 10 years of future service . . . .”). 
+57 Answering Br. 87 & n.85 (citing Detroit Med. Ctr. v. Provider Healthnet Servs., Inc. , 269 
+F.Supp.2d 487, 496 (D. Del. 2003) (“Under Delaware law, rescission requires the substantial 
+rather than the complete restoration of both contracting parties to their respective positions before 
+executing the contract.” (emphasis added))). 
+
+23 
+a “reasonable and appropriate” 58 remedy because no third -party interests are 
+implicated, the entire 2018 Grant sits “unexercised and undisturbed,” 59 and 
+rescission would restore Tesla to its original position by reversing a $2.3 billion 
+accounting charge that the company had incurred when it approved the 2018 Grant.60  
+As to their argument that rescission would restore Tesla, at least substantially, to its 
+original position, the Plaintiff cites the benefits of reversing both the 8% dilution of 
+Tesla’s share price that was caused by the 2018 Grant 61 and the historic accounting 
+charge that Tesla recorded when the options were granted.62   
+The Defendants dispute that rescission “restore [s] any of [the parties] to 
+positions remotely resembling their positions in 2018.”63  They argue that the court’s 
+rescission remedy cannot restore Musk to the status quo ante  in 2018 because he 
+cannot reclaim the six years of time and effort spent achieving the 2018 Grant ’s 
+milestones.64  The Defendants also argue that rescission does not restore Tesla 
+stockholders to their status quo ante position because the court’s remedy does not 
+ 
+58 Id. at 87 (quoting Lenois v. Lawal, 2017 WL 5289611, at *20 (Del. Ch. Nov. 7, 2017)). 
+59 Id. (quoting Post-Trial Op. at 448).  
+60 Id. at 88 (citing A2848 (Reply Br. in Further Support of Application for an Award of Fees and 
+Expenses at 10); B3828 (Joint Decl. of Lucian Bebchuk & Robert J. Jackson, Jr. ¶ 62)). 
+61 Id. (citing A2848  (Reply Br. in Further Support of Application for an Award of Fees and 
+Expenses at 10)). 
+62 Id. (citing B3828 (Joint Decl. of Lucian Bebchuk & Robert J. Jackson, Jr. ¶ 62)). 
+63 Director Defendants’ Reply Br. 26. 
+64 Id. at 25 (“[U]nder the Court of Chancery’s rescission remedy, he will be paid zero and cannot 
+reclaim those years of time and effort.”). 
+
+24 
+require them to return Tesla’s stock price gains that resulted under Musk while the 
+award was in effect.65  Lastly, the Defendants contend that Tesla cannot be restored 
+to its status quo ante position because, while it potentially benefited from reversal 
+of the 2018 Grant ’s accounting charge, the massive increase in Tesla’s value 
+prevents Tesla from being restored to its 2018 negotiating position with Musk.66 
+The Defendants disagree with the Court of Chancery’s finding that Musk’s 
+pre-existing equity stake is relevant to the rescission analysis.  They argue that it is 
+“irrelevant” to the rescission analysis because it does not operate as consideration 
+for his labor following approval of the 2018 Grant.67  Furthermore, in accepting the 
+2018 Grant, the Defendants argue that Musk agreed to “exchange his labor for the 
+opportunity to acquire additional equity on top of his preexisting equity stake.” 68  
+Therefore, rescinding the 2018 Grant after Musk had met the terms of the deal would 
+be an inequitable outcome “contrary to common sense.” 69   
+ 
+65 Id.  
+66 Id. at 25–26 (“[T]he cost of compensating Musk for his work between 2018 and 2024 would be 
+dramatically greater today than it was in 2018.”  (citing Tesla, Inc.’s Opening Br. 52 (describing 
+how any accounting benefits that result from a rescission of the award will likely be offset by a 
+replacement compensation package))). 
+67 Director Defendants’ Opening Br. 50 (citing Ravenswood Inv. Co., L.P. v. Est. of Winmill, 2018 
+WL 1410860, at *21 n.188 (Del. Ch. Mar. 21, 2018)). 
+68 Id. 
+69 Id. at 50–51.  
+
+25 
+The Plaintiff responds that Musk’s significant preexisting stake in Tesla, 
+which generated “tens of billions of dollars,” 70 and the fact that he was still under 
+his 2012 Grant until 2022,71 suffice to show that he was fairly compensated for his 
+services during this time.  Additionally, the Plaintiff points to Musk’s failure to seek 
+additional compensation under quantum meruit  as evidence that he was fairly 
+compensated for his services and thus restored to his status quo ante position.72   
+B. The Burden of Proof Arguments.  
+Next, the Defendants argue that the Court erred in its finding that it was their 
+burden to identify a viable alternative remedy to rescission.  They maintain that if 
+this burden belonged to them, then it would be “impossible” to concurrently argue 
+that the original deal was “fair” and defend an alternative compensation package.73  
+They argue that , because the burden of establishing an entitlement to rescission is 
+on the party seeking rescission,74 it would be the same parties’ burden to identify an 
+alternative remedy, which, here, would be a fair value of the 2018 Grant that could 
+support partial rescission.  Therefore, the Plaintiff’s failure to identify a partial 
+ 
+70 Answering Br. 87.  
+71 Id. (citing A0728 (Ehrenpreis Cross-Examination at 73:14–75:03) (testifying that when the 2018 
+Grant went into effect, Musk still had one tranche of the 2012 Grant that had not been met)).   
+72 Id. at 87–88. 
+73 Director Defendants’ Opening Br. 51. 
+74 Id. (citing ENI Holdings, LLC v. KBR Grp. Holdings, LLC  for the proposition that it was the 
+Plaintiff’s burden to establish an entitlement to rescission.  2013 WL 6186326, at *24 (Del. Ch. 
+Nov. 27, 2013)). 
+
+26 
+rescission, or alternative remedy, should not mean that the equitable result is a 
+complete rescission of the 2018 Grant.75   
+The Plaintiff disputes the argument that presenting evidence of “fairer” 
+compensation would have put the Defendants in an impossible situation.  Instead, he 
+argues that alternative arguments are “routine in litigation” and that the Defendants’ 
+“swing[ ] for the fences” strategy left the trial court with no basis to uphold any part 
+of the 2018 Grant .76  The Plaintiff also contends that the Defendants waived their 
+objection to rescission.  He argues that because the Defendants did not argue that 
+rescission was improper until their post-trial supplemental reply brief, and then only 
+in response to the Plaintiff’s disclosure violations argument, they did not properly 
+raise the issue below and therefore, it is waived on appeal. 
+IV. STANDARD OF REVIEW 
+This Court reviews de novo whether an equitable remedy exists or was applied 
+using the correct standards.77  Factual determinations and application of the facts to 
+the correct standards are reviewed for whether the trial court exceeded its 
+ 
+75 Id. at 51–52.  
+76 Answering Br. 90–91. 
+77 SIGA Techs., Inc. v. Pharmathene, Inc. , 67 A.3d 330, 341 (Del. 2013) (citing Schock v. Nash, 
+732 A.2d 217, 232 (Del. 1999)).  
+
+27 
+discretion.78  In fashioning remedies, this Court reviews whether the court exceeded 
+its discretion.79  
+V. ANALYSIS 
+Although the Justices have varying views on the liability determination, we 
+agree that rescission was an improper remedy  and therefore choose that narrower 
+path to resolve this appeal .80  As explained below, we reverse because : (i) Musk 
+could not be restored to the status quo ante after working six years to meet the 2018 
+Grant’s market capitalization and operational milestones; (ii) his existing equity 
+value increase based on his 2009 and 2012 Grants did not substitute for his return to 
+the status quo ante ; and (iii) it was not the Defendants’ burden to prove that the 
+parties could be placed in the same position before Musk’s performance. 
+A. The Defendants Did Not Waive Their Rescission Arguments. 
+First, we address the procedural matter of waiver.  The Plaintiff argues that 
+the Defendants waived their rescission arguments by waiting until their post -trial 
+ 
+78 Id. 
+79 Gotham Partners, L.P. v. Hallwood Realty Partners, L.P., 817 A.2d 160, 175 (Del. 2002).  
+80 Oral Argument at 49:00–52:54.  The Defendants offered three paths this Court could adopt.  Id.  
+First, overturning the Court of Chancery’s application of entire fairness; second, holding rescission 
+was an improper remedy; or third, finding that the Second Stockholder Vote ratified the 
+transaction.  Id.  As the Defendants’ counsel explained: “Which of those three paths it takes is 
+obviously up to the Court.  If it’s either rescission or ratification, either of those is a very 
+straightforward way to resolve the case.  The appeal is over.  The Plaintiff’s lawyers get a quantum 
+meruit fee and we’re done.  I think that all three of those are independent paths to reaching the 
+right result, which is whatever the Court says, the result below can’t stand.”  Id. at 52:23–54. 
+
+28 
+supplemental reply brief to raise the issue.81  Under Delaware Supreme Court Rule 8, 
+“[o]nly questions fairly presented to the trial court may be presented for review; 
+provided, however that when the interests of justice so require, the Court may 
+consider and determine any question not so presented.” 82  Although the Court may 
+review the trial court’s decision for plain error for issues not raised below, “[t]he 
+Court will generally decline to review questions on appeal ‘unless they were first 
+fairly presented below.’”83  In the Court of Chancery, an issue not raised in post-trial 
+briefing is waived, “even if it was properly raised pre-trial.”84  Our Court has found 
+that a party may preserve claims by referring to them in post -trial briefing and 
+arguments.85 
+In the preliminary statement of their post-trial answering brief, the Defendants 
+objected to both the Plaintiff’s original remedy of rescinding the first three tranches 
+of the 2018 Grant and his alternative remedy of rescission of the entire Grant, stating 
+that the outcome would be “inequitable.” 86  In their post -trial supplemental reply 
+ 
+81 Answering Br. 84–85. 
+82 Supr. Ct. R. 8. 
+83 In re Oracle Corp. Deriv . Litig., 339 A.3d 1, 17 –18 n.76 (Del. 2025) ( quoting Ravindran v. 
+GLAS Tr. Co. LLC, 327 A.3d 1061, 1078 (Del. Sep. 23, 2024)). 
+84 Oxbow Carbon & Mins. Holdings , Inc. v. Crestview -Oxbow Acquisition, LLC , 202 A.3d 482, 
+502 n.77 (Del. 2019). 
+85 See, e.g., Holifield v. XRI Investment Holdings LLC, 304 A.3d 896, 936–37 (Del. 2023). 
+86 A1595–96 (Director Defendants’ Answering Post-Trial Br. 6–7). 
+
+29 
+brief, the Defendants were more explicit in their objection to rescission, briefing the 
+argument in a subsection titled, “Rescission Is Not Appropriate Here.”87   
+Ordinarily, we would be reluctant to find that an issue was fairly raised in the 
+trial court when the issue was not addressed in the main post-trial briefs, relies on a 
+cursory reference in a post -trial opening submission, and was raised in a 
+supplemental submission directed at unrelated issues.88  Here, however, the Court of 
+Chancery understood and addressed the argument being made on appeal.  As the 
+court stated in its decision, the “Defendants argue that rescission is a harsh 
+consequence that would leave Musk uncompensated.” 89  On the burden of proof 
+issue, the court also observed that the Defendants “have not offered a viable 
+alternative short of leaving the Grant intact”90 and therefore “there is nothing in the 
+record to allow the court to fashion a remedy that would order recission only to the 
+ 
+87 A1743–44 (Director Defendants’ Supp. Reply Br. 7 –8) (“Rescission would not be appropriate 
+here in any event.”). 
+88 The court’s February 22, 2023 letter requested supplemental briefing on the following topics: 
+whether (a) a single material disclosure invalidates the Grant; (b) the “give and get” approach was 
+the correct approach for the fair price analysis; (c) the give and get disclosures were fully disclosed 
+which might render the Grant development process disclosures less material; and (d) the 
+defendants wished to respond to an amicus curiae submission.  B4445–47 (Feb. 22, 2023 Letter 
+from the Court to Counsel re Supplemental Briefing). 
+89 Post-Trial Op. at 547. 
+90 Id. 
+
+30 
+extent the Grant was unfair.” 91  Where, as here, the trial court has addressed in its 
+decision the issues raised on appeal, the arguments on appeal are not waived.92 
+B. The Plaintiff Sought Only Equitable Rescission. 
+Plaintiff sought only one remedy – equitable rescission.  The Court of 
+Chancery made this clear : “[a]s a remedy, Plaintiff only seeks rescission.”93  The 
+court noted that the “Plaintiff sought alternative remedies but has abandoned those 
+requests.”94  As his lead argument, the Plaintiff asserted that rescission was 
+warranted due to faulty disclosures.  The court stated that the argument “does not 
+work.”95  The court, therefore, based its rescission award on the Plaintiff’s secondary 
+argument that rescission was warranted in light of the fiduciary breaches.   
+Although the Plaintiff argued that “‘at minimum,’ the court should rescind the 
+options for the first three tranches given the lack of disclosure regarding the 
+probability achievement,”96 the court concluded that “there is nothing in the record 
+ 
+91 Id. at 548. 
+92 See Origis USA LLC v. Great Am. Ins. Co., __ A.3d __, 2025 WL 2055767, at *14 (Del. 2025).  
+In Origis, although the Superior Court concluded that the insured’s advancement argument was 
+waived, “[g]iven that the trial court did address the Insureds ’ advancement argument, we 
+conclude[d] it ha[d] not been waived.”  Id.; see also id . at *13 n.76 (“We note that, in some 
+circumstances, the trial court addressing an issue on the merits may be sufficient to fairly present 
+it to the trial court and enable this Court’s review on appeal.”).  
+93 Post-Trial Op. at 544.  
+94 Id. at 544 n.905 (citing A1503–05 (Plaintiff’s Post-Trial Br. 104–06)).  
+95 Id. at 544. 
+96 Id. (quoting A1504 (Plaintiff’s Post-Trial Br. 105)).  
+
+31 
+to allow the court to fashion a remedy that would order rescission only to the extent 
+the Grant was unfair.”97  It placed its inability “to identify any logically defensible 
+delta between the unfair Grant and a fair one,” on the Defendants’ failure to prove 
+what amount was fair.98  
+1. Rescission as a Remedy. 
+Rescission is a remedy designed to end  (rescind) legal relations created by 
+valid or voidable contracts, and can be sought at law or in equity. 99  Generally, 
+“rescission seeks to ‘unmake’ an agreement” or transaction and return the parties to 
+the status quo ante.100  In Delaware, legal rescission is awarded by courts of law to 
+invalidate a contract and award the plaintiff money or property of which they have 
+been deprived.101   
+By contrast, equitable rescission awarded by a court of equity can provide 
+further equitable relief such as the “cancellation of a valid instrument —the formal 
+annulment or setting aside of an instrument or obligation.”102  Through cancellation 
+ 
+97 Id. at 548. 
+98 Id.  
+99 See Geronta Funding v. Brighthouse Life Ins. Co ., 284 A.3d 47, 61 (Del. 2022) (citing  
+Ravenswood, 2018 WL 1410860, at *21). 
+100 DONALD J. WOLFE, JR. & MICHAEL A. PITTENGER, CORPORATE AND COMMERCIAL PRACTICE IN 
+THE DELAWARE COURT OF CHANCERY § 12.04[a], at 12-58 (2017). 
+101 Id. § 12.04[a], at 12-58–59.  
+102 Ravenswood, 2018 WL 1410860, at *21; see also Geronta, 284 A.3d at 61 (“[R]escission results 
+in abrogation or ‘unmaking’ of an agreement, and attempts to return the parties to the status quo” 
+(quoting Norton v. Poplos, 443 A.2d 1, 4 (Del. 1982)). 
+
+32 
+of an instrument, document, obligation, or other matter “affecting plaintiff’s rights 
+and/or liabilities,” equitable rescission restores the plaintiff to her original position 
+by reestablishing title or recovering possession of property. 103  In Delaware, the 
+Court of Chancery’s subject matter jurisdiction over claims for rescission is “limited 
+to actions for equitable rescission . . . .”  104  Equitable rescission is at issue on this 
+appeal.  It was the only form of relief sought by the Plaintiff, and it was what the 
+court ordered.     
+Equitable rescission can be ordered in cases when the Plaintiff could be 
+exposed to third-party liability if the instrument at issue were not invalidated by the 
+court, or if the “unwinding of a transaction calls for the restoration of unique, specific 
+property from one party to another.” 105  Equitable rescission can be sought on 
+numerous grounds, including for breach of fiduciary duty.  If asserted, the complaint 
+must demonstrate that, because of specific circumstances, rescission is “necessary 
+to provide full and fair relief.” 106  A plaintiff seeking equitable rescission bears the 
+burden of establishing (1) equitable rescission as a viable remedy and (2) the court 
+can restore all of the challenged transaction’s parties to the status quo ante (i.e., the 
+ 
+103 WOLFE & PITTENGER, note 100, § 12.04[a], at 12-59 (quoting E.I. DuPont De Nemours & Co. 
+v. HEM Rsch., Inc., 1989 WL 122053, at *3 (Del. Ch. Oct. 13, 1989)).  
+104 Id.  
+105 Id. § 12.04[a], at 12-60. 
+106 Id. § 12.04[a], at 12-61. 
+
+33 
+position they occupied before the transaction). 107  Furthermore, a claim for relief 
+pleaded in the alternative to equitable rescission is permissible if included in the 
+pleading’s demand.108  
+Because rescission requires a “mutual return to the status quo ,”109 the 
+impracticability or impossibility of returning to the status quo  ante can defeat a 
+rescission remedy. 110  Delaware courts have recognized impracticability of the 
+remedy when a transaction’s complexity makes it impracticable to unwind, or 
+“impossible to ‘unscramble the eggs.’” 111  In a complex commercial transaction, 
+such as a merger or other form of business acquisition, obstacles in unwinding the 
+transaction such as tax ramifications, accounting issues, or the undoing of a business 
+reorganization may make rescission impossible and thus, the court will not grant it 
+ 
+107 Creative Rsch. Mfg. v. Advanced Bio-Delivery LLC, 2007 WL 286735, at *7 (Del. Ch. Jan. 30, 
+2007) (“The party seeking rescission bears the burden of establishing that the court can restore the 
+status quo between the parties.”); Microsoft Corp. v. Amphus, Inc., 2013 WL 5899003, at *20 (Del. 
+Ch. Oct. 31, 2013) (same). 
+108 Ct. Ch. R. 8(a)(3). 
+109 Ravenswood, 2018 WL 1410860, at *20.  
+110 WOLFE & PITTENGER, note 100, § 12.04[a], at 12-67. 
+111 Gimbel v. Signal Cos., 316 A.2d 599, 603 (Del. Ch. 1974) (quoting Metro-Goldwyn-Mayer Inc. 
+v. Transamerica Corp. , 303 F. Supp. 1344, 1348 (S.D.N.Y. 1969)) , aff’d, 316 A.2d 619 (Del. 
+1974). 
+
+34 
+as a remedy. 112  Assessing the feasibility of rescission depends on the current 
+circumstances of the challenged transaction.113   
+The court is not required to grant rescission as it is a matter within its 
+discretion.114  Even if it were not impractical to unwind the transaction, the Court of 
+Chancery has declined to grant rescission when it concludes that the remedy would 
+be inequitable under the circumstances. 115  On certain occasions, the court has 
+declined to order rescission when the amount of elapsed time between the transaction 
+and the proposed remedy was too long. 116  Because it is the unmaking of an 
+ 
+112 Id. (noting “tax consequences, accounting practices, business reorganizations, management 
+decisions concerning capital investments, dividends, etc.” as potential obstacles to rescission).  
+113 See Winston v. Mandor , 710 A.2d 831, 833 –34 (Del. Ch. 1996) (listing various factors that 
+pertain to feasibility of a transaction’s rescission, including “the time elapsed since completion of 
+the challenged transaction; the complexity of that transaction, and thus the difficulty of undoing 
+it; whether the transaction involves publicly traded securities and the percentage and number of 
+such shares in public hands; possible unfair prejudice to the defendant(s) if the transaction were 
+rescinded.”). 
+114 See Gotham Partners, 817 A.2d at 174. 
+115 Nebel v. Sw. Bancorp., Inc. , 1995 WL 405750, at *7 (Del. Ch. July 5, 1995) (finding that a 
+technical violation of Section 262 did not warrant rescission of a merger); Craft v. Bariglio, 1984 
+WL 8207 (Del. Ch. Mar. 1, 1984)  (citing delay in rescission request and ongoing business 
+thereafter as grounds to deny rescission).    
+116 See, e.g., Sunrise Ventures, LLC v. Rehoboth Canal Ventures, LLC, 2010 WL 363845, at *7–8 
+(Del. Ch. Jan. 27, 2010) (“It would be impossible more than four years after the fact for this court 
+fairly and equitably to rescind a complex real estate deal . . . .” (emphasis added) ), aff’d, 7 A.3d 
+485 (Del. 2010)  (TABLE); Cobalt Operating, LLC. v. James Crystal Enter. , LLC., 2007 WL 
+2142926, at *29 (Del. Ch. July 20, 2007) (“Rescission of a transaction like this, nearly five years 
+after it was consummated would be an extraordinary remedy . . . . As a result, there is no legal or 
+equitable basis to limit Cobalt to a rescission remedy.”). 
+
+35 
+agreement, rescission is an extreme remedy and should only be granted by a court 
+of equity when it is “clearly warranted.”117  
+Finally, the party seeking rescission “cannot be permitted to derive all 
+possible benefits from the transaction and then, when he is called upon to comply 
+with its terms, claim to be relieved of his obligation . . . .”118  Instead, “there must be 
+a restoration of the status quo ante, not only of the plaintiff but of the defendant as 
+well.”119  When the court cannot “realistically effectuate a decree which would 
+restore the parties to the status that existed as of the time the contract of sale was 
+executed” then rescission will be denied.120 
+2. Equitable Rescission and Rescissory Damages. 
+Rescissory damages are the economic equivalent of rescission and are “only 
+available in cases where rescission is warranted but not feasible.” 121  Rescissory 
+damages are not equitable in nature because they do not return the aggrieved party 
+to her original position .  Rather, rescissory damages are a form of legal relief  that 
+monetarily approximates the remedy of rescission.  In Delaware courts, rescissory 
+ 
+117 Ravenswood, 2018 WL 1410860, at *22 (quoting Sunbelt, 2010 WL 26539, at *14). 
+118 Craft, 1984 WL 8207, at *11. 
+119 Id. at *12. 
+120 Id. at *13. 
+121 Ravenswood, 2018 WL 1410860, at *23; Gotham Partners, 855 A.2d at 1072 (“Rescissory 
+damages are designed to be the economic equivalent of rescission in a circumstance in which 
+rescission is warranted, but not practicable.  A solid body of case law so holds.”); aff’d, 840 A.2d 
+641, 2003 WL 22998803 (Del. Dec. 18, 2003) (TABLE).  
+
+36 
+damages often come up in the corporate merger and acquisition context whe n 
+rescission of the transaction is not available but when the plaintiffs have successfully 
+argued a fiduciary duty breach and another ‘appraisal -type’ remedy is not 
+adequate.122   
+Although the Court of Chancery has discussed rescissory damages as a 
+remedial possibility in various merger contexts, the court has been “extremely 
+reluctant to award such damages,” often because of the plaintiff’s failure to meet the 
+requisite evidentiary burden.123  Despite that reluctance, this “Court has suggested . 
+. . that it is the preferred remedial measure when a transaction fails to meet the burden 
+of entire fairness” and rescission is not available.124  Here, the Plaintiff did not seek 
+rescissory damages – only equitable rescission. 
+C. Rescission Was Improper Because The Status Quo Ante Was Neither Possible 
+Nor Equitable. 
+ 
+As a remedy for fiduciary breaches by Musk and the Director Defendants 
+relating to approval of the 2018 Grant, the Court of Chancery ordered rescission of 
+the entire 2018 Grant.  We hold that the Court of Chancery erred in finding that 
+rescission was both “reasonable and appropriate” for two reasons  – first, the court 
+ 
+122 WOLFE & PITTENGER, supra note 100, § 12.04[a], at 12-73.  
+123 Id. § 12.04[a], at 12-73–74. 
+124 Id. § 12.04[a], at 12-74.  But see Cinerama, Inc. v. Technicolor, Inc., 663 A.2d 1134, 1144 (Del. 
+Ch. Oct. 6, 1994) (“[R]escissory damages should never be awarded against a corporate director as 
+a remedy for breach of his duty of care alone; [although] that remedy may be appropriate where a 
+breach of the duty of loyalty has been found . . . .”), aff’d, 663 A.2d 1156 (Del. 1995). 
+
+37 
+could not restore all the parties substantially to their status quo ante positions; and 
+second, Musk’s existing equity stake could not serve as substitute consideration to  
+restore the parties to the status quo ante .  The court also erred in faulting the 
+Defendants for not proposing an alternative remedy.   
+1. Musk Cannot Be Restored to his Pre-2018 Grant Position. 
+The Court of Chancery erred in awarding rescission because all parties to the 
+transaction could not be restored to their status quo ante.  First, there are a few points 
+the Defendants do not challenge.  The Defendants do not argue that  rescission is 
+impossible to achieve here because of tax ramifications, accounting issues, or other 
+common transactional obstacles that would result from undoing the 2018 Grant.125  
+The Defendants also do not challenge the Plaintiff’s argument that rescission of the 
+Grant would reverse the 8% dilution of Tesla’s shares that was caused by approving 
+the Grant.126  Nor do they challenge that rescission would restore the approximately 
+$2.3 billion accounting charge that Tesla incurred in 2018 related to the grant-date 
+ 
+125 See Director Defendants’ Opening Br. 49 –50 (listing only three reasons why rescission is 
+legally improper: Musk’s spent efforts, Tesla stockholders’ increased share value, and Tesla, Inc.’s 
+inability to “be returned to a status quo where an incentive structure valued at $2.3 billion was 
+sufficient to compensate Musk for 10 years of future service, no matter how astronomical Tesla’s 
+success”). 
+126 A2848 ( Plaintiff’s Reply Br. in Further Support of Application for an Award of Fees and 
+Expenses, at 10 ) ( “Removing ~8% dilution was a benefit indisputably achieved through this 
+Action, with a roughly $50B agreed-upon value.”).  
+
+38 
+valuation.127  Instead, their argument as to Tesla focuses on whether the company 
+could be restored to a position “remotely resembling their position[] in 2018” 128 
+because, given Tesla’s increase in value, it cannot be restored to its 2018 negotiating 
+posture.  This argument, however, paints an incomplete picture.  
+Rescission is inequitable here primarily because all parties must be restored 
+to the status quo ante and total rescission leaves Musk uncompensated for his time 
+and efforts over a period of six years. 129  Since 2009, Tesla compensated Musk 
+through stock options tied to milestones.   As noted above, the parties stipulated in 
+the pre-trial order that in 2022, Musk met all market capitalization milestones, eleven 
+operational milestones had been achieved, and one revenue milestone ( i.e., $75 
+billion in revenue) “remained probable of achievement.” 130  Tesla reported in its 
+December 31, 2023 Form 10 -K that the $75 billion revenue milestone had been 
+ 
+127 B3828 (Joint Decl. of Lucian Bebchuk & Robert J. Jackson, Jr.  ¶ 62) (“Tesla suggested using 
+the historic accounting charge th[at] Tesla recorded when the options were granted. Tesla argued 
+that this produced ‘an accounting benefit’ for the Company, and that ‘when we get these . . . options 
+back, all Tesla has the ability to do is then reverse the [accounting] charge.’”  (alterations in 
+original)). 
+128 Director Defendants’ Reply Br. 26. 
+129 Ravenswood, 2018 WL 1410860, at *21 (“By ordering rescission, whether at law or in equity, 
+the court endeavors to unwind the transaction and thereby restore both parties to the status quo.”); 
+Hegarty v. American Commonwealths Power Corp., 163 A. 616, 619 (Del. Ch. Nov. 2, 1932) (“[I]t 
+is fundamental that if the choice be made of rescission, there must be a restoration of the status 
+quo ante, not only of the complainant but as well of the defendant.  It is therefore necessary that 
+the rescinding party should offer or tender such a restoration to the other, and that the court should 
+be able to effectuate it by decree.”).   
+130 A0486 (Stipulation and Pre-Trial Order ¶ 276).  
+
+39 
+achieved.  Since then, the Plaintiff has agreed that “[b]y January 2023, all 
+303,960,630 options were vested and in-the-money.”131  It is undisputed that Musk 
+fully performed under the 2018 Grant, and Tesla and its stockholders were rewarded 
+for his work.   
+2. Musk’s Pre-Existing Equity Cannot Be Substituted as Consideration. 
+Although Musk’s preexisting equity stake was a “powerful incentive” and 
+relevant to his engagement with the company, it cannot restore Musk to the status 
+quo ante because it was not consideration for the services and labor he provided 
+under the 2018 Grant.  “Consideration requires that each party to a contract convey 
+a benefit or incur a legal detriment, such that the exchange is ‘bargained for.’” 132  
+Since 2009, Tesla compensated Musk through performance grants.  He met, or was 
+substantially on the way to earning , the prior grants by achieving the grant 
+milestones.  The benefits from his preexisting equity stake were not the 
+compensation he was promised if he achieved the 2018 Grant milestones.133   
+The Plaintiff also argues that, in addition to Musk’s preexisting equity stake, 
+the 2012 Grant did not expire until 2022 and thus “fairly compensated [Musk] for 
+ 
+131 Answering Br. 24.  
+132 Cox Commc’ns, Inc. v. T-Mobile US, Inc., 273 A.3d 752, 764 (Del. 2022) (quoting E.I. DuPont 
+de Nemours and Co. v. Pressman, 679 A.2d 436, 446 (Del. 1996)). 
+133 Post-Trial Op.  at 538 (“Defendants’ arguments ignore the obvious: Musk stood to gain 
+considerably from achieving the Grant’s market capitalization milestones (over $10 billion for 
+each $50 billion increase in market capitalization).”). 
+
+40 
+his services.”134  But the Plaintiff does not explain what makes it fair compensation, 
+especially considering the significant difference in milestones and compensation 
+promises between the 2012 and  2018 Grant s.  For rescission to be proper, “the 
+exchange of consideration has to be reversed,” 135 and, here, rescission of the 2018 
+Grant does not restore Musk’s consideration of six years of work as Tesla’s CEO.   
+It is settled that “past consideration” cannot support a separate promise in 
+excess of the promisor’s existing contractual obligations.136  As Williston states:  
+The term ‘past consideration’ or ‘executed consideration,’ though 
+occasionally used by the courts, is self -contradictory.  Consideration, 
+by its very definition, must be given in exchange for a promise or, at a 
+minimum, in reliance upon a promise.  Accordingly, something that has 
+been given before the promise was made and, therefore, was neither 
+induced by the promise nor paid in exchange for it, cannot, properly 
+speaking, be sufficient, valid, legal consideration.137 
+Thus, Musk’s prior compensation arrangements cannot solve the problem of 
+awarding a remedy which deprives him of all compensation that he earned for six 
+years under a new contract.138   
+ 
+134 Answering Br. 87. 
+135 WOLFE & PITTENGER, note 100, § 12.04[a], at 12-58; see also Norton v. Poplos, 443 A.2d 1, 4 
+(Del. 1982) (“[T]he equitable remedy of rescission results in abrogation or ‘unmaking’ of an 
+agreement, and attempts to return the parties to the status quo.”).   
+136 Williston on Contracts § 8:13 (4th ed.). 
+137 Id. (footnotes omitted); see also Continental Ins. Co. v. Rutledge & Co., Inc., 750 A.2d 1219, 
+1232–33 (Del. Ch. 2000) (past consideration cannot form the basis for a binding contract).  
+138 Relying on Lynch v. Vickers Energy Corp. , 429 A.2d 497 (Del. 1981), the Court of Chancery 
+observed that rescission is “the preferrable remedy” for breach of fiduciary duty when one party 
+has materially misled and induced a party to enter a contract.  In Lynch, however, our Court noted 
+ 
+
+41 
+3. The Court of Chancery Erred in Requiring Defendants to Offer a Viable 
+Alternative to Rescission. 
+ 
+The court found that rescission of the entire 2018 Grant was an appropriate 
+remedy, and not a harsh consequence, because the Defendants did not offer a viable 
+alternative to leaving the entirety of that Grant intact.139  Faulting the Defendants’ 
+unwillingness to “offer[] a viable alternative,” the trial court found that their 
+“fail[ure] to identify any logically defensible delta between the unfair Grant and a 
+fair one” was fatal to the court’s ability to fashion a remedy of partial rescission. 140  
+Although the Defendants did not argue an alternative to entire fairness of the 2018 
+Grant, their failure to do so did not prevent the court from fashioning a different 
+remedy or more limited form of rescission.  
+In Gotham Partners, L.P. v. Hallwood Realty Partners, L.P.,141 in a breach of 
+the duty of loyalty context, this Court characterized the Court of Chancery’s powers 
+as “complete to fashion any form of equitable and monetary relief as may be 
+appropriate.”142  The court here determined that it could not order a remedy short of 
+ 
+that rescission would be appropriate “if the controversy in its present form had been here in an 
+earlier stage of the litigation  . . . .”  Id. at 501.  Like here, however, the lapse of time made 
+“rescission [] not feasible at this late date.”   Id.  Instead, the Court remanded to determine 
+rescissory damages. 
+139 Post-Trial Op. at 547–48. 
+140 Id. at 548 (“[T]here is nothing in the record to allow the court to fashion a remedy that would 
+order recission [sic] only to the extent the Grant was unfair.”). 
+141 817 A.2d 160 (Del. 2002). 
+142 Id. at 176 (quoting Weinberger v. UOP, Inc., 457 A.2d 701, 714 (Del. 1983)). 
+
+42 
+total rescission because there was “nothing in the record” from the Defendants to 
+support what would constitute a ‘fair’ grant. 143  In other words, the Court of 
+Chancery found that nothing in the record allowed the court to fashion a different 
+remedy.   
+That was not a problem of the Defendants’ making.  It was the Plaintiff’s 
+burden to establish an entitlement to rescission as a form of relief and his entitlement 
+to any alternative remedies. 144  The Plaintiff argued at one point that, in the 
+alternative to rescinding the entire grant, the court should rescind only the 2018 
+Grant’s first three tranches. 145  But the Plaintiff abandoned that argument, and the 
+court subsequently concluded it did not have a basis to fashion any remedy other 
+than to rescind the entire 2018 Grant.  The Court of Chancery erred in assigning to 
+the Defendants the burden to identify a viable alternative because it always remained 
+the Plaintiff’s burden to satisfy the prerequisites for any form of relief awarded.146   
+ 
+143 Post-Trial Op. at 548. 
+144 WOLFE & PITTENGER, note 100, § 12.04[a], at 12-66 (“In an action for rescission, the plaintiff 
+bears the burden of establishing that it is possible for the court to place her or him in the status 
+quo.”); Metro Storage Int’l LLC v. Harron, 275 A.3d 810, 859 (Del. Ch. 2022) (“A plaintiff  also 
+must prove by a preponderance of the evidence that a sufficient causal linkage exists between the 
+breach of duty and the remedy sought to make the remedy an apt means of addressing the breach.”); 
+ENI Holdings, LLC, 2013 WL 6186326, at *24. 
+145 A1409 (Plaintiff’s Post-Trial Br. 10). 
+146 See Brinckerhoff v. Enbridge Energy Co ., Inc., 2012 WL 1931242, at *4 ( Del. Ch. May 25, 
+2012) (the party seeking rescission bears the burden of establishing that the court can restore the 
+status quo between the parties), aff’d, 67 A.3d 369 (Del. 2013).  
+
+43 
+The court relied on Valeant Pharmaceuticals v. Jerney 147 in support of its 
+finding that the Defendants had the burden of offering a viable alternative to total 
+rescission.  That case is distinguishable.  In Valeant, the Court of Chancery 
+considered a plan to give options to parent company executives in an entity that was 
+to be spun -off where the executives would have no involvement in the ongoing 
+enterprise.  There, the former director and president of the company w ere sued, 
+together with the former Chairman and CEO and other members of the board, after 
+they decided to pay themselves large cash bonuses in connection with a later-aborted 
+corporate restructuring.148  The only non-settling defendant was the president who 
+received a $3 million bonus.  
+First, unlike the rescission remedy here, the trial court in Valeant ordered the 
+remedy of disgorgement of the president’s $3 million bonus. 149  Disgorgement and 
+rescission are remedies that have different purposes and prerequisites.  The goal of 
+rescission is to unwind a transaction and restore the consideration exchanged by the 
+ 
+147 921 A.2d 732 (Del. Ch. 2007).  In Valeant, the Court of Chancery examined the fairness of 
+bonuses paid to former directors and officers after a division of the company  was spun-off.  The 
+court found that the decision by the directors to award the company’s president a $3 million bonus 
+was not entirely fair, and the president was required to disgorge the entirety of his bonus.   
+148 The company intended to follow an IPO with a second-step tax-free spin-off.  The spin-off was 
+abandoned.  
+149 For disgorgement as an equitable remedy for duty of loyalty and its differences from rescission 
+and rescissory damages, see John  C. Kairis, Disgorgement of Compensation Paid to Directors 
+During the Time They Were Grossly Negligent: An Available But Seldom Used Remedy , 13 DEL. 
+L. REV. 1, 6–15 (2011). 
+
+44 
+parties to their original positions, whereas disgorgement prevents unjust enrichment 
+by a fiduciary who has breached their duty of loyalty.150  “Disgorgement focuses on 
+the defendant’s gain from illegal conduct.  It is the act of giving up something (such 
+as profits illegally obtained) on demand or by legal compulsion.” 151  Unlike 
+rescission, disgorgement does not require that all parties to the challenged 
+transaction be returned to the status quo ante .  In  Valeant, the president’s unjust 
+enrichment was remedied by depriving him of the bonus, and the court did not 
+consider whether he was restored to his prior position.   
+Second, in Valeant, the court rejected limiting the director’s bonus to the 
+“extent that the bonus was unfair,” finding that the director had already been 
+adequately compensated for his years of service. 152  Valeant distinguishes 
+Technicorp International II, Inc. v. Johnston ,153 where the court had permitted 
+ 
+150 See Metro Storage , 275 A.3d at 865 –66 (“[W]hen a fiduciary engages in ‘acts of conscious 
+wrongdoing and breaches of a fiduciary duty of loyalty,’ the wrongdoer must ‘disgorge any profit 
+made as a result of such wrongful conduct.’”) (citation omitted). 
+151 Gener8, LLC v. Castanon, 2023 WL 6381635, at *31 n.390 (Del. Ch. Sep. 29, 2023)  (quoting 
+TIAA-CREF Individual & Instit. Servs., LLC v. Ill. Nat’l Ins. Co., 2016 WL 6534271, at *10 (Del. 
+Oct. 20, 2016)).  
+152 Valeant, 921 A.2d at 752.  In the present case, the Court of Chancery suggest ed that the court 
+in Valeant rejected defendant’s argument that it limit disgorgement “to the extent that the bonus 
+was unfair” based upon “defendant’s failure of proof.”  Post-Trial Op. at 548 (quoting Valeant, 
+921 A.2d at 752).  However, the court in Valeant stated that “[b]ecause [the president] has failed 
+to show that the transaction was entirely fair, it is clear that he has no right to retain any of the $3 
+million bonus he received.”  921 A.2d at 752.  As noted above, disgorgement is a different 
+equitable remedy designed to prevent one from profiting from one’s own wrongdoing.  Rescission 
+seeks to restore the parties to the ir respective positions before the transaction.  Appellee did not 
+seek disgorgement here.   
+153 1997 WL 538671 (Del. Ch. Aug. 25, 1997). 
+
+45 
+reasonable compensation for eleven years of service to unfaithful fiduciaries after 
+stripping them of profit from their misdeeds.154  Unlike in this case, the disgorgement 
+of the president’s entire bonus in Valeant was not a rescission of his entire 
+compensation package .  R ather it rescinded a bonus paid to management based 
+solely on the development of a stand-alone entity.  The court referred to the bonuses 
+as “event bonuses” which “could be viewed as compensation for past services.” 155  
+Unlike Musk , whose compensation was tied to performance and achievement of 
+specific milestones, the bonuses in Valeant “were being paid to parent company 
+managers who would have no further involvement in the ‘spun’ company.”156  This 
+fact prompted the court to conclude that “[w]hen viewed from this perspective, it is 
+difficult to see how such large bonuses could be justified.”157  By contrast, the court 
+here rescinded the entirety of the Musk’s compensation package, even though Musk 
+had achieved all the required milestones in the six years since it was approved.   
+D. The Plaintiff is Entitled to an Award of Nominal Damages. 
+Because the Plaintiff did not offer another form of appropriate relief, the most 
+he can receive is an “assessment of nominal damages.” 158  In Delaware, nominal 
+ 
+154 Valeant, 921 A.2d at 752 n.47 (citing Technicorp, 1997 WL 538671, at *15–16). 
+155 Id. at 749. 
+156 Id. at 750. 
+157 Id. 
+158 Ravenswood, 2018 WL 1410860, at *2. 
+
+46 
+damages are the appropriate award when plaintiffs “fail[] to present any evidence 
+upon which the [c]ourt could fashion a damages award in some other form.” 159  As 
+the court correctly observed in Ravenswood Investment Co., L.P. v. Est. of Winmill:  
+Nominal damages are not given as an equivalent for the wrong, but 
+rather merely in recognition of a[n] [] injury and by way of declaring 
+the rights of the plaintiff.  Nominal damages are generally assessed in 
+a trivial amount, selected simply for the purpose of declaring an 
+infraction of the Plaintiff’s rights and the commission of a wrong.160 
+In Ravenswood, the court granted “nominal damages in the amount of $1” for a 
+fiduciary-duty breach in an executive compensation context.161  There, the Court of 
+Chancery found that the Defendants breached their duty of loyalty with respect to 
+options granted to certain officers.  However, at trial, the plaintiff failed to present 
+any evidence in support of its prayers for relief.  Although the court acknowledged 
+that it has significant discretion in fashioning remedies, it emphasized that it “still 
+must have some basis in the evidence upon which to grant relief.” 162  In the end, it 
+concluded that it could only award nominal damages stating:  
+While this court endeavors  always to remedy breaches of fiduciary 
+duty, especially breaches of the duty of loyalty, and has broad discretion 
+in fashioning such remedies, it cannot create what does not exist in the 
+evidentiary record, and cannot reach beyond that record when it finds 
+the evidence lacking.  Equity is not a license to make stuff up. 
+ 
+159 Id. 
+160 Id. at *25 (quoting Oliver v. Boston Univ., 2006 WL 1064169, at *34 (Del. Ch. Apr. 14, 2006)) 
+(alterations in original).  
+161 Id. 
+162 Id. at *19.  
+
+47 
+. . . . Rescission . . . does not work because the Company lacks sufficient 
+funds to repay Defendants what they have already paid for the 
+options—a necessary step if rescission is to perform its function of 
+returning all parties to the status quo  before the wrongful conduct 
+occurred.  For this same reason, rescissory damages are not viable 
+either.  And Plaintiff has failed to present any evidence upon which the 
+Court could fashion a damages award in some other form. . . . 
+Consequently, all that can be awarded is a declaration that Defendants 
+breached their fiduciary duties and an assessment of nominal damages 
+against each Defendant in the spirit of equity.163 
+Ravenswood is an example of when the Court of Chancery has awarded 
+nominal damages in a derivative suit where the “plaintiff fails to establish 
+entitlement to any other remedy. ”164  Given the Plaintiff’s failure to establish his 
+entitlement to any other form of relief, the Plaintiff is entitled  to $1 in nominal 
+damages.   
+VI. ATTORNEYS’ FEES 
+ That brings us to the attorneys’ fees.  The Defendants suggest that if the 
+Plaintiff were awarded nominal damages, then his counsel would be entitled to a fee 
+award based upon quantum mer uit.165  We agree.   Quantum meruit  essentially 
+ 
+163 Id. at *2.  
+164 Director Defendants’ Reply Br. 28. 
+165 Tesla, Inc.’s Opening Br. 53 (“Because the benefit conferred by this litigation is unquantifiable 
+(or, at a minimum, Tornetta’s counsel failed to introduce evidence to quantify it), a recalculation 
+of the fee award using the quantum meruit approach is warranted.”). 
+
+48 
+awards counsel fees based on the reasonable value of their services. 166  In certain 
+cases, that amount can be increased.   
+Tesla argued that the Plaintiff’s counsel ’s fees should be based upon a 
+quantum meruit approach.167  They also proposed four times their lodestar .168  
+Although we would ordinarily remand for a reassessment of fees, we make an 
+exception based on the length of this litigation and not to burden the Court of 
+Chancery, which has devoted enormous time and attention to this case over many 
+years, at great personal sacrifice.  We find that the Plaintiff’s counsel is entitled to a 
+cash payment reflecting counsels’ lodestar and a four times multiplier.  Although the 
+ 
+166 “[I]n the absence of a valid contract, [including in the attorney’s fee context,] principles of 
+quantum meruit come into play and can support a recovery under a theory of unjust enrichment.” 
+In re Bremerton Cellular Tel. Co. Litig. , 328 A.3d 330, 345 (Del. Ch. 2024) (quoting Applied 
+Energetics Inc., v. Farley , 239 A.3d 409, 450 (Del. Ch. 2020)).  The phrase quantum meruit is 
+Latin for “as much as he deserves.”   Marta v. Nepa , 385 A.2d 727 , 730  (Del. 1978) (citation 
+omitted).  “A quantum meruit recovery is a quasi-contract claim that allows a party to recover the 
+reasonable value of his or her services if:  (i) the party performed the services with the expectation 
+that the recipient would pay for them; and (ii) the recipient should have known tha t the party 
+expected to be paid.”  Id. (internal quotations omitted).  “ Quantum meruit damages are based on 
+an objective [and] reasonable valuation of the services provided by reference to the fair market 
+value of those services.”  Id. at 345–46 (quoting LCT Cap., LLC v. NGL Energy Partners LP, 2022 
+WL 17851423, at *4 (Del. Super. Dec. 22, 2022)) (alteration in original).  “A reasonable valuation 
+is the amount for which such services could have been purchased from one in the plaintiff’s 
+position at the time and place the services were rendered.”  Id. (internal quotations omitted).  
+Delaware courts often rely on the factors derived from the Delaware Rules of Professional 
+Responsibility to determine a reasonable valuation.  See, e.g., id. at 346.   
+167 See A2494–97 (Tesla Inc.’s Answering Br. in Opposition to Plaintiff’s Counsel’s Request for 
+an Award of Attorneys’ Fees and Expenses  at 38–41); see also A2515–17 (Id., Ex. A (Quantum 
+Meruit Cases Chart)).   
+168 See Ratification and Fee Op. at 1235 (“Defendants argue that Plaintiff’s counsel should be paid 
+in cash and receive no more than $54.5 million —which is 4x their lodestar, and about 1% of 
+Plaintiff’s request.”); id. (“Defendants say that Plaintiff’s counsel should receive no more than 4x 
+their lodestar under the quantum meruit approach . . . .”).  
+
+49 
+Plaintiff failed in his main objective of achieving a complete rescission of the 2018 
+Grant and received nominal damages , Tesla and its stockholders benefit ed by 
+counsel’s efforts.169 
+VII. CONCLUSION 
+ We reverse the Court of Chancery’s rescission remedy and award $1 in 
+nominal damages.  The Plaintiff’s attorneys are awarded fees and expenses based on 
+quantum meruit and a four times multiplier and post-judgment interest on the revised 
+fee award from December 2, 2024.  Any disputes regarding fees and expenses should 
+be brought to the Court of Chancery for resolution.  Jurisdiction is not retained. 
+ 
+169 See, e.g. In re Invs. Bancorp, Inc. S’holder Litig., C.A. No. 12327, Dkt. No. 253, at 23 (Del. 
+Ch. June 17, 2019) (TRANSCRIPT); id. at 13:7–9 (observing that “lessons were learned as a result 
+of this case, and that alone is a benefit to this company and its stockholders”);  id. at 23:11–14 
+(applying a quantum meruit  approach which the court concluded would provide it “with a 
+principled and practical way to award proper fees while promoting, or at least not undermining, 
+proper incentives for the parties”); id. at 27:1–8 (ultimately awarding fees of two times the lodestar 
+and reducing the award to account for fees incurred in addressing the lead counsel position and 
+post-settlement issues).  

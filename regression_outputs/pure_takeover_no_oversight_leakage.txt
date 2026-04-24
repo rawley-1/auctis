@@ -1,0 +1,89 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['takeover_defense']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- unitrin.txt (case_score=0.9707, role=supreme_refinement, line=takeover_defense)
+- unocal.txt (case_score=0.9408, role=foundation, line=takeover_defense)
+- airgas.txt (case_score=0.9136, role=modern_application, line=takeover_defense)
+- Airgas v .txt (case_score=0.8590, role=related_case, line=unknown)
+
+DOCTRINE BUCKETS:
+- Takeover Defense:
+    unocal.txt (foundation, 0.9408)
+    unitrin.txt (supreme_refinement, 0.9707)
+    airgas.txt (modern_application, 0.9136)
+- Unknown:
+    Airgas v .txt (related_case, 0.8590)
+
+DOCTRINE LEADERS:
+- Takeover Defense:
+    unocal.txt (role=foundation, case_score=0.9408)
+    unitrin.txt (role=supreme_refinement, case_score=0.9707)
+    airgas.txt (role=modern_application, case_score=0.9136)
+- Unknown:
+    Airgas v .txt (role=related_case, case_score=0.8590)
+
+DEBUG RAW QUOTES FOR unocal.txt:
+  - This burden is satisfied by demonstrating good faith and reasonable investigation.
+  - The defensive response must then be reasonable in relation to the threat posed.
+DEBUG PICKED QUOTE FOR unocal.txt: This burden is satisfied by demonstrating good faith and reasonable investigation.
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - sponding before bidder (1986) (enjoining a coercive Ch., A.2d 103 519 gate.38 corporate bastion’s restructuring plan).
+  - Bradley Michael & Michael See also response defensive if the board of directors’ Repurchases, Rosenzweig, Stock Defensive coercive) (preclusive or and (1986).
+  - 1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.
+  - 1387 alternative, i.e., coercive, benot and response, includwas evaluate the board’s overall Paramount from preclude it did not cause ing justification contested defenthe for each 
+  - See Paramount related, inextricably printhe sive actions are Time, Inc., 1140, 1154-55 Del.Supr., 571 A.2d ciples require of that such actions be Unocal (1990) comparison coercive 
+DEBUG PICKED QUOTE FOR unitrin.txt: 1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.
+
+DEBUG RAW QUOTES FOR airgas.txt:
+  - fore “Uno- [Even when] a defensive measure to cal’s heightened standard of review does thwart or impede a takeover is indeed not apply here.”304 motivated by a good faith concern f
+  - What the Supreme Court actual- stockholders, which in all circumstances ly said in Unocal, without taking snippets must be free of any fraud or other misof quotes out of context, w
+  - 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment r
+  - Only a board of question: Can a board of directors, directors found to be acting in good faith, tal acting in good faith and with a reasonable after reasonable investigation and re
+  - gories, and clearly chose not to deem an all shares, all cash offer coercive in any respect.
+DEBUG PICKED QUOTE FOR airgas.txt: 94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Unocal', 'quote': 'This burden is satisfied by demonstrating good faith and reasonable investigation.', 'source': 'unocal.txt'}
+supreme_refinement -> {'case': 'Unitrin', 'quote': '1377 99 reasonableness,” a court “range a of is within Repur that the showing on this record no judgment for the its must not substitute coercive.', 'source': 'unitrin.txt'}
+modern_application -> {'case': 'Airgas', 'quote': '94 judgment rule, it must be reasonable in wanting in objectivity, good faith or delirelation to the threat posed.306 berativeness, the so-called ‘enhanced’ may business judgment rule has been satis- The idea that boards be acting fied and no further inquiry is undertak- in their own self-interest to perpetuate is, itself, en.309 themselves in office in and of the “omnipresent specter” justifying enhanced Accor.', 'source': 'airgas.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> this burden satisfied demonstrating good faith reasonable investigation
+supreme_refinement -> reasonableness court range within repur that showing this
+modern_application -> judgment rule must reasonable wanting objectivity good faith
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Unocal: "this burden satisfied demonstrating good faith reasonable investigation"
+- Unitrin: "reasonableness court range within repur that showing this"
+- Airgas: "judgment rule must reasonable wanting objectivity good faith"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+The answer depends on the governing doctrinal standard.
+
+Key Distinction:  
+The earlier doctrine states the baseline rule, whereas the later doctrine refines its application.
+
+Rule Comparison:  
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:  
+Directors breach the duty of loyalty where their conduct constitutes a failure to act in good faith.
+
+Analysis:  
+This matters because Delaware doctrine distinguishes baseline fiduciary obligations from conduct that crosses into breach. The significance is that directors act inconsistently with the duty of loyalty where their conduct constitutes a failure to act in good faith. As a result, breach arises only when inaction or conscious disregard moves beyond imperfection and into disloyal conduct.
+
+Confidence:  
+High
+

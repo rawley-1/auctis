@@ -1,0 +1,1056 @@
+IN THE SUPREME COURT OF THE STATE OF DELAWARE 
+ 
+JACK L. MARCHAND II, § 
+ § No. 533, 2018 
+ Plaintiff Below, §  
+ Appellant, § Court Below: Court of Chancery 
+  § of the State of Delaware 
+ v. § 
+  § C.A. No. 2017-0586-JRS 
+JOHN W. BARNHILL, JR., GREG §  
+BRIDGES, RICHARD DICKSON,  § 
+PAUL A. EHLERT, JIM E. KRUSE, § 
+PAUL W. KRUSE, W.J. RANKIN, § 
+HOWARD W. KRUSE, PATRICIA § 
+I. RYAN, DOROTHY MCLEOD § 
+MACINERNEY and BLUE BELL    § 
+CREAMERIES USA, INC., § 
+ § 
+ Defendants Below, § 
+ Appellee. § 
+ 
+Submitted:   April 24, 2019 
+Decided:   June 18, 2019 
+Corrected:  June 19, 2019 
+ 
+Before STRINE, Chief Justice; VALIHURA, VAUGHN, SEITZ, and 
+TRAYNOR, Justices, constituting the Court en Banc. 
+ 
+Upon appeal from the Court of Chancery.  REVERSED and REMANDED. 
+ 
+Robert J. Kriner, Jr., Esquire (Argued), and Vera G. Belger, Esquire, CHIMICLES 
+SCHWARTZ KRINER & DONALDSON-SMITH LLP, Wilmington, Delaware ; 
+Michael Hawash, Esquire, and Jourdain Poupore, Esquire, HAWASH CICACK & 
+GASTON LLP, Houston, Texas, Attorneys for Appellant, Jack L. Marchand II. 
+ 
+Paul A. Fioravanti, Jr., Esquire ( Argued), and John G. Day, Esquire, PRICKETT, 
+JONES & ELLIOT, P.A., Wilmington, Delaware, Attorneys for Appellees, John W. 
+Barnhill, Jr., Richard Dickson, Paul A. Ehlert, Jim E. Kruse, W.J. Rankin, Howard 
+W. Kruse, Patricia I. Ryan, Dorothy McLeod MacInerney, and no minal defendant 
+Blue Bell Creameries USA, Inc. 
+
+ 
+Srinivas M. Raju, Esquire, and Kelly L. Freund, Esquire, RICHARDS, LAYTON & 
+FINGER, P.A., Wilmington, Delaware, Attorneys for Appellees, Greg Bridges and 
+Paul W. Kruse.   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+STRINE, Chief Justice:
+
+Blue Bell Creameries USA, Inc., one of the country’s largest ice cream 
+manufacturers, suffered a listeria outbreak in early 2015, causing the compa ny to 
+recall all of its products, shut down production at all of its plants, and lay off over a 
+third of its workforce.  Blue Bell’s failure to contain listeria’s spread in its 
+manufacturing plants caused listeria to be present in its products and had sad 
+consequences.  Three people died as a result of the listeria outbreak.  Less 
+consequentially, but nonetheless important for this litigation, stockholders also 
+suffered losses because , after the operational shutdown, Blue Bell suffered a 
+liquidity crisis that forced it to accept a dilutive private equity investment.   
+Based on these unfortunate events, a stockholder brought a derivative suit 
+against two key executives  and against Blue Bell’s directors claiming breaches of 
+the defendants’ fiduciary duties.  T he complaint allege s that the executives —Paul 
+Kruse, the President and CEO, and Greg Bridges, the Vice President of Operations—
+breached their duties of care and loyalty by knowingly disregarding contamination 
+risks and failing to oversee the safety of Blue Bell’s food-making operations, and 
+that the directors breached their duty of loyalty under Caremark.1   
+                                                 
+1 In re Caremark Int’l Inc. Derivative Litig. , 698 A.2d 959 (Del. Ch.1996) (Allen, C.); see also 
+App. to Opening Br. at A67 –68 (Verified Stockholder Derivative Action Complaint (Aug. 14, 
+2017)).   
+
+2 
+The defendants moved to dismiss the complaint for failure to plead demand 
+futility.2  The Court of Chancery granted the motion as to both claims.  As to the 
+claim against management, the Court of Chancery held that the plaintiff “failed to 
+plead particularized facts that raise a reasonable doubt as to whether a majority of 
+[Blue Bell’s] Board could impartially consider a demand.”3  Although the complaint 
+alleged facts sufficient to raise a reasonable doubt as to the impartiality of a number 
+of Blue Bell’s directors, the plaintiff ultimately came up one short  in the Court of 
+Chancery’s judgment: the plaintiff needed eight directors for a majority, but only 
+had seven. 
+As to the Caremark claim, the Court of Chancery held that the plaintiff did 
+not plead any facts to support “his contention that the [Blue Bell] Board  ‘utterly’ 
+failed to adopt or implement any reporting and compliance systems.”4  Although the 
+plaintiff argued that Blue Bell’s board had no supervisory structure in place to 
+oversee “health, safety and sanitation controls and compliance,” the Court of 
+Chancery reasoned that “[w] hat Plaintiff really attempts to challenge is not the 
+existence of monitoring and reporting controls, but the effectiveness of monitoring 
+                                                 
+2 App. to Answering Br. at B48–134 (Defendants’ Opening Br. in Support of their Joint Motion to 
+Dismiss (Oct. 30, 2017)); see also Court of Chancery Rule 23.1.   
+3 Marchand v. Barnhill, 2018 WL 4657159, at *16 (Del. Ch. Sept. 27, 2018).   
+4 Id. at *18.   
+
+3 
+and reporting controls in particular instances,” and “[t]his is not a valid theory under 
+. . . Caremark.”5 
+In this opinion, we reverse as to both holdings.  
+We first hold that the complaint pleads particularized facts sufficient to create 
+a reasonable doubt that an additional director, W.J. Rankin, could act impartially in 
+deciding to sue Paul Kruse, Blue Bell’s CEO, and his subordinate Greg Bridges, 
+Blue Bell’s Vice President of Op erations, due to Rankin’s longstanding business 
+affiliation and personal relationship  with the Kruse  family.6  According to the 
+complaint, Rankin worked at Blue Bell for decades and owes his entire career to Ed 
+Kruse, the current CEO’s father, who hired Rankin as his administrative assistant in 
+1981 and promoted him five years later to the position of CFO , a position Rankin 
+maintained until his retirement in 2014.  In 2004, while serving as CFO, Rankin was 
+elected to Blue Bell’s board, and has served since then.  Moreover, the complaint 
+alleges that the Kruse family showed its appreciation for Rankin not only by 
+supporting his career, but also by leading a campaign that raised over $450,000 to 
+name a building at the local university after Rankin.   Despite th e defendants’ 
+contentions that Rankin’s relationship with the Kruse family was just an ordinary 
+                                                 
+5 Id.   
+6 Because we hold that the complaint pleads particularized facts supporting a reasonable inference 
+that Rankin could not be impartial as to suing a member of the Kruse family, we need not, and do 
+not, reach that issue as to the other director whose impartiality the plaintiff challenges on appeal.   
+
+4 
+business relationship from which Rankin would derive no strong feelings of loyalty 
+toward the Kruse family, these allegations are “suggestive of the type of very close 
+personal [or professional] relationship that, like family ties, one would expect to 
+heavily influence a human’s ability to exercise impartial judgment.” 7  Rankin’s 
+apparently deep business and personal ties to the Kruse family raise a reasonable 
+doubt as to whether Rankin could “impartially or objectively assess whether to bring 
+a lawsuit against the sued party.”8  
+As to the Caremark claim, we hold that the complaint alleges particularized 
+facts that support a reasonable inference that the Blue Bell board failed to implement 
+any system to monitor Blue Bell’ s food safety performance or compliance .  Under 
+Caremark and this Court’s opinion in Stone v. Ritter ,9 directors have a duty “to 
+exercise oversight” and to monitor the corporation’s operational viability, legal 
+compliance, and financial p erformance.10  A board’s “ utter failure to attempt to 
+assure a reasonable information and reporting system exists” is an act of bad faith in 
+breach of the duty of loyalty.11   
+                                                 
+7 Sandys v. Pincus, 152 A.3d 124, 130 (Del. 2016).   
+8 In re Oracle Corp. Derivative Litig., 824 A.2d 917, 942 (Del. Ch. 2003). 
+9 911 A.2d 362 (Del. 2006). 
+10 Id. at 364 (quoting In re Caremark Int’l Inc. Derivative Litig. , 698 A.2d  959, 971  (Del. 
+Ch.1996)); see also In re Citigroup Inc. S’holder Derivative Litig. , 964 A.2d 106, 125  (Del. Ch. 
+2009) (Chandler, C.).   
+11 Caremark, 698 A.2d at 971.   
+
+5 
+As a monoline company that makes a single product —ice cream—Blue Bell 
+can only thrive  if its consumers enjoy ed its products and were confident that its 
+products were safe to eat.  That is, one of Blue Bell’s central compliance issues is 
+food safety.  Despite this fact, the complaint alleges that Blue Bell’s board had no 
+committee overseeing food safety, no full board-level process to address food safety 
+issues, and no protocol by which the board was expected to be advised of food safety 
+reports and developments.  Consistent with this dearth of any board -level effort at 
+monitoring, the complaint pleads particular facts supporting an inference that during 
+a crucial period when yellow and red flags about food safety were presented to 
+management, there was no equivalent reporting to the board  and the board was not 
+presented with any material information about food safety .  Thus, the complaint 
+alleges specific facts that create a reasonable inference that the directors consciously 
+failed “to attempt to ass ure a reasonable information and reporting system 
+exist[ed].”12   
+                                                 
+12 Id.  
+
+6 
+I.  Background13 
+A.  Blue Bell’s History and Operating Environment  
+i.  History  
+Founded in 1907 in Brenham, Texas, Blue Bell Creameries USA, Inc. (“Blue 
+Bell”), a Delaware corporation, produces and distributes ice cream under the Blue 
+Bell banner.14  By 1919, Blue Bell’s predecessor was struggling financially.  Blue 
+Bell’s board turned to E.F. Kruse, who took over the company that year and turned 
+it around.  Under his leadership, the company expanded and became profitable.15   
+E.F. Kruse led the company until his unexpected death in 1951. 16  Upon his 
+death, his sons, Ed F. Kruse and Howard Kruse, took over the company’s 
+management.  Rapid expansion continued under Ed and Howard’s leadership.17  In 
+                                                 
+13 The facts come from the plaintiff’s complaint, documents incorporated by reference into the 
+complaint, and the Court of Chancery’s opinion based on these same documents.     
+14 Blue Bell Creameries USA, Inc. is a holding company.  Its only assets are a 69.6 percent interest 
+in Blue Bell Creameries, L.P., which actually produces and distributes ice cream, and a 100 percent 
+interest in Blue Bell Creameries, Inc., the general partner of Blue Bell Creameries, L.P.  Because 
+the plaintiff is a stockholder of Blue Bell Creameries USA, the Court of Chancery requested 
+supplemental briefing regarding the fiduciary duties of dual fid uciaries—because the holding 
+company and the general partner have the same executives —and a board’s responsibilities when 
+its only asset is a majority stake in a subsidiary.  App. to Opening Br. at A275 –83 (Letter from 
+Vice Chancellor Slights to counsel re questing supplement submissions (May 11, 2018)).  But in 
+its decision, the Court of Chancery sensibly and properly collapsed the enterprise for purposes of 
+analyzing the complaint .  Marchand v. Barnhill , 2018 WL 4657159, at *3 (Del. Ch. Sept. 27, 
+2018).   
+15 App. to Opening Br. at A20 (Verified Stockholder Derivative Action Complaint (Aug. 14, 
+2017)).    
+16 Id. at A20–21.   
+17 Id. at A21.   
+
+7 
+2004, Ed Kruse’s son, Paul Kruse, took over management, becoming Blue Bell’s 
+President and CEO.18  Ten years later, in 2014, Paul Kruse also assumed the position 
+of Chairman of the Board, taking the position from his retiring father.19   
+ii.  The Regulated Nature of Blue Bell’s Industry  
+As a U.S. food manufacturer, Blue Bell operates in a heavily regulated 
+industry.  Under federal law, th e Food and Drug Administration ( “FDA”) may set 
+food quality standards, require food manufacturing facilities to regi ster with the 
+FDA, prohibit regulated manufacturers from placing adulterated food into interstate 
+commerce, and hold companies liable if they place any adulterated foods into 
+interstate commerce in violation of FDA rules. 20  Blue Bell is “required to comply 
+with regulations and establish controls to monitor for, avoid and remediate 
+contamination and conditions that expose the Company and its products to the risk 
+of contamination.”21 
+Specifically, FDA regulations require food manufacture rs to conduct 
+operations “with adequate sanitation principles” 22 and, in line with that obligation, 
+“must prepare . . . and implement a written food safety plan.” 23  As part of a 
+                                                 
+18 Id. at A28–29.   
+19 Id.   
+20 See 21 U.S.C. §§ 333, 341, 342, 350.   
+21 App. to Opening Br. at A28 (Verified Stockholder De rivative Action Complaint (Aug. 14, 
+2017)).   
+22 21 C.F.R. § 110.80.   
+23 Id. § 117.3.   
+
+8 
+manufacturer’s food safety plan, the manufacturer must include processes for 
+conducting a hazard analysis that identifies possible food safety hazards, identifies 
+and implements preventative controls to limit potential food hazards, implement s 
+process controls, implement s sanitation controls, and monitors these preventative 
+controls.  Appropriate corporate officials must monitor these preventative controls.24   
+Not only is Blue Bell subject to federal regulations, but it must also adhere to 
+various state regulations.  At the time of the listeria outbreak, Blue Bell operated in 
+three states, and each had issued rules and regulations regarding the proper handling 
+and production of food to ensure food safety.25   
+B.  Plaintiff’s Complaint  
+With that context out of the way, we briefly summarize the plaintiff’s well -
+pled factual allegations and the reasonable inferences drawn from them.   
+The complaint starts by observing that, a s a single -product food company, 
+food safety is of obvious importance to Blue Bell. 26  But despite the critical nature 
+of food safety for Blue Bell’s continued success, the complaint  alleges that 
+management turned a blind eye to red and yellow flags that were waved in front of 
+it by regulators and its own tests, and the board—by failing to implement any system 
+                                                 
+24 Marchand v. Barnhill, 2018 WL 4657159, at *9–11 (Del. Ch. Sept. 27, 2018).  
+25 Id. 
+26 App. to Opening Br. at A9 (Verified Stockholder Derivative Action Complaint (Aug. 14, 2017)) 
+
+9 
+to monitor the company’s food safety compliance programs—was unaware of any  
+problems until it was too late.27    
+i.  The Run-Up to the Listeria Outbreak 
+According to the complaint, Blue Bell’s issues began to emerge in 2009.  At 
+that time, Paul Kruse, Blue Bell’s President and CEO, and his cousin, Paul Bridges, 
+were responsible for the three plants Blue Bell operate d in Texas, Oklahoma, and 
+Alabama.28  The complaint alleges  that, despite being responsible for overseeing 
+plant operations, Paul Kruse and Bridges failed to respond to signs of trouble in the 
+run up to the listeria outbreak.  From 2009 to 2013 several regulators found troubling 
+compliance failures at Blue Bell’s facilities:  
+ In July 2009, the FDA’s inspection of the Texas facility revealed 
+“two instances of condensation, one from a pipe carrying liquid 
+caramel [that] was dripping into three gallon cartons waiting to 
+be filled, and one dripping into ice cream sandwich wafers.” 29  
+The FDA reported these observations directly to Paul Kruse, who 
+assured the FDA that “condensation is treated by Blue Bell as a 
+serious concern.”30 
+ 
+ In March 2010, the Alabama Department of Health inspected the 
+Alabama plant and “found equipment left on the floor and a 
+ceiling in disrepair in the container forming room.”31   
+ 
+ Two months later, in May 2010, the FDA returned to the Tex as 
+plant “and observed ten violations that were cited to Paul Kruse 
+                                                 
+27 Id. at A9–11.   
+28 Id. at A21.   
+29 Id. at A25.   
+30 Id. at A33.  
+31 Id.    
+
+10 
+including, again, a condensation drip.”32  While the condensation 
+drip persisted from the FDA’s last inspection of the Texas plant, 
+the FDA also observed “ripped and open containers of 
+ingredients, inconsistent hand -washing and glove use and a 
+spider and its web near the ingredients.”33 
+ 
+ In July 2011 , an inspection by “the Alabama Department of 
+Public Health cited drips from a ceiling unit and pipelines, 
+standing water, open tank lids and unprotected measuring 
+cups.”34   
+ 
+ Nine months later, in March 2012, an inspection of the Oklahoma 
+facility revealed the plant’s “‘[f]ailure to manufacture foods 
+under conditions and controls necessary to minimize 
+contamination’ and ‘[f]ailure to handle and maintain equipment, 
+containers and utensils used to hold food in [sic] manner that 
+protects against contamination.’”35 
+ 
+ That same month, in March 2012, “[t]he Alabama Department of 
+Public Health required five changes” to the Alabama facility, 
+“including instructions to clean various rooms and items, make 
+repairs and [sic] after fruit processing to prevent 
+contamination.”36  A year later, “in March 2013, the Alabama 
+Department of Public Health again ordered cleaning and repairs 
+and observed an uncapped fruit tank.”37  The Alabama 
+Department of Public Health made similar observations in a July 
+2014 inspection.38   
+ 
+Regulatory inspections during this time were not the only signal that Blue Bell 
+faced potential health safety risks .  In 2013, “the Company had five positive tests” 
+                                                 
+32 Id.   
+33 Id. at A34.   
+34 Id.   
+35 Id.   
+36 Id.   
+37 Id.   
+38 Id.   
+
+11 
+for listeria,39 and in January 2014, “the Company received a presumptive positive 
+[l]isteria result reports from the third party laboratory for the [Oklahoma] facility 
+on January 20, 2014 and the samples reported positive for a second time on January 
+24, 2014.”40   
+Although management had received reports about listeria’s growing presence 
+in Blue Bell’s pla nts, the complaint alleges that the board never received any 
+information about listeria or more generally about food safety issues.  Minutes from 
+the board’s January 29, 2014 meeting “reflect no report or discussion of the 
+increasingly frequent positive tests that had been occurring since 2013 or the third 
+party lab reports received in the preceding two weeks.” 41  Board meeting minutes 
+from February and March likewise reflect no board-level discussion of listeria.42   
+During the rest of 2014, Blue Bell’s problems accelerated , but the board 
+remained uninformed about Blue Bell’s problems .  In April, “[t] he Company 
+received further positive [l]isteria lab tests regarding [the Oklahoma facility].” 43  
+That same month, the company  had three “positive coliform tes ts far above the 
+known legal regulator limits.”44  Yet, minutes from the April board meeting reflected 
+                                                 
+39 Id. at A49–50.   
+40 Id. at A52.   
+41 Id.   
+42 Id. (“[T]here is no reference to Listeria or the lab reports in the minutes of the February or March 
+2014 meetings.”).  
+43 Id.   
+44 Id. at A49–50.   
+
+12 
+no discussion of listeria.  Instead, the minutes note only that t he Oklahoma and 
+Alabama facilities’ “plant operations were discussed briefly” and that  Bridges also 
+discussed “a good report from the TCEQ [Texas Commission on Environmental 
+Quality].”45 
+Over the course  of 2014, Blue Bell received ten positive tests for listeria.  
+According to the complaint, t hese positive tests “included repeated positive resu lts 
+from the Company’s third party laboratory in 2014, on consecutive samples, 
+evidencing the inadequacy of the Company’s remedial methods to eliminate the 
+contamination.”46   
+Despite management’s knowledge of the growing problem, the complaint 
+alleges that this information  never made its way to the board, and the board 
+continued to be uninformed about (and thus unaware of) the problem.  Minutes from 
+the board’s 2014 meetings ar e bereft of reports on the listeria issues.  Only during 
+the September meeting is sanitation discussed, when Bridges informed the board that 
+“[t]he recent Silliker audit [Blue Bell’s third -party auditor for sanitation issues in 
+2014] went well.” 47  This lone reference to a third -party audit is the only instance, 
+                                                 
+45 Id. at A170 (Minutes to April 29, 2014 board meeting).   
+46 Id. at A49 (Verified Stockholder Derivative Action Complaint (Aug. 14, 2017)).   
+47 Id. at A180 (Minutes to September 30, 2014 board meeting).  See also Marchand , 2018 WL 
+4657159, at *6 n.72.   
+
+13 
+until the listeria outbreak forced the recall of Blue Bell’s products, of any board-
+level discussion regarding food safety.   
+At this stage of the case, we are bound to draw all fair inferences in th e 
+plaintiff’s favor from the well-pled facts.  Based on this chronology of events, the 
+plaintiffs have fairly pled that:  
+ Blue Bell had no board committee charged with monitoring food 
+safety;  
+ 
+ Blue Bell’s full board did not have a process where a portion of 
+the board’s meetings each year, for example either quarterly or 
+biannually, were specifically devoted to food safety compliance; 
+and 
+ 
+ The Blue Bell board did not  have a protocol  requiring or have 
+any expectation that management would deliver key food safety 
+compliance reports or summaries of these reports to the board on 
+a consistent and mandatory basis.  In fact, it is inferable that there 
+was no expectation of reporting to the board of any kind. 
+ 
+In short, the complaint pleads that the Blue Bell board had made no effort at all to 
+implement a board-level system of mandatory reporting of any kind.   
+ii.  The Listeria Outbreak and the Board’s Response 
+Blue Bell’s listeria problem spread in 2015.  Starting in January 2015, one of 
+Blue Bell’s product tests had positive coliform levels above legal limits.48  The same 
+                                                 
+48 App. to Opening Br. at A49 –50 (Verified Stockholder Derivative Action Complaint (Aug. 14 , 
+2017)).   
+
+14 
+result appeared in February 2015. 49  And by this point, the problem spread to Blue 
+Bell’s products and spiraled out of control.   
+On February 13, 2015, “Blue Bell received notification that the Texas 
+Department of State Health Services also had positive tests for [l]isteria in Blue Bell 
+samples.”50  The Texas Department of State Health Services was alerted to these 
+positive tests by the South Carolina Health Department. 51  Company swabs at the 
+Texas facility on February 19 and 21, 2015 tested positive for listeria.52  Yet despite 
+these reports to management, Blue Bell’s board was not informed by management 
+about the sev ere problem.  The board met on February 19, 2015, following Blue 
+Bell’s annual stockholders meeting, but there was no listeria discussion.53   
+Four days later,  Blue Bell initiated a limited recall. 54  Two days after that, 
+Blue Bell’s board met, and Bridges reported that “[t]he FDA is working with Texas 
+health inspectors regarding the Company’s recent recall of products.  More 
+information is developing and should be known within the next days or weeks.” 55  
+Despite two years of evidence that listeria was a growing problem for Blue Bell, this 
+is the first time the board discussed the issue, according to the complaint and the 
+                                                 
+49 Id.   
+50 Id. at A36, A54.   
+51 Id. at A54–55. 
+52 Id.   
+53 Id. at A55.   
+54 Marchand v. Barnhill, 2018 WL 4657159, at *7 (Del. Ch. Sept. 27, 2018).   
+55 App. to Opening Br. at A55 (Verified Stockholder Derivative Action Complaint (Aug. 14, 
+2017)).   
+
+15 
+incorporated board minutes.  Instead of holding more frequent emergency board 
+meetings to receive constant updates on the troubling fact tha t life -threatening 
+bacteria was found in its products, Blue Bell’s board left the company’s response to 
+management.   
+And the problem got worse, with awful effects.  “In early March 2015, health 
+authorities reported that they suspected a connection between  human [l]isteria 
+infections in Kansas and products made by Blue Bell’s [Texas] facility.” 56  The 
+outbreak in Kansas matched a listeria strain found in Blue Bell’s products in South 
+Carolina.  And by March 23, 2015, Blue Bell was forced to recall more products.  
+Two days later, Blue Bell’s board met and adopted a resolution “express[ing] 
+support for Blue Bell’s CEO, management, and employees and encourag[ing] them 
+to ensure that everything Blue Bell manufacture[s] and distributes is a wholesome 
+and good testing [sic] product that our consumers deserve and expect.”57 
+Blue Bell expanded the recall two weeks later, and less than a month later, on 
+April 20, 2015, Blue Bell “instituted a recall of all products.” 58  By this point, the 
+Center for Disease Controls and Prevention (“CDC”) had begun an investigation and 
+discovered that the source of the listeria outbreak in Kansas was caused by Blue 
+                                                 
+56 Id. at A36.   
+57 Id. at A56–57.   
+58 Id. at A37.   
+
+16 
+Bell’s Texas and Oklahoma plants. 59  Ultimately, five adults in Kansas and three 
+adults in Texas were sickened by Blue Bell’s products; three of the five Kansas 
+adults died because of complications due to listeria infection.60  The CDC issued a 
+recall to grocers and retailers, alerting them to the contamination and warning them 
+against selling the products.61   
+After Blue Bell’s full product recall, the FDA inspected each of the company’s 
+three plants.  Each was found to have major deficiencies.  In the Texas plant, the 
+FDA found a “failure to manufacture foods under conditions and controls necessary 
+to minimize the potential for growth of microorganisms,” inadequate cleaning and 
+sanitizing procedures, “failure to maintain buildings in repair sufficient to prevent 
+food from coming [sic] adulterated,” and improper construction of the building that 
+failed to prevent condensation from occurring.62  Likewise, at the Oklahoma facility, 
+“[t]he FDA found that the Company had been receiving increasingly frequent 
+positive [l]isteria tests at [the Oklahoma facility] for over three years,” failed “to 
+manufacture and package foods under conditions and controls necessary to minimize 
+the potential growth of microorganisms and contamination,” failed to perform 
+testing to ferret out microbial growth, implemented inadequate cleaning and 
+                                                 
+59 Id. at A37–38.   
+60 Id. at A37.  
+61 Id.   
+62 Id. at A38; see also id. at A77–80 (Food and Drug Administration Inspection Report for Blue 
+Bell Creameries facility in Brenham, Texas (May 1, 2015)).   
+
+17 
+sterilization procedures, failed to provide run ning water at an appropriate 
+temperature to sanitize equipment, and failed to store food in clean and sanitized 
+portable equipment.63   
+Although the Alabama facility fared better, the FDA still found contamination 
+and several issues, including the “failure to perform microbial testing where 
+necessary to identify possible food contamination,” “failure to maintain food contact 
+surfaces to protect food from contamination by any source,” and inadequate 
+construction of the facility such that condensation was like ly.64  Most of these 
+findings, the complaint alleges, are unsurprising because similar deficiencies were 
+found by the FDA and state regulators in the run up to the listeria outbreak, yet 
+according to the FDA’s inspection after the fact, it appeared that neither management 
+nor the board made progress on remedying these deficiencies.   
+After the fact, various news outlets interviewed former Blue Bell employees 
+who “claimed that Company management ignored complaints about factory 
+conditions in [the Texas facility].”65  One former employee “reported [that] spilled 
+ice cream was left to pool on the floor, ‘creating an environment where bacteria 
+                                                 
+63 Id. at A38–39 (Verified Stockholder Derivative Action Complaint (Aug. 14, 2017)); see also id. 
+at A82–91 (Food and Drug Administration Inspection Record for Blue Bell Creameries facility in 
+Broken Arrow, Oklahoma (Apr. 23, 2015)).   
+64 Id. at A40–41 (Verified Stockholder Derivative Action Complaint (Aug. 14, 2017)); see also id. 
+at A94–96 (Food and Drug Administration Inspection Report for Blue Bell Creameries facility in 
+Sylacauga, Alabama (Apr. 30, 2015)).   
+65 Id. at A35 (Verified Stockholder Derivative Action Complaint (Aug. 14, 2017)).   
+
+18 
+could flourish.’”66  Another former employee described being “instructed to pour ice 
+cream and fruit that dripped off his machine into mix to be used later.”67   
+iii.  The Aftermath of the Listeria Outbreak 
+With its operations shuttered, Blue Bell faced a liquidity crisis.  Blue Bell 
+initially sought a more traditional credit facility to bridge its liquidity, but after Blue 
+Bell director W.J. Rankin informed his brother -in-law, Bill Reimann, about Blue 
+Bell’s liquidity crunch, Blue Bell ended up striking a deal with Moo Partners, a fund 
+controlled by Sid Bass and affiliated with Reimann.68  Moo Partners provided Blue 
+Bell with a $125 million credit facility and purchased a $100 million warrant to 
+acquire 42% of Blue Bell at $50,000 per share. 69  As part of Moo Partners’s 
+investment conditions, Blue Bell also amended its  certificate of incorp oration to 
+grant Moo the right to appoint one member of Blue Bell’s board who would be 
+entitled to one-third of the board’s voting power (or five votes based on a then-10-
+member board). 
+After investing in Blue Bell, Moo named Reimann to Blue Bell’s board , 
+expanding the board to 11 members with Reimann possessing five votes .70  In 
+February 2016, Reimann suggested that the board separate the roles of CEO and 
+                                                 
+66 Id.   
+67 Id. at A35–36.   
+68 Id. at A42–43.     
+69 Id.   
+70 Id. at A46.   
+
+19 
+Chairman (both held by Paul Kruse).  The board voted to follow Reimann’s 
+recommendation at its February 18th meeting, but after Paul Kruse disagreed with 
+the recommendation  and threatened to resign as President and CEO if the split 
+occurred, the board held another vote in which all members, except Reimann and 
+Rankin, voted to restore the position of CEO and Chairman of the board.71   
+C.  The Court of Chancery Dismisses the Case  
+After requesting Blue Bell’s books and records through a § 220 request, the 
+plaintiff, a Blue Bell stockholder, sued Blue Bell’s management and board 
+derivatively, asserting two claims based on management’s alleged failure to respond 
+appropriately to the red and yellow flags about growing food safety issues and the 
+board’s violation of its duty of loyalty, under Caremark, by failing to implement any 
+reporting system and therefore failing to inform itself about Blue Bell’s food safety 
+compliance.  The Court of Chancery dismissed both claims, holding that the plaintiff 
+failed to plead demand futility.   
+As to the first claim, the plaintiff alleges that Paul Kruse, Blue Bell’s President 
+and CEO, and Bridges, Blue Bell’s Vice President of Operations, had breached their 
+duties of loyalty and care by knowingly disregarding contamination risks and failing 
+to oversee Blue Bell’s operations and  food safety compliance process.72  “Because 
+                                                 
+71 Id. at A57–59.   
+72 Id. at A67 (asserting a “derivative claim for breach of fiduciary duties of loyalty and care  for 
+knowingly disregard of contammination [sic] risks and failure to oversee Blue Bell’s operation 
+and compliance”).   
+
+20 
+directors are empowered to manage, or direct the management of, the business and 
+affairs of the corporation,” the plaintiff’s complaint must allege facts suggesting that 
+“demand is excused because the directors are incapable of making an impartial 
+decision reg arding such litigation. ”73  The plaintiff’s  complaint claims that “[a] 
+demand upon the Board of the Company to pursue claims a gainst Paul Kruse and 
+Bridges . . . would be futile” because “the Kruse family—of which both Paul Kruse 
+and Bridges are members —ha[s] long dominated Blue Bell” and the majority of 
+directors are “long-time employees and/or otherwise beholden and loyal to the Kruse 
+family.”74   
+But the Court of Chancery held that the plaintiff “failed to plead particularized 
+facts to raise a reasonable d oubt that a majority of the [Blue Bell board] members 
+could have impartially considered a pre -suit demand.”75  Without belaboring the 
+details of the Court of Chancery’s thorough analysis, which is somewhat 
+complicated due to the unusual structure of Blue Bell’s board, we note that the court 
+essentially ruled that the plaintiff came up one vote short.  To survive the Rule 23.1 
+motion to dismiss, the complaint needed to allege particularized facts raising a 
+reasonable doubt that directors holding eight of the 15 votes could have impartially 
+                                                 
+73 Rales v. Blasband, 634 A.2d 927, 932 (Del. 1993).   
+74 App. to Opening Br. at A62 (Verified Stockholder Derivative Action Complaint (Au g. 14, 
+2017)).   
+75 Marchand v. Barnhill, 2018 WL 4657159, at *2 (Del. Ch. Sept. 27, 2018). 
+
+21 
+considered a demand, but the court held that the plaintiff had done so for directors 
+holding only seven votes. 
+One of the directors who the trial court held could consider demand 
+impartially was Rankin, Blue Bell’s recently retired former CFO.  Although Rankin 
+worked at Blue Bell for 28 years, the court emphasized that he was no longer 
+employed by Blue Bell, having retired in 2014.  As to the allegations that donations 
+from the Kruse family resulted in a building at Blinn Col lege being named for 
+Rankin, the court noted that “the Complaint provide[d] no more specifics regarding 
+the donation (i.e., who gave how much), and ma[de] no attempt to characterize the 
+materiality of the gesture.” 76  That failure, the Court of Chancery con cluded, fell 
+short of Rule 23.1’s particularity requirement.  Further, the court noted that Rankin 
+voted against rescinding a board initiative to split the CEO and Chairman positions 
+held by Paul Kruse.77  In the court’s view, that act was evidence that Rankin was not 
+beholden to the Kruse family.  Ultimately, the Court of Chancery concluded that the 
+plaintiff’s “allegation that Rankin lacks independence falls flat.”78 
+The Court of Chancery also rejected the plaintiff’s second claim that Blue 
+Bell’s directors breached their duty of loyalty under Caremark by failing to “institute 
+                                                 
+76 Id. at *15.  
+77 Id.   
+78 Id.   
+
+22 
+a system of controls and reporting” regarding food safety.79  In support of this claim, 
+the plaintiff asserted, based on the facts alleged in the complaint and reasonable 
+inferences fro m those fact s, that : (1) the Blue Bell board had no committee 
+overseeing food safety; (2) Blue Bell’s board did not have any reporting system in 
+place about food safety; (3) management knew about the growing listeria issues but 
+did not report those issues to the board, further evidence that the board had no food 
+safety reporting system in place; and (4) the board did not discuss food safety at its 
+regular board meetings.   
+Rejecting the plaintiff’s Caremark claim, the Vice Chancellor started by 
+observing that “[d]espite the far-reaching regulatory schemes that governed Blue 
+Bell’s operations at the time of the [l]isteria contamination, the Complaint contains 
+no allegations that Blue Bell failed to implement the monitoring and reporting 
+systems required by th e FDCA  [Federal Food, Drug, and Cosmetic Act] , FDA 
+regulations or state statutes (or that it was ever cited for such a failure). ”80  In fact, 
+the Court of Chancery concluded that “documents incorporated by reference in the 
+Complaint reveal that Blue Bell di stributed a sanitation manual with standard 
+operating and reporting procedures, and promulgated written procedures for 
+                                                 
+79 App. to Opening Br. at A68–69 (Verified Stockholder Derivative Action Complaint (Aug. 14, 
+2017)).   
+80 Marchand, 2018 WL 4657159, at *11.   
+
+23 
+processing and reporting consumer complaints.”81  And at the board level, the Vice 
+Chancellor noted that “[b]oth Bridges and Paul Kruse . . . provided regular reports 
+regarding Blue Bell operations to the .  . . Board,” including reports about audits of 
+Blue Bell’s facilities.82   
+Based on Blue Bell’s compliance with FDA regulations, ongoing third -party 
+monitoring for contamination, and consis tent reporting by senior management to 
+Blue Bell’s board on operations, the Court of Chancery concluded that there was a 
+monitoring system in place.  At bottom, the Court of Chancery opined that “[w]hat 
+Plaintiff really attempts to challenge is not the existence of monitoring and reporting 
+controls, but the effectiveness of monitoring and reporting controls in particular 
+instances.”83  That, the Court of Chancery held, does not state a Caremark claim.  As 
+a result, the court held that demand was not excused as to the Caremark claims and 
+dismissed the complaint.   
+The plaintiff timely appealed from that dismissal.    
+                                                 
+81 Id. at *17.   
+82 Id. 
+83 Id. at *18 (emphasis in original).   
+
+24 
+II.  Analysis 
+We review a motion to dismiss for failure to plead demand futility de novo.84   
+A.  Rankin’s Independence 
+We first address the plaintiff’s claim that the Court of Chancery erred by 
+holding that the complaint did not allege particularized facts that raise a reasonable 
+doubt as to whether directors holding a majority of the board’s votes  could 
+impartially consider demand as to the management claims.  The Court of Chancery 
+concluded that four directors representing eight votes were independent and that 
+seven directors representing seven votes were not independent.  On appeal, the 
+plaintiff challenges the Court of Chancery’s conclusion as to only Rankin and one 
+other director, Paul Ehlert.  Holding that the Court of Chancery erred as to either 
+director would be dispositive.  Because we hold that Rankin was not independent 
+for demand futility purposes, we reverse and need not and do not address whether 
+Ehlert was independent. 
+On appeal, both parties agree that the Rales standard applies, 85 and we 
+therefore use it to determine whether the Court of Chancery erred in finding that a 
+majority of the  board was independent for pleading stage purposes.  “[A] lack of 
+                                                 
+84 Beam ex rel. Martha Stewart Living Omnimedia, Inc. v. Stewart , 845 A.2d 1040, 1048 (Del. 
+2004) (“This Court reviews de novo a decision of the Court of Chancery to d ismiss a derivative 
+suit under Rule 23.1.”).   
+85 See Rales v. Blasband, 634 A.2d 927, 932–34 (Del. 1993).   
+
+25 
+independence turns on ‘whether the plaintiffs have pled facts from which the 
+director’s ability to act impartially on a matter important to the interested party can 
+be doubted because that d irector may feel either subject to the interested party’s 
+dominion or beholden to that interested party.” 86  When it comes to life’s more 
+intimate relationships concerning friendship and family, our law cannot “ignore the 
+social nature of humans” or that they are motivated by things other than money, such 
+as “love, friendship, and collegiality.”87 
+The standard for conducting this inquiry at the demand futility stage is well 
+balanced, requiring that the plaintiff plead facts with particularity, but also requiring 
+that this Court draw all reasonable inferences in the plaintiff’s favor. 88  That is, the 
+plaintiff cannot just assert that a close relationship exists, but when the plaintiff 
+pleads specific facts about the relationship—such as the length of the relationship or 
+                                                 
+86 Sandys v. Pincus, 152 A.3d 124, 128 (Del. 2016) (quoting Del. Cty. Emps. Ret. Fund v. Sanchez, 
+124 A.3d 1017, 1024 n.25 (Del. 2015)).   
+87 In re Oracle Corp. Derivative Litig., 824 A.2d 917, 938 (Del. Ch. 2003) (“Delaware law should 
+not be based on a reductionist view of human nature that simplifies human motivations on the lines 
+of the least sophisticated notions of the law and economics movement. ”); see also Sanchez, 124 
+A.3d at 1022 (“Close friendships of that duration are likely considered precious by many people, 
+and are rare.  People drift apart for many reasons, and when a close relationship endures for that 
+long, a pleading stage inference arises that it is important to the parties.”).     
+88 Sanchez, 124 A.3d at 1022 (“In that consideration, it cannot be ignored that although the plaintiff 
+is bound to plead particularized facts in pleading a derivative complaint, so too is the court bound 
+to draw all inferences from those particularized facts in favor of the plaintiff, not the defendant, 
+when dismissal of a derivative complaint is sought.”).   
+
+26 
+details about the closeness of the relationship —then this Court is charged with 
+making all reasonable inferences from those facts in the plaintiff’s favor.89 
+From the pled facts, there is reason to doubt Rankin’s capacity to impartially 
+decide whether to sue members of the Kruse family.  For starters, one can reasonably 
+infer that Rankin’s successful career as a businessperson was in large measure due 
+to the opportunities and mentoring given to him by Ed Kruse, Paul Kruse’s father, 
+and other members of the Kruse family.  The complaint alleges that Rankin started 
+as Ed Kruse’s administrative assistant and, over the course of a 28-year career with 
+the company, rose to the high managerial position of CFO.90  Not only that, but 
+Rankin was added to Blue Bell’s board in 2004,91 which one can reasonably infer 
+was due to the support of the Kruse family.  Capping things off, the Kruse family 
+spearheaded charitable efforts that led to a $450,000 donation to a key local college, 
+resulting in Rankin being honor ed by having Blinn College’s new agricultural 
+facility named after him .92  On a cold complaint, these facts support a reasonable 
+inference that there are very warm and thick personal ties of respect, loyalty, and 
+affection between Rankin and the Kruse family, which creates a reasonable doubt 
+                                                 
+89 Id. (holding that at the pleading stage this Court is “bound to draw all inferences from those 
+particularized facts in favor of the plaintiff, not the defendant, when dismissal of a  derivative 
+complaint is sought”).   
+90 App. to Opening Br. at A17 –18 (Verified Stockholder Derivative Action Complaint (Aug. 14, 
+2017).   
+91 Id.   
+92 Id.   
+
+27 
+that Rankin could have impartially decided whether to sue Paul Kruse and his 
+subordinate Bridges.   
+Even though Rankin had ties to the Kruse family that were simila r to other 
+directors that the Court of Chancery found were sufficient at the pleading stage to 
+support an inference that they could not act impartially in deciding whether to cause 
+Blue Bell to sue Paul Kruse,93 the Court of Chancery concluded that because Rankin 
+had voted differently from Paul Kruse on a proposal  to separate the CEO and 
+Chairman position, these ties did not m atter.94  In doing so, the Court of Chancery 
+ignored that the decision whether to sue someone is materially different and more 
+important than the decision whether to part company with that person on a vote about 
+corporate governance, and our law’s precedent recognizes that the nature of the 
+decision at issue must be considered in determining wheth er a director is 
+independent.95  As important, at the pleading stage, the Court of Chancery was bound 
+                                                 
+93 Marchand v. Barnhill, 2018 WL 4657159, at *14–15 (Del. Ch. Sept. 27, 2018) (holding that two 
+directors who both worked at Blue Bell for most, if not all, of their entire careers were beholden 
+to the Kruse family and therefore not independent for demand futility).    
+94 Id. at *15.   
+95 See Sandys v. Pincus, 152 A.3d 124, 134 (Del. 2016) (“Causing a lawsuit to be brought against 
+another person is no small matter, and is the sort of thing that might plausibly endanger a 
+relationship.”); Sciabacucchi v. Liberty Broadband Co rp., 2018 WL 3599997, at *14 (Del. Ch. 
+July 26, 2018)  (“It is reasonable to infer that, if Zinterhofer voted to authorize a derivative suit 
+against Malone, the relationship between Searchlight and Liberty Global might be in jeopardy.  
+After all, ‘[c]ausing a lawsuit to be brought against another person is no small matter, and is the 
+sort of thing that might plausibly endanger a relationship.’”); In re Oracle Corp. Derivative Litig., 
+824 A.2d 917, 940 (Del. Ch. 2003)  (“In evaluating the independence of a spe cial litigation 
+committee, this court must take into account the extraordinary importance and difficulty of such a 
+committee’s responsibility.  It is, I daresay, easier to say no to a friend, relative, colleague, or boss 
+
+28 
+to accord the plaintiff  the benefit of all reasonable inferences, and the pled facts 
+fairly support the inference that Rankin owes an important debt of gratitude and 
+friendship to the Kruse family for giving him his first job, nurturing his progress 
+from an entry level position to a top manager and director, and honoring him by 
+spearheading a campaign to name a building at an important community institution 
+after him.  Although the fact that fellow directors are social acquaintances who 
+occasionally have d inner or go to common events does not, in itself, raise a fair 
+inference of non -independence,96 our law has recognized that deep and long -
+standing friendships are meaningful to human beings and that any realistic 
+consideration of the question of independenc e must give weight to  these important 
+relationships and their natural effect on the ability of the parties to act i mpartially 
+toward each other.  As in cases like Sandys v. Pincus 97 and Delaware County 
+Employees Retirement Fund v. Sanchez ,98 the important pe rsonal and business 
+                                                 
+who seeks assent for an act (e.g., a transaction) that has not yet occurred than it would be to cause 
+a corporation to sue that person.  This is admittedly a determination of so-called ‘legislative fact,’ 
+but one that can be rather safely made.  Denying a fellow director the ability to proceed on a matter 
+important to him may not be easy, but it must, as a general matter, be less difficult than finding 
+that there is reason to believe that the fellow director has committed serious wrongdoing and that 
+a derivative suit should proceed against him.”) (footnotes omitted).   
+96 See Beam ex rel. Martha Stewart Omnimedia, Inc. v. Stewart , 845 A.2d 1040, 1051 –52 (Del. 
+2004). 
+97 152 A.3d 124, 130 (Del. 2016) (holding that owning an airplane with the interested party “i s 
+suggestive of the type of very close personal relationship that, like family ties, one would expe ct 
+to heavily influence a human’s ability to exercise impartial judgment”). 
+98 124 A.3d 1017, 1020–22 (Del. 2015) (holding that being “close personal friends for more than 
+five decades” with the interested party gives rise to “a pleading stage inference . . . that it is 
+important to the parties” and suggests that the director is not independent).   
+
+29 
+relationship that Rankin and the Kruse family have shared supports a pleading-stage 
+inference that Rankin cannot act independently.   
+Because the complaint pleads particularized facts that raise a reasonable doubt 
+as to Rankin’s indepen dence, we reverse the Court of Chancery’s dismissal of the 
+plaintiff’s claims against management  for failure to adequately plead demand 
+futility. 
+B.  The Caremark Claim  
+The plaintiff also challenges the Court of Chancery’s dismissal of his 
+Caremark claim.  Although Caremark claims are difficult to plead and ultimately to 
+prove out, 99 we nonetheless disagree with the Court of Chancery’s decision to 
+dismiss the plaintiff’s claim against the Blue Bell board. 
+Under Caremark and Stone v. Ritter, a director must make a good faith effort 
+to oversee  the company’s operations. 100  Failing to make that good faith effort 
+breaches the duty of loyalty and can expose a director to liability .  In other words, 
+                                                 
+99 See Stone v. Ritter , 911 A.2d 362, 372 (Del. 2006) (“[A]  claim that directors are subject to 
+personal liability for employee failures is possibly the most difficult theory in corporation law 
+upon which a plaintiff might hope to win a judgment.” ) (internal quotation marks omitted);  
+Guttman v. Huang, 823 A.2d 492, 506 (Del. Ch. 2003) (“A Caremark claim is a difficult one to 
+prove.”); In re Caremark Int’ l Inc. Derivative Litig. , 698 A.2d 959,  967 (Del. Ch. 1996) (“ The 
+theory here advanced is possibly the most difficult theory in corporation law upon which a plaintiff 
+might hope to win a judgment.”).   
+100 Caremark, 698 A.2d  at 970 (“[I]t is important that the board exercise a good fait h judgment 
+that the corporation’s information and reporting system is in concept and design adequate to assure 
+the board that appropriate information will come to its attention in a timely manner as a matter of 
+ordinary operations, so that it may satisfy its responsibility.”).   
+
+30 
+for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary 
+acted in bad faith—“the state of mind traditionally used to define the mindset of a 
+disloyal director.”101   
+Bad faith is established, under Caremark, when “t he directors [completely] 
+fail[] to implement any reporting or information system or controls[,] or . . . having 
+implemented such a system or controls, consciously fail[] to monitor or oversee its 
+operations thus disabling themselves from being informed of risks or problems 
+requiring their attention.”102  In short, to satisfy their duty of loyalty, directors must 
+make a good faith effort to implement an oversight system and then monitor it. 
+As with any other disinterested business judgment, directors have great 
+discretion to design context - and industry -specific approac hes tailored to their 
+companies’ businesses and resources. 103  But Caremark does have a bottom -line 
+requirement that is important: the board must make a good faith effort—i.e., try—to 
+                                                 
+101 Desimone v. Barrows, 924 A.2d 908, 935 (Del. Ch. 2007).  
+102 Stone, 911 A.2d at 370–72.   
+103 In re Citigroup Inc. S’holder Derivative Litig. , 964 A.2d 106, 125 –26 (Del. Ch. 2009) 
+(Chandler, C.) (noting that Caremark “does not eviscerate the core protections of the business 
+judgment rule”); Caremark, 698 A.2d at 970 (“Obviously the level of detail that is appropriate for 
+such an information system is a question of business judgment.”); Desimone, 924 A.2d at 935 n.95 
+(noting that the approaches boards take to monitoring the corporation under their Caremark duty 
+“will obviously vary because of the different circumstances corporations confront”); see also 
+Caremark, 698 A.2d at 971 (“ But, of course, the duty to act in good faith to be informed cannot 
+be thought to require directors to possess detailed information about all aspects of the operation of 
+the enterprise.  Such a requirement would simple [sic] be inconsistent with the scale and scope of 
+efficient organization size in this technological age.”).    
+
+31 
+put in place a reasonable board-level system of monitoring and reporting.104  Thus, 
+our case law gives deference to boards and has dismissed Caremark cases even when 
+illegal or harmful company activities escaped detection, when the plaintiffs have 
+been unable to plead that the board failed to make the required good faith effort to  
+put a reasonable compliance and reporting system in place.105 
+For that reason, our focus here is on the key issue of whether the plaintiff has 
+pled facts from which we can infer that Blue Bell’s board made no effort to put in 
+place a board -level compliance system.  That is, we are not examining the 
+effectiveness of a board -level compliance and reporting system  after the fact .  
+Rather, we are focusing on whether the complaint ple ads facts supporting a 
+reasonable inference that the board did not undertake good  faith efforts to put a 
+board-level system of monitoring and reporting in place.   
+                                                 
+104 Stone, 911 A.2d at 370; see also Caremark , 698 A.2d at 971 (“ Generally where a claim of 
+directorial liability for corporate loss is predicated u pon ignorance of liability creating act ivities 
+within the corporation,  . . . only a sustained or systematic failure of the board to exercise 
+oversight—such as an utter failure to attempt to assure a reasonable information and reporting 
+system exists—will establish the lack of good faith that is a necessary condition to liability.”).   
+105 See, e.g., Stone, 911 A.2d at 372–73 (dismissing a Caremark claim despite the fact that the 
+company violated the Bank Secrecy Act and was fined $50 million) ; In re General Motors 
+Derivative Litig., 2015 WL 3958724, at *1, 17 (Del. Ch. 2015) (dismissing a Caremark claim 
+despite the fact that the company’s actions “led to monetary loss on the part of the corporation, via 
+fines, damages and punitive damages from lawsuits; reputational damage; and most distressingly, 
+personal injury and death to GM customers”); In re Citigroup Inc. S’holder Derivative Litig., 964 
+A.2d at 127 (dismissing a Caremark claim despite the fact that the company suffered billions of 
+dollars in losses because of its exposure to subprime mortgages).   
+
+32 
+Under Caremark, a director may be held liable if she acts in bad faith in the 
+sense that she made no good faith effort to ensure that the company had in place any 
+“system of controls.”106  Here, the plaintiff did as our law encourages and sought out 
+books and records about the extent of board -level compliance efforts at B lue Bell 
+regarding what has to be one of the most central issues at the company: whether it is 
+ensuring that the only product it makes —ice cream—is safe to eat. 107  Using these 
+books and records, the complaint fairly alleges  that before the listeria outbreak 
+engulfed the company:  
+ no board committee that addressed food safety existed;  
+ 
+ no regular process or protocols that required management to keep 
+the board apprised of food safety compliance practices, risks, or 
+reports existed;  
+ 
+ no schedule for the board to consider on a regular basis, such as 
+quarterly or biannually, any key food safety risks existed;  
+ 
+ during a key period leading up to the deaths of three customers, 
+management received reports that contained what could be 
+considered red, or at least yellow , flags, and the board minutes 
+of the relevant period reveal ed no evidence that these were 
+disclosed to the board;  
+ 
+                                                 
+106 Stone, 911 A.2d at 370; see also Caremark , 698 A.2d at 971 (“Generally where a claim of 
+directorial liability for corporate loss is predicated upon ignorance of liability creating act ivities 
+within the corpor ation, . . . only a sustained or systematic failure of the board to exercise 
+oversight—such as an utter failure to attempt to assure a reasonable information and reporting 
+system exists—will establish the lack of good faith that is a necessary condition to liability.”).   
+107 Though, to be fair and completely accurate, Blue Bell does make a few other related products, 
+such as frozen yogurt. 
+
+33 
+ the board was given certain favorable information about food 
+safety by management, but was not given important reports that 
+presented a much different picture; and  
+ 
+ the board meetings are devoid of any suggestion that there was 
+any regular discussion of food safety issues.   
+ 
+And the complaint goes on to allege that after the listeria outbreak, the FDA 
+discovered a number of systematic deficiencies in all of Blue Bell’s plants—such as 
+plants being constructed “in such a manner as to [not] pr event drip and condensate 
+from contaminating food, food-contact surfaces, and food-packing material”—that 
+might have been rectified had any reasonable reporting system that required 
+management to relay food safety information to the board on an ongoing basis been 
+in place.108 
+In sum, the complaint supports an inference that no system of board -level 
+compliance monitoring and reporting existed at Blue Bell.  Although Caremark is a 
+tough standard for plaintiffs to meet, the plaintiff has met it here.  When a pla intiff 
+can plead an inference that a board has undertaken no efforts to make sure it is 
+informed of a compliance issue intrinsically critical to the company’s business 
+operation, then that supports an inference that the board has not made the good faith 
+effort that Caremark requires.    
+                                                 
+108 App. to Opening Br. at A94 –96 (Food and Drug Administration Inspection Report for Blue 
+Bell Creameries facility in Sylacauga, Alabama (Apr. 30, 2015)).   
+
+34 
+In defending this case, the director s largely point out that by law  Blue Bell 
+had to meet FDA and state  regulatory requirements for food safety, and that the 
+company had in place certain manuals for employees regarding safety practices and 
+commissioned audits from time to time.109  In the same vein, the directors emphasize 
+that the government regularly inspected Blue Be ll’s facilities, and Blue Bell 
+management got the results.110 
+But the fact that Blue Bell nominally complied with FDA regulations does not 
+imply that the board implemented a system to monitor food safety  at the board 
+level.111  Indeed, these types of routine regulatory requirements, although important, 
+are not typically directed at the board.  At best, Blue Bell’s compliance with these 
+requirements shows only that management was following, in a nominal way, certain 
+standard requirements of state and federal law .  It does not rationally suggest that 
+the board implemented a reporting system to monitor food saf ety or Blue Bell’s 
+operational performance.  The mundane reality that Blue Bell is in a highly regulated 
+                                                 
+109 Answering Br. at 28–29.   
+110 Answering Br. at 28–29; see also Marchand v. Barnhill, 2018 WL 4657159, at *17 (Del. Ch. 
+Sept. 27, 2018) (“[D] ocuments incorporated by reference in the Complaint reveal that Blue Bell 
+distributed a sanitation manual with standard operating and reporting procedures, and promulgated 
+written procedures for processing and reporting consumer complaints.  Blue Bell engaged a third-
+party laboratory and food safety auditor to test for the presence of  dangerous contaminates in its 
+facilities.”).   
+111 Stone, 911 A.2d at 368 (“To the contrary, the Caremark Court stated, ‘it is important that the 
+board exercise a good faith judgment that the corporation’s information and reporting system is in 
+concept and design adequate to assure the board that appropriate information will come to its 
+attention in a timely manner as a matter of ordinary operations, so that it may satisfy its 
+responsibility.’”) (quoting Caremark, 698 A.2d at 970) (emphasis added). 
+
+35 
+industry and complied with some of the applicable regulations does not foreclose 
+any pleading-stage inference that the directors’ lack of attentiveness rose to the level 
+of bad faith indifference required to state a Caremark claim.   
+In answering the plaintiff’s argument, the Blue Bell directors also stress that 
+management regularly reported to them on “operational issues.”  This response is 
+telling.  In decisions dismissing Caremark claims, the plaintiffs usually lose because 
+they must concede the existence of board-level systems of monitoring and oversight 
+such as a relevant committee, a regular protocol requiring board-level reports about 
+the relevant risks, or the board’s use of third-party monitors, auditors, or 
+consultants.112  For example, in Stone v. Ritter , although the company paid $50 
+                                                 
+112 See, e.g., City of Birmingham Ret. Sys. v. Good, 177 A.3d 47, 59 (Del. 2017) (affirming the 
+Court of Chancery’s dismissal of a Caremark claim because “reports to the board showed that the 
+board ‘exercised overs ight by relying on periodic reports’ from the officers” and that board 
+presentations “identified issues with the coal ash disposal ponds, but also informed the board of 
+the actions taken to address the regulatory concerns”); Stone, 911 A.2d at 372 –73 (affirming the 
+Court of Chancery’s dismissal of a Caremark claim, in part, because an outside auditor’s report 
+“reflect[s] that the Board received and approved relevant policies and procedures, delegated to 
+certain employees and departments the responsibility f or filing [suspicious activity reports] and 
+monitoring compliance, and exercised oversight by relying on periodic reports from them”); In re 
+General Motors Derivative Litig. , 2015 WL 3958721, at *14 (Del. Ch. 2015) (dismissing a 
+Caremark claim where “GM had a system for reporting risk to the Board, but in the Plaintiffs’ 
+view it should have been a better system”); In re Citigroup Inc. S’holder Derivative Litig. , 964 
+A.2d 106, 127 (Del. Ch. 2009) (dismissing a Caremark claim because “[p]laintiffs do not contest 
+that Citigroup had procedures and controls in place that were designed to monitor risk”); Desimone 
+v. Barrows, 924 A.2d 908, 940 (Del. Ch. 2007) (dismissing a Caremark claim premised on the 
+plaintiff’s allegations that a properly formed and well -functioning audit committee must have 
+known about options backdating despite the fact that management intentionally kept this 
+information from the audit committee); Guttman v. Huang, 823 A.2d 492, 506–07 (Del. Ch. 2003) 
+(dismissing a Caremark claim because the plaintiff failed to plead any particularized facts about 
+the audit committee’s lack of reporting or information systems).   
+
+36 
+million in fine s related “to the failure by bank employees” to comply with “the 
+federal Bank Secrecy Act,” 113 the“[b]oard dedicated considerable resources to the 
+[Bank Secrecy Act] compliance program and put into place numerous procedures 
+and systems to attempt to ensure compliance.”114  Accordingly, this Court affirmed 
+the Court of Chancery’s dismissal of a Caremark claim.  Here,  the Blue Bell 
+directors just argue that because Blue Bell management, in its discretion, discussed 
+general operations with the board, a Caremark claim is not stated.  
+But if that were the case, then Caremark would be a chimera.  At every board 
+meeting of any company, it is likely that management will touch on some operational 
+issue.  Although Caremark may not require as much as some commentators wish,115 
+it does require that a board make a good faith effort to put in place a reasonable 
+system of monitoring and reporting about the corporation’s central compliance risks.  
+In Blue Bell’s case, food safety was essential and mission critical.  The complaint 
+pled facts supporting a fair inference that no board-level system of monitoring or 
+reporting on food safety existed.   
+                                                 
+113 911 A.2d at 365–66. 
+114 Id. at 371.   
+115 See, e.g., John Armour, et al., Board Compliance, 104 MINNESOTA L. REV. (forthcoming 2020) 
+(manuscript at 47), https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3205600; John Armour 
+& Jeffrey N. Gordon, Systemic Harms and Shareholder Value, 6 J. LEGAL ANALYSIS 35, 46 (2014); 
+Hillary A. Sale, Monitoring Caremark’s Good Faith, 32 DEL. J. CORP. L. 719, 753 (2007). 
+
+37 
+If Caremark means anything, it is that a corporate board must make a good 
+faith effort to exercise its duty of care.   A failure to make t hat effort constitutes a 
+breach of the duty of loyalty.   Where, as here, a plaintiff  has followed our  
+admonishment to seek out relevant books and records 116 and then uses those books 
+and records to plead facts supporting a fair inference that no reasonable compliance 
+system and protocols were established as to the obviously most central consumer 
+safety and legal compliance issue facing the company, that the board’s lack of efforts 
+resulted in it not rece iving official notices of food safety deficiencies for several 
+years, and that, as a failure to take remedial action, the company exposed consumers 
+to listeria-infected ice cream, resulting in the death and injury of company 
+customers, the plaintiff  has me t his onerous pleading burden and is entitled to 
+discovery to prove out his claim. 
+III.  Conclusion 
+We therefore reverse the Court of Chancery’s decision and remand for 
+proceedings consistent with this opinion.   
+                                                 
+116 See Sandys v. Pincus , 152 A.3d 124, 128 (Del. 2016) (“ For many years, this Court and the 
+Court of Chancery have advised derivative plaintiffs to take seriously their obligations to plead 
+particularized facts justifying demand excusal.”).    

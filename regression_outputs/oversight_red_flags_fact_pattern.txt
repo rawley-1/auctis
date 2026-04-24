@@ -1,0 +1,55 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['oversight']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- marchand.txt (case_score=0.7889, role=modern_application, line=oversight)
+- stone.txt (case_score=0.7875, role=supreme_refinement, line=oversight)
+- caremark.txt (case_score=0.6362, role=foundation, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 0.6362)
+    stone.txt (supreme_refinement, 0.7875)
+    marchand.txt (modern_application, 0.7889)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.6362)
+    stone.txt (role=supreme_refinement, case_score=0.7875)
+    marchand.txt (role=modern_application, case_score=0.7889)
+DEBUG CAREMARK TREE:
+Doctrine: oversight
+Path: reporting_system_exists -> no_monitoring
+Outcome: potential_oversight_breach
+Risk Level: high
+Primary Failure: failure_to_monitor
+Reason: The facts suggest a conscious failure to monitor or oversee an existing reporting or information system.
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "potennote obligation duty attempt good includes impact tial"
+- Stone: "absence oversight flags good faith context actions must"
+- Marchand: "only sustained systematic failure board exercise oversight such"
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+The theory sounds in monitoring failure, not implementation failure.
+
+
+Rule:
+Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+
+Analysis:
+This matters because oversight liability may arise where directors fail to monitor an existing reporting system and ignore red flags in a mission-critical area. The significance is that a board's failure to respond to red flags affecting the company's mission supports an inference of bad faith. As a result, ignoring red flags tied to a mission critical risk may give rise to Caremark liability.
+
+Confidence:
+High
+

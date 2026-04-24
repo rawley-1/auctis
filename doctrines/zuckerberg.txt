@@ -1,0 +1,16 @@
+SECTION: Governing legal standard
+
+CASE: United Food & Commercial Workers Union v. Zuckerberg
+COURT: Delaware Supreme Court
+YEAR: 2021
+DOCTRINE: Demand futility
+AUTHORITY: Binding precedent
+KEY TOPIC: Director independence, liability exposure, board analysis
+
+Accordingly, from this point forward, courts should ask the following three questions on a director-by-director basis when evaluating allegations of demand futility: ...
+
+(i) whether the director received a material personal benefit...
+(ii) whether the director faces a substantial likelihood of liability...
+(iii) whether the director lacks independence...
+
+If the answer to any of the questions is “yes” for at least half of the members of the demand board, then demand is excused as futile...

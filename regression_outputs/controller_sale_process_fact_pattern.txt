@@ -1,0 +1,58 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['controller_transactions']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- kahn.txt (case_score=0.8167, role=foundation, line=controller_transactions)
+- mfw.txt (case_score=0.7714, role=supreme_refinement, line=controller_transactions)
+- tesla.txt (case_score=0.6802, role=modern_application, line=controller_transactions)
+- qvc.txt (case_score=0.6525, role=supreme_refinement, line=sale_of_control)
+- paramount.txt (case_score=0.6229, role=related_case, line=unknown)
+
+DOCTRINE BUCKETS:
+- Controller Transactions:
+    kahn.txt (foundation, 0.8167)
+    mfw.txt (supreme_refinement, 0.7714)
+    tesla.txt (modern_application, 0.6802)
+- Sale of Control:
+    qvc.txt (supreme_refinement, 0.6525)
+- Unknown:
+    paramount.txt (related_case, 0.6229)
+
+DOCTRINE LEADERS:
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.8167)
+    mfw.txt (role=supreme_refinement, case_score=0.7714)
+    tesla.txt (role=modern_application, case_score=0.6802)
+- Sale of Control:
+    qvc.txt (role=supreme_refinement, case_score=0.6525)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.6229)
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "slip upon this predicated entire fairness must agreeexpressed"
+- MFW: "business judgment review applies transaction conditioned from outset"
+- Tesla: "first overturning court chancery application entire fairness second"
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Controller Transactions supplies the governing doctrinal framework.
+
+
+Rule:  
+Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. Business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied.
+
+Analysis:  
+This matters because Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. The significance is that business judgment review is restored only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority, and otherwise business judgment deference is unavailable if the MFW conditions are not satisfied. As a result, Delaware law treats controller conflict as a distinct fiduciary problem requiring dual cleansing protections.
+
+Confidence:  
+High
+

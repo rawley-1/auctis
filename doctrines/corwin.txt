@@ -1,0 +1,23 @@
+﻿SECTION: Governing legal standard
+
+
+CASE: Corwin v. KKR Financial Holdings LLC
+COURT: Delaware Supreme Court
+YEAR: 2015
+DOCTRINE: Stockholder vote cleansing / standard of review
+AUTHORITY: Binding precedent
+KEY TOPIC: Business judgment rule, informed vote, uncoerced vote, disinterested stockholders
+
+
+Business judgment review applies after a fully informed, uncoerced vote of disinterested stockholders in a non-controller transaction.
+
+
+
+
+In a well-reasoned opinion, the Court of Chancery held that the business judgment rule is invoked as the appropriate standard of review for a post-closing damages action when a merger that is not subject to the entire fairness standard of review has been approved by a fully informed, uncoerced majority of the disinterested stockholders.1 
+
+
+For that and other reasons, the Court of Chancery dismissed the plaintiffs‘ complaint.2 In this decision, we find that the Chancellor was correct in finding that the voluntary judgment of the disinterested stockholders to approve the merger invoked the business judgment rule standard of review and that the plaintiffs‘ complaint should be dismissed. For sound policy reasons, Delaware corporate law has long been reluctant to second-guess the judgment of a disinterested stockholder majority that determines that a transaction with a party other than a controlling stockholder is in their best interests.
+
+
+ppeal, the plaintiffs further contend that, even if the Chancellor was correct in determining that KKR was not a controlling stockholder, he was wrong to dismiss the complaint because they contend that if the entire fairness standard did not apply, Revlon11 did, and the plaintiffs argue that they pled a Revlon claim against the defendant directors.

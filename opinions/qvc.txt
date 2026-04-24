@@ -1,0 +1,1485 @@
+CASE: Paramount Communications Inc. v. QVC Network Inc.
+COURT: Delaware Supreme Court
+COURT_LEVEL: Delaware Supreme Court
+YEAR: 1994
+DOCTRINE: Revlon duties / change-of-control transactions
+KEY TOPIC: Board obligation to maximize shareholder value when control shifts to a controlling shareholder
+
+SUMMARY:
+Paramount Communications Inc. v. QVC Network Inc. addressed whether directors must maximize shareholder value when approving a transaction that transfers control of the corporation to a single controlling shareholder. The Delaware Supreme Court held that when a merger results in a change of control, directors must seek the best value reasonably available for stockholders under Revlon duties. The court invalidated certain defensive measures used by the Paramount board because they improperly restricted the board’s ability to consider superior offers.
+
+KEY LEGAL PRINCIPLES:
+
+1. Change-of-control transactions
+Revlon duties arise when a transaction shifts control of the corporation from a dispersed shareholder base to a single controlling stockholder or group.
+
+2. Duty to maximize shareholder value
+Once Revlon duties are triggered, directors must act to obtain the best value reasonably available for shareholders.
+
+3. Defensive measures and deal protections
+Contractual protections such as termination fees, no-shop clauses, or lockups may be invalid if they improperly restrict the board’s ability to consider superior offers.
+
+4. Board neutrality in sale processes
+Directors must remain open to competing bids and cannot structure transactions that unfairly favor one bidder over others.
+
+IMPORTANT HOLDING:
+The Delaware Supreme Court held that the Paramount board breached its fiduciary duties by approving deal protections that prevented the board from adequately considering competing offers from QVC.
+
+RELATION TO OTHER TAKEOVER DOCTRINES:
+
+Unocal (1985)
+↓
+Revlon (1986)
+↓
+Paramount v. Time (1989)
+↓
+Paramount v. QVC (1994)
+↓
+Lyondell Chemical v. Ryan (2009)
+
+QVC clarified that Revlon duties are triggered when a merger results in a change of control, particularly when ownership shifts from a dispersed shareholder base to a controlling shareholder.
+                     
+                                        
+PARAMOUNT COMMUNICATIONS INC., Viacom Inc., Martin S. Davis, Grace J. Fippinger, Irving R. Fischer, Benjamin L. Hooks, Franz J. Lutolf, James A. Pat- tison, Irwin Schloss, Samuel J. Silber-- man, Lawrence M. Small, and George Weissman, Defendants Below, Appel- lants,
+                                        
+v.
+                                        
+QVC NETWORK INC., Plaintiff Below, Appellee.
+                                        
+In re PARAMOUNT COMMUNICATIONS INC. SHAREHOLDERS’ LITIGATION.
+                                        
+Supreme Court of Delaware.
+                                        
+Submitted: Dec. 9, 1993. Decided by Order: Dec. 9, 1993. Opinion: Feb. 4, 1994.
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+Charles F. Richards, Jr., Thomas A. Beck and Anne C. Foster of Richards, Layton & Finger, Wilmington, Barry R. Ostrager (ar- gued), Michael J. Chepiga, Robert F. Cusu- mano, Mary Kay Vyskocil and Peter C. Thomas of Simpson Thacher & Bartlett, New York City, for appellants Paramount Com- munications Inc. and the individual defen- dants.
+                                        
+A. Gilchrist Sparks, III and William M. Lafferty ofMorris, Nichols,Arsht &Tunnell, Wilmington, Stuart J. Baskin (argued), Jere-
+                                
+                        
+                        
+                                
+                                        
+35
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+36
+                                
+                        
+                        
+                                
+                                        
+my G. Epstein, Alan S. Goudiss and Seth J. Lapidow of Shearman & Sterling, New York City, for appellant Viacom Inc.
+                                
+                                
+                                        
+v. MacAndrews & Forbes Holdings, Inc., Del.Supr., 506 A.2d 173 (1986). We further hold that the conduct of the Paramount Board was not reasonable as to process or result.
+                                
+                        
+                        
+                                
+                                        
+Bruce M. Stargatt, David C. McBride,
+Josy W. Ingersoll, William D. Johnston,
+Bruce L. Silverstein and James P. Hughes,
+Jr. of Young, Conaway, Stargatt & Taylor, mount commenced separate actions (later
+                                
+                        
+                        
+                                
+                                        
+Wilmington, Herbert M. Wachtell (argued), Michael W. Schwartz, Theodore N. Mirvis, Paul K. Rowe and George T. Conway, III of Wachtell, Lipton, Rosen & Katz, New York City, for appellee QVC Network Inc.
+                                        
+Irving Morris, Karen L. Morris and Abra- ham Rappaport of Morris & Morris, Pamela S. Tikellis, Carolyn D. Mack and Cynthia A. Calder of Chimicles, Burt & Jacobsen, Jo- seph A. Rosenthal and Norman M. Monhait of Rosenthal, Monhait, Gross & Goddess, P.A., Wilmington, Daniel W. Krasner and Jeffrey G. Smith of Wolf, Haldenstein, Adler, Freeman & Herz, Arthur N. Abbey (argued), and Mark C. Gardy of Abbey & Ellis, New York City, for the shareholder appellees.
+                                        
+Before VEASEY, C.J., MOORE and HOLLAND, JJ.
+                                        
+VEASEY, Chief Justice.
+                                        
+In this appeal we review an order of the Court of Chancery dated November 24, 1993 (the “November 24 Order”), preliminarily en-
+                                
+                                
+                                        
+consolidated) in the Court of Chancery seek- ing preliminary and permanent injunctive re- lief against Paramount, certain members of the Paramount Board, and Viacom. This action arises out of a proposed acquisition of Paramount by Viacom through a tender offer followed by a second-step merger (the “Para- mount-Viacom transaction”), and a compet- ing unsolicited tender offer by QVC. The Court of Chancery granted a preliminary injunction. QVC Network, Inc. v. Para- mount Communications Inc., Del.Ch., 635 A.2d 1245,Jacobs, V.C. (1993),(the “Court of Chancery Opinion”). We affirmed by order dated December 9, 1993. Paramount Com- munications Inc. v. QVC Network Inc., Del.- Supr., Nos. 427 and 428, 1993, 637 A.2d 828, Veasey, C.J. (Dec. 9, 1993) (the “December 9 Order”).1
+                                        
+The Court of Chancery found that the Paramount directors violated their fiduciary duties by favoring the Paramount-Viacom transaction over the more valuable unsolicit- ed offer of QVC. The Court of Chancery preliminarily enjoined Paramount and the in- dividual defendants (the “Paramount defen- dants”) from amending or modifying Para- mount’s stockholder rights agreement (the “Rights Agreement”), including the redemp- tion of the Rights, or taking other action to facilitate the consummation of the pending tender offer by Viacom or any proposed sec- ond-step merger, including the Merger Agreement between Paramount and Viacom dated September 12, 1993 (the “Original Merger Agreement”), as amended on Octo- ber 24, 1993 (the “Amended Merger Agree-
+                                
+                        
+                        
+                                
+                                        
+joining certain defensive measures designed
+to facilitate a so-called strategic alliance be-
+tween Viacom Inc. (“Viacom”) and Para-
+mount Communications Inc. (“Paramount”)
+approved by the board of directors of Para-
+mount (the “Paramount Board” or the “Para-
+mount directors”) and to thwart an unsolicit-
+ed, more valuable, tender offer by QVC Net-
+work Inc. (“QVC”). In affirming, we hold
+that the sale of control in this case, which is
+at the heart of the proposed strategic alli-
+ance, implicates enhanced judicial scrutiny of
+the conduct of the Paramount Board under
+Unocal Coiy. v. Mesa Petroleum Co., Del.- ment”). Viacom and the Paramount defen-
+                                
+                        
+                        
+                                
+                                        
+Supr., 493 A.2d 946 (1985), and Revlon, Inc.
+                                        
+1. We accepted this expedited interlocutory ap- peal on November 29, 1993. After briefing and oral argument in this Court held on December 9, 1993, we issued our December 9 Order affirming the November 24 Order of the Court of Chan- cery. In our December 9 Order, we stated, "It is not feasible, because of the exigencies of time,
+                                
+                                
+                                        
+dants were enjoined from taking any action
+                                        
+for this Court to complete an opinion setting forth more comprehensively the rationale of the Court's decision. Unless otherwise ordered by the Court, such an opinion will follow in due course." December 9 Order at 3. This is the opinion referred to therein.
+                                
+                        
+                        
+                                
+                                        
+QVC and certain stockholders of Para-
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+to exercise any provision of the Stock Option ion, 635 A.2d 1245, 1246-1259. Only a brief Agreement between Paramount and Viacom summary of the facts is necessary for pur- dated September 12, 1993 (the “Stock Option poses of this opinion. The following sum- Agreement”), as amended on October 24, mary is drawn from the findings of fact set 1993. The Court of Chancery did not grant
+                                
+                        
+                        
+                                
+                                        
+preliminary injunctive relief as to the termi- nation fee provided for the benefit of Viacom in Section 8.05 of the Original Merger Agree- ment and the Amended Merger Agreement (the “Termination Fee”).
+                                        
+Under the circumstances of this case, the pending sale of control implicated in the Par- amount-Viacom transaction required the Paramount Board to act on an informed basis to secure the best value reasonably available to the stockholders. Since we agree with the Court of Chancery that the Paramount di- rectors violated their fiduciary duties, we have AFFIRMED the entry of the order of the Vice Chancellor granting the preliminary injunction and have REMANDED these pro- ceedings to the Court of Chancery for pro- ceedings consistent herewith.
+                                
+                                
+                                        
+forth in the Court of Chancery Opinion and our independent review of the record.3
+                                
+                        
+                        
+                                
+                                        
+We also have attached an Addendum to
+this opinion addressing serious deposition
+misconduct by counsel who appeared on be-
+half of a Paramount director at the time that Counsel; Stanley R. Jaffe, President and director’s deposition was taken by a lawyer
+representing QVC.2
+                                
+                        
+                        
+                                
+                                        
+1. FACTS
+                                        
+The Court of Chancery Opinion con- tains a detailed recitation of its factual find- ings in this matter. Court of Chancery Ópin-
+                                        
+2. It is important to put the Addendum ip per- spective. This Court notes and has noted its appreciation of the outstanding judicial work- manship of the Vice Chancellor and the profes- sionalism of counsel in this matter in handling this expedited litigation with the expertise and skill which characterize Delaware proceedings of this nature. The misconduct noted in the Adden- dum is an aberration which is not to be tolerated in any Delaware proceeding.
+                                
+                                
+                                        
+Chief Operating Officer; and Ronald L. Nel- son, Executive Vice President and Chief Fi- nancial Officer. Paramount’s 11 outside di- rectors are distinguished and experienced business persons who are present or former senior executives of public corporations or financial institutions.4
+                                        
+and director of Pfizer, Inc., Connecticut Mutual .Life Insurance Company, and The Bear Stearns
+                                        
+Companies, Inc.
+                                        
+Irving R. Fischer, Chairman and Chief Executive Officer of HRH Construction Corporation, Vice Chairman of the New York City Chapter of the National Multiple Sclerosis Society, a member of the New York City Holocaust Memorial Commis- sion, and an Adjunct Professor of Urban Plan- ning at Columbia University
+                                        
+Benjamin L. Hooks, Senior Vice President of the Chapman Company and director of Maxima Cor- poration
+J. Hugh Liedtke, Chairman of Pennzoil Company Franz J. Lutolf, former General Manager and a member of the Executive Board of Swiss Bank Corporation, and director of Grapha Holding AG, Hergiswil (Switzerland), Banco Santander (Suisse) S.A., Geneva, Diawa Securities Bank (Switzerland), Zurich, Cheak Coast Helarb Euro- pean Acquisitions S.A., Luxembourg Internatio- nale Nederlanden Bank (Switzerland), Zurich
+                                
+                        
+                        
+                                
+                                        
+3.
+                                
+                                
+                                        
+This Court's standard and scope of review as to facts on appeal from a preliminary injunction is whether, after independently reviewing the entire record, we can conclude that the findings of the Court of Chanceiy are sufficiently supported by the record and are the product of an orderly and logical deductive process. Ivanhoe Partners v. Newmont Mining Corp., Del.Supr., 535 A.2d 1334, 1342-41 (1987).
+                                
+                        
+                        
+                                
+                                        
+4. Grace J. Fippinger, a former Vice President, Secretary and Treasurer of NYNEXCorporation,
+                                
+                        
+                        
+                                
+                                        
+Paramount is a Delaware corporation with its principal offices in New York City. Ap- proximately 118 million shares of Para- mount’s common stock are outstanding and traded on the New York Stock Exchange. The majority of Paramount’s stock is publicly held by numerous unaffiliated investors. Paramount owns and operates a diverse group of entertainment businesses, including motion picture and television studios, book publishers, professional sports teams, and amusement parks.
+                                        
+There are 15 persons serving on the Para- mount Board. Four directors are officer- employees of Paramount: Martin S. Davis (“Davis”), Paramount’s Chairman and Chief Executive Officer since 1983; Donald Ores- man (“Oresman”), Executive Vice-President, Chief Administrative Officer, and General
+                                
+                        
+                        
+                                
+                                        
+37
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+38
+                                
+                        
+                        
+                                
+                                        
+Viacom is a Delaware corporation with its der offer for Time Inc. in 1989, but was headquarters in Massachusetts. Viacom is ultimately unsuccessful. See Paramount controlled by Sumner M. Redstone (“Red- Communications, Inc. v. Time Inc., Del.- stone”), its Chairman and Chief Executive
+                                
+                        
+                        
+                                
+                                        
+Officer, who owns indirectly approximately 85.2 percent of Viacom’svoting Class A stock and approximately 69.2 percent of Viacom’s nonvoting Class B stock through National Amusements, Inc. (“NAI”), an entity 91.7 percent owned by Redstone. Viacom has a wide range of entertainment operations, in- cluding a number of well-known cable televi- sion channels such as MTV, Nickelodeon, Showtime, and The Movie Channel. Via- com’s equity co-investors in the Paramount- Viacom transaction include NYNEX Corpo- ration and Blockbuster Entertainment Cor- poration.
+                                        
+QVC is a Delaware corporation with its headquarters in West Chester, Pennsylvania. QVC has several large stockholders, includ- ing Liberty Media Corporation, Comcast Corporation, Advance Publications, Inc., and Cox Enterprises Inc. Barry Diller (“Diller”), the Chairman and Chief Executive Officer of QVC, is also a substantial stockholder. QVC sells a variety of merchandise through a tele- vised shopping channel. QVC has several equity co-investors in its proposed combina- tion with Paramount including BellSouth Corporation and Comcast Corporation.
+                                        
+Beginning in the late 1980s, Paramount investigated the possibility of acquiring or merging with other companies in the enter- tainment, media, or communications indus- try. Paramount considered such transac- tions to be desirable, and perhaps necessary, in order to keep pace with competitors in the rapidly evolving field of entertainment and communications. Consistent with its goal of strategic expansion, Paramount made a ten-
+                                        
+James A.Pattison, Chairman and ChiefExecutive Officer of the Jim Pattison Group, and director of the Toronto-Dominion Bank, Canadian Pacific Ltd., and Toyota's Canadian subsidiary
+                                        
+Lester Pollack, General Partner of Lazard Freres & Co., Chief Executive Officer of Center Part- ners, and Senior Managing Director of Corporate Partners, investment affiliates of Lazard Freres, director of Loews Corp., CNA Financial Corp., Sunamerica Corp., Kaufman & Broad Home Corp., Parlex Corp., Transco Energy Company, Polaroid Corp., Continental Cablevision, Inc., and Tidewater Inc., and Trustee of New York
+                                        
+University
+                                
+                                
+                                        
+Supr., 571 A.2d 1140 (1990) (“Time-War- ner ”).
+                                
+                        
+                        
+                                
+                                        
+Although Paramount had considered a pos- sible combination of Paramount and Viacom as early as 1990, recent efforts to explore such a transaction began at a dinner meeting between Redstone and Davis on April 20, 1993. Robert Greenhill (“Greenhill”), Chair- man of Smith Barney Shearson Inc. (“Smith Barney”), attended and helped facilitate this meeting. After several more meetings be- tween Redstone and Davis, serious negotia- tions began taking place in early July.
+                                        
+It was tentatively agreed that Davis would be the chief executive officer and Redstone would be the controlling stockholder of the combined company, but the parties could not reach agreement on the merger price and the terms of a stock option to be granted to Viacom. With respect to price, Viacom of- fered a package of cash and stock (primarily Viacom Class B nonvoting stock) with a mar- ket value of approximately $61 per share, but Paramount wanted at least $70 per share.
+                                        
+Shortly after negotiations broke down in July 1993, two notable events occurred. First, Davis apparently learned of QVC’spo- tential interest in Paramount, and told Diller over lunch on July 21, 1993,that Paramount was not for sale. Second, the market value of Viacom’s Class B nonvoting stock in- creased from $46,875 on July 6 to $57.25 on August 20. QVC claims (and Viacom dis- putes) that this price increase was caused by open market purchases of such stock by Red- stone or entities controlled by him.
+                                        
+Irwin Schioss, Senior Advisor, Marcus Schloss & Company, Inc.
+Samuel J. Silberman, Retired Chairman of Con- solidated Cigar Corporation
+                                        
+Lawrence M. Small, President and Chief Operat- ing Officer of the Federal National Mortgage Association, director of Fannie Mae and the Chubb Corporation, and trustee of Morehouse College and New York University Medical Center George Weissman, retired Chairman and Consul- tant of Philip Morris Companies, Inc., director of Avnet, Incorporated, and Chairman of Lincoln Center for the Performing Arts, Inc.
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+On August 20, 1993, discussions between Paramount and Viacom resumed when Greenhill arranged another meeting between Davis and Redstone. After a short hiatus, the parties negotiated in earnest in early September, and performed due diligence with the assistance of then’ financial advisors, Lazard Freres & Co. (“Lazard”) for Para- mount and Smith Barney for Viacom. On September 9, 1993, the Paramount Board was informed about the status of the negotia- tions and was provided information by La- zard, including an analysis of the proposed transaction.
+                                
+                                
+                                        
+(c) the Paramount Board recommended a competing transaction.
+                                        
+The third and most significant deterrent device was the Stock Option Agreement, which granted to Viacom an option to pur- chase approximately 19.9percent (23,699,000 shares) of Paramount’s outstanding common stock at $69.14 per share if any of the trig- gering events for the Termination Fee oc- curred. In addition to the customary terms that are normally associated with a stock option, the Stock Option Agreement con- tained two provisions that were both unusual and highly beneficial to Viacom: (a) Viacom
+                                
+                        
+                        
+                                
+                                        
+On September 12, 1993, the Paramount
+Board met again and unanimously approved
+the Original Merger Agreement whereby
+Paramount would merge with and into Via-
+com. The terms of the merger provided that
+each share of Paramount common stock could elect to require Paramount to pay Via- would be converted into 0.10 shares of Via-
+                                
+                        
+                        
+                                
+                                        
+com Class A voting stock, 0.90 shares of Viacom Class B nonvoting stock, and $9.10 in cash. In addition, the Paramount Board agreed to amend its “poison pill” Rights Agreement to exempt the proposed merger with Viacom. The Original Merger Agree- ment also contained several provisions de- signed to make it more difficult for a poten- tial competing bid to succeed. We focus, as did the Court of Chancery, on three of these defensive provisions: a “no-shop” provision (the “No-Shop Provision”), the Termination Fee, and the Stock Option Agreement.
+                                        
+First, under the No-Shop Provision, the Paramount Board agreed that Paramount would not solicit, encourage, discuss, negoti- ate, or endorse any competing transaction unless: (a) a third party “makes an unsolicit- ed written, bona fide proposal, which is not subject to any material contingencies relating to financing”; and (b) the Paramount Board determines that discussions or negotiations with the third party are necessary for the Paramount Board to comply with its fiducia- ry duties.
+                                
+                                
+                                        
+com in cash a sum equal to the difference between the purchase price and the market price of Paramount’s stock (the “Put Fea- ture”). Because the Stock Option Agree- ment was not “capped” to limit its maximum dollar value, it had the potential to reach (and in this case did reach) unreasonable levels.
+                                        
+After the execution of the Original Merger Agreement and the Stock Option Agreement on September 12, 1993, Paramount and Via- com announced their proposed merger. In a number of public statements, the parties in- dicated that the pending transaction was a virtual certainty. Redstone described it as a “marriage” that would “never be torn asun- der” and stated that only a “nuclear attack” could break the deal. Redstone also called Diller and John Malone of Tele-Communica- tions Inc., a major stockholder of QVC, to dissuade them from making a competing bid.
+                                        
+Despite these attempts to discourage a competing bid, Diller sent a letter to Davis on September 20, 1993, proposing a merger in which QVC would acquire Paramount for approximately $80 per share, consisting of 0.893 shares of QVC common stock and $30 in cash. QVC also expressed its eagerness to meet with Paramount to negotiate the details of a transaction. When the Para-
+                                
+                        
+                        
+                                
+                                        
+Second, under the Termination Fee provi-
+sion, Viacom would receive a $100 million
+termination fee if: (a) Paramount terminated
+the Original Merger Agreement because of a
+competing transaction; (b) Paramount’s mount Board met on September 27, it was stockholders did not approve the merger; or advised by Davis that the Original Merger
+                                
+                        
+                        
+                                
+                                        
+was permitted to pay for the shares with a senior subordinated note of questionable marketability instead of cash, thereby avoid- ing the need to raise the $1.6 billion purchase price (the “Note Feature”); and (b) Viacom
+                                
+                        
+                        
+                                
+                                        
+39
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+40
+Agreement prohibited Paramount from hav- der offer was announced, Viacom entered
+                                
+                        
+                        
+                                
+                                        
+ing discussions with QVC (or anyone else) unless certain conditions were satisfied. In particular, QVC had to supply evidence that its proposal was not subject to financing con- tingencies. The Paramount Board was also provided information from Lazard describing QVC and its proposal.
+                                
+                                
+                                        
+into discussions with Paramount concerning a revised transaction. These discussions led to serious negotiations concerning a comprehen- sive amendment to the original Paramount- Viacom transaction. In effect, the opportuni- ty for a “new deal” with Viacom was at hand for the Paramount Board. With the QVC hostile bid offering greater value to the Para- mount stockholders, the Paramount Board had considerable leverage with Viacom.
+                                        
+At a special meeting on October 24, 1993, the Paramount Board approved the Amend- ed Merger Agreement and an amendment to the Stock Option Agreement. The Amended Merger Agreement was, however, essentially the same as the Original Merger Agreement, except that it included a few new provisions.
+                                
+                        
+                        
+                                
+                                        
+On October 5, 1993, QVC provided Para-
+mount with evidence of QVC’s financing.
+The Paramount Board then held another
+meeting on October 11, and decided to autho-
+rize management to meet with QVC. Davis
+also informed the Paramount Board that
+Booz-Allen & Hamilton (“Booz-AUen”), a
+management consulting firm, had been re-
+tained to assess, inter alia, the incremental
+earnings potential from a Paramount-Viacom
+merger and a Paramount-QVC merger. One provision related to an $80 per share Discussions proceeded slowly, however, due cash tender offer by Viacom for 51 percent of
+                                
+                        
+                        
+                                
+                                        
+to a delay in Paramount signing a confiden- Paramount’s stock, and another changed the tiality agreement. In response to Para- merger consideration so that each share of
+                                
+                        
+                        
+                                
+                                        
+mount’s request for information, QVCprovid- ed two binders of documents to Paramount on October 20.
+                                        
+On October 21, 1993, QVC filed this action and publicly announced an $80 cash tender offer for 51 percent of Paramount’s outstand- ing shares (the “QVC tender offer”). Each remaining share of Paramount common stock would be converted into 1.42857 shares of QVC common stock in a second-step merger. The tender offer was conditioned on, among other things, the invalidation of the Stock Option Agreement, which was worth over $200 million by that point.5 QVC contends that it had to commence a tender offer be- cause of the slow pace of the merger discus- sions and the need to begin seeking clearance under federal antitrust laws.
+                                        
+Confronted by QVC’shostile bid, which on its face offered over $10 per share more than the consideration provided by the Original Merger Agreement, Viacom realized that it would need to raise its bid in order to remain competitive. Within hours after QVC’s ten-
+                                
+                                
+                                        
+Paramount would be converted into 0.20408 shares of Viacom Class A voting stock, 1.08317 shares of Viacom Class B nonvoting stock, and 0.20408 shares of a new series of Viacom convertible preferred stock. The Amended Merger Agreement also added a provision giving Paramount the right not to amend its Rights Agreement to exempt Via- com if the Paramount Board determined that such an amendment would be inconsistent with its fiduciary duties because another of- fer constituted a “better alternative.”6 Fi- nally, the Paramount Board was given the power to terminate the Amended Merger Agreement if it withdrew its recommendation of the Viacom transaction or recommended a competing transaction.
+                                        
+Although the Amended Merger Agreement offered more consideration to the Paramount stockholders and somewhat more flexibility to the Paramount Board than did the Origi- nal Merger Agreement, the defensive mea- sures designed to make a competing bid more difficult were not removed or modified.
+                                        
+further action of the Paramount Board would be required in order for Paramount’s Rights Agree- ment to be amended. As a result, the proper officers of the company were authorized to im- plement the amendment unless they were in- structed otherwise by the Paramount Board.
+                                
+                        
+                        
+                                
+                                        
+5.
+                                        
+6.
+                                
+                                
+                                        
+By November 15, 1993, the value of the Stock Option Agreement had increased to nearly $500 million based on the $90 QVCbid. See Court of Chancery Opinion, 635 A.2d 1245, 1271.
+                                        
+Under the Amended Merger Agreement and the Paramount Board’s resolutions approving it, no
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+In particular, there is no evidence in the record that Paramount sought to use its new- ly-acquired leverage to eliminate or modify the No-Shop Provision, the Termination Fee, or the Stock Option Agreement when the subject of amending the Original Merger Agreement was on the table.
+                                
+                                
+                                        
+QVC offer was not in the best interests of the stockholders. The purported basis for this conclusion was that QVC’s bid was ex- cessively conditional. The Paramount Board did not communicate with QVCregarding the status of the conditions because it believed that the No-Shop Provision prevented such communication in the absence of firm financ- ing. Several Paramount directors also testi- fied that they believed the Viacom transac- tion would be more advantageous to Para- mount’s future business prospects than a
+                                
+                        
+                        
+                                
+                                        
+Viacom’stender offer commenced on Octo-
+ber 25, 1993, and QVC’s tender offer was
+formally launched on October 27, 1993. Dil-
+ler sent a letter to the Paramount Board on
+October 28 requesting an opportunity to ne-
+gotiate with Paramount, and Oresman re- QVC transaction.7 Although a number of
+                                
+                        
+                        
+                                
+                                        
+sponded the following day by agreeing to meet. The meeting, held on November 1, was not very fruitful, however, after QVC’s proposed guidelines for a “fair bidding pro- cess” were rejected by Paramount on the ground that “auction procedures” were inap- propriate and contrary to Paramount’s con- tractual obligations to Viacom.
+                                        
+On November 6, 1993, Viacom unilaterally raised its tender offer price to $85 per share in cash and offered a comparable increase in the value of the securities being proposed in the second-step merger. At a telephonic meeting held later that day, the Paramount Board agreed to recommend Viacom’s higher bid to Paramount’s stockholders.
+                                        
+QVC responded to Viacom’s higher bid on November 12 by increasing its tender offer to $90 per share and by increasing the secu- rities for its second-step merger by a similar amount. In response to QVC’s latest offer, the Paramount Board scheduled a meeting for November 15, 1993. Prior to the meet- ing, Oresman sent the members of the Para- mount Board a document summarizing the “conditions and uncertainties” of QVC’soffer. One director testified that this document gave him a very negative impression of the QVC bid.
+                                        
+At its meeting on November 15, 1993, the Paramount Board determined that the new
+                                        
+7. This belief may have been based on a report prepared by Booz-Allen and distributed to the Paramount Board at its October 24 meeting. The report, which relied on public information regarding QVC,concluded that the synergies of a Paramount-Viacom merger were significantly superior to those of a Paramount-QVC merger. QVC has labelled the Booz-AIIen report as a "joke."
+                                
+                                
+                                        
+materials were distributed to the Paramount Board describing the Viacomand QVCtrans- actions, the only quantitative analysis of the consideration to be received by the stock- holders under each proposal was based on then-current market prices of the securities involved, not on the anticipated value of such securities at the time when the stockholders would receive them.8
+                                        
+The preliminary injunction hearing in this case took place on November 16, 1993. On November 19, Diller wrote to the Paramount Board to inform it that QVC had obtained financing commitments for its tender offer and that there was no antitrust obstacle to the offer. On November 24, 1993, the Court of Chancery issued its decision granting a preliminary injunction in favor of QVC and the plaintiff stockholders. This appeal fol- lowed.
+                                        
+II. APPLICABLE PRINCIPLES OF ES- TABLISHED DELAWARE LAW
+                                        
+The General Corporation Law of the State of Delaware (the “General Corporation Law”) and the decisions of this Court have repeatedly recognized the fundamental prin- ciple that the management of the business and affairs of a Delaware corporation is en- trusted to its directors, who are the duly elected and authorized representatives of the
+                                        
+8. The market prices of Viacom’sand QVC's stock were poor measures of their actual values be- cause such prices constantly fluctuated depend- ing upon which company was perceived to be the more likely to acquire Paramount.
+                                
+                        
+                        
+                                
+                                        
+41
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+42
+                                
+                        
+                        
+                                
+                                        
+stockholders. 8 Del.C. § 141(a); Aronson v. Lewis, Del.Supr., 473 A.2d 805, 811-12 (1984); Pogostin v. Rice, Del.Supr., 480 A.2d 619, 624 (1984). Under normal circum- stances, neither the courts nor the stockhold- ers should interfere with the managerial de- cisions of the directors. The business judg- ment rule embodies the deference to which such decisions are entitled. Aronson, 473 A.2d at 812.
+                                        
+Nevertheless, there are rare situa- tions which mandate that a court take a more direct and active role in overseeing the deci- sions made and actions taken by directors. In these situations, a court subjects the di- rectors’ conduct to enhanced scrutiny to en- sure that it is reasonable.9 The decisions of this Court have clearly established the cir- cumstances where such enhanced scrutiny will be applied. E.g., Unocal, 493 A.2d 946; Moran v. Household Int’l, Inc., Del.Supr., 500 A.2d 1346 (1985); Revlon, 506 A.2d 173; Mills Acquisition Co. v. Macmillan, Inc., Del.Supr., 559 A.2d 1261 (1989); Gilbert v. El
+                                
+                                
+                                        
+A. The Significance of a Sale or Change10 of Control
+                                        
+When a majority of a corporation’s voting shares are acquired by a single person or entity, or by a cohesive group acting togeth- er, there is a significant diminution in the voting power of those who thereby become minority stockholders. Under the statutory framework of the General Corporation Law, many of the most fundamental corporate changes can be implemented only if they are approved by a majority vote of the stockhold- ers. Such actions include elections of di- rectors, amendments to the certificate of in- corporation, mergers, consolidations, sales of all or substantially all of the assets of the corporation, and dissolution. 8 Del.C. §§ 211, 242, 251-258, 263, 271, 275. Because of the overriding importance of voting rights, this Court and the Court of Chancery have consistently acted to protect stockholders from unwarranted interference with such
+                                        
+rights.11
+                                
+                        
+                        
+                                
+                                        
+In the absence of devices protecting the Paso Co., Del.Supr., 575 A.2d 1131 (1990). minority stockholders,12 stockholder votes
+                                
+                        
+                        
+                                
+                                        
+The case at bar implicates two such circum- stances: (1) the approval of a transaction resulting in a sale of control, and (2) the adoption of defensive measures in response to a threat to corporate control.
+                                
+                                
+                                        
+are likely to become mere formalities where there is a majority stockholder. For exam- ple, minority stockholders can be deprived of a continuing equity interest in their corpora- tion by means of a cash-out merger. Wein-
+                                        
+successor directors has been effectivelyfrustrat- ed”); Centaur Partners, IV v. Nat'l Intergroup, Del.Supr., 582 A.2d 923 (1990) (holding that supermajority voting provisions must be clear and unambiguous because they have the effect of disenfranchising the majority); Stroud v. Grace, Del.Supr., 606 A.2d 75, 84 (1992) (directors’ duty of disclosure is premised on the importance of stockholders being fully informed when voting on a specific matter); Blasius Indus., Inc. v.
+                                        
+Atlas Corp., Del.Ch., 564 A.2d 651, 659 n. 2 (1988) ("Delaware courts have long exercised a most sensitive and protective regard for the free and effective exercise of voting rights.").
+                                        
+12.Examples of such protective provisions are supermajority voting provisions, majority of the minority requirements, etc. Although we ex- press no opinion on what effect the inclusion of any such stockholder protective devices would have had in this case, we note that this Court has upheld, under different circumstances, the rea- sonableness of a standstill agreement which lim- ited a 49.9 percent stockholder to 40 percent board representation. Ivanhoe, 535 A.2d at 1343.
+                                
+                        
+                        
+                                
+                                        
+9.
+                                
+                                
+                                        
+Where actual self-interest is present and affects a majority of the directors approving a transac- tion, a court will apply even more exacting scru- tiny to determine whether the transaction is en- tirely fair to the stockholders. E.g., Weinbergerv. UOP, Inc., Del.Supr., 457 A.2d 701, 710-11 (1983); Nixon v. Blackwell, Del.Supr., 626 A.2d
+                                        
+1366, 1376 (1993).
+                                
+                        
+                        
+                                
+                                        
+10. For purposes of our December 9 Order and this Opinion, we have used the terms "sale of control” and "change of control” interchange- ably without intending any doctrinal distinction.
+                                        
+11. See Schnell v. Chris-Craft Indus., Inc., Del. Supr., 285 A.2d 437, 439 (1971) (holding that actions taken by management to manipulate cor- porate machinery "for the purpose of obstructing the legitimate efforts of dissident stockholders in the exercise of their rights to undertake a proxy contest against management" were “contrary to established principles of corporate democracy” and therefore invalid); Giuricich v. Emtrol Corp., Del.Supr., 449 A.2d 232, 239 (1982) (holding that "careful judicial scrutiny will be given a situation in which the right to vote for the election of
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+berger, 457 A.2d at 703. Absent effective has shifted, the current Paramount stock- protective provisions, minority stockholders holders will have no leverage in the future to must rely for protection solely on the fiducia- demand another control premium. As a re- ry duties owed to them by the directors and
+                                
+                        
+                        
+                                
+                                        
+the majority stockholder, since the minority
+stockholders have lost the power to influence
+corporate direction through the ballot. The value. There being no such protective provi- acquisition of majority status and the conse- sions in the Viacom-Paramount transaction, quent privilege of exerting the powers of the Paramount directors had an obligation to majority ownership come at a price. That
+price is usually a control premium which opportunity to realize for the stockholders recognizes not only the value of a control
+block of shares, but also compensates the
+minority stockholders for their resulting loss
+of voting power.
+                                
+                        
+                        
+                                
+                                        
+In the case before us, the public stockhold-
+ers (in the aggregate) currently own a major-
+ity of Paramount’s voting stock. Control of
+the corporation is not vested in a single
+person, entity, or group, but vested in the
+fluid aggregation of unaffiliated stockholders.
+In the event the Paramount-Viacom transac-
+tion is consummated, the public stockholders
+will receive cash and a minority equity voting
+position in the surviving corporation. Fol-
+lowing such consummation, there will be a
+controlling stockholder who will have the vot-
+ing power to: (a) elect directors; (b) cause a lished by the decisions of this Court. The break-up of the corporation; (c) merge it directors’ fiduciary duties in a sale of control
+                                        
+with another company; (d) cash-out the pub- context are those which generally attach. In lic stockholders; (e) amend the certificate of short, “the directors must act in accordance
+                                        
+incorporation; (f) sell all or substantially all with their fundamental duties of care and of the corporate assets; or (g) otherwise loyalty.” Barkan v. Amsted Indus., Inc.,
+                                
+                        
+                        
+                                
+                                        
+alter materially the nature of the corporation and the public stockholders’ interests. Irre- spective of the present Paramount Board’s vision of a long-term strategic alliance with Viacom, the proposed sale of control would provide the new controlling stockholder with the power to alter that vision.
+                                        
+Because of the intended sale of control, the Paramount-Viacom transaction has economic consequences of considerable significance to the Paramount stockholders. Once control
+                                        
+13. We express no opinion on any scenario except the actual facts before the Court, and our precise holding herein. Unsolicited tender offers in oth- er contexts may be governed by different prece- dent. For example, where a potential sale of control by a corporation is not the consequence of a board's action, this Court has recognized the prerogative of a board of directors to resist a third party’s unsolicited acquisition proposal or offer. See Pogostin, 480 A.2d at 627; Time-
+                                
+                                
+                                        
+Del.Supr., 567 A.2d 1279, 1286(1989). As we held in Macmillan:
+                                        
+It is basic to our law that the board of directors has the ultimate responsibility for managing the business and affairs of a corporation. In discharging this function, the directors owe fiduciary duties of care and loyalty to the corporation and its shareholders. This unremitting obli- gation extends equally to board conduct in a sale of corporate control.
+                                        
+Warner, 571 A.2d at 1152; Bershad v. Curtiss-- Wright Corp., Del.Supr., 535 A.2d 840, 845 (1987); Macmillan, 559 A.2d at 1285 n. 35. The decision of a board to resist such an acquisition, like all decisions of a properly-functioning board, must be informed, Unocal, 493 A.2d at 954—55, and the circumstances of each particular case will determine the steps that a board must take to inform itself, and what other action, if any, is required as a matter of fiduciary duty.
+                                
+                        
+                        
+                                
+                                        
+sult, the Paramount stockholders are entitled to receive, and should receive, a control pre- mium and/or protective devices of significant
+                                
+                        
+                        
+                                
+                                        
+take the maximum advantage of the current the best value reasonably available.
+                                
+                        
+                        
+                                
+                                        
+B. The Obligations of Directors in a Sale or Change of Control Transac- tion
+                                
+                        
+                        
+                                
+                                        
+The consequences of a sale of control im- pose special obligations on the directors of a corporation.13 In particular, they have the obligation of acting reasonably to seek the transaction offering the best value reason- ably available to the stockholders. The courts will apply enhanced scrutiny to ensure that the directors have acted reasonably. The obligations of the directors and the en- hanced scrutiny of the courts are well-estab-
+                                
+                        
+                        
+                                
+                                        
+43
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+44
+                                
+                        
+                        
+                                
+                                        
+559 A.2d at 1280 (emphasis supplied) (cita- transaction and the possibility, in certain tions omitted). cases, that management may not necessarily In the sale of control context, the directors be impartial. See Macmillan, 559 A.2d at
+                                
+                        
+                        
+                                
+                                        
+must focus on one primary objective—to se- cure the transaction offering the best value reasonably available for the stockholders— and they must exercise their fiduciary duties to further that end. The decisions of this Court have consistently emphasized this goal. Revlon, 506 A.2d at 182 (“The duty of the board ... [is] the maximization of the compa- ny’s value at a sale for the stockholders’ benefit.”); Macmillan, 559 A.2d at 1288 (“[I]n a sale of corporate control the respon- sibility of the directors is to get the highest
+                                        
+value reasonably attainable for the share- holders.”); Barkan, 567 A.2d at 1286 (“[T]he board must act in a neutral manner to en- courage the highest possible price for share- holders.”). See also Wilmington Trust Co. v. Coulter, Del.Supr., 200 A.2d 441, 448 (1964) (in the context of the duty of a trustee, “[w]hen all is equal ... it is plain that the Trustee is bound to obtain the best price obtainable”).
+                                
+                                
+                                        
+1285 (requiring “the intense scrutiny and participation of the independent directors”).
+                                        
+Barkan teaches some of the methods by which a board can fulfill its obligation to seek the best value reasonably available to the stockholders. 567 A.2d at 1286-87. These methods are designed to determine the exis- tence and viability of possible alternatives. They include conducting an auction, canvass- ing the market, etc. Delaware law recog- nizes that there is “no single blueprint” that directors must follow. Id. at 1286-87; Cit- ron 569 A.2d at 68; Macmillan, 559 A.2d at 1287.
+                                        
+In determining which alternative provides the best value for the stockholders, a board of directors is not limited to considering only the amount of cash involved, and is not re- quired to ignore totally its view of the future value of a strategic alliance. See Macmillan, 559 A.2d at 1282 n. 29. Instead, the di- rectors should analyze the entire situation and evaluate in a disciplined manner the consideration being offered. Where stock or other non-cash consideration is involved, the board should try to quantify its value, if feasible, to achieve an objective comparison of the alternatives.14 In addition, the board may assess a variety of practical consider- ations relating to each alternative, including:
+                                
+                        
+                        
+                                
+                                        
+In pursuing this objective, the directors
+must be especially diligent. See Citron v.
+Fairchild Camera and Instrument Corp.,
+Del.Supr., 569 A.2d 53, 66 (1989) (discussing
+“a board’s active and direct role in the sale
+process”). In particular, this Court has
+stressed the importance of the board being
+adequately informed in negotiating a sale of
+control: “The need for adequate information
+is central to the enlightened evaluation of a
+transaction that a board must make.” Bar-
+kan, 567 A.2d at 1287. This requirement is
+consistent with the general principle that
+“directors have a duty to inform themselves,
+prior to making a business decision, of all
+material information reasonably available to
+them.” Aronson, 473 A.2d at 812. See also
+Cede & Co. v. Technicolor, Inc., Del.Supr., 634A.2d345,367(1993);Smithv.VanGorkomM,acmillan,559A.2dat1282n.29.These Del- .Supr., 488 A.2d 858, 872 (1985). considerations are important because the se- Moreover, the role of outside, independent lection of one alternative may permanently directors becomes particularly important be- foreclose other opportunities. While the as-
+                                
+                        
+                        
+                                
+                                        
+cause of the magnitude of a sale of control
+                                        
+14. When assessing the value of non-cash consid- eration, a board should focus on its value as of the date it will be received by the stockholders. Normally, such value will be determined with the assistance of experts using generally accepted
+                                
+                                
+                                        
+sessment of these factors may be complex,
+                                        
+methods of valuation. See In re RJR Nabisco, Inc. Shareholders Litig., Del.Ch., C.A.No. 10389, 1989 WL 7036, Allen, C. (Jan. 31, 1989), reprint-
+                                        
+ed at 14 Del.J.Corp.L. 1132, 1161.
+                                
+                        
+                        
+                                
+                                        
+[an offer’s] fairness and feasibility; the proposed or actual financing for the offer, and the consequences of that financing; questions of illegality; ... the risk of non- eonsum[m]ation; ... the bidder’s identity, prior background and other business ven- ture experiences; and the bidder’s busi- ness plans for the corporation and their effects on stockholder interests.
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+the board's goal is straightforward: Having informed themselves of all material informa- tion reasonably available, the directors must decide which alternative is most likely to offer the best value reasonably available to the stockholders.
+                                        
+C. Enhanced Judicial Scrutiny of a Sale or Change of Control Transac- tion
+                                        
+Board action in the circumstances presented here is subject to enhanced scruti- ny. Such scrutiny is mandated by: (a) the threatened diminution of the current stock- holders’ voting power; (b) the fact that an asset belonging to public stockholders (a con- trol premium) is being sold and may never be available again; and (c) the traditional con- cern of Delaware courts for actions which impair or impede stockholder voting rights (see supra note 11). In Macmillan, this Court held:
+                                        
+When Revlon duties devolve upon di- rectors, this Court will continue to exact an enhanced judicial scrutiny at the threshold, as in Unocal, before the normal presump- tions of the business judgment rule will apply.15
+                                        
+559 A.2d at 1288. The Macmillan decision articulates a specific two-part test for analyz- ing board action where competing bidders are not treated equally:16
+                                        
+In the face of disparate treatment, the trial court must first examine whether the directors properly perceived that share- holder interests were enhanced. In any event the board’s action must be reason- able in relation to the advantage sought to be achieved, or conversely, to the threat which a particular bid allegedly poses to stockholder interests.
+                                        
+15. Because the Paramount Board acted unrea- sonably as to process and result in this sale of control situation, the business judgment rule did not become operative.
+                                        
+16. Before this test is invoked, "the plaintiff must show, and the trial court must find, that the directors of the target company treated one or more of the respective bidders on unequal terms.” Macmillan, 559 A.2d at 1288.
+                                        
+17. It is to be remembered that, in cases where the traditional business judgment rule is applica-
+                                
+                                
+                                        
+Id. See also Roberts v. General Instrument Corp., Del.Ch., C.A. No. 11639, 1990 WL 118356,Allen, C. (Aug. 13,1990), reprinted at 16Del.J.Corp.L. 1540,1554(“Thisenhanced test requires a judicial judgment of reason- ableness in the circumstances.”).
+                                        
+The key features of an enhanced scrutiny test are: (a) a judicial determination regarding the adequacy of the decisionmak-- ing process employed by the directors, in- cluding the information on which the di- rectors based their decision; and (b) a judi- cial examination of the reasonableness of the directors’ action in light of the circumstances then existing. The directors have the bur- den of proving that they were adequately informed and acted reasonably.
+                                        
+Although an enhanced scrutiny test involves a review of the reasonableness of the substantive merits of a board’s actions,17 a court should not ignore the complexity of the directors’ task in a sale of control. There are many business and financial considerations implicated in investigating and selecting the best value reasonably available. The board of directors is the corporate decisionmaking body best equipped to make these judg- ments. Accordingly, a court applying en- hanced judicial scrutiny should be deciding whether the directors made a reasonable decision, not a perfect decision. If a board selected one of several reasonable alterna- tives, a court should not second-guess that choice even though it might have decided otherwise or subsequent events may have cast doubt on the board’s determination. Thus, courts will not substitute their business
+                                        
+judgment for that of the directors, but will determine if the directors’ decision was, on balance, within a range of reasonableness.
+                                        
+ble and the board acted with due care, in good faith, and in the honest belief that they are acting in the best interests of the stockholders (which is not this case), the Court gives great deference to the substance of the directors' decision and will not invalidate the decision, will not examine its reasonableness, and "will not substitute our views for those of the board if the latter’s deci- sion can be 'attributed to any rational business purpose.’ ” Unocal, 493 A.2d at 949 (quoting Sinclair Oil Corp. v. Levien, Del.Supr., 280 A.2d 717, 720 (1971)). See Aronson, 473 A.2d at 812.
+                                
+                        
+                        
+                                
+                                        
+45
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+46
+                                
+                        
+                        
+                                
+                                        
+See Unocal, 493 A.2d at 955-56; Macmillan, 559 A.2d at 1288; Nixon, 626 A.2d at 1378.
+                                        
+D. Revlon and Time-Warner Distin- guished
+                                        
+The Paramount defendants and Viacom as- sert that the fiduciary obligations and the enhanced judicial scrutiny discussed above are not implicated in this case in the absence of a “break-up” of the corporation, and that the order granting the preliminary injunction should be reversed. This argument is based on their erroneous interpretation of our deci- sions in Revlon and Time-Warner.
+                                        
+In Revlon, we reviewed the actions of the board of directors of Revlon, Inc. (“Revlon”), which had rebuffed the overtures of Pantry Pride, Inc. and had instead entered into an agreement with Forstmann Little & Co. (“Forstmann”) providing for the acquisition of 100 percent of Revlon’s outstanding stock by Forstmann and the subsequent break-up of Revlon. Based on the facts and circum- stances present in Revlon, we held that “[t]he directors’ role changed from defenders of the corporate bastion to auctioneers charged with getting the best price for the stockholders at a sale of the company.” 506 A.2d at 182. We further held that “when a board ends an intense bidding contest on an
+                                
+                                
+                                        
+The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the stockholders where there is a pending sale of control, regardless of whether or not there is to be a break-up of the corporation. In Macmillan, this Court held:
+                                        
+We stated in Revlon, and again here, that in a sale of corporate control the respon- sibility of the directors is to get the highest value reasonably attainable for the share- holders.
+                                        
+559 A.2d at 1288 (emphasis added). In Bar- kan, we observed further:
+                                        
+We believe that the general principles an- nounced in Revlon, in Unocal Corp. v. Mesa Petroleum Co., Del.Supr., 493 A.2d 946 (1985), and in Moran v. Household International, Inc., Del.Supr., 500 A.2d 1346 (1985) govern this case and every case in which a fundamental change of corporate control occurs or is contemplat- ed.
+                                        
+567 A.2d at 1286 (emphasis added).
+                                        
+Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold-
+                                
+                        
+                        
+                                
+                                        
+insubstantial basis, ... [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id. at 184. quiring a corporate break-up in order for
+                                
+                        
+                        
+                                
+                                        
+It is true that one of the circumstances bearing on these holdings was the fact that “the break-up of the company ... had be- come a reality which even the directors em- braced.” Id. at 182. It does not follow, however, that a “break-up” must be present
+                                        
+and “inevitable” before directors are subject to enhanced judicial scrutiny and are re- quired to pursue a transaction that is calcu- lated to produce the best value reasonably available to the stockholders. In fact, we stated in Revlon that “when bidders make relatively similar offers, or dissolution of the company becomes inevitable, the directors cannot fulfill their enhanced Unocal duties by playing favorites with the contending fac- tions.” Id. at 184 (emphasis added). Revlon thus does not hold that an inevitable dissolu-
+                                        
+tion or “break-up” is necessary.
+                                
+                                
+                                        
+that obligation to apply. The facts in Time- Warner, however, were quite different from the facts of this case, and refute Paramount’s position here. In Time-Warner, the Chan- cellor held that there was no change of con- trol in the original stock-for-stock merger between Time and Warner because Time would be owned by a fluid aggregation of unaffiliated stockholders both before and af- ter the merger:
+                                        
+If the appropriate inquiry is whether a change in control is contemplated, the an- swer must be sought in the specific circum- stances surrounding the transaction. Surely under some circumstances a stock for stock merger could reflect a transfer of corporate control. That would, for exam- ple, plainly be the case here, if Warner were a private company. But where, as
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+here, the shares of both constituent corpo- rations are widely held, corporate control can be expected to remain unaffected by a stock for stock merger. This in my judg- ment was the situation with respect to the original merger agreement. When the specifics of that situation are reviewed, it is seen that, aside from legal technicalities and aside from arrangements thought to enhance the prospect for the ultimate suc- cession of [Nicholas J. Nicholas, Jr., presi- dent of Time], neither corporation could be said to be acquiring the other. Control of both remained in a large, fluid, changea- ble and changing market.
+                                        
+The existence of a control block of stock in the hands of a single shareholder or a group with loyalty to each other does have real consequences to the financial value of “minority” stock. The law offers some protection to such shares through the im- position of a fiduciary duty upon control- ling shareholders. But here, effectuation of the merger would not have subjected Time shareholders to the risks and con- sequences of holders of minority shares. This is a reflection of the fact that no control passed to anyone in the transac- tion contemplated. The shareholders of Time would have “suffered” dilution, of course, but they would suffer the same type of dilution upon the public distribu- tion of new stock.
+                                        
+Paramount Communications Inc. v. Time Inc., Del.Ch., No. 10866, 1989 WL 79880, Allen, C. (July 17, 1989), reprinted at 15 Del.J.Corp.L. 700, 739 (emphasis added). Moreover, the transaction actually consum- mated in Time-Wamer was not a merger, as originally planned, but a sale of Warner’s stock to Time.
+                                
+                                
+                                        
+However, we premise our rejection of plaintiffs’ Revlon claim on different grounds, namely, the absence of any sub- stantial evidence to conclude that Time’s board, in negotiating with Warner, made the dissolution or break-up of the corpo- rate entity inevitable, as was the case in Revlon.
+                                        
+Under Delaware law there are, generally speaking and without excluding other possibilities, two circumstances which may implicate Revlon duties. The first, and clearer one, is when a corporation initiates an active bidding process seek- ing to sell itself or to effect a business reorganization involving a clear break-up of the company. However, Revlon duties may also be triggered where, in response to a bidder’s offer, a target abandons its long-term strategy and seeks an alterna- tive transaction involving the breakup of the company.
+                                        
+Id. at 1150 (emphasis added) (citation and footnote omitted).
+                                        
+The Paramount defendants have misread the holding of Time-Wamer. Contrary to their argument, our decision in Time-War- ner expressly states that the two general scenarios discussed in the above-quoted para- graph are not the only instances where “Revlon duties” may be implicated. The Paramount defendants’ argument totally ig- nores the phrase “without excluding other possibilities.” Moreover, the instant case is clearly within the first general scenario set forth in Time-Wamer. The Paramount Board, albeit unintentionally, had “initiate[d] an active bidding process seeking to sell it- self’ by agreeing to sell control of the corpo- ration to Viacom in circumstances where an- other potential acquiror (QVC) was equally interested in being a bidder.
+                                        
+The Paramount defendants’ position that both a change of control and a break-up are required must be rejected. Such a holding would unduly restrict the application of Rev- lon, is inconsistent with this Court’s decisions
+                                
+                        
+                        
+                                
+                                        
+In our affirmance of the Court of Chan-
+cery’s well-reasoned decision, this Court held
+that “The Chancellor’s findings of fact are
+supported by the record and his conclusion
+is correct as a matter of law.” 571 A.2d at
+1150 (emphasis added). Nevertheless, the in Barkan and Macmillan, and has no basis
+                                
+                        
+                        
+                                
+                                        
+Paramount defendants here have argued that a break-up is a requirement and have fo- cused on the following language in our Time- Wamer decision:
+                                
+                                
+                                        
+in policy. There are few events that have a more significant impact on the stockholders than a sale of control or a corporate break- up. Each event represents a fundamental
+                                
+                        
+                        
+                                
+                                        
+47
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+48
+                                
+                        
+                        
+                                
+                                        
+(and perhaps irrevocable) change in the na- ture of the corporate enterprise from a prac- tical standpoint. It is the significance of each of these events that justifies: (a) focus- ing on the directors’ obligation to seek the best value reasonably available to the stock- holders; and (b) requiring a close scrutiny of board action which could be contrary to the stockholders’ interests.
+                                        
+Accordingly, when a corporation un- dertakes a transaction which will cause: (a) a change in corporate control; or (b) a break- up of the corporate entity, the directors’ obligation is to seek the best value reason- ably available to the stockholders. This obli- gation arises because the effect of the Via- com-Paramount transaction, if consummated,
+                                        
+is to shift control of Paramount from the public stockholders to a controlling stock- holder, Viacom. Neither Time-Wamev nor any other decision of this Court holds that a “break-up” of the company is essential to give rise to this obligation where there is a sale of control.
+                                        
+III. BREACH OF FIDUCIARY DUTIES BY PARAMOUNT BOARD
+                                        
+We now turn to duties of the Paramount Board under the facts of this case and our conclusions as to the breaches of those duties which warrant injunctive relief.
+                                        
+A. The Specific Obligations of the Par- amount Board
+                                        
+Under the facts of this case, the Paramount directors had the obligation: (a) to be diligent and vigilant in examining criti- cally the Paramount-Viacom transaction and the QVC tender offers; (b) to act in good faith; (c) to obtain, and act with due care on, all material information reasonably available, including information necessary to compare the two offers to determine which of these transactions, or an alternative course of ac- tion, would provide the best value reasonably available to the stockholders; and (d) to ne--
+                                        
+18. Both the Viacom and the QVC tender offers were for 51 percent cash and a "back-end” of various securities, the value of each of which depended on the fluctuating value of Viacom and QVCstock at any given time. Thus, both tender
+                                
+                                
+                                        
+gotiate actively and in good faith with both Viacom and QVC to that end.
+                                        
+Having decided to sell control of the corpo- ration, the Paramount directors were re- quired to evaluate critically whether or not all material aspects of the Paramount-Via- com transaction (separately and in the aggre- gate) were reasonable and in the best inter- ests of the Paramount stockholders in light of current circumstances, including: the change of control premium, the Stock Option Agreement, the Termination Fee, the coer- cive nature of both the Viacom and QVC tender offers,18the No-Shop Provision, and the proposed disparate use of the Rights Agreement as to the Viacom and QVC tender offers, respectively.
+                                        
+These obligations necessarily implicated various issues, including the questions of whether or not those provisions and other aspects of the Paramount-Viacom transac- tion (separately and in the aggregate): (a) adversely affected the value provided to the Paramount stockholders; (b) inhibited or en- couraged alternative bids; (c) were enforce- able contractual obligations in light of the directors’ fiduciary duties; and (d) in the end would advance or retard the Paramount di- rectors’ obligation to secure for the Para- mount stockholders the best value reasonably available under the circumstances.
+                                        
+The Paramount defendants contend that they were precluded by certain contractual provisions, including the No-Shop Provision, from negotiating with QVC or seeking alter- natives. Such provisions, whether or not they are presumptively valid in the abstract, may not validly define or limit the directors’ fiduciary duties under Delaware law or pre- vent the Paramount directors from carrying out their fiduciary duties under Delaware law. To the extent such provisions are in- consistent with those duties, they are invalid and unenforceable. See Revlon, 506 A.2d at 184-85.
+                                        
+Since the Paramount directors had already decided to sell control, they had an obligation
+                                        
+offers were two-tiered, front-end loaded, and co- ercive. Such coercive offers are inherently pro- blematic and should be expected to receive par- ticularly careful analysis by a target board. See Unocal, 493 A.2d at 956.
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+to continue their search for the best value nomic transaction. Those defensive mea- reasonably available to the stockholders. sures, coupled with the sale of control and
+                                
+                        
+                        
+                                
+                                        
+This continuing obligation included the re-
+sponsibility, at the October 24 board meeting
+and thereafter, to evaluate critically both the
+QVC tender offers and the Paramount-Via-
+com transaction to determine if: (a) the QVC
+tender offer was, or would continue to be,
+conditional; (b) the QVC tender offer could
+be improved; (c) the Viacom tender offer or
+other aspects of the Paramount-Viacom
+transaction could be improved; (d) each of Agreement, and thereafter, the Paramount the respective offers would be reasonably Board clearly gave insufficient attention to likely to come to closure, and under what the potential consequences of the defensive circumstances; (e) other material informa- measures demanded by Viacom. The Stock tion was reasonably available for consider-
+                                
+                        
+                        
+                                
+                                        
+ation by the Paramount directors; (f) there
+were viable and realistic alternative courses
+of action; and (g) the timing constraints ture. Furthermore, the Termination Fee, could be managed so the directors could con-
+sider these matters carefully and deliberate-
+ly-
+                                
+                        
+                        
+                                
+                                        
+B. The Breaches of Fiduciary Duty by the Paramount Board
+                                        
+The Paramount directors made the decision on September 12, 1993, that, in their judgment, a strategic merger with Via- com on the economic terms of the Original
+                                
+                                
+                                        
+whether or not unreasonable by itself, clearly made Paramount less attractive to other bid- ders, when coupled with the Stock Option Agreement. Finally, the No-Shop Provision inhibited the Paramount Board’s ability to negotiate with other potential bidders, partic- ularly QVC which had already expressed an interest in Paramount.20
+                                        
+Throughout the applicable time period, and especially from the first QVCmerger propos-
+                                
+                        
+                        
+                                
+                                        
+Merger Agreement was in the best interests
+of Paramount and its stockholders. Those al on September 20 through the Paramount
+                                
+                        
+                        
+                                
+                                        
+terms provided a modest change of control
+premium to the stockholders. The directors
+also decided at that time that it was appro-
+priate to agree to certain defensive measures
+(the Stock Option Agreement, the Termi- holders than that being offered by Viacom.
+                                
+                        
+                        
+                                
+                                        
+nation Fee, and the No-Shop Provision) in- sisted upon by Viacom as part of that eco-
+                                        
+19. The Vice Chancellor so characterized the Stock Option Agreement. Court of Chancery Opinion, 635 A.2d 1245, 1272. We express no opinion whether a stock option agreement of essentially this magnitude, but with a reasonable "cap” and without the Note and Put Features, would be valid or invalid under other circum- stances. See Hecco Ventures v. Sea-Land. Corp., Del.Ch., C.A. No. 8486, 1986 WL 5840, Jacobs, V.C. (May 19, 1986) (21.7 percent stock option); In re Vitalink Communications Corp. Sharehold- ers Litig., Del.Ch., C.A.No. 12085, Chandler, V.C. (May 16, 1990) (19.9 percent stock option).
+                                        
+20. We express no opinion whether certain as- pects of the No-Shop Provision here could be valid in another context. Whether or not it could validly have operated here at an early stage solely to prevent Paramount from actively "shop-
+                                
+                                
+                                        
+QVC persistently demonstrated its intention to meet and exceed the Viacom offers, and
+                                        
+ping” the company, it could not prevent the Paramount directors from carrying out their fi- duciary duties in considering unsolicited bids or in negotiating for the best value reasonably avail- able to the stockholders. Macmillan, 559 A.2d at 1287. As we said in Barkan: "Where a board has no reasonable basis upon which to judge the adequacy of a contemplated transaction, a no- shop restriction gives rise to the inference that the board seeks to forestall competing bids.” 567 A.2d at 1288. See also Revlon, 506 A.2d at 184 (holding that "[t]he no-shop provision, like the lock-up option, while not per se illegal, is impermissible under the Unocal standards when a board's primary duty becomes that of an auc- tioneer responsible for selling the company to the highest bidder”).
+                                
+                        
+                        
+                                
+                                        
+subsequent disparate treatment of competing bidders, implicated the judicial scrutiny of Unocal, Revlon, Macmillan, and their proge- ny. We conclude that the Paramount di- rectors’ process was not reasonable, and the result achieved for the stockholders was not reasonable under the circumstances.
+                                
+                        
+                        
+                                
+                                        
+When entering into the Original Merger
+                                
+                        
+                        
+                                
+                                        
+Option Agreement had a number of unusual and potentially “draconian”19 provisions, in- cluding the Note Feature and the Put Fea-
+                                
+                        
+                        
+                                
+                                        
+Board meeting on November 15, QVC’s in- terest in Paramount provided the opportuni- ty for the Paramount Board to seek signifi- cantly higher value for the Paramount stock-
+                                
+                        
+                        
+                                
+                                        
+49
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+50
+                                
+                        
+                        
+                                
+                                        
+frequently expressed its willingness to nego- tiate possible further increases.
+                                        
+The Paramount directors had the opportu- nity in the October 23-24 time frame, when the Original Merger Agreement was renego- tiated, to take appropriate action to modify the improper defensive measures as well as to improve the economic terms of the Para- mount-Viacom transaction. Under the cir- cumstances existing at that time, it should have been clear to the Paramount Board that the Stock Option Agreement, coupled with the Termination Fee and the No-Shop Clause, were impeding the realization of the best value reasonably available to the Para- mount stockholders. Nevertheless, the Par- amount Board made no effort to eliminate or modify these counterproductive devices, and
+                                        
+instead continued to cling to its vision of a strategic alliance with Viacom. Moreover, based on advice from the Paramount man- agement, the Paramount directors consid- ered the QVC offer to be “conditional” and asserted that they were precluded by the No-Shop Provision from seeking more infor- mation from, or negotiating with, QVC.
+                                
+                                
+                                        
+Hanson Trust PLC v. ML SCM Acquisition Inc., 2d Cir., 781 F.2d 264, 274 (1986).
+                                        
+When the Paramount directors met on No- vember 15 to consider QVC’sincreased ten- der offer, they remained prisoners of their own misconceptions and missed opportunities to eliminate the restrictions they had im- posed on themselves. Yet, it was not “too late” to reconsider negotiating with QVC. The circumstances existing on November 15 made it clear that the defensive measures, taken as a whole, were problematic: (a) the No-Shop Provision could not define or limit their fiduciary duties; (b) the Stock Option Agreement had become “draconian”; and (c) the Termination Fee, in context with all the circumstances, was similarly deterring the realization of possibly higher bids. Never- theless, the Paramount directors remained paralyzed by their uninformed belief that the QVC offer was “illusory.” This final oppor-
+                                        
+tunity to negotiate on the stockholders’ be- half and to fulfill their obligation to seek the best value reasonably available was thereby squandered.21
+                                        
+IV. VIACOM’S CLAIM OF VESTED CONTRACT RIGHTS
+                                        
+Viacom argues that it had certain “vested” contract rights with respect to the No-Shop Provision and the Stock Option Agreement.22 In effect, Viacom’s argument is that the Par- amount directors could enter into an agree- ment in violation of their fiduciary duties and then render Paramount, and ultimately its stockholders, liable for failing to carry out an agreement in violation of those duties. Via- com’s protestations about vested rights are
+                                
+                        
+                        
+                                
+                                        
+By November 12, 1993, the value of the
+revised QVC offer on its face exceeded that
+of the Viacom offer by over $1 billion at then
+current values. This significant disparity of
+value cannot be justified on the basis of the
+directors’ vision of future strategy, primarily
+because the change of control would supplant
+the authority of the current Paramount
+Board to continue to hold and implement
+their strategic vision in any meaningful way.
+Moreover, their uninformed process had de-
+prived their strategic vision of much of its without merit. This Court has found that credibility. See Van Gorkom, 488 A.2d at those defensive measures were improperly
+                                
+                        
+                        
+                                
+                                        
+872; Cede v. Technicolor, 634 A.2d at 367;
+                                        
+21. The Paramount defendants argue that the Court of Chancery erred by assuming that the Rights Agreement was "pulled" at the November 15 meeting of the Paramount Board. The prob- lem with this argument is that, under the Amend- ed Merger Agreement and the resolutions of the Paramount Board related thereto, Viacom would be exempted from the Rights Agreement in the absence of further action of the Paramount Board and no further meeting had been sched- uled or even contemplated prior to the closing of the Viacom tender offer. This failure to schedule and hold a meeting shortly before the closing date in order to make a final decision, based on
+                                
+                                
+                                        
+designed to deter potential bidders, and that
+                                        
+all of the information and circumstances then existing, whether to exempt Viacom from the Rights Agreement was inconsistent with the Par- amount Board's responsibilities and does not provide a basis to challenge the Court of Chan- cery's decision.
+                                        
+22. Presumably this argument would have includ- ed the Termination Fee had the Vice Chancellor invalidated that provision or if appellees had cross-appealed from the Vice Chancellor’s refus- al to invalidate that provision.
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+such measures do not meet the reasonable- ness test to which they must be subjected. They are consequently invalid and unenforce- able under the facts of this case.
+                                        
+The No-Shop Provision could not validly define or limit the fiduciary duties of
+                                        
+the Paramount directors. To the extent that a contract, or a provision thereof, purports to require a board to act or not act in such a fashion as to limit the exercise of fiduciary duties, it is invalid and unenforceable. Cf Wilmington Trust v. Coulter, 200 A.2d at 452-54. Despite the arguments of Para- mount and Viacom to the contrary, the Para- mount directors could not contract away their fiduciary obligations. Since the No-- Shop Provision was invalid, Viacom never had any vested contract rights in the provi- sion.
+                                        
+As discussed previously, the Stock Option Agreement contained several “draco- nian” aspects, including the Note Feature and the Put Feature. While we have held that lock-up options are not per se illegal,-see Revlon, 506 A.2d at 183, no options with similar features have ever been upheld by this Court. Under the circumstances of this case, the Stock Option Agreement clearly is invalid. Accordingly, Viacom never had any vested contract rights in that Agreement.
+                                        
+Viacom, a sophisticated party with experi- enced legal and financial advisors, knew of (and in fact demanded) the unreasonable fea- tures of the Stock Option Agreement. It cannot be now heard to argue that it ob- tained vested contract rights by negotiating and obtaining contractual provisions from a board acting in violation of its fiduciary duties. As the Nebraska Supreme Court said in rejecting a similar argument in ConA- gra, Inc. v. Cargill, Inc., 222 Neb. 136, 382 N.W.2d 576, 587-88 (1986), “To so hold, it would seem, would be to get the shareholders coming and going.” Likewise, we reject Via- com’s arguments and hold that its fate must rise or fall, and in this instance fall, with the determination that the actions of the Para- mount Board were invalid.
+                                
+                                
+                                        
+V. CONCLUSION
+                                        
+The realization of the best value reason- ably available to the stockholders became the Paramount directors’ primary obligation un- der these facts in light of the change of control. That obligation was not satisfied, and the Paramount Board’s process was defi- cient. The directors’ initial hope and expec- tation for a strategic alliance with Viacom was allowed to dominate their decisionmak- ing process to the point where the arsenal of defensive measures established at the outset was perpetuated (not modified or eliminated) when the situation was dramatically altered. QVC’sunsolicited bid presented the opportu- nity for significantly greater value for the stockholders and enhanced negotiating lever- age for the directors. Rather than seizing those opportunities, the Paramount directors chose to wall themselves off from material information which was reasonably available and to hide behind the defensive measures as a rationalization for refusing to negotiate
+                                        
+with QVC or seeking other alternatives. Their view of the strategic alliance likewise became an empty rationalization as the op- portunities for higher value for the stock- holders continued to develop.
+                                        
+It is the nature of the judicial process that we decide only the case before us—a case which, on its facts, is clearly controlled by established Delaware law. Here, the pro- posed change of control and the implications thereof were crystal clear. In other cases they may be less clear. The holding of this case on its facts, coupled with the holdings of the principal cases discussed herein where the issue of sale of control is implicated, should provide a workable precedent against which to measure future cases.
+                                        
+For the reasons set forth herein, the No- vember 24,1993, Order of the Court of Chan- cery has been AFFIRMED, and this matter has been REMANDED for proceedings con- sistent herewith, as set forth in the Decem- ber 9, 1993, Order of this Court.
+                                        
+ADDENDUM
+                                        
+The record in this case is extensive. The appendix filed in this Court comprises 15 volumes, totalling some 7251 pages. It in-
+                                
+                        
+                        
+                                
+                                        
+51
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+52
+                                
+                        
+                        
+                                
+                                        
+eludes substantial deposition testimony which duct during depositions, is a matter of con- forms part of the factual record before the siderable concern to Delaware courts and Court of Chancery and before this Court. courts around the nation.24 One particular
+                                        
+instance of misconduct during a deposition in this case demonstrates such an astonishing lack of professionalism and civility that it is worthy of special note here as a lesson for the future —a lesson of conduct not to be
+                                
+                        
+                        
+                                
+                                        
+The members of this Court have read and
+considered the appendix, including the depo-
+sition testimony, in reaching its decision, pre-
+paring the Order of December 9, 1993, and
+this opinion. Likewise, the Vice Chancellor’s
+opinion revealed that he was thoroughly fa- tolerated or repeated.
+                                
+                        
+                        
+                                
+                                        
+milial* with the entire record, including the deposition testimony. As noted, supra p. 37 note 2, the Court has commended the parties for their professionalism in conducting expe- dited discovery, assembling and organizing the record, and preparing and presenting very helpful briefs, a joint appendix, and oral argument.
+                                
+                                
+                                        
+On November 10,1993, an expedited depo- sition of Paramount, through one of its di- rectors, J. Hugh Liedtke,25 was taken in the state of Texas. The deposition was taken by Delaware counsel for QVC. Mr. Liedtke was individually represented at this deposition by Joseph D. Jamail, Esquire, of the Texas Bar. Peter C. Thomas, Esquire, of the New York Bar appeared and defended on behalf of the
+                                
+                        
+                        
+                                
+                                        
+The Court is constrained, however, to add
+this Addendum. Although this Addendum Paramount defendants. It does not appear
+                                
+                        
+                        
+                                
+                                        
+has no bearing on the outcome of the case, it relates to a serious issue of professionalism involving deposition practice in proceedings in Delaware trial courts.23
+                                
+                                
+                                        
+that any member of the Delaware bar was present at the deposition representing any of the defendants or the stockholder plaintiffs.
+                                        
+Mr. Jamail did not otherwise appear in this Delaware proceeding representing any party,
+                                
+                        
+                        
+                                
+                                        
+The issue of discovery abuse, includ-
+ing lack of civility and professional miscon- and he was not admitted pro hac vice.26
+                                
+                        
+                        
+                                
+                                        
+23. We raise this matter sua sponte as part of our exclusive supervisory responsibility to regulate and enforce appropriate conduct of lawyers ap- pearing in Delaware proceedings. See In re Info- technology,Inc. Shareholder Litig., Del.Supr., 582 A.2d 215 (1990); In re Nenno, Del.Supr., 472 A.2d 815, 819 (1983); In re Green, Del.Supr., 464 A.2d 881, 885 (1983); Delaware Optometric Corp. v. Sherwood, 36 Del.Ch. 223, 128 A.2d 812 (1957); Darling Apartment Co. v. Springer, 25 Del.Ch. 420, 22 A.2d 397 (1941). Normally our supervision relates to the conduct of members of the Delaware Bar and those admitted pro hac vice. Our responsibility for supervision is not confined to lawyers who are members of the Delaware Bar and those admitted pro hac vice, however. See In re Metviner, Del.Supr., Mise. No. 256, 1989 WL 226135, Christie, CJ. (July 7, 1989 and Aug. 22, 1989) (ORDERS). Our con- cern, and our duty to insist on appropriate con- duct in any Delaware proceeding, including out-- of-state depositions taken in Delaware litigation, extends to all lawyers, litigants, witnesses, and others.
+                                        
+24. Justice Sandra Day O’Connor recently high- lighted the national concern about the deteriora- tion in civility in a speech delivered on December 14, 1993, to an American Bar Association group on "Civil Justice Improvements."
+                                        
+I believe that the justice system cannot func- tion effectivelywhen the professionals charged with administering it cannot even be polite to one another. Stress and frustration drive
+                                
+                                
+                                        
+down productivity and make the process more time-consuming and expensive. Many of the best people get driven away from the field. The profession and the system itself lose es- teem in the public’s eyes.
+                                        
+... In my view, incivility disserves the client because it wastes time and energy—time that is billed to the client at hundreds of dollars an hour, and energy that is better spent working on the case than working over the opponent.
+                                        
+The Honorable Sandra Day O'Connor, "Civil Jus- tice System Improvements,” ABAat 5 (Dec. 14, 1993) (footnotes omitted).
+                                        
+25. The docket entries in the Court of Chancery show a November 2, 1993, "Notice of Deposition of Paramount Board” (Dkt 65). Presumably, this included Mr. Liedtke, a director of Paramount. Under Ch. Ct. R. 32(a)(2), a deposition is admis- sible against a party if the deposition is of an officer, director, or managing agent. From the docket entries, it appears that depositions of third party witnesses (persons who were not di- rectors or officers) were taken pursuant to the issuance of commissions.
+                                        
+26. It does not appear from the docket entries that Mr. Thomas was admitted pro hac vice in the Court of Chancery. In fact, no member of his firm appears from the docket entries to have been so admitted until Barry R. Ostrager, Es- quire, who presented the oral argument on be-
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+Under the rules of the Court of Chancery and this Court,27 lawyers who are admitted pro hac vice to represent a party in Delaware proceedings are subject to Delaware Disci- plinary Rules,28 and are required to review the Delaware State Bar Association State- ment of Principles of Lawyer Conduct (the “Statement of Principles”).29 During the Liedtke deposition, Mr. Jamail abused the privilege of representing a witness in a Dela- ware proceeding, in that he: (a) improperly directed the witness not to answer certain questions; (b) was extraordinarily rude, unci- vil, and vulgar; and (c) obstructed the ability of the questioner to elicit testimony to assist the Court in this matter.
+                                        
+To illustrate, a few excerpts from the lat- ter stages of the Liedtke deposition follow:
+                                        
+half of the Paramount defendants, was admitted on the day of the argument before the Vice Chancellor, November 16, 1993.
+                                
+                                
+                                        
+A. [Mr. Liedtke] I vaguely recall [Mr. Oresman’s letter].... I think I did read it, probably.
+                                        
+Q. (By Mr. Johnston [Delaware counsel for QVC]) Okay. Do you have any idea why Mr. Oresman was calling that material to your attention?
+                                        
+MR. JAMAIL: Don’t answer that.
+                                        
+How would he know what was going on in Mr. Oresman’s mind?
+                                        
+Don’t answer it.
+Go on to your next question.
+MR. JOHNSTON: No, Joe—
+MR. JAMAIL: He’s not going to answer
+                                        
+that. Certify it. I’m going to shut it down if you don’t go to your next question.
+                                        
+disrupt a tribunal or engage in undignified or discourteous conduct which is degrading to a tribunal.”
+                                
+                        
+                        
+                                
+                                        
+27. Ch.Ct.R. 170; Supr.Ct.R. 71. There was no 29.The following are a few pertinent excerpts
+                                
+                        
+                        
+                                
+                                        
+Delaware lawyer and no lawyer admitted pro hac vice present at the deposition representing any party, except that Mr. Johnston, a Delaware law- yer, took the deposition on behalf of QVC. The Court is aware that the general practice has not been to view as a requirement that a Delaware lawyer or a lawyer already admitted pro hac vice must be present at all depositions. Although it is not as explicit as perhaps it should be, we believe that Ch.Ct.R. 170(d), fairly read, requires such presence:
+                                        
+(d) Delaware counsel for any party shall ap- pear in the action in which the motion for admission pro hac vice is filed and shall sign or receive service of all notices, orders, plead- ings or other papers filed in the action, and shall attend all proceedings before the Court, Clerk of the Court, or other officers of the Court, unless excused by the Court. Attend- ance of Delaware Counsel at depositions shall not be required unless ordered by the Court.
+                                        
+See also Hoechst Celanese Corp. v. National Un- ion Fire Ins. Co., Del.Super., 623 A.2d 1099, 1114 (1991). (Super.Ct.Civ.R. 90.1, which corre- sponds to Ch.Ct.R. 170, "merely excuses attend- ance of local counsel at depositions, but does not excuse non-Delaware counsel from compliance with the pro hac vice requirement.... A deposi- tion conducted pursuant to Court rules is a pro- ceeding.”). We believe that these shortcomings in the enforcement of proper lawyer conduct can and should be remedied consistent with the na- ture of expedited proceedings.
+                                        
+28. It appears that at least Rule 3.5(c) of the Delaware Lawyer's Rules of Professional Con- duct is implicated here. It provides: “A lawyer shall not ... (c) engage in conduct intended to
+                                
+                                
+                                        
+from the Statement of Principles:
+                                        
+The Delaware State Bar Association, for the Guidance of Delaware lawyers, and those law- yers from other jurisdictions who may be asso- ciated with them, adopted the following State- ment of Principles of Lawyer Conduct on [No- vember 15, 1991]_ The purpose of adopt- ing these Principles is to promote and foster the ideals of professional courtesy, conduct and cooperation.... A lawyer should develop and maintain the qualities of integrity, compas- sion, learning, civility, diligence and public service that mark the most admired members of our profession_ [A] lawyer ... should treat all persons, including adverse lawyers and parties, fairly and equitably- Profes- sional civility is conduct that shows respect not only for the courts and colleagues, but also for all people encountered in practice- Re- spect for the court requires ... emotional self- control; [and] the absence of scorn and superi- ority in words of demeanor.... A lawyer should use pre-trial procedures, including dis- covery, solely to develop a case for settlement or trial. No pre-trial procedure should be used to harass an opponent or delay a case.... Questions and objections at deposition should be restricted to conduct appropriate in the presence of a judge.... Before moving the admission of a lawyer from another jurisdic- tion, a Delaware lawyer should make such investigation as is required to form an in- formed conviction that the lawyer to be admit- ted is ethical and competent, and should fur- nish the candidate for admission with a copy of this Statement.
+                                        
+(Emphasis supplied.)
+                                
+                        
+                        
+                                
+                                        
+53
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+54
+                                
+                        
+                        
+                                
+                                        
+MR. JOHNSTON: No. Joe, Joe—
+                                        
+MR. JAMAIL: Don’t “Joe” me, asshole. You can ask some questions, but get off of that. I’m tired of you. You could gag a maggot off a meat wagon. Now, we’ve helped you every way we can.
+                                        
+MR. JOHNSTON: Let’s just take it easy.
+                                        
+MR. JAMAIL: No, we’re not going to take it easy. Get done with this.
+                                        
+MR. JOHNSTON: We will go on to the next question.
+                                        
+MR. JAMAIL: Do it now.
+                                        
+MR. JOHNSTON: We will go on to the next question. We’re not trying to excite anyone.
+                                        
+MR. JAMAIL: Come on. Quit talking. Ask the question. Nobody wants to social- ize with you.
+                                        
+MR. JOHNSTON: I’m not trying to socialize. We’ll go on to another question. We’re continuing the deposition.
+                                        
+MR. JAMAIL: Well, go on and shut up. MR. JOHNSTON: Are you finished? MR. JAMAIL: Yeah, you—
+MR. JOHNSTON: Are you finished? MR. JAMAIL: I may be and you may
+                                        
+be. Now, you want to sit here and talk to me, fine. This deposition is going to be over with. You don’t know what you’re doing. Obviously someone wrote out a long outline of stuff for you to ask. You have no concept of what you’re doing.
+                                        
+Now, I’ve tolerated you for three hours. If you’ve got another question, get on with it. This is going to stop one hour from now, period. Go.
+                                        
+MR. JOHNSTON: Are you finished?
+                                        
+MR. THOMAS: Come on, Mr. Johnston, move it.
+                                        
+MR. JOHNSTON: I don’t need this kind of abuse.
+                                        
+MR. THOMAS: Then just ask the next question.
+                                        
+Q. (By Mr. Johnston) All right. To try to move forward, Mr. Liedtke, ... I’ll show you what’s been marked as Liedtke 14 and it is a covering letter dated October
+                                
+                                
+                                        
+29 from Steven Cohen of Wachtell, Lipton, Rosen & Katz including QVC’s Amend- ment Number 1 to its Schedule 14D-1, and my question—
+                                        
+A. No.
+                                        
+Q. —to you, sir, is whether you’ve seen that?
+                                        
+A. No. Look, I don’t know what your intent in asking all these questions is, but, my God, I am not going to play boy law- yer.
+                                        
+Q. Mr. Liedtke—
+                                        
+A. Okay. Go ahead and ask your ques- tion.
+                                        
+Q. —I’m trying to move forward in this deposition that we are entitled to take. I’m trying to streamline it.
+                                        
+MR. JAMAIL: Come on with your next question. Don’t even talk with this wit- ness.
+                                        
+MR. JOHNSTON: I’m trying to move forward with it.
+                                        
+MR. JAMAIL: You understand me? Don’t talk to this witness except by ques- tion. Did you hear me?
+                                        
+MR. JOHNSTON: I heard you fine.
+                                        
+MR. JAMAIL: You fee makers think you can come here and sit in somebody’s office, get your meter running, get your full day’s fee by asking stupid questions. Let’s go with it.
+                                        
+(JA 6002-06).30
+                                        
+Staunch advocacy on behalf of a client is proper and fully consistent with the finest effectuation of skill and professionalism. In- deed, it is a mark of professionalism, not weakness, for a lawyer zealously and firmly to protect and pursue a client’s legitimate interests by a professional, courteous, and civil attitude toward all persons involved in the litigation process. A lawyer who en- gages in the type of behavior exemplified by Mr. Jamail on the record of the Liedtke deposition is not properly representing his client, and the client’s cause is not advanced by a lawyer who engages in unprofessional conduct of this nature. It happens that in this case there was no application to the Court, and the parties and the witness do not
+                                
+                        
+                        
+                                
+                                        
+30. Joint Appendix of the parties on appeal.
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+appear to have been prejudiced by this mis- conduct.31
+                                
+                                
+                                        
+We assume that the trial courts of this State would consider protective orders and the sanctions permitted by the discovery rules. Sanctions could include exclusion of obstrep- erous counsel from attending the deposition (whether or not he or she has been admitted pro hac vice), ordering the deposition re-
+                                
+                        
+                        
+                                
+                                        
+Nevertheless, the Court finds this unpro-
+fessional behavior to be outrageous and unac-
+ceptable. If a Delaware lawyer had engaged
+in the kind of misconduct committed by Mr.
+Jamail on this record, that lawyer would have
+been subject to censure or more serious cessed and reconvened promptly in Dela- sanctions.32 While the specter of disciplinary ware, or the appointment of a master to proceedings should not be used by the par- preside at the deposition. Costs and counsel ties as a litigation tactic,33 conduct such as
+                                
+                        
+                        
+                                
+                                        
+that involved here goes to the heart of the
+trial court proceedings themselves. As such,
+it cries out for relief under the trial court’s
+rules, including Ch. Ct. R. 37. Under some
+circumstances, the use of the trial court’s
+inherent summary contempt powers may be
+appropriate. See In re Butler, Del.Supr., 609 ness. Pursuant to Ch. Ct. R. 170(d), the A.2d 1080, 1082 (1992).
+                                
+                        
+                        
+                                
+                                        
+Although busy and overburdened, Dela- ware trial courts are “but a phone call away” and would be responsive to the plight of a party and its counsel bearing the brunt of such misconduct.34 It is not appropriate for this Court to prescribe in the abstract any particular remedy or to provide an exclusive list of remedies under such circumstances.
+                                        
+31. We recognize the practicalities of litigation practice in our trial courts, particularly in expe- dited proceedings such as this preliminary in- junction motion, where simultaneous depositions are often taken in far-flung locations, and coun- sel have only a few hours to question each wit- ness. Understandably, counsel may be reluctant to take the time to stop a deposition and call the trial judge for relief. Trial courts are extremely busy and overburdened. Avoidance of this kind of misconduct is essential. If such misconduct should occur, the aggrieved party should recess the deposition and engage in a dialogue with the offending lawyer to obviate the need to call the trial judge. If all else fails and it is necessary to call the trial judge, sanctions may be appropriate against the offending lawyer or party, or against the complaining lawyer or party if the request for court relief is unjustified. See Ch.Ct.R. 37. It should also be noted that discovery abuse some- times is the fault of the questioner, not the law- yer defending the deposition. These admonitions should be read as applying to both sides.
+                                        
+32. See In re Ramunno, Del.Supr., 625 A.2d 248, 250 (1993) (Delaware lawyer held to have violat- ed Rule 3.5 of the Rules of Professional Conduct, and therefore subject to public reprimand and warning for use of profanity similar to that in- volved here and "insulting conduct toward op- posing counsel [found] ... unacceptable by any standard”).
+                                
+                                
+                                        
+Paramount defendants should have been rep- resented at the deposition by a Delaware lawyer or a lawyer admitted pro hac vice. A Delaware lawyer who moves the admission pro hac vice of an out-of-state lawyer is not relieved of responsibility, is required to ap- pear at all court proceedings (except deposi- tions when a lawyer admitted pro hac vice is present), shall certify that the lawyer appear-
+                                        
+33. See Infotechnology, 582 A.2d at 220 ("In Dela- ware there is the fundamental constitutional principle that [the Supreme] Court, alone, has the sole and exclusive responsibility over all mat- ters affecting governance of the Bar.... The Rules are to be enforced by a disciplinary agen- cy, and are not to be subverted as procedural weapons.”).
+                                        
+34. See Hall v. Clifton Precision, E.D.Pa., 150 F.R.D. 525 (1993) (ruling on "coaching,” confer- ences between deposed witnesses and their law- yers, and obstructive tactics):
+                                        
+Depositions are the factual battleground where the vast majority of litigation actually takes place.... Thus, it is particularly impor- tant that this discovery device not be abused. Counsel should never forget that even though the deposition may be taking place far from a real courtroom, with no black-robed overseer peering down upon them, as long as the depo- sition is conducted under the caption of this court and proceeding under the authority of the rules of this court, counsel are operating as officers of this- court. They should comport themselves accordingly; should they be tempt- ed to stray, they should remember that this judge is but a phone call away.
+                                        
+150 F.R.D, at 531.
+                                
+                        
+                        
+                                
+                                        
+fees should follow.
+                                
+                        
+                        
+                                
+                                        
+As noted, this was a deposition of Paramount through one of its directors. Mr. Liedtke was a Paramount witness in every respect. He was not there either as an individual defendant or as a third party wit-
+                                
+                        
+                        
+                                
+                                        
+55
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+56
+                                
+                        
+                        
+                                
+                                        
+ing pro hac vice is reputable and competent, and that the Delaware lawyer is in a position to recommend the out-of-state lawyer.35 Thus, one of the principal purposes of the pro hac vice rules is to assure that, if a Delaware lawyer is not to be present at a deposition, the lawyer admitted pro hac vice will be there. As such, he is an officer of the Delaware Court, subject to control of the Court to ensure the integrity of the proceed-
+                                        
+ing.
+                                        
+Counsel attending the Liedtke deposition on behalf of the Paramount defendants had an obligation to ensure the integrity of that proceeding. The record of the deposition as a whole (JA 5916-6054) demonstrates that, not only Mr. Jamail, but also Mr. Thomas (representing the Paramount defendants), continually interrupted the questioning, en- gaged in colloquies and objections which
+                                        
+sometimes suggested answers to questions,36 and constantly pressed the questioner for time throughout the deposition.37 As to Mr. Jamail’s tactics quoted above, Mr. Thomas passively let matters proceed as they did, and at times even added his own voice to support the behavior of Mr. Jamail. A Dela-
+                                        
+ware lawyer or a lawyer admitted pro hac vice would have been expected to put an end to the misconduct in the Liedtke deposition.
+                                        
+This kind of misconduct is not to be toler- ated in any Delaware court proceeding, in-
+                                        
+35. See, e.g., Ch.Ct.R. 170(b), (d), and (h).
+                                        
+36. Rule 30(d)(1) of the revised Federal Rules of Civil Procedure, which became effective on De- cember 1, 1993, requires objections during depo- sitions to be "stated concisely and in a non- argumentative and non-suggestive manner." See Hall, 150 F.R.D. at 530. See also Rose Hall, Ltd. v. Chase Manhattan Overseas Banking Corp., D.Del., C.A.No. 79-182, Steel, J. (Dec. 12, 1980); Cascella v. GDV, Inc., Del.Ch., C.A. No. 5899, 1981WL15129,Brown,V.C.(Jan.15,1981);In re Asbestos Litig., Del.Super., 492 A.2d 256 (1985); Deutschman v. Beneficial Corp., D.Del., C.A. No. 86-595 MMS, Schwartz, J. (Feb. 20, 1990). The Delaware trial courts and this Court are evaluating the desirability of adopting certain of the new Federal Rules, or modifications there- of, and other possible rule changes.
+                                        
+37. While we do not necessarily endorse every- thing set forth in the Hall case, we share Judge Gawthrop’s view not only of the impropriety of coaching witnesses on and off the record of the
+                                
+                                
+                                        
+eluding depositions taken in other states in which witnesses appear represented by them own counsel other than counsel for a party in the proceeding. Yet, there is no clear mech- anism for this Court to deal with this matter in terms of sanctions or disciplinary remedies at this time in the context of this case. Ne- vertheless, consideration will be given to the following issues for the future: (a) whether or not it is appropriate and fair to take into account the behavior of Mr. Jamail in this case in the event application is made by him in the future to appear pro hac vice in any Delaware proceeding;38 and (b) what rules or standards should be adopted to deal effec- tively with misconduct by out-of-state law- yers in depositions in proceedings pending in Delaware courts.
+                                        
+As to (a), this Court will welcome a volun- tary appearance by Mr. Jamail if a request is received from him by the Clerk of this Court within thirty days of the date of this Opinion and Addendum. The purpose of such volun- tary appearance will be to explain the ques- tioned conduct and to show cause why such conduct should not be considered as a bar to any future appearance by Mr. Jamail in a Delaware proceeding. As to (b), this Court and the trial courts of this State will under-
+                                        
+take to strengthen the existing mechanisms for dealing with the type of misconduct re-
+                                        
+deposition (see supra note 34), but also the im- propriety of objections and colloquy which "tend to disrupt the question-and-answer rhythm of a deposition and obstruct the witness’s testimony." See 150 F.R.D. at 530. To be sure, there are also occasions when the questioner is abusive or oth- erwise acts improperly and should be sanctioned. See supra note 31. Although the questioning in the Liedtke deposition could have proceeded more crisply, this was not a case where it was the questioner who abused the process.
+                                        
+38.The Court does not condone the conduct of Mr. Thomas in this deposition. Although the Court does not view his conduct with the gravity and revulsion with which it views Mr. Jamail's conduct, in the future the Court expects that counsel in Mr. Thomas's position will have been admitted pro hac vice before participating in a deposition. As an officer of the Delaware Court, counsel admitted pro hac vice are now clearly on notice that they are expected to put an end to conduct such as that perpetrated by Mr. Jamail on this record.
+                                
+                        
+                
+                
+                                                 
+                                
+                                        
+ferred to in this Addendum and the practices relating to admissions pro hac vice.
+                                        
+David F. DAWSON, Defendant Below, Appellant,
+                                        
+v.
+                                        
+STATE of Delaware, Plaintiff Below, Appellee.
+                                        
+Supreme Court of Delaware.
+                                        
+Submitted: Jan. 25, 1994. Decided: Feb. 23, 1994.
+                                
+                        
+                        
+                                
+                                        
+57

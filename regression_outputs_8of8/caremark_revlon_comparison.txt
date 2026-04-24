@@ -1,0 +1,142 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight', 'sale_of_control']
+NAMED SOURCES: ['caremark.txt', 'revlon.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- revlon.txt (case_score=0.7455, role=foundation, line=sale_of_control) *
+- caremark.txt (case_score=0.7377, role=foundation, line=oversight) *
+- rural metro.txt (case_score=0.6455, role=related_case, line=sale_of_control)
+- marchand.txt (case_score=0.5789, role=modern_application, line=oversight)
+- metro.txt (case_score=0.5785, role=modern_application, line=sale_of_control)
+- barkan.txt (case_score=0.5771, role=related_case, line=unknown)
+- qvc.txt (case_score=0.5487, role=supreme_refinement, line=sale_of_control)
+- stone.txt (case_score=0.5301, role=supreme_refinement, line=oversight)
+
+DOCTRINE BUCKETS:
+- Sale of Control:
+    revlon.txt (foundation, 0.7455)
+    qvc.txt (supreme_refinement, 0.5487)
+    metro.txt (modern_application, 0.5785)
+    rural metro.txt (related_case, 0.6455)
+- Oversight:
+    caremark.txt (foundation, 0.7377)
+    stone.txt (supreme_refinement, 0.5301)
+    marchand.txt (modern_application, 0.5789)
+- Unknown:
+    barkan.txt (related_case, 0.5771)
+- Stockholder Vote Cleansing:
+    corwin.txt (supreme_refinement, 0.5148)
+- Takeover Defense:
+    airgas.txt (modern_application, 0.5118)
+
+DOCTRINE LEADERS:
+- Sale of Control:
+    revlon.txt (role=foundation, case_score=0.7455)
+    qvc.txt (role=supreme_refinement, case_score=0.5487)
+    metro.txt (role=modern_application, case_score=0.5785)
+- Oversight:
+    caremark.txt (role=foundation, case_score=0.7377)
+    stone.txt (role=supreme_refinement, case_score=0.5301)
+    marchand.txt (role=modern_application, case_score=0.5789)
+- Unknown:
+    barkan.txt (role=related_case, case_score=0.5771)
+- Stockholder Vote Cleansing:
+    corwin.txt (role=supreme_refinement, case_score=0.5148)
+- Takeover Defense:
+    airgas.txt (role=modern_application, case_score=0.5118)
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Because the complaint pleads particularized facts that raise a reasonable doubt as to Rankin’s indepen dence, we reverse the Court of Chancery’s dismissal of the plaintiff’s claims
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Caremark', 'quote': 'That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of outside exchange patient to for the referral of a a counsel, existing get review contracts and facility preor Caremark or service the approval any of advanced new contract scription drugs of or marketed distributed forms.', 'source': 'caremark.txt'}
+supreme_refinement -> {'case': 'QVC', 'quote': '[that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.', 'source': 'qvc.txt'}
+modern_application -> {'case': 'Marchand', 'quote': 'having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy their duty of loyalty, directors must make a good faith effort to implement an oversight system and then monitor it.', 'source': 'marchand.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> that undertakes that pliance report must officers semi
+supreme_refinement -> that action cannot paramount defendants have inter withstand
+modern_application -> good faith effort to implement an oversight system
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Caremark: "that undertakes that pliance report must officers semi"
+- QVC: "that action cannot paramount defendants have inter withstand"
+- Marchand: "good faith effort to implement an oversight system"
+
+DEBUG RAW QUOTES FOR caremark.txt:
+  - That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a 
+DEBUG PICKED QUOTE FOR caremark.txt: That undertakes that it pliance report must officers who semi-anemployees, agents pay any its not and and nually Compliance to the and Ethics Comin compensation party form of to a third and, with mittee the assistance of
+
+DEBUG RAW QUOTES FOR stone.txt:
+  - The failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+DEBUG PICKED QUOTE FOR stone.txt: The failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of the duty of loyalty.
+
+DEBUG RAW QUOTES FOR marchand.txt:
+  - 30 for a plaintiff to prevail on a Caremark claim, the plaintiff must show that a fiduciary acted in bad faith—“the state of mind traditionally used to define the mindset of a disl
+  - having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring t
+  - As with any other disinterested business judgment, directors have great discretion to design context - and industry -specific approac hes tailored to their companies’ businesses an
+  - 103 But Caremark does have a bottom -line requirement that is important: the board must make a good faith effort—i.e., try—to
+  - Because the complaint pleads particularized facts that raise a reasonable doubt as to Rankin’s indepen dence, we reverse the Court of Chancery’s dismissal of the plaintiff’s claims
+DEBUG PICKED QUOTE FOR marchand.txt: having implemented such a system or controls, consciously fail[] to monitor or oversee its operations thus disabling themselves from being informed of risks or problems requiring their attention.”102 In short, to satisfy
+
+DEBUG RAW QUOTES FOR revlon.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR revlon.txt: 
+
+DEBUG RAW QUOTES FOR qvc.txt:
+  - The decisions of this Court following Revlon reinforced the applicability of en- hanced scrutiny and the directors’ obligation to seek the best value reasonably available for the s
+  - Although Macmillan and Barkan are clear in holding that a change of control imposes on directors the obligation to obtain the best value reasonably available to the stockhold insub
+  - [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct
+DEBUG PICKED QUOTE FOR qvc.txt: [that] action cannot ers, the Paramount defendants have inter- withstand the enhanced scrutiny which Uno- preted our decision in Time-Warner as re- cal requires of director conduct.” Id.
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatab
+DEBUG PICKED QUOTE FOR metro.txt: Enhanced scrutiny permits a reviewing court to address ineq- “is not a license for law-trained courts to uitable action even when directors may second-guess reasonable, but debatable, have subjectively believed that they
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Oversight establishes the governing framework for one fiduciary setting, whereas Sale of Control governs a distinct one.
+
+Key Distinction:
+Caremark addresses the board's obligation to monitor risk, whereas Revlon addresses the board's obligation to maximize value in a sale setting.
+
+Rule Comparison:
+Oversight (Caremark) governs the board's obligation to implement and monitor internal reporting systems in good faith. Sale of Control (Revlon) governs the board's obligation to secure the best value reasonably available once a sale or change of control is underway. Taken together, Oversight addresses internal monitoring failure, whereas Sale of Control addresses transactional conduct directed toward value maximization.
+
+Rule:
+A board breaches its duty of loyalty under Caremark where there is an utter failure to attempt to assure a reasonable reporting or information system or a conscious failure to monitor such a system, thereby failing to act in good faith as required by Stone’s duty-of-loyalty standard; this duty of good faith requires a good faith effort to implement and oversee an effective compliance and reporting system. In contrast, under Revlon, when a sale or change of control is imminent, the board’s fiduciary duty shifts to maximizing shareholder value by acting reasonably to secure the best value reasonably available.
+
+Analysis:
+This matters because oversight doctrine governs the board's obligation to implement and monitor internal reporting systems, whereas sale-of-control doctrine governs the obligation to secure the best value reasonably available in a change-of-control setting. The significance is that the doctrines address different fiduciary problems and evaluate different forms of board conduct. As a result, the governing standard depends on whether the alleged failure concerns internal monitoring or transactional value maximization.
+
+Confidence:
+High
+

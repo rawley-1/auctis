@@ -1,0 +1,113 @@
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['demand_futility']
+NAMED SOURCES: ['aronson.txt', 'rales.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- rales.txt (case_score=0.4532, role=refinement, line=demand_futility) *
+- aronson.txt (case_score=0.4372, role=foundation, line=demand_futility) *
+- metro.txt (case_score=0.3400, role=modern_application, line=sale_of_control)
+- kahn.txt (case_score=0.3396, role=foundation, line=controller_transactions)
+- paramount.txt (case_score=0.3364, role=related_case, line=unknown)
+- marchand.txt (case_score=0.3331, role=modern_application, line=oversight)
+- unitrin.txt (case_score=0.3296, role=supreme_refinement, line=takeover_defense)
+
+DOCTRINE BUCKETS:
+- Demand Futility:
+    aronson.txt (foundation, 0.4372)
+    rales.txt (refinement, 0.4532)
+- Sale of Control:
+    metro.txt (modern_application, 0.3400)
+- Controller Transactions:
+    kahn.txt (foundation, 0.3396)
+- Unknown:
+    paramount.txt (related_case, 0.3364)
+- Oversight:
+    marchand.txt (modern_application, 0.3331)
+- Takeover Defense:
+    unitrin.txt (supreme_refinement, 0.3296)
+
+DOCTRINE LEADERS:
+- Demand Futility:
+    aronson.txt (role=foundation, case_score=0.4372)
+    rales.txt (role=refinement, case_score=0.4532)
+- Sale of Control:
+    metro.txt (role=modern_application, case_score=0.3400)
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=0.3396)
+- Unknown:
+    paramount.txt (role=related_case, case_score=0.3364)
+- Oversight:
+    marchand.txt (role=modern_application, case_score=0.3331)
+- Takeover Defense:
+    unitrin.txt (role=supreme_refinement, case_score=0.3296)
+
+DEBUG RAW QUOTES FOR aronson.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR aronson.txt: 
+
+DEBUG RAW QUOTES FOR kahn.txt:
+  - is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+  - ss Weinberger ing entire fairness will not shift.
+  - In of this Alcatel’s Entire Burden Fairness ment, proceeding upon Kahn relies another Not to Did Kahn Shift Chancery wherein the Court of has been previously presented with factual
+DEBUG PICKED QUOTE FOR kahn.txt: is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.
+
+DEBUG RAW QUOTES FOR unitrin.txt:
+  - J.Corp.Law fairness 792 The entire Supr., entire 473 A.2d 812-17 The by this requires judiand has been construed exacting test is codified standard is and fairness 144(a)(3).
+DEBUG PICKED QUOTE FOR unitrin.txt: J.Corp.Law fairness 792 The entire Supr., entire 473 A.2d 812-17 The by this requires judiand has been construed exacting test is codified standard is and fairness 144(a)(3).
+
+DEBUG RAW QUOTES FOR rales.txt:
+  - NONE
+DEBUG PICKED QUOTE FOR rales.txt: 
+
+DEBUG RAW QUOTES FOR metro.txt:
+  - 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+  - Ha- the entire fairness test to actions taken by zelett Strip-Casting Corp., 28 A.3d 442, directors to resist a hostile takeover.
+  - low directors to conclude that, as a pracWhen the plain language of a stat- tical matter, there is no risk that, if they ute produces a rational result, a court’s act in good faith
+DEBUG PICKED QUOTE FOR metro.txt: 82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.
+DEBUG ROLE QUOTE MAP:
+foundation -> {'case': 'Kahn', 'quote': 'is in this views” found application of the entire fairness exclusive opinions Weinberger in Court’s and Rosen- merger transactions standard to interested Weinberger, In blatt.', 'source': 'kahn.txt'}
+supreme_refinement -> {'case': 'Unitrin', 'quote': 'J.Corp.Law fairness 792 The entire Supr., entire 473 A.2d 812-17 The by this requires judiand has been construed exacting test is codified standard is and fairness 144(a)(3).', 'source': 'unitrin.txt'}
+modern_application -> {'case': 'Metro', 'quote': '82 ing: the business judgment rule, enhanced apply either the business judgment rule or scrutiny, and entire fairness.” Reis v.', 'source': 'metro.txt'}
+DEBUG NORMALIZED QUOTE FRAGMENTS:
+foundation -> this views found application entire fairness exclusive opinions
+supreme_refinement -> corp fairness entire supr entire this requires judiand
+modern_application -> business judgment rule enhanced apply either business judgment
+DEBUG REQUIRED QUOTE FRAGMENTS:
+- Kahn: "this views found application entire fairness exclusive opinions"
+- Unitrin: "corp fairness entire supr entire this requires judiand"
+- Metro: "business judgment rule enhanced apply either business judgment"
+🚀 ABOUT TO CALL MODEL
+✅ MODEL RETURNED
+USING NEW VALIDATE_RULE_COMPARISON_V2
+VALIDATION SCORE: 82/100
+VALIDATION ERRORS:
+- Key Distinction must use 'whereas'
+- Rule Comparison must be exactly three sentences
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+The answer depends on the governing doctrinal standard.
+
+Key Distinction:
+The earlier doctrine states the baseline rule, whereas the later doctrine refines its application.
+
+Rule Comparison:
+Caremark establishes that oversight liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists. Marchand clarifies, in line with Stone's rule that failure to act in good faith is a breach of the duty of loyalty, that directors must make a good faith effort to implement an oversight system and monitor it. Taken together, Caremark defines liability at the point of an utter failure to attempt to assure a reasonable reporting or information system exists, whereas Marchand requires good-faith monitoring once an oversight system is implemented.
+
+Rule:
+Directors breach the duty of loyalty where their conduct constitutes a failure to act in good faith.
+
+Analysis:
+This matters because Delaware doctrine distinguishes baseline fiduciary obligations from conduct that crosses into breach. The significance is that directors act inconsistently with the duty of loyalty where their conduct constitutes a failure to act in good faith. As a result, breach arises only when inaction or conscious disregard moves beyond imperfection and into disloyal conduct.
+
+Confidence:
+High
+

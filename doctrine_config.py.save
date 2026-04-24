@@ -1,0 +1,138 @@
+from typing import Dict, List
+
+CASE_ROLES: Dict[str, str] = {
+    "caremark.txt": "foundation",
+    "stone.txt": "supreme_refinement",
+    "marchand.txt": "modern_application",
+    "disney.txt": "related_case",
+    "in re caremark.txt": "related_case",
+    "aronson.txt": "foundation",
+    "rales.txt": "refinement",
+    "zuckerberg.txt": "supreme_refinement",
+    "malone.txt": "foundation",
+    "unocal.txt": "foundation",
+    "unitrin.txt": "supreme_refinement",
+    "airgas.txt": "modern_application",
+    "revlon.txt": "foundation",
+    "qvc.txt": "supreme_refinement",
+    "lyondell.txt": "modern_application",
+    "rural metro.txt": "related_case",
+    "metro.txt": "modern_application",
+    "kahn.txt": "foundation",
+    "mfw.txt": "supreme_refinement",
+    "tesla.txt": "modern_application",
+    "corwin.txt": "supreme_refinement",
+}
+
+ROLE_PRIORITY = {
+    "foundation": 1,
+    "supreme_refinement": 2,
+    "refinement": 3,
+    "modern_application": 4,
+    "related_case": 5,
+}
+
+CASE_ALIASES: Dict[str, str] = {
+    "caremark": "caremark.txt",
+    "stone": "stone.txt",
+    "marchand": "marchand.txt",
+    "disney": "disney.txt",
+    "in re caremark": "in re caremark.txt",
+    "aronson": "aronson.txt",
+    "rales": "rales.txt",
+    "zuckerberg": "zuckerberg.txt",
+    "malone": "malone.txt",
+    "unocal": "unocal.txt",
+    "unitrin": "unitrin.txt",
+    "airgas": "airgas.txt",
+    "revlon": "revlon.txt",
+    "qvc": "qvc.txt",
+    "lyondell": "lyondell.txt",
+    "rural metro": "rural metro.txt",
+    "metro": "metro.txt",
+    "kahn": "kahn.txt",
+    "mfw": "mfw.txt",
+    "tesla": "tesla.txt",
+    "corwin": "corwin.txt",
+}
+
+DOCTRINE_LABELS = {
+    "oversight": "Oversight",
+    "takeover_defense": "Takeover Defense",
+    "sale_of_control": "Sale of Control",
+    "controller_transactions": "Controller Transactions",
+    "demand_futility": "Demand Futility",
+    "stockholder_vote_cleansing": "Stockholder Vote Cleansing",
+    "disclosure_loyalty": "Disclosure Loyalty",
+}
+
+DOCTRINE_KEYWORDS: Dict[str, List[str]] = {
+    "oversight": [
+        "caremark",
+        "stone",
+        "marchand",
+        "oversight",
+        "red flags",
+        "mission critical",
+        "mission-critical",
+        "monitor",
+        "reporting system",
+    ],
+    "takeover_defense": [
+        "unocal",
+        "unitrin",
+        "airgas",
+        "poison pill",
+        "hostile bid",
+        "coercive",
+        "preclusive",
+        "range of reasonableness",
+    ],
+    "sale_of_control": [
+        "revlon",
+        "qvc",
+        "sale of control",
+        "change of control",
+        "auction",
+        "best value reasonably available",
+    ],
+    "controller_transactions": [
+        "kahn",
+        "mfw",
+        "controller",
+        "entire fairness",
+        "special committee",
+        "majority of the minority",
+    ],
+    "demand_futility": [
+        "aronson",
+        "rales",
+        "zuckerberg",
+        "demand futility",
+        "reasonable doubt",
+        "impartially consider",
+    ],
+    "stockholder_vote_cleansing": [
+        "corwin",
+        "fully informed",
+        "uncoerced vote",
+        "stockholder vote cleansing",
+    ],
+    "disclosure_loyalty": [
+        "malone",
+        "disclosure",
+        "misleading shareholders",
+    ],
+}
+
+FALLBACK_QUOTES: Dict[str, str] = {
+    "caremark.txt": "Only a sustained or systematic failure of the board to exercise oversight—such as an utter failure to attempt to assure a 
+reasonable information and reporting system exists—will establish the lack of good faith that is a necessary condition to liability.",
+    "stone.txt": "The failure to act in good faith may result in liability because the requirement to act in good faith is a subsidiary element of 
+the duty of loyalty.",
+    "marchand.txt": "Directors must make a good faith effort to implement an oversight system and then monitor it.",
+    "mfw.txt": "Business judgment review applies if the transaction is conditioned from the outset on both special committee approval and a 
+majority-of-the-minority vote.",
+    "corwin.txt": "Business judgment review applies after a fully informed, uncoerced vote of disinterested stockholders in a non-controller 
+transaction.",
+}
