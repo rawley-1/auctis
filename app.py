@@ -1,4 +1,8 @@
 import streamlit as st
+from index_loader import ensure_index_exists
+
+ensure_index_exists()
+
 from ask import run_query
 
 # -------------------------
