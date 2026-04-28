@@ -1,0 +1,24 @@
+﻿CASE: Malone v. Brincat
+COURT: Delaware Supreme Court
+DOCTRINE_LINE: disclosure
+CASE_ROLE: foundation
+
+
+RULE_EXCERPTS:
+Directors must communicate truthfully with stockholders.
+
+
+APPLICATION_EXCERPTS:
+Misleading statements to shareholders can breach fiduciary duties even without a request for shareholder action.
+
+
+FACTS:
+Directors allegedly made misleading public statements about the company.
+
+
+HOLDING:
+Disclosure violations can independently constitute a breach of fiduciary duty.
+
+
+NOTES:
+Key case for standalone disclosure duty.

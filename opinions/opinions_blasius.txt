@@ -1,0 +1,24 @@
+﻿CASE: Blasius Industries v. Atlas
+COURT: Delaware Chancery Court
+DOCTRINE_LINE: shareholder_franchise
+CASE_ROLE: foundation
+
+
+RULE_EXCERPTS:
+Interference with the shareholder franchise requires a compelling justification.
+
+
+APPLICATION_EXCERPTS:
+The board’s action to increase board size and dilute voting power was scrutinized.
+
+
+FACTS:
+Board acted to block shareholder influence over corporate direction.
+
+
+HOLDING:
+Board actions interfering with voting rights are subject to strict review.
+
+
+NOTES:
+Core case protecting shareholder voting rights.

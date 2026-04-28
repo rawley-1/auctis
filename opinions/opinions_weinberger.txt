@@ -1,0 +1,24 @@
+﻿CASE: Weinberger v. UOP
+COURT: Delaware Supreme Court
+DOCTRINE_LINE: entire_fairness
+CASE_ROLE: foundation
+
+
+RULE_EXCERPTS:
+The concept of fairness has two basic aspects: fair dealing and fair price.
+
+
+APPLICATION_EXCERPTS:
+The court evaluated both the negotiation process and the financial terms to determine whether the transaction was entirely fair to minority shareholders.
+
+
+FACTS:
+A parent corporation acquired its subsidiary through a merger, raising concerns about fairness to minority stockholders.
+
+
+HOLDING:
+Entire fairness is the governing standard where fiduciaries stand on both sides of the transaction.
+
+
+NOTES:
+Foundational case defining fair dealing and fair price.

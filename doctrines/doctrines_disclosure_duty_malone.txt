@@ -1,0 +1,26 @@
+﻿DOCTRINE_LINE: disclosure
+DISPLAY_NAME: Disclosure Duty
+CORE_CASES: Malone; Corwin
+CASE_ROLES:
+- Malone: foundation
+- Corwin: cleansing_related
+
+
+RULE:
+Directors have a duty to communicate truthfully with stockholders, and materially misleading disclosures may constitute a breach of fiduciary duty.
+
+
+ANCHOR_PHRASES:
+- duty of disclosure
+- materially misleading
+- communicate truthfully
+- informed vote
+- fiduciary duty
+
+
+APPLICATION:
+Use when stockholder communications are misleading, incomplete, or affect the validity of stockholder votes.
+
+
+RELATED_DOCTRINES:
+- corwin

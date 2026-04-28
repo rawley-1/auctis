@@ -1,0 +1,24 @@
+﻿CASE: Schnell v. Chris-Craft
+COURT: Delaware Supreme Court
+DOCTRINE_LINE: equitable_intervention
+CASE_ROLE: foundation
+
+
+RULE_EXCERPTS:
+Inequitable action does not become permissible simply because it is legally possible.
+
+
+APPLICATION_EXCERPTS:
+The court blocked the board’s manipulation of meeting timing.
+
+
+FACTS:
+Board changed meeting date to disadvantage dissidents.
+
+
+HOLDING:
+Equity intervenes to prevent abuse of corporate machinery.
+
+
+NOTES:
+Classic equity-over-form case.

@@ -1,0 +1,34 @@
+﻿DOCTRINE_LINE: entire_fairness
+DISPLAY_NAME: Entire Fairness
+CORE_CASES: Weinberger; Kahn v. Lynch; MFW
+CASE_ROLES:
+- Weinberger: foundation
+- Kahn v. Lynch: supreme_refinement
+- MFW: procedural_cleansing
+
+
+RULE:
+Entire fairness is Delaware’s most rigorous standard of review and requires fiduciaries to establish both fair dealing and fair price when they stand on both sides of a transaction or are otherwise conflicted.
+
+
+KEY_DISTINCTION:
+Entire fairness examines both the process and the price of a transaction, whereas business judgment review defers to disinterested and independent decision-making.
+
+
+ANCHOR_PHRASES:
+- entire fairness
+- fair dealing
+- fair price
+- stands on both sides
+- controller transaction
+- burden of proof
+
+
+APPLICATION:
+Use when fiduciaries are conflicted, a controller is involved, or independence is compromised, unless procedural protections such as MFW apply.
+
+
+RELATED_DOCTRINES:
+- controller_transactions
+- mfw
+- corwin

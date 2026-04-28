@@ -1,0 +1,24 @@
+﻿DOCTRINE_LINE: equitable_intervention
+DISPLAY_NAME: Schnell Doctrine
+CORE_CASES: Schnell
+CASE_ROLES:
+- Schnell: foundation
+
+
+RULE:
+Inequitable conduct is not permissible simply because it is legally authorized.
+
+
+ANCHOR_PHRASES:
+- inequitable conduct
+- legally possible
+- equity
+- improper purpose
+
+
+APPLICATION:
+Use when technically legal corporate actions are used for inequitable purposes.
+
+
+RELATED_DOCTRINES:
+- shareholder_franchise

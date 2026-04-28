@@ -1,0 +1,24 @@
+﻿CASE: AmerisourceBergen Corp. v. Lebanon County
+COURT: Delaware Supreme Court
+DOCTRINE_LINE: books_and_records
+CASE_ROLE: modern_application
+
+
+RULE_EXCERPTS:
+A stockholder must demonstrate a credible basis to suspect wrongdoing.
+
+
+APPLICATION_EXCERPTS:
+The court allowed inspection based on evidence suggesting potential misconduct.
+
+
+FACTS:
+Stockholder sought records to investigate possible wrongdoing.
+
+
+HOLDING:
+Inspection granted where proper purpose is shown.
+
+
+NOTES:
+Modern §220 standard case.

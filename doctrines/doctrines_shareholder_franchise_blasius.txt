@@ -1,0 +1,24 @@
+﻿DOCTRINE_LINE: shareholder_franchise
+DISPLAY_NAME: Shareholder Franchise / Blasius
+CORE_CASES: Blasius
+CASE_ROLES:
+- Blasius: foundation
+
+
+RULE:
+Board actions taken for the primary purpose of interfering with the shareholder vote require a compelling justification.
+
+
+ANCHOR_PHRASES:
+- shareholder franchise
+- compelling justification
+- interfere with vote
+- entrenchment
+
+
+APPLICATION:
+Use when board actions affect voting rights or elections.
+
+
+RELATED_DOCTRINES:
+- takeover_defense

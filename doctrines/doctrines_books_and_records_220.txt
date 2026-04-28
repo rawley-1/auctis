@@ -1,0 +1,25 @@
+﻿DOCTRINE_LINE: books_and_records
+DISPLAY_NAME: DGCL Section 220
+CORE_CASES: Seinfeld; AmerisourceBergen
+CASE_ROLES:
+- Seinfeld: foundation
+- AmerisourceBergen: modern_application
+
+
+RULE:
+Stockholders may inspect books and records upon showing a proper purpose.
+
+
+ANCHOR_PHRASES:
+- proper purpose
+- books and records
+- inspection demand
+- credible basis
+
+
+APPLICATION:
+Use for pre-suit investigations and shareholder inspection rights.
+
+
+RELATED_DOCTRINES:
+- oversight
