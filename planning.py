@@ -48,6 +48,9 @@ def infer_query_type(question: str) -> str:
 def infer_target_lines(question: str) -> List[str]:
     q = (question or "").lower()
 
+    if "entire fairness" in q:
+        return ["entire_fairness"]
+
     doctrine_term_map: Dict[str, List[str]] = {
         "oversight": [
             "caremark", "stone", "marchand", "oversight",
@@ -205,12 +208,12 @@ def build_query_plan(question: str) -> Dict[str, Any]:
         ),
     }
 
-    # If it is phrased as a comparison and names multiple sources,
-    # treat it as multi-doctrine even if the doctrines collapse into one line.
     if query_type == "comparison" and len(named_sources) >= 2:
         plan["multi_doctrine"] = True
 
-    # Backward compatibility with your existing helper.
+    if query_type == "comparison" and len(plan["target_lines"]) == 1:
+        plan["target_lines"] = plan["target_lines"] * 2
+
     try:
         plan["multi_doctrine"] = plan["multi_doctrine"] or is_multi_doctrine_query(plan)
     except Exception:
