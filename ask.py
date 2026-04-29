@@ -1660,16 +1660,6 @@ def is_nonsense_query(query, retrieved_chunks):
 
     return False
 
-    if is_nonsense_query(query, retrieved_chunks):
-        return {
-        "answer": "I couldn’t identify a Delaware law doctrine or legal issue in your question.",
-        "confidence": "Low",
-        "cases": [],
-        "validation_score": 0,
-        "rejected": True
-    }
-
-
 def run_query(question: str):
     question = (question or "").strip()
 
@@ -1689,6 +1679,29 @@ def run_query(question: str):
 
     budget = get_retrieval_budget(query_plan)
     top_chunks = retrieve(question_for_engine, k=budget["k"], max_per_source=budget["max_per_source"])
+    recognized_doctrine = any(
+        line != "unknown"
+        for line in query_plan.get("target_lines", [])
+    )
+
+    if not recognized_doctrine and is_nonsense_query(question_for_engine, top_chunks):
+        return {
+            "query_plan": query_plan,
+            "cases": [],
+            "answer": "",
+            "sections": {},
+            "validation_score": 0,
+            "validation_errors": ["Query did not map to a recognized Delaware doctrine."],
+            "retrieval_confidence": "low",
+            "retrieval_diagnostics": {
+                "reason": "No recognized Delaware doctrine detected."
+            },
+            "corrected_question": "",
+            "corrections": [],
+            "legal_corrections": [],
+            "rejected": True,
+            "rejection_message": "Auctis could not identify a Delaware corporate law doctrine in that question.",
+        }
     if is_nonsense_query(question_for_engine, top_chunks):
         return {
             "query_plan": query_plan,
@@ -1707,13 +1720,15 @@ def run_query(question: str):
             "rejected": True,
             "rejection_message": "Auctis could not identify a Delaware corporate law doctrine in that question.",
         }
-    if not top_chunks:
+    
+    if not top_chunks and not recognized_doctrine:
         return {
         "query_plan": query_plan,
         "cases": [],
-        "answer": "No relevant Delaware law doctrine found for this query.",
+        "answer": "",
         "validation_score": 0,
         "validation_errors": ["No doctrinal match"],
+        "rejected": True,
     }
 
     case_quotes = extract_case_quotes(
