@@ -151,7 +151,34 @@ def synthesize_rule_from_quotes(
             "Under Malone, "
             f"{foundation_frag}, and {refinement_frag}; accordingly, {modern_frag}."
         )
-
+    
+    if "entire_fairness" in target_set:
+        return (
+            "Entire fairness is Delaware’s most rigorous standard of review and requires fiduciaries to demonstrate "
+            "both fair dealing and fair price where they stand on both sides of a transaction or otherwise face disabling conflicts."
+        )
+    if "disclosure" in target_set or "disclosure_loyalty" in target_set:
+        return (
+            "Under Delaware law, directors have a duty to communicate truthfully with stockholders, and materially "
+            "misleading statements or omissions may constitute a breach of fiduciary duty, particularly where "
+            "stockholder action depends on a fully informed vote."
+        )
+    if "shareholder_franchise" in target_set:
+        return (
+            "Under Blasius, board action taken for the primary purpose of interfering with the stockholder franchise "
+            "requires a compelling justification."
+        )
+    if "equitable_intervention" in target_set:
+        return (
+            "Under Schnell, inequitable conduct does not become permissible simply because it is legally authorized, "
+            "and Delaware courts may restrain corporate action taken for an improper purpose."
+        )
+    if "books_and_records" in target_set:
+        return (
+            "Under DGCL Section 220, a stockholder may inspect books and records upon demonstrating a proper purpose "
+            "reasonably related to stockholder status, supported by a credible basis where wrongdoing is alleged."
+        )
+    
     return "The governing rule depends on the doctrinal framework identified by the question."
 
 

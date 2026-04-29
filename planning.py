@@ -50,90 +50,120 @@ def infer_target_lines(question: str) -> List[str]:
 
     doctrine_term_map: Dict[str, List[str]] = {
         "oversight": [
-            "caremark",
-            "stone",
-            "marchand",
-            "oversight",
-            "red flags",
-            "mission critical",
-            "mission-critical",
-            "monitor",
-            "reporting system",
+            "caremark", "stone", "marchand", "oversight",
+            "red flags", "mission critical", "mission-critical",
+            "monitor", "reporting system",
         ],
         "takeover_defense": [
-            "unocal",
-            "unitrin",
-            "airgas",
-            "defensive measures",
-            "poison pill",
-            "hostile bid",
-            "coercive",
-            "preclusive",
+            "unocal", "unitrin", "airgas",
+            "defensive measures", "poison pill",
+            "hostile bid", "coercive", "preclusive",
             "range of reasonableness",
         ],
         "sale_of_control": [
-            "revlon",
-            "qvc",
-            "sale of control",
-            "change of control",
-            "best value reasonably available",
-            "auction",
+            "revlon", "qvc",
+            "sale of control", "change of control",
+            "best value reasonably available", "auction",
         ],
         "controller_transactions": [
-            "kahn",
-            "mfw",
-            "controller",
-            "controlling stockholder",
-            "entire fairness",
-            "majority of the minority",
-            "special committee",
+            "kahn", "mfw",
+            "controller", "controlling stockholder",
+            "majority of the minority", "special committee",
         ],
         "demand_futility": [
-            "aronson",
-            "rales",
-            "zuckerberg",
-            "demand futility",
-            "reasonable doubt",
+            "aronson", "rales", "zuckerberg",
+            "demand futility", "reasonable doubt",
             "impartially consider",
         ],
         "stockholder_vote_cleansing": [
-            "corwin",
-            "fully informed",
-            "uncoerced vote",
-            "stockholder vote cleansing",
+            "corwin", "fully informed",
+            "uncoerced vote", "stockholder vote cleansing",
         ],
-        "disclosure_loyalty": [
-            "malone",
-            "disclosure",
-            "misleading shareholders",
+
+        # 🔥 NEW DOCTRINES
+
+        "entire_fairness": [
+            "entire fairness", "fair dealing", "fair price",
+            "weinberger", "kahn v lynch", "lynch",
+            "self dealing", "self-dealing",
+            "conflicted transaction",
+        ],
+
+        "disclosure": [
+            "malone", "disclosure", "misleading",
+            "duty to disclose", "material omission",
+            "materially misleading", "informed vote",
+        ],
+
+        "shareholder_franchise": [
+            "blasius", "shareholder franchise",
+            "stockholder franchise", "voting rights",
+            "compelling justification", "interfere with vote",
+        ],
+
+        "equitable_intervention": [
+            "schnell", "inequitable", "equity",
+            "legally possible", "improper purpose",
+            "corporate machinery",
+        ],
+
+        "books_and_records": [
+            "section 220", "dgcl 220", "220",
+            "books and records", "inspection demand",
+            "proper purpose", "credible basis",
         ],
     }
 
     matches: List[Tuple[str, int]] = []
+
     for line, terms in doctrine_term_map.items():
         score = sum(1 for term in terms if term in q)
         if score > 0:
             matches.append((line, score))
 
+    # 🔥 SMART FALLBACKS
+    if "fairness" in q:
+        matches.append(("entire_fairness", 1))
+
+    if "vote" in q and "corwin" in q:
+        matches.append(("stockholder_vote_cleansing", 1))
+
+    if "books" in q and "records" in q:
+        matches.append(("books_and_records", 1))
+
     if not matches:
         return ["unknown"]
 
+    # sort by score
     matches.sort(key=lambda x: x[1], reverse=True)
-    top_score = matches[0][1]
-    selected = [line for line, score in matches if score >= max(1, top_score - 1)]
 
+    top_score = matches[0][1]
+
+    # keep near-top matches
+    selected = [
+        line for line, score in matches
+        if score >= max(1, top_score - 1)
+    ]
+
+    # 🔥 IMPORTANT: DOCTRINE PRIORITY (prevents bad collisions)
     priority_order = [
+        "entire_fairness",
+        "controller_transactions",
         "oversight",
         "takeover_defense",
         "sale_of_control",
-        "controller_transactions",
-        "demand_futility",
+        "shareholder_franchise",
+        "equitable_intervention",
+        "books_and_records",
+        "disclosure",
         "stockholder_vote_cleansing",
-        "disclosure_loyalty",
+        "demand_futility",
     ]
 
-    return sorted(set(selected), key=lambda x: priority_order.index(x))
+    # preserve priority ordering
+    ordered = sorted(set(selected), key=lambda x: priority_order.index(x))
 
+    return ordered
 
 def infer_named_sources(question: str) -> List[str]:
     q = (question or "").lower()
@@ -147,13 +177,45 @@ def is_multi_doctrine_query(query_plan: Dict[str, Any]) -> bool:
 
 
 def build_query_plan(question: str) -> Dict[str, Any]:
+    q = (question or "").strip()
+
+    query_type = infer_query_type(q)
+    target_lines = infer_target_lines(q)
+    named_sources = infer_named_sources(q)
+
+    real_target_lines = [line for line in target_lines if line != "unknown"]
+
     plan = {
-        "question": question,
-        "query_type": infer_query_type(question),
-        "target_lines": infer_target_lines(question),
-        "named_sources": infer_named_sources(question),
+        "question": q,
+        "query_type": query_type,
+        "target_lines": target_lines,
+        "named_sources": named_sources,
+        "recognized_doctrine": bool(real_target_lines),
+        "primary_doctrine": real_target_lines[0] if real_target_lines else "unknown",
+        "multi_doctrine": len(real_target_lines) > 1,
+        "new_doctrine_enabled": any(
+            line in {
+                "entire_fairness",
+                "disclosure",
+                "shareholder_franchise",
+                "equitable_intervention",
+                "books_and_records",
+            }
+            for line in real_target_lines
+        ),
     }
-    plan["multi_doctrine"] = is_multi_doctrine_query(plan)
+
+    # If it is phrased as a comparison and names multiple sources,
+    # treat it as multi-doctrine even if the doctrines collapse into one line.
+    if query_type == "comparison" and len(named_sources) >= 2:
+        plan["multi_doctrine"] = True
+
+    # Backward compatibility with your existing helper.
+    try:
+        plan["multi_doctrine"] = plan["multi_doctrine"] or is_multi_doctrine_query(plan)
+    except Exception:
+        pass
+
     return plan
 
 

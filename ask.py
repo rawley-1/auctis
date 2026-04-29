@@ -140,6 +140,7 @@ def get_retrieval_budget(query_plan: Dict[str, Any]) -> Dict[str, int]:
     return {"k": 12, "max_per_source": 4}
 
 
+
 def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[str, Any]]:
     q_emb = embed_text(question)
     query_plan = build_query_plan_cached(question)
@@ -1647,6 +1648,27 @@ def assess_retrieval_confidence(
 
     return status, diagnostics
 
+def is_nonsense_query(query, retrieved_chunks):
+    if not query or len(query.strip()) < 5:
+        return True
+
+    # if nothing meaningful retrieved
+    max_score = max([c.get("score", 0) for c in retrieved_chunks], default=0)
+
+    if max_score < 0.75:
+     return True
+
+    return False
+
+    if is_nonsense_query(query, retrieved_chunks):
+        return {
+        "answer": "I couldn’t identify a Delaware law doctrine or legal issue in your question.",
+        "confidence": "Low",
+        "cases": [],
+        "validation_score": 0,
+        "rejected": True
+    }
+
 
 def run_query(question: str):
     question = (question or "").strip()
@@ -1667,6 +1689,24 @@ def run_query(question: str):
 
     budget = get_retrieval_budget(query_plan)
     top_chunks = retrieve(question_for_engine, k=budget["k"], max_per_source=budget["max_per_source"])
+    if is_nonsense_query(question_for_engine, top_chunks):
+        return {
+            "query_plan": query_plan,
+            "cases": [],
+            "answer": "",
+            "sections": {},
+            "validation_score": 0,
+            "validation_errors": ["Query did not map to a recognized Delaware doctrine."],
+            "retrieval_confidence": "low",
+            "retrieval_diagnostics": {
+                "reason": "No recognized Delaware doctrine detected."
+            },
+            "corrected_question": "",
+            "corrections": [],
+            "legal_corrections": [],
+            "rejected": True,
+            "rejection_message": "Auctis could not identify a Delaware corporate law doctrine in that question.",
+        }
     if not top_chunks:
         return {
         "query_plan": query_plan,
