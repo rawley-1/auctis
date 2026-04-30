@@ -1702,24 +1702,6 @@ def run_query(question: str):
             "rejected": True,
             "rejection_message": "Auctis could not identify a Delaware corporate law doctrine in that question.",
         }
-    if is_nonsense_query(question_for_engine, top_chunks):
-        return {
-            "query_plan": query_plan,
-            "cases": [],
-            "answer": "",
-            "sections": {},
-            "validation_score": 0,
-            "validation_errors": ["Query did not map to a recognized Delaware doctrine."],
-            "retrieval_confidence": "low",
-            "retrieval_diagnostics": {
-                "reason": "No recognized Delaware doctrine detected."
-            },
-            "corrected_question": "",
-            "corrections": [],
-            "legal_corrections": [],
-            "rejected": True,
-            "rejection_message": "Auctis could not identify a Delaware corporate law doctrine in that question.",
-        }
     
     if not top_chunks and not recognized_doctrine:
         return {
