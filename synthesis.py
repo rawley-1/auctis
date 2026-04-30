@@ -569,5 +569,12 @@ def synthesize_structured_doctrine_section(doctrine_line: str) -> str:
             f"It also recognizes that {refinement}. "
             f"Accordingly, {modern}."
         )
+      
+    if doctrine_line == "entire_fairness":
+     return (
+        "Entire fairness is Delaware’s most exacting standard of review and requires fiduciaries "
+        "to demonstrate both fair dealing and fair price when they stand on both sides of a transaction "
+        "or otherwise operate under a disabling conflict."
+    )
 
     return f"{label} doctrine supplies the governing doctrinal framework for this category of conduct."

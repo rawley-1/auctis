@@ -329,13 +329,11 @@ def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[s
             score *= 1.25
 
         if doctrine_line in target_lines:
-            score *= 1.20
-        elif multi_doctrine and doctrine_line != "unknown":
-            score *= 1.02
+            score *= 1.45
         elif doctrine_line == "unknown":
-            score *= 0.95
-        else:
             score *= 0.85
+        else:
+         score *= 0.70
 
         if role == "foundation":
             score *= 1.05
@@ -360,7 +358,13 @@ def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[s
         enriched["doctrine_line"] = doctrine_line
         enriched["role"] = role
         scored.append(enriched)
-
+        
+    print("TARGET_LINES:", target_lines)
+    print("TOP ENTIRE FAIRNESS CHUNKS:", [
+    (c.get("source"), c.get("doctrine_line"), round(c.get("score", 0), 4))
+    for c in scored
+    if c.get("doctrine_line") == "entire_fairness"
+][:10])
     scored.sort(key=lambda x: x["score"], reverse=True)
 
     selected: List[Dict[str, Any]] = []
