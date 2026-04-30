@@ -118,7 +118,6 @@ if not st.session_state["show_demo"]:
                 unsafe_allow_html=True,
             )
 
-
 # =========================
 # DEMO PAGE
 # =========================
@@ -133,23 +132,25 @@ if st.session_state["show_demo"]:
         "Court-ready Delaware law reasoning. Turn case law into governing rules, analysis, and comparisons in seconds."
     )
 
-    question = st.text_area(
+    user_input = st.text_area(
         "Ask a Delaware law question",
-        value=st.session_state.get("question", ""),
         height=140,
         placeholder="Compare Caremark and Marchand",
+        key="input_box",
     )
 
-    run_clicked = st.button("Run Analysis", type="primary")
-
-    if run_clicked:
-        if not question or not question.strip():
+    if st.button("Run Analysis", type="primary"):
+        if not user_input or not user_input.strip():
             st.warning("Please enter a question.")
         else:
             with st.spinner("Reasoning through doctrine..."):
-                result = run_query(question)
+                result = run_query(user_input)
+
                 st.session_state["last_result"] = result
-                st.session_state["question"] = question
+                st.session_state["last_question"] = user_input
+
+                # clear input after run (optional but recommended)
+                st.session_state["input_box"] = ""
 
     result = st.session_state.get("last_result")
 
