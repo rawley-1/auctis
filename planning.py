@@ -211,8 +211,8 @@ def build_query_plan(question: str) -> Dict[str, Any]:
     if query_type == "comparison" and len(named_sources) >= 2:
         plan["multi_doctrine"] = True
 
-    if query_type == "comparison" and len(plan["target_lines"]) == 1:
-        plan["target_lines"] = plan["target_lines"] * 2
+    if query_type == "comparison" and len(named_sources) >= 2:
+        plan["multi_doctrine"] = False
 
     try:
         plan["multi_doctrine"] = plan["multi_doctrine"] or is_multi_doctrine_query(plan)
