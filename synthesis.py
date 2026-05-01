@@ -1114,14 +1114,14 @@ def synthesize_opinion_answer(
     primary_line = target_lines[0] if target_lines else ""
     controlling_case = CONTROLLING_CASE_BY_DOCTRINE.get(primary_line)
 
-    # 1. Lead sentence.
+        # 1. Delaware-style lead sentence.
     if query_type == "comparison" and key_distinction:
         parts.append(
-            f"The distinction between the governing standards is as follows: {key_distinction}."
+            f"Delaware law draws the relevant distinction this way: {key_distinction}."
         )
     elif controlling_case and rule:
         parts.append(
-            f"Under {controlling_case}, {rule[0].lower() + rule[1:]}."
+            f"The governing standard comes from {controlling_case}: {rule[0].lower() + rule[1:]}."
         )
         rule_inserted = True
     elif short_answer:
@@ -1138,11 +1138,11 @@ def synthesize_opinion_answer(
             if sentence:
                 parts.append(sentence)
 
-    # 3. Synthesis, without repeating already-inserted rule.
+        # 3. Synthesis, without repeating already-inserted rule.
     if query_type == "comparison" and rule_comparison:
-        parts.append(f"Taken together, {rule_comparison}.")
+        parts.append(f"Those authorities fit together in a settled doctrinal sequence: {rule_comparison}.")
     elif rule and not rule_inserted:
-        parts.append(f"Under Delaware law, {rule}.")
+        parts.append(f"The rule is therefore straightforward: {rule}.")
 
     # 4. Fact-sensitive application / conclusion.
     fact_application = build_fact_sensitive_application(question, target_lines)
@@ -1172,7 +1172,7 @@ def synthesize_opinion_answer(
             nonduplicative_analysis.append(sentence)
 
         if nonduplicative_analysis:
-            parts.append(f"Accordingly, {nonduplicative_analysis[-1]}.")
+            parts.append(f"The result follows from the doctrine: {nonduplicative_analysis[-1]}.")
 
     opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
