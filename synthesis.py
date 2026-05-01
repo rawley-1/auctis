@@ -665,8 +665,8 @@ def synthesize_opinion_answer(
 ) -> str:
     """
     Delaware litigation / Chancery-style opinion paragraph.
-    Deterministic. Auto-selects the best clean retrieved quotes from role_quote_map,
-    rejects OCR garbage, orders quotes by doctrinal role, and avoids duplicating rule text.
+    Deterministic. Uses controlling-case lead, clean retrieved quote anchors,
+    static fallback anchors, and avoids duplicate rule/application language.
     """
 
     import re
@@ -711,13 +711,6 @@ def synthesize_opinion_answer(
             "supreme_refinement": "refines that foundation",
             "refinement": "further refines the standard",
             "modern_application": "applies the doctrine in modern form",
-        }
-
-        ROLE_WEIGHT = {
-            "foundation": 4,
-            "supreme_refinement": 5,
-            "refinement": 3,
-            "modern_application": 4,
         }
 
         ROLE_PRIORITY = {
@@ -775,6 +768,38 @@ def synthesize_opinion_answer(
             "exhad",
         ]
 
+        PINPOINT_ANCHORS = [
+            "utter failure to attempt to assure",
+            "failure to act in good faith",
+            "good faith effort to implement",
+            "reasonable grounds for believing",
+            "threat to corporate policy and effectiveness",
+            "coercive",
+            "preclusive",
+            "range of reasonableness",
+            "best value reasonably available",
+            "change of control",
+            "special committee",
+            "majority of the minority",
+            "fully informed",
+            "uncoerced",
+            "reasonable doubt",
+            "impartially consider",
+            "director-by-director",
+            "fair dealing",
+            "fair price",
+            "compelling justification",
+            "proper purpose",
+            "credible basis",
+        ]
+
+        ROLE_WEIGHT = {
+            "foundation": 4,
+            "supreme_refinement": 5,
+            "refinement": 3,
+            "modern_application": 4,
+        }
+
         def quote_quality_score(quote: str, role: str) -> int:
             q = clean(quote)
             q_l = q.lower()
@@ -794,14 +819,12 @@ def synthesize_opinion_answer(
                 1
                 for w in words
                 if len(w) <= 2
-                and w.lower() not in {
-                    "or", "to", "of", "in", "is", "an", "a", "by", "as", "at", "it"
-                }
+                and w.lower()
+                not in {"or", "to", "of", "in", "is", "an", "a", "by", "as", "at", "it"}
             )
             if weird_count >= 5:
                 return -100
 
-            # Reject obvious OCR / broken capitalization patterns.
             if re.search(r"[A-Z][a-z]+ [A-Z][a-z]+ [a-z]{1,3} of the [A-Z][a-z]+", q):
                 return -100
 
@@ -812,8 +835,10 @@ def synthesize_opinion_answer(
             if bad_caps > len(words) * 0.6:
                 return -100
 
-            # Require at least some legal-rule grammar.
-            if not any(v in q_l for v in [" must ", " is ", " are ", " requires ", " provides ", " where "]):
+            if not any(
+                v in q_l
+                for v in [" must ", " is ", " are ", " requires ", " provides ", " where "]
+            ):
                 return -100
 
             score = 0
@@ -826,38 +851,11 @@ def synthesize_opinion_answer(
             if any(term in q_l for term in ["must", "requires", "only", "unless", "where"]):
                 score += 4
 
+            pinpoint_hits = sum(1 for anchor in PINPOINT_ANCHORS if anchor in q_l)
+            score += pinpoint_hits * 12
+
             if "the court" in q_l:
                 score -= 4
-                    # Pinpoint-weighted doctrine anchors.
-            PINPOINT_ANCHORS = [
-                "utter failure to attempt to assure",
-                "failure to act in good faith",
-                "good faith effort to implement",
-                "reasonable grounds for believing",
-                "threat to corporate policy and effectiveness",
-                "coercive",
-                "preclusive",
-                "range of reasonableness",
-                "best value reasonably available",
-                "change of control",
-                "special committee",
-                "majority of the minority",
-                "fully informed",
-                "uncoerced",
-                "reasonable doubt",
-                "impartially consider",
-                "director-by-director",
-                "fair dealing",
-                "fair price",
-                "compelling justification",
-                "proper purpose",
-                "credible basis",
-            ]
-
-            pinpoint_hits = sum(
-                1 for anchor in PINPOINT_ANCHORS if anchor in q_l
-            )
-            score += pinpoint_hits * 12
 
             return score
 
@@ -899,7 +897,6 @@ def synthesize_opinion_answer(
 
         for candidate in candidates:
             case = candidate["case"]
-
             if case in seen_cases:
                 continue
 
@@ -909,7 +906,7 @@ def synthesize_opinion_answer(
             if len(selected) >= 3:
                 break
 
-        sentences = []
+        sentences: list[str] = []
 
         for item in selected:
             case = item["case"]
@@ -927,7 +924,6 @@ def synthesize_opinion_answer(
         line for line in query_plan.get("target_lines", [])
         if line != "unknown"
     ]
-
     query_type = query_plan.get("query_type", "")
 
     short_answer = clean(sections.get("short_answer", ""))
@@ -958,42 +954,46 @@ def synthesize_opinion_answer(
 
     CASE_SENTENCES = {
         "caremark": (
-            "As Caremark holds, oversight liability arises only upon an utter failure to attempt to assure "
-            "a reasonable reporting or information system exists "
+            "Caremark sets the doctrinal foundation: oversight liability arises only upon an utter failure "
+            "to attempt to assure that a reasonable reporting or information system exists "
             "(In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959, 971 (Del. Ch. 1996))."
         ),
         "stone": (
-            "Stone makes clear that such a failure constitutes bad faith and implicates the duty of loyalty "
+            "Stone refines that foundation: a failure to act in good faith implicates the duty of loyalty "
             "(Stone v. Ritter, 911 A.2d 362, 370 (Del. 2006))."
         ),
         "marchand": (
-            "Marchand further clarifies that directors must make a good faith effort to implement and monitor "
-            "an oversight system "
+            "Marchand applies the doctrine in modern form: directors must make a good faith effort to "
+            "implement and monitor an oversight system "
             "(Marchand v. Barnhill, 212 A.3d 805, 821 (Del. 2019))."
         ),
         "unocal": (
-            "Unocal supplies enhanced scrutiny for defensive measures adopted in response to a perceived threat "
+            "Unocal sets the doctrinal foundation: directors must show reasonable grounds for believing "
+            "that a threat to corporate policy and effectiveness existed "
             "(Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946, 955 (Del. 1985))."
         ),
         "unitrin": (
-            "Unitrin asks whether the defensive response is coercive, preclusive, or outside a range of reasonableness "
+            "Unitrin refines that foundation: the response must be neither coercive nor preclusive and "
+            "must fall within a range of reasonableness "
             "(Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361, 1387-88 (Del. 1995))."
         ),
         "revlon": (
-            "Revlon requires directors, once the company is for sale, to seek the best value reasonably available "
+            "Revlon sets the doctrinal foundation: once the company is for sale, directors must seek the "
+            "best value reasonably available "
             "(Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173, 182 (Del. 1986))."
         ),
         "qvc": (
-            "QVC confirms that Revlon duties arise when a transaction effects a change of control "
+            "QVC refines that foundation: Revlon duties arise when the transaction effects a change of control "
             "(Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34, 47-48 (Del. 1994))."
         ),
         "mfw": (
-            "MFW permits business judgment review in controller transactions only when dual procedural protections "
-            "are satisfied from the outset "
+            "MFW supplies the controlling framework: business judgment review may apply in controller "
+            "transactions only when dual procedural protections are satisfied from the outset "
             "(Kahn v. M&F Worldwide Corp., 88 A.3d 635, 644 (Del. 2014))."
         ),
         "corwin": (
-            "Corwin gives cleansing effect to a fully informed and uncoerced vote of disinterested stockholders "
+            "Corwin supplies the controlling framework: a fully informed and uncoerced vote of disinterested "
+            "stockholders can restore business judgment review "
             "(Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304, 308-09 (Del. 2015))."
         ),
         "aronson": (
@@ -1010,42 +1010,30 @@ def synthesize_opinion_answer(
             "(United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034, 1058-59 (Del. 2021))."
         ),
         "malone": (
-            "Malone requires directors who communicate with stockholders to speak truthfully and completely "
+            "Malone supplies the controlling disclosure principle: directors who communicate with stockholders "
+            "must speak truthfully and completely "
             "(Malone v. Brincat, 722 A.2d 5, 10 (Del. 1998))."
         ),
         "weinberger": (
-            "Weinberger defines entire fairness as an inquiry into fair dealing and fair price "
+            "Weinberger supplies the entire-fairness framework: the inquiry examines fair dealing and fair price "
             "(Weinberger v. UOP, Inc., 457 A.2d 701, 711 (Del. 1983))."
         ),
         "blasius": (
-            "Blasius requires a compelling justification when board action primarily interferes with the stockholder franchise "
+            "Blasius supplies the stockholder-franchise framework: board action primarily interfering with "
+            "the franchise requires a compelling justification "
             "(Blasius Indus., Inc. v. Atlas Corp., 564 A.2d 651, 661 (Del. Ch. 1988))."
         ),
         "schnell": (
-            "Schnell teaches that inequitable action does not become permissible merely because it is legally authorized "
+            "Schnell supplies the equitable-intervention principle: inequitable action does not become "
+            "permissible merely because it is legally authorized "
             "(Schnell v. Chris-Craft Indus., Inc., 285 A.2d 437, 439 (Del. 1971))."
         ),
         "section_220": (
-            "Section 220 permits books-and-records inspection where the stockholder shows a proper purpose and, "
+            "Section 220 supplies the inspection framework: a stockholder must show a proper purpose and, "
             "when investigating wrongdoing, a credible basis "
             "(Seinfeld v. Verizon Commc’ns, Inc., 909 A.2d 117, 123 (Del. 2006))."
         ),
     }
-
-    selected_cases: list[str] = []
-    for line in target_lines:
-        selected_cases.extend(DOCTRINE_ANCHORS.get(line, []))
-
-    seen = set()
-    selected_cases = [
-        case for case in selected_cases
-        if not (case in seen or seen.add(case))
-    ]
-
-    parts: list[str] = []
-
-        # 1. Lead sentence: auto-select controlling case when possible.
-    primary_line = target_lines[0] if target_lines else ""
 
     CONTROLLING_CASE_BY_DOCTRINE = {
         "oversight": "Caremark",
@@ -1061,8 +1049,23 @@ def synthesize_opinion_answer(
         "books_and_records": "Section 220",
     }
 
+    selected_cases: list[str] = []
+    for line in target_lines:
+        selected_cases.extend(DOCTRINE_ANCHORS.get(line, []))
+
+    seen = set()
+    selected_cases = [
+        case for case in selected_cases
+        if not (case in seen or seen.add(case))
+    ]
+
+    parts: list[str] = []
+    rule_inserted = False
+
+    primary_line = target_lines[0] if target_lines else ""
     controlling_case = CONTROLLING_CASE_BY_DOCTRINE.get(primary_line)
 
+    # 1. Lead sentence.
     if query_type == "comparison" and key_distinction:
         parts.append(
             f"The distinction between the governing standards is as follows: {key_distinction}."
@@ -1071,10 +1074,11 @@ def synthesize_opinion_answer(
         parts.append(
             f"Under {controlling_case}, {rule[0].lower() + rule[1:]}."
         )
+        rule_inserted = True
     elif short_answer:
         parts.append(short_answer + ".")
 
-    # 2. Best retrieved quote anchors first; static case anchors as fallback.
+    # 2. Authoritative quote anchors immediately after lead.
     retrieved_quote_sentences = quote_anchor_sentences(role_quote_map)
 
     if retrieved_quote_sentences:
@@ -1085,49 +1089,25 @@ def synthesize_opinion_answer(
             if sentence:
                 parts.append(sentence)
 
-        # 3. Synthesis with doctrine-specific controlling standard language.
-    primary_line = target_lines[0] if target_lines else ""
-
-    CONTROLLING_STANDARD_LEADS = {
-        "oversight": "Under Caremark",
-        "takeover_defense": "Under Unocal",
-        "sale_of_control": "Under Revlon",
-        "controller_transactions": "Under MFW",
-        "stockholder_vote_cleansing": "Under Corwin",
-        "demand_futility": "Under Aronson, Rales, and Zuckerberg",
-        "disclosure_loyalty": "Under Malone",
-        "entire_fairness": "Under entire fairness",
-        "shareholder_franchise": "Under Blasius",
-        "equitable_intervention": "Under Schnell",
-        "books_and_records": "Under Section 220",
-    }
-
+    # 3. Synthesis, without repeating already-inserted rule.
     if query_type == "comparison" and rule_comparison:
         parts.append(f"Taken together, {rule_comparison}.")
-    elif rule:
-        lead = CONTROLLING_STANDARD_LEADS.get(primary_line, "Under Delaware law")
-        rule_body = rule
+    elif rule and not rule_inserted:
+        parts.append(f"Under Delaware law, {rule}.")
 
-        # Avoid awkward duplicate openings like "Under Unocal, Under Unocal..."
-        if rule_body.lower().startswith("under "):
-            parts.append(rule_body + ".")
-        else:
-            parts.append(f"{lead}, {rule_body[0].lower() + rule_body[1:]}.")
-
-        # 4. Application / conclusion without duplicating the rule.
+    # 4. Application / conclusion without duplicating the rule.
     nonduplicative_analysis = []
+    rule_l = rule.lower()
+    rule_comparison_l = rule_comparison.lower()
 
     for sentence in analysis_sentences:
         s_l = sentence.lower()
-        rule_l = rule.lower()
-        rule_comparison_l = rule_comparison.lower()
 
         if rule_l and s_l in rule_l:
             continue
         if rule_comparison_l and s_l in rule_comparison_l:
             continue
 
-        # Avoid generic restatements that add no value.
         if "supplies the governing fiduciary framework" in s_l:
             continue
         if "doctrine governs defensive responses" in s_l:
@@ -1138,8 +1118,7 @@ def synthesize_opinion_answer(
         nonduplicative_analysis.append(sentence)
 
     if nonduplicative_analysis:
-        final_sentence = nonduplicative_analysis[-1]
-        parts.append(f"Accordingly, {final_sentence}.")
+        parts.append(f"Accordingly, {nonduplicative_analysis[-1]}.")
 
     opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
