@@ -665,8 +665,8 @@ def synthesize_opinion_answer(
 ) -> str:
     """
     Delaware litigation / Chancery-style opinion paragraph.
-    Deterministic. Uses actual retrieved quote anchors from role_quote_map,
-    with doctrine-specific case citations as fallback.
+    Deterministic. Uses clean retrieved quote anchors from role_quote_map,
+    with doctrine-specific static case anchors as fallback.
     """
 
     import re
@@ -713,7 +713,77 @@ def synthesize_opinion_answer(
             "modern_application": "applies the doctrine in modern form",
         }
 
-        sentences = []
+        REQUIRED_MARKERS = [
+            "utter failure",
+            "good faith",
+            "duty of loyalty",
+            "oversight system",
+            "reporting system",
+            "monitor",
+            "business judgment",
+            "entire fairness",
+            "fair dealing",
+            "fair price",
+            "fully informed",
+            "uncoerced",
+            "special committee",
+            "majority of the minority",
+            "best value reasonably available",
+            "change of control",
+            "coercive",
+            "preclusive",
+            "range of reasonableness",
+            "reasonable doubt",
+            "impartially consider",
+            "proper purpose",
+            "credible basis",
+            "compelling justification",
+            "inequitable",
+        ]
+
+        BAD_MARKERS = [
+            "plaintiff",
+            "complaint",
+            "motion to dismiss",
+            "compensation",
+            "contract",
+            "patient",
+            "drugs",
+            "committee assistance",
+            "semi-anemployees",
+            "pliance",
+            "scription",
+            "preor",
+            "mity",
+            "anemployees",
+        ]
+
+        def is_good_quote(quote: str) -> bool:
+            q = clean(quote)
+            q_l = q.lower()
+            words = q.split()
+
+            if len(words) < 8 or len(words) > 45:
+                return False
+
+            if any(bad in q_l for bad in BAD_MARKERS):
+                return False
+
+            if not any(marker in q_l for marker in REQUIRED_MARKERS):
+                return False
+
+            weird_count = sum(
+                1
+                for w in words
+                if len(w) <= 2
+                and w.lower() not in {"or", "to", "of", "in", "is", "an", "a", "by", "as"}
+            )
+            if weird_count >= 5:
+                return False
+
+            return True
+
+        sentences: list[str] = []
 
         for role in [
             "foundation",
@@ -731,12 +801,13 @@ def synthesize_opinion_answer(
             if not case or not quote:
                 continue
 
+            if not is_good_quote(quote):
+                continue
+
             cite = PINPOINT_CITES.get(case, case)
             lead = ROLE_LEADS.get(role, "states the governing rule")
 
-            sentences.append(
-                f"{case} {lead}: “{quote}” ({cite})."
-            )
+            sentences.append(f"{case} {lead}: “{quote}” ({cite}).")
 
         return sentences
 
@@ -770,6 +841,7 @@ def synthesize_opinion_answer(
         "entire_fairness": ["weinberger"],
         "shareholder_franchise": ["blasius"],
         "equitable_intervention": ["schnell"],
+        "books_and_records": ["section_220"],
     }
 
     CASE_SENTENCES = {
@@ -841,9 +913,14 @@ def synthesize_opinion_answer(
             "Schnell teaches that inequitable action does not become permissible merely because it is legally authorized "
             "(Schnell v. Chris-Craft Indus., Inc., 285 A.2d 437, 439 (Del. 1971))."
         ),
+        "section_220": (
+            "Section 220 permits books-and-records inspection where the stockholder shows a proper purpose and, "
+            "when investigating wrongdoing, a credible basis "
+            "(Seinfeld v. Verizon Commc’ns, Inc., 909 A.2d 117, 123 (Del. 2006))."
+        ),
     }
 
-    selected_cases = []
+    selected_cases: list[str] = []
     for line in target_lines:
         selected_cases.extend(DOCTRINE_ANCHORS.get(line, []))
 
@@ -853,7 +930,7 @@ def synthesize_opinion_answer(
         if not (case in seen or seen.add(case))
     ]
 
-    parts = []
+    parts: list[str] = []
 
     # 1. Lead sentence.
     if query_type == "comparison" and key_distinction:
