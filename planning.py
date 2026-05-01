@@ -178,28 +178,182 @@ def is_multi_doctrine_query(query_plan: Dict[str, Any]) -> bool:
     lines = [x for x in query_plan.get("target_lines", []) if x != "unknown"]
     return len(lines) >= 2
 
-
 def build_query_plan(question: str) -> Dict[str, Any]:
     q = (question or "").strip()
+    q_lower = q.lower()
 
     query_type = infer_query_type(q)
     target_lines = infer_target_lines(q)
     named_sources = infer_named_sources(q)
 
-    real_target_lines = [line for line in target_lines if line != "unknown"]
+    # -------------------------
+    # Doctrine concept triggers
+    # -------------------------
+    concept_triggers = {
+        "demand_futility": [
+            "derivative suit",
+            "derivative action",
+            "demand excused",
+            "demand is excused",
+            "demand futility",
+            "excuse demand",
+            "board demand",
+            "litigation demand",
+            "stockholder derivative",
+        ],
+        "oversight": [
+            "red flag",
+            "red flags",
+            "mission critical",
+            "mission-critical",
+            "ignored warnings",
+            "compliance failure",
+            "reporting system",
+            "monitoring system",
+            "no controls",
+            "no reporting system",
+            "caremark",
+        ],
+        "takeover_defense": [
+            "poison pill",
+            "rights plan",
+            "hostile bid",
+            "hostile offer",
+            "defensive measure",
+            "defensive measures",
+            "coercive",
+            "preclusive",
+            "unocal",
+        ],
+        "sale_of_control": [
+            "sale of control",
+            "change of control",
+            "company is for sale",
+            "auction",
+            "best value reasonably available",
+            "revlon",
+            "qvc",
+        ],
+        "controller_transactions": [
+            "controller merger",
+            "controlling stockholder",
+            "freeze-out",
+            "freeze out",
+            "special committee",
+            "majority of the minority",
+            "mfw",
+        ],
+        "stockholder_vote_cleansing": [
+            "fully informed",
+            "uncoerced vote",
+            "stockholder vote",
+            "disinterested stockholders",
+            "corwin",
+        ],
+        "entire_fairness": [
+            "entire fairness",
+            "fair dealing",
+            "fair price",
+            "self-dealing",
+            "self dealing",
+            "conflicted transaction",
+        ],
+        "shareholder_franchise": [
+            "blasius",
+            "stockholder franchise",
+            "shareholder franchise",
+            "voting rights",
+            "compelling justification",
+        ],
+        "equitable_intervention": [
+            "schnell",
+            "inequitable",
+            "improper purpose",
+            "corporate machinery",
+        ],
+        "books_and_records": [
+            "section 220",
+            "dgcl 220",
+            "books and records",
+            "inspection demand",
+            "proper purpose",
+            "credible basis",
+        ],
+    }
+
+    triggered_lines = []
+    for doctrine_line, triggers in concept_triggers.items():
+        if any(trigger in q_lower for trigger in triggers):
+            triggered_lines.append(doctrine_line)
+
+    # Merge inferred target lines with concept-triggered lines.
+    merged_lines = []
+    for line in target_lines + triggered_lines:
+        if line != "unknown" and line not in merged_lines:
+            merged_lines.append(line)
+
+    if not merged_lines:
+        merged_lines = ["unknown"]
+
+    # -------------------------
+    # Priority ordering
+    # -------------------------
+    priority_order = [
+        "entire_fairness",
+        "controller_transactions",
+        "stockholder_vote_cleansing",
+        "oversight",
+        "takeover_defense",
+        "sale_of_control",
+        "demand_futility",
+        "disclosure_loyalty",
+        "shareholder_franchise",
+        "equitable_intervention",
+        "books_and_records",
+    ]
+
+    real_target_lines = sorted(
+        [line for line in merged_lines if line != "unknown"],
+        key=lambda line: priority_order.index(line)
+        if line in priority_order
+        else 999,
+    )
+
+    final_target_lines = real_target_lines if real_target_lines else ["unknown"]
+
+    # -------------------------
+    # Multi-doctrine logic
+    # -------------------------
+    multi_doctrine = len(real_target_lines) > 1
+
+    # If the user names two cases but they belong to the same doctrine,
+    # this should usually be a same-doctrine comparison, not multi-doctrine.
+    named_doctrine_lines = []
+    for source in named_sources:
+        line = infer_doctrine_line_from_source(source)
+        if line != "unknown" and line not in named_doctrine_lines:
+            named_doctrine_lines.append(line)
+
+    if query_type == "comparison" and len(named_doctrine_lines) >= 2:
+        multi_doctrine = True
+
+    if query_type == "comparison" and len(named_doctrine_lines) == 1:
+        multi_doctrine = False
+        final_target_lines = named_doctrine_lines
 
     plan = {
         "question": q,
         "query_type": query_type,
-        "target_lines": target_lines,
+        "target_lines": final_target_lines,
         "named_sources": named_sources,
         "recognized_doctrine": bool(real_target_lines),
         "primary_doctrine": real_target_lines[0] if real_target_lines else "unknown",
-        "multi_doctrine": len(real_target_lines) > 1,
+        "multi_doctrine": multi_doctrine,
         "new_doctrine_enabled": any(
             line in {
                 "entire_fairness",
                 "disclosure",
+                "disclosure_loyalty",
                 "shareholder_franchise",
                 "equitable_intervention",
                 "books_and_records",
@@ -207,12 +361,6 @@ def build_query_plan(question: str) -> Dict[str, Any]:
             for line in real_target_lines
         ),
     }
-
-    if query_type == "comparison" and len(named_sources) >= 2:
-        plan["multi_doctrine"] = True
-
-    if query_type == "comparison" and len(named_sources) >= 2:
-        plan["multi_doctrine"] = False
 
     try:
         plan["multi_doctrine"] = plan["multi_doctrine"] or is_multi_doctrine_query(plan)
@@ -223,6 +371,4 @@ def build_query_plan(question: str) -> Dict[str, Any]:
 
 
 def build_query_plan_cached(question: str) -> Dict[str, Any]:
-    # Keeping behavior identical to your current code.
-    # You can add lru_cache later if you want.
     return build_query_plan(question)
