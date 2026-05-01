@@ -8,6 +8,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import difflib
 import re
+from synthesis import synthesize_memo_answer
 
 from openai import OpenAI
 
@@ -39,7 +40,9 @@ from synthesis import (
     synthesize_analysis_from_quotes,
     synthesize_analysis_from_tree_and_quotes,
     synthesize_structured_doctrine_section,
-    synthesize_structured_single_doctrine_analysis
+    synthesize_structured_single_doctrine_analysis,
+    synthesize_memo_answer,
+    synthesize_opinion_answer,
 )
 
 # ============================================================
@@ -1951,6 +1954,11 @@ SUPPORTING CASES:
         role_quote_map,
         tree_result=validation_tree_result,
     )
+    sections_for_display = extract_sections(ai_answer, query_plan)
+
+    memo_answer = synthesize_memo_answer(sections_for_display, query_plan)
+    opinion_answer = synthesize_opinion_answer(sections_for_display, query_plan)
+
         # --- Retrieval confidence ---
     top_scores = [float(c.get("score", 0.0)) for c in cases[:3]]
 
@@ -1984,6 +1992,7 @@ SUPPORTING CASES:
         "doctrine_buckets": doctrine_buckets,
         "doctrine_leaders": doctrine_leaders,
         "answer": ai_answer,
+        "memo_answer": memo_answer,
         "sections": sections,
         "validation_score": validation_score,
         "validation_errors": validation_errors,

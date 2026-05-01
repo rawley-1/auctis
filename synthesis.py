@@ -578,3 +578,141 @@ def synthesize_structured_doctrine_section(doctrine_line: str) -> str:
     )
 
     return f"{label} doctrine supplies the governing doctrinal framework for this category of conduct."
+import re
+from typing import Dict, Any
+
+
+def _clean_sentence(text: str) -> str:
+    text = re.sub(r"\s+", " ", (text or "").strip())
+
+    # remove analysis prefixes
+    text = re.sub(
+        r"^(This matters because|The significance is that|As a result,|As a result)\s+",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+    return text.rstrip(".")
+
+
+def synthesize_memo_answer(
+    sections: Dict[str, str],
+    query_plan: Dict[str, Any],
+) -> str:
+    """
+    Deterministic memo-style paragraph.
+    Built purely from validated sections.
+    """
+
+    query_type = query_plan.get("query_type", "")
+    multi = query_plan.get("multi_doctrine", False)
+
+    short_answer = _clean_sentence(sections.get("short_answer", ""))
+    key_distinction = _clean_sentence(sections.get("key_distinction", ""))
+    rule = _clean_sentence(sections.get("rule", ""))
+    rule_comparison = _clean_sentence(sections.get("rule_comparison", ""))
+    analysis = sections.get("analysis", "")
+
+    analysis_sentences = [
+        _clean_sentence(s)
+        for s in re.split(r"(?<=[.!?])\s+", analysis)
+        if s.strip()
+    ]
+
+    # ========================
+    # STRUCTURE LOGIC
+    # ========================
+
+    if query_type == "comparison":
+        lead = key_distinction or short_answer
+        governing_rule = rule_comparison or rule
+    else:
+        lead = short_answer
+        governing_rule = rule
+
+    parts = []
+
+    if lead:
+        parts.append(lead)
+
+    if governing_rule:
+        parts.append(governing_rule)
+
+    # add 3 analysis sentences
+    for sentence in analysis_sentences[:3]:
+        if sentence:
+            parts.append(sentence)
+
+    memo = " ".join(
+        part.rstrip(".") + "." for part in parts if part.strip()
+    )
+
+    # final cleanup
+    memo = re.sub(
+        r"\b(Short Answer|Rule|Rule Comparison|Analysis|Confidence):",
+        "",
+        memo,
+    )
+    memo = re.sub(r"\s+", " ", memo).strip()
+
+    return memo
+def synthesize_opinion_answer(
+    sections: Dict[str, str],
+    query_plan: Dict[str, Any],
+) -> str:
+    """
+    Deterministic opinion-style output.
+    More formal than Memo Mode, but still built only from validated sections.
+    """
+
+    query_type = query_plan.get("query_type", "")
+
+    short_answer = _clean_sentence(sections.get("short_answer", ""))
+    key_distinction = _clean_sentence(sections.get("key_distinction", ""))
+    rule = _clean_sentence(sections.get("rule", ""))
+    rule_comparison = _clean_sentence(sections.get("rule_comparison", ""))
+    analysis = sections.get("analysis", "")
+
+    analysis_sentences = [
+        _clean_sentence(s)
+        for s in re.split(r"(?<=[.!?])\s+", analysis)
+        if s.strip()
+    ]
+
+    if query_type == "comparison":
+        opening = key_distinction or short_answer
+        governing_rule = rule_comparison or rule
+    else:
+        opening = short_answer
+        governing_rule = rule
+
+    parts = []
+
+    if opening:
+        parts.append(f"The question is governed by a settled Delaware doctrinal distinction: {opening}")
+
+    if governing_rule:
+        parts.append(f"That distinction matters because {governing_rule}")
+
+    if len(analysis_sentences) >= 1:
+        parts.append(f"Applied here, {analysis_sentences[0]}")
+
+    if len(analysis_sentences) >= 2:
+        parts.append(f"The doctrinal significance is that {analysis_sentences[1]}")
+
+    if len(analysis_sentences) >= 3:
+        parts.append(f"Accordingly, {analysis_sentences[2]}")
+
+    opinion = " ".join(
+        part.rstrip(".") + "." for part in parts if part.strip()
+    )
+
+    opinion = re.sub(
+        r"\b(Short Answer|Rule|Rule Comparison|Analysis|Confidence):",
+        "",
+        opinion,
+    )
+    opinion = re.sub(r"\s+", " ", opinion).strip()
+
+    return opinion

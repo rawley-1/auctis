@@ -162,7 +162,33 @@ if st.session_state["show_demo"]:
             st.stop()
 
         st.subheader("Answer")
-        st.markdown(result.get("answer", "No answer returned."))
+        output_mode = st.radio(
+    "Output Mode",
+    ["Structured", "Memo Mode"],
+    horizontal=True,
+)
+
+        output_mode = st.radio(
+            "Output Mode",
+            ["Structured", "Memo Mode", "Opinion Mode"],
+            horizontal=True,
+        )
+
+        st.subheader("Answer")
+
+        if output_mode == "Memo Mode":
+            st.markdown(
+                result.get("memo_answer")
+                or result.get("answer", "No answer returned.")
+            )
+        elif output_mode == "Opinion Mode":
+            st.markdown(
+                result.get("opinion_answer")
+                or result.get("memo_answer")
+                or result.get("answer", "No answer returned.")
+            )
+        else:
+            st.markdown(result.get("answer", "No answer returned."))
 
         corrected_question = result.get("corrected_question", "")
         legal_corrections = result.get("legal_corrections", [])
