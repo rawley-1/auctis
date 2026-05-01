@@ -665,7 +665,7 @@ def synthesize_opinion_answer(
 ) -> str:
     """
     Delaware litigation / Chancery-style opinion paragraph.
-    Deterministic. Uses clean retrieved quote anchors from role_quote_map,
+    Deterministic. Auto-selects the best clean retrieved quotes from role_quote_map,
     with doctrine-specific static case anchors as fallback.
     """
 
@@ -713,7 +713,7 @@ def synthesize_opinion_answer(
             "modern_application": "applies the doctrine in modern form",
         }
 
-        REQUIRED_MARKERS = [
+        STRONG_MARKERS = [
             "utter failure",
             "good faith",
             "duty of loyalty",
@@ -758,41 +758,58 @@ def synthesize_opinion_answer(
             "anemployees",
         ]
 
-        def is_good_quote(quote: str) -> bool:
+        ROLE_WEIGHT = {
+            "foundation": 4,
+            "supreme_refinement": 5,
+            "refinement": 3,
+            "modern_application": 4,
+        }
+
+        def quote_quality_score(quote: str, role: str) -> int:
             q = clean(quote)
             q_l = q.lower()
             words = q.split()
 
             if len(words) < 8 or len(words) > 45:
-                return False
+                return -100
 
             if any(bad in q_l for bad in BAD_MARKERS):
-                return False
+                return -100
 
-            if not any(marker in q_l for marker in REQUIRED_MARKERS):
-                return False
+            marker_hits = sum(1 for marker in STRONG_MARKERS if marker in q_l)
+            if marker_hits == 0:
+                return -100
 
             weird_count = sum(
                 1
                 for w in words
                 if len(w) <= 2
-                and w.lower() not in {"or", "to", "of", "in", "is", "an", "a", "by", "as"}
+                and w.lower() not in {
+                    "or", "to", "of", "in", "is", "an", "a", "by", "as", "at", "it"
+                }
             )
             if weird_count >= 5:
-                return False
+                return -100
 
-            return True
+            score = 0
+            score += marker_hits * 8
+            score += ROLE_WEIGHT.get(role, 1)
 
-        sentences: list[str] = []
+            if 12 <= len(words) <= 32:
+                score += 6
 
-        for role in [
-            "foundation",
-            "supreme_refinement",
-            "refinement",
-            "modern_application",
-        ]:
-            item = role_quote_map.get(role)
-            if not item:
+            if any(term in q_l for term in ["must", "requires", "only", "unless", "where"]):
+                score += 4
+
+            if "the court" in q_l:
+                score -= 4
+
+            return score
+
+        candidates: list[dict] = []
+
+        for role, item in role_quote_map.items():
+            if role not in ROLE_LEADS:
                 continue
 
             case = clean(item.get("case", ""))
@@ -801,13 +818,50 @@ def synthesize_opinion_answer(
             if not case or not quote:
                 continue
 
-            if not is_good_quote(quote):
+            score = quote_quality_score(quote, role)
+
+            if score <= 0:
                 continue
+
+            candidates.append(
+                {
+                    "role": role,
+                    "case": case,
+                    "quote": quote,
+                    "score": score,
+                }
+            )
+
+        candidates.sort(key=lambda x: x["score"], reverse=True)
+
+        selected = []
+        seen_cases = set()
+
+        for candidate in candidates:
+            case = candidate["case"]
+
+            if case in seen_cases:
+                continue
+
+            selected.append(candidate)
+            seen_cases.add(case)
+
+            if len(selected) >= 3:
+                break
+
+        sentences = []
+
+        for item in selected:
+            case = item["case"]
+            quote = item["quote"]
+            role = item["role"]
 
             cite = PINPOINT_CITES.get(case, case)
             lead = ROLE_LEADS.get(role, "states the governing rule")
 
-            sentences.append(f"{case} {lead}: “{quote}” ({cite}).")
+            sentences.append(
+                f"{case} {lead}: “{quote}” ({cite})."
+            )
 
         return sentences
 
@@ -940,7 +994,7 @@ def synthesize_opinion_answer(
     elif short_answer:
         parts.append(short_answer + ".")
 
-    # 2. Retrieved quote anchors first; static case anchors as fallback.
+    # 2. Best retrieved quote anchors first; static case anchors as fallback.
     retrieved_quote_sentences = quote_anchor_sentences(role_quote_map)
 
     if retrieved_quote_sentences:
