@@ -666,7 +666,7 @@ def synthesize_opinion_answer(
     """
     Delaware litigation / Chancery-style opinion paragraph.
     Deterministic. Uses controlling-case lead, clean retrieved quote anchors,
-    static fallback anchors, and avoids duplicate rule/application language.
+    fact-sensitive application, static fallback anchors, and avoids duplicate rule text.
     """
 
     import re
@@ -680,6 +680,54 @@ def synthesize_opinion_answer(
             flags=re.IGNORECASE,
         )
         return text.rstrip(".")
+
+    def build_fact_sensitive_application(question: str, target_lines: list[str]) -> str:
+        q = (question or "").lower()
+        target_set = set(target_lines)
+
+        if "takeover_defense" in target_set:
+            if any(term in q for term in ["poison pill", "rights plan", "defensive measure", "hostile bid", "threat"]):
+                return (
+                    "The analysis therefore turns on whether the board reasonably identified a threat "
+                    "and adopted a response that was neither coercive nor preclusive and remained within "
+                    "a range of reasonableness."
+                )
+
+        if "oversight" in target_set:
+            if any(term in q for term in ["red flag", "ignored", "warning", "mission critical", "monitor"]):
+                return (
+                    "The analysis therefore turns on whether the board consciously failed to monitor "
+                    "mission-critical risks or ignored red flags despite having a reporting system in place."
+                )
+            if any(term in q for term in ["no system", "no reporting", "no controls", "utter failure"]):
+                return (
+                    "The analysis therefore turns on whether the board made an utter failure to attempt "
+                    "to assure that a reasonable reporting or information system existed."
+                )
+
+        if "controller_transactions" in target_set:
+            if any(term in q for term in ["controller", "special committee", "minority", "mfw"]):
+                return (
+                    "The analysis therefore turns on whether the controller transaction was conditioned "
+                    "from the outset on both an independent special committee and an informed, uncoerced "
+                    "majority-of-the-minority vote."
+                )
+
+        if "stockholder_vote_cleansing" in target_set:
+            if any(term in q for term in ["vote", "stockholder", "fully informed", "uncoerced", "corwin"]):
+                return (
+                    "The analysis therefore turns on whether the stockholder vote was fully informed, "
+                    "uncoerced, and cast by disinterested stockholders."
+                )
+
+        if "sale_of_control" in target_set:
+            if any(term in q for term in ["sale", "auction", "change of control", "revlon", "best value"]):
+                return (
+                    "The analysis therefore turns on whether the board entered a sale-of-control setting "
+                    "and acted reasonably to secure the best value reasonably available."
+                )
+
+        return ""
 
     def quote_anchor_sentences(
         role_quote_map: Dict[str, Dict[str, str]] | None,
@@ -925,6 +973,7 @@ def synthesize_opinion_answer(
         if line != "unknown"
     ]
     query_type = query_plan.get("query_type", "")
+    question = query_plan.get("question", "")
 
     short_answer = clean(sections.get("short_answer", ""))
     key_distinction = clean(sections.get("key_distinction", ""))
@@ -1095,30 +1144,35 @@ def synthesize_opinion_answer(
     elif rule and not rule_inserted:
         parts.append(f"Under Delaware law, {rule}.")
 
-    # 4. Application / conclusion without duplicating the rule.
-    nonduplicative_analysis = []
-    rule_l = rule.lower()
-    rule_comparison_l = rule_comparison.lower()
+    # 4. Fact-sensitive application / conclusion.
+    fact_application = build_fact_sensitive_application(question, target_lines)
 
-    for sentence in analysis_sentences:
-        s_l = sentence.lower()
+    if fact_application:
+        parts.append(fact_application)
+    else:
+        nonduplicative_analysis = []
+        rule_l = rule.lower()
+        rule_comparison_l = rule_comparison.lower()
 
-        if rule_l and s_l in rule_l:
-            continue
-        if rule_comparison_l and s_l in rule_comparison_l:
-            continue
+        for sentence in analysis_sentences:
+            s_l = sentence.lower()
 
-        if "supplies the governing fiduciary framework" in s_l:
-            continue
-        if "doctrine governs defensive responses" in s_l:
-            continue
-        if "doctrine governs" in s_l and "where directors must show" in s_l:
-            continue
+            if rule_l and s_l in rule_l:
+                continue
+            if rule_comparison_l and s_l in rule_comparison_l:
+                continue
 
-        nonduplicative_analysis.append(sentence)
+            if "supplies the governing fiduciary framework" in s_l:
+                continue
+            if "doctrine governs defensive responses" in s_l:
+                continue
+            if "doctrine governs" in s_l and "where directors must show" in s_l:
+                continue
 
-    if nonduplicative_analysis:
-        parts.append(f"Accordingly, {nonduplicative_analysis[-1]}.")
+            nonduplicative_analysis.append(sentence)
+
+        if nonduplicative_analysis:
+            parts.append(f"Accordingly, {nonduplicative_analysis[-1]}.")
 
     opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
