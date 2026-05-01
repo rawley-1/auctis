@@ -828,6 +828,36 @@ def synthesize_opinion_answer(
 
             if "the court" in q_l:
                 score -= 4
+                    # Pinpoint-weighted doctrine anchors.
+            PINPOINT_ANCHORS = [
+                "utter failure to attempt to assure",
+                "failure to act in good faith",
+                "good faith effort to implement",
+                "reasonable grounds for believing",
+                "threat to corporate policy and effectiveness",
+                "coercive",
+                "preclusive",
+                "range of reasonableness",
+                "best value reasonably available",
+                "change of control",
+                "special committee",
+                "majority of the minority",
+                "fully informed",
+                "uncoerced",
+                "reasonable doubt",
+                "impartially consider",
+                "director-by-director",
+                "fair dealing",
+                "fair price",
+                "compelling justification",
+                "proper purpose",
+                "credible basis",
+            ]
+
+            pinpoint_hits = sum(
+                1 for anchor in PINPOINT_ANCHORS if anchor in q_l
+            )
+            score += pinpoint_hits * 12
 
             return score
 
@@ -1014,10 +1044,32 @@ def synthesize_opinion_answer(
 
     parts: list[str] = []
 
-    # 1. Lead sentence.
+        # 1. Lead sentence: auto-select controlling case when possible.
+    primary_line = target_lines[0] if target_lines else ""
+
+    CONTROLLING_CASE_BY_DOCTRINE = {
+        "oversight": "Caremark",
+        "takeover_defense": "Unocal",
+        "sale_of_control": "Revlon",
+        "controller_transactions": "MFW",
+        "stockholder_vote_cleansing": "Corwin",
+        "demand_futility": "Zuckerberg",
+        "disclosure_loyalty": "Malone",
+        "entire_fairness": "Weinberger",
+        "shareholder_franchise": "Blasius",
+        "equitable_intervention": "Schnell",
+        "books_and_records": "Section 220",
+    }
+
+    controlling_case = CONTROLLING_CASE_BY_DOCTRINE.get(primary_line)
+
     if query_type == "comparison" and key_distinction:
         parts.append(
             f"The distinction between the governing standards is as follows: {key_distinction}."
+        )
+    elif controlling_case and rule:
+        parts.append(
+            f"Under {controlling_case}, {rule[0].lower() + rule[1:]}."
         )
     elif short_answer:
         parts.append(short_answer + ".")
