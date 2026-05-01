@@ -1993,6 +1993,7 @@ SUPPORTING CASES:
         "doctrine_leaders": doctrine_leaders,
         "answer": ai_answer,
         "memo_answer": memo_answer,
+        "opinion_answer": opinion_answer,
         "sections": sections,
         "validation_score": validation_score,
         "validation_errors": validation_errors,

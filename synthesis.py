@@ -657,15 +657,11 @@ def synthesize_memo_answer(
     memo = re.sub(r"\s+", " ", memo).strip()
 
     return memo
+
 def synthesize_opinion_answer(
     sections: Dict[str, str],
     query_plan: Dict[str, Any],
 ) -> str:
-    """
-    Deterministic opinion-style output.
-    More formal than Memo Mode, but still built only from validated sections.
-    """
-
     query_type = query_plan.get("query_type", "")
 
     short_answer = _clean_sentence(sections.get("short_answer", ""))
@@ -680,39 +676,26 @@ def synthesize_opinion_answer(
         if s.strip()
     ]
 
-    if query_type == "comparison":
-        opening = key_distinction or short_answer
-        governing_rule = rule_comparison or rule
-    else:
-        opening = short_answer
-        governing_rule = rule
+    opening = key_distinction or short_answer if query_type == "comparison" else short_answer
+    governing_rule = rule_comparison or rule if query_type == "comparison" else rule
 
     parts = []
 
     if opening:
-        parts.append(f"The question is governed by a settled Delaware doctrinal distinction: {opening}")
+        parts.append(f"Delaware law resolves the question through a doctrinal distinction: {opening}.")
 
     if governing_rule:
-        parts.append(f"That distinction matters because {governing_rule}")
+        parts.append(f"The governing rule follows from that distinction: {governing_rule}.")
 
-    if len(analysis_sentences) >= 1:
-        parts.append(f"Applied here, {analysis_sentences[0]}")
+    if analysis_sentences:
+        parts.append("Applying that rule, " + analysis_sentences[0].rstrip(".") + ".")
 
-    if len(analysis_sentences) >= 2:
-        parts.append(f"The doctrinal significance is that {analysis_sentences[1]}")
+    if len(analysis_sentences) > 1:
+        parts.append("That point is significant because " + analysis_sentences[1].rstrip(".") + ".")
 
-    if len(analysis_sentences) >= 3:
-        parts.append(f"Accordingly, {analysis_sentences[2]}")
+    if len(analysis_sentences) > 2:
+        parts.append("Accordingly, " + analysis_sentences[2].rstrip(".") + ".")
 
-    opinion = " ".join(
-        part.rstrip(".") + "." for part in parts if part.strip()
-    )
-
-    opinion = re.sub(
-        r"\b(Short Answer|Rule|Rule Comparison|Analysis|Confidence):",
-        "",
-        opinion,
-    )
+    opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
-
     return opinion
