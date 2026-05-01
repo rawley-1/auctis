@@ -658,7 +658,11 @@ def synthesize_memo_answer(
 
     return memo
 
-def synthesize_opinion_answer(result: dict) -> str:
+def synthesize_opinion_answer(
+    sections: Dict[str, str],
+    query_plan: Dict[str, Any],
+    role_quote_map: Dict[str, Dict[str, str]] | None = None,
+) -> str:
     """
     Delaware-style opinion synthesis:
     - Uses role_quote_map
@@ -667,12 +671,13 @@ def synthesize_opinion_answer(result: dict) -> str:
     - Avoids duplication
     """
 
-    if not result:
+    if not sections:
         return ""
 
-    role_quote_map = result.get("role_quote_map", {}) or {}
-    rule = (result.get("rule") or "").strip()
-    analysis = (result.get("analysis") or "").strip()
+    role_quote_map = role_quote_map or {}
+
+    rule = (sections.get("Rule") or "").strip()
+    analysis = (sections.get("Analysis") or "").strip()
 
     parts = []
 
