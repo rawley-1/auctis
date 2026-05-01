@@ -666,7 +666,7 @@ def synthesize_opinion_answer(
     """
     Delaware litigation / Chancery-style opinion paragraph.
     Deterministic. Auto-selects the best clean retrieved quotes from role_quote_map,
-    with doctrine-specific static case anchors as fallback.
+    rejects OCR garbage, orders quotes by doctrinal role, and avoids duplicating rule text.
     """
 
     import re
@@ -713,6 +713,20 @@ def synthesize_opinion_answer(
             "modern_application": "applies the doctrine in modern form",
         }
 
+        ROLE_WEIGHT = {
+            "foundation": 4,
+            "supreme_refinement": 5,
+            "refinement": 3,
+            "modern_application": 4,
+        }
+
+        ROLE_PRIORITY = {
+            "foundation": 0,
+            "supreme_refinement": 1,
+            "refinement": 2,
+            "modern_application": 3,
+        }
+
         STRONG_MARKERS = [
             "utter failure",
             "good faith",
@@ -756,14 +770,10 @@ def synthesize_opinion_answer(
             "preor",
             "mity",
             "anemployees",
+            "repurchase conduct",
+            "proamined",
+            "exhad",
         ]
-
-        ROLE_WEIGHT = {
-            "foundation": 4,
-            "supreme_refinement": 5,
-            "refinement": 3,
-            "modern_application": 4,
-        }
 
         def quote_quality_score(quote: str, role: str) -> int:
             q = clean(quote)
@@ -789,6 +799,21 @@ def synthesize_opinion_answer(
                 }
             )
             if weird_count >= 5:
+                return -100
+
+            # Reject obvious OCR / broken capitalization patterns.
+            if re.search(r"[A-Z][a-z]+ [A-Z][a-z]+ [a-z]{1,3} of the [A-Z][a-z]+", q):
+                return -100
+
+            bad_caps = sum(
+                1 for w in words
+                if w and w[0].isupper() and not w.isupper()
+            )
+            if bad_caps > len(words) * 0.6:
+                return -100
+
+            # Require at least some legal-rule grammar.
+            if not any(v in q_l for v in [" must ", " is ", " are ", " requires ", " provides ", " where "]):
                 return -100
 
             score = 0
@@ -832,7 +857,12 @@ def synthesize_opinion_answer(
                 }
             )
 
-        candidates.sort(key=lambda x: x["score"], reverse=True)
+        candidates.sort(
+            key=lambda x: (
+                ROLE_PRIORITY.get(x["role"], 10),
+                -x["score"],
+            )
+        )
 
         selected = []
         seen_cases = set()
@@ -859,9 +889,7 @@ def synthesize_opinion_answer(
             cite = PINPOINT_CITES.get(case, case)
             lead = ROLE_LEADS.get(role, "states the governing rule")
 
-            sentences.append(
-                f"{case} {lead}: “{quote}” ({cite})."
-            )
+            sentences.append(f"{case} {lead}: “{quote}” ({cite}).")
 
         return sentences
 
@@ -1011,15 +1039,20 @@ def synthesize_opinion_answer(
     elif rule:
         parts.append(f"Under Delaware law, {rule}.")
 
-    # 4. Application.
+    # 4. Application without duplicating the rule.
     if analysis_sentences:
-        parts.append(f"Applied here, {analysis_sentences[0]}.")
+        first = analysis_sentences[0]
+        if not rule or first.lower() not in rule.lower():
+            parts.append(f"Applied here, {first}.")
 
     if len(analysis_sentences) > 1:
-        parts.append(f"That conclusion follows because {analysis_sentences[1]}.")
+        second = analysis_sentences[1]
+        if not rule or second.lower() not in rule.lower():
+            parts.append(f"That conclusion follows because {second}.")
 
     if len(analysis_sentences) > 2:
-        parts.append(f"Accordingly, {analysis_sentences[2]}.")
+        third = analysis_sentences[2]
+        parts.append(f"Accordingly, {third}.")
 
     opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
