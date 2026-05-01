@@ -1033,11 +1033,34 @@ def synthesize_opinion_answer(
             if sentence:
                 parts.append(sentence)
 
-    # 3. Synthesis.
+        # 3. Synthesis with doctrine-specific controlling standard language.
+    primary_line = target_lines[0] if target_lines else ""
+
+    CONTROLLING_STANDARD_LEADS = {
+        "oversight": "Under Caremark",
+        "takeover_defense": "Under Unocal",
+        "sale_of_control": "Under Revlon",
+        "controller_transactions": "Under MFW",
+        "stockholder_vote_cleansing": "Under Corwin",
+        "demand_futility": "Under Aronson, Rales, and Zuckerberg",
+        "disclosure_loyalty": "Under Malone",
+        "entire_fairness": "Under entire fairness",
+        "shareholder_franchise": "Under Blasius",
+        "equitable_intervention": "Under Schnell",
+        "books_and_records": "Under Section 220",
+    }
+
     if query_type == "comparison" and rule_comparison:
         parts.append(f"Taken together, {rule_comparison}.")
     elif rule:
-        parts.append(f"Under Delaware law, {rule}.")
+        lead = CONTROLLING_STANDARD_LEADS.get(primary_line, "Under Delaware law")
+        rule_body = rule
+
+        # Avoid awkward duplicate openings like "Under Unocal, Under Unocal..."
+        if rule_body.lower().startswith("under "):
+            parts.append(rule_body + ".")
+        else:
+            parts.append(f"{lead}, {rule_body[0].lower() + rule_body[1:]}.")
 
         # 4. Application / conclusion without duplicating the rule.
     nonduplicative_analysis = []
