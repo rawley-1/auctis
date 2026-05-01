@@ -778,10 +778,30 @@ def synthesize_opinion_answer(
             f"Malone requires directors who communicate with stockholders to speak truthfully and completely. {citations['malone']}."
         )
 
-    if rule_comparison:
-        parts.append(rule_comparison + ".")
-    elif rule:
-        parts.append("Under Delaware law, " + rule + ".")
+        already_case_anchored = any(
+        name in text_blob
+        for name in [
+            "caremark",
+            "stone",
+            "marchand",
+            "unocal",
+            "unitrin",
+            "revlon",
+            "qvc",
+            "mfw",
+            "corwin",
+            "aronson",
+            "rales",
+            "zuckerberg",
+            "malone",
+        ]
+    )
+
+        if not already_case_anchored:
+            if rule_comparison:
+                parts.append(rule_comparison + ".")
+        elif rule:
+            parts.append("Under Delaware law, " + rule + ".")
 
     if analysis_sentences:
         parts.append("Applied here, " + analysis_sentences[0] + ".")
