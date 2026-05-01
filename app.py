@@ -162,11 +162,6 @@ if st.session_state["show_demo"]:
             st.stop()
 
         st.subheader("Answer")
-        output_mode = st.radio(
-    "Output Mode",
-    ["Structured", "Memo Mode"],
-    horizontal=True,
-)
 
         output_mode = st.radio(
             "Output Mode",

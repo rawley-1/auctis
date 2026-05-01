@@ -662,40 +662,137 @@ def synthesize_opinion_answer(
     sections: Dict[str, str],
     query_plan: Dict[str, Any],
 ) -> str:
-    query_type = query_plan.get("query_type", "")
+    """
+    Delaware litigation / Chancery-style opinion paragraph
+    with deterministic inline case citations.
+    """
 
-    short_answer = _clean_sentence(sections.get("short_answer", ""))
-    key_distinction = _clean_sentence(sections.get("key_distinction", ""))
-    rule = _clean_sentence(sections.get("rule", ""))
-    rule_comparison = _clean_sentence(sections.get("rule_comparison", ""))
+    import re
+
+    def clean(text: str) -> str:
+        text = re.sub(r"\s+", " ", (text or "").strip())
+        text = re.sub(
+            r"^(This matters because|The significance is that|As a result,|As a result)\s+",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+        return text.rstrip(".")
+
+    short_answer = clean(sections.get("short_answer", ""))
+    key_distinction = clean(sections.get("key_distinction", ""))
+    rule = clean(sections.get("rule", ""))
+    rule_comparison = clean(sections.get("rule_comparison", ""))
     analysis = sections.get("analysis", "")
 
     analysis_sentences = [
-        _clean_sentence(s)
+        clean(s)
         for s in re.split(r"(?<=[.!?])\s+", analysis)
         if s.strip()
     ]
 
-    opening = key_distinction or short_answer if query_type == "comparison" else short_answer
-    governing_rule = rule_comparison or rule if query_type == "comparison" else rule
+    text_blob = " ".join(
+        [short_answer, key_distinction, rule, rule_comparison, analysis]
+    ).lower()
+
+    citations = {
+        "caremark": "In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959 (Del. Ch. 1996)",
+        "stone": "Stone v. Ritter, 911 A.2d 362 (Del. 2006)",
+        "marchand": "Marchand v. Barnhill, 212 A.3d 805 (Del. 2019)",
+        "unocal": "Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946 (Del. 1985)",
+        "unitrin": "Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361 (Del. 1995)",
+        "revlon": "Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173 (Del. 1986)",
+        "qvc": "Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34 (Del. 1994)",
+        "mfw": "Kahn v. M&F Worldwide Corp., 88 A.3d 635 (Del. 2014)",
+        "corwin": "Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304 (Del. 2015)",
+        "aronson": "Aronson v. Lewis, 473 A.2d 805 (Del. 1984)",
+        "rales": "Rales v. Blasband, 634 A.2d 927 (Del. 1993)",
+        "zuckerberg": "United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034 (Del. 2021)",
+        "malone": "Malone v. Brincat, 722 A.2d 5 (Del. 1998)",
+    }
 
     parts = []
 
-    if opening:
-        parts.append(f"Delaware law resolves the question through a doctrinal distinction: {opening}.")
+    if "caremark" in text_blob:
+        parts.append(
+            f"As Caremark establishes, oversight liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. {citations['caremark']}."
+        )
 
-    if governing_rule:
-        parts.append(f"The governing rule follows from that distinction: {governing_rule}.")
+    if "stone" in text_blob:
+        parts.append(
+            f"Stone makes clear that such a failure sounds in bad faith and therefore implicates the duty of loyalty. {citations['stone']}."
+        )
+
+    if "marchand" in text_blob:
+        parts.append(
+            f"Marchand further confirms that directors must make a good faith effort to implement and monitor an oversight system. {citations['marchand']}."
+        )
+
+    if "unocal" in text_blob:
+        parts.append(
+            f"Unocal supplies the enhanced-scrutiny framework for defensive measures adopted in response to a perceived threat. {citations['unocal']}."
+        )
+
+    if "unitrin" in text_blob:
+        parts.append(
+            f"Unitrin refines that inquiry by asking whether the defensive response is coercive, preclusive, or outside a range of reasonableness. {citations['unitrin']}."
+        )
+
+    if "revlon" in text_blob:
+        parts.append(
+            f"Revlon requires directors, once the company is for sale, to seek the best value reasonably available. {citations['revlon']}."
+        )
+
+    if "qvc" in text_blob:
+        parts.append(
+            f"QVC confirms that sale-of-control duties arise when the transaction effects a change of control. {citations['qvc']}."
+        )
+
+    if "mfw" in text_blob:
+        parts.append(
+            f"MFW permits business judgment review in controller transactions only when dual procedural protections are satisfied from the outset. {citations['mfw']}."
+        )
+
+    if "corwin" in text_blob:
+        parts.append(
+            f"Corwin gives cleansing effect to a fully informed and uncoerced vote of disinterested stockholders. {citations['corwin']}."
+        )
+
+    if "aronson" in text_blob:
+        parts.append(
+            f"Aronson frames demand futility around reasonable doubt concerning director disinterest, independence, or valid business judgment. {citations['aronson']}."
+        )
+
+    if "rales" in text_blob:
+        parts.append(
+            f"Rales asks whether the board could impartially consider a litigation demand. {citations['rales']}."
+        )
+
+    if "zuckerberg" in text_blob:
+        parts.append(
+            f"Zuckerberg modernizes demand futility through a director-by-director inquiry. {citations['zuckerberg']}."
+        )
+
+    if "malone" in text_blob:
+        parts.append(
+            f"Malone requires directors who communicate with stockholders to speak truthfully and completely. {citations['malone']}."
+        )
+
+    if rule_comparison:
+        parts.append(rule_comparison + ".")
+    elif rule:
+        parts.append("Under Delaware law, " + rule + ".")
 
     if analysis_sentences:
-        parts.append("Applying that rule, " + analysis_sentences[0].rstrip(".") + ".")
+        parts.append("Applied here, " + analysis_sentences[0] + ".")
 
     if len(analysis_sentences) > 1:
-        parts.append("That point is significant because " + analysis_sentences[1].rstrip(".") + ".")
+        parts.append("That conclusion follows because " + analysis_sentences[1] + ".")
 
     if len(analysis_sentences) > 2:
-        parts.append("Accordingly, " + analysis_sentences[2].rstrip(".") + ".")
+        parts.append("Accordingly, " + analysis_sentences[2] + ".")
 
     opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
+
     return opinion
