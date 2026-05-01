@@ -1039,20 +1039,32 @@ def synthesize_opinion_answer(
     elif rule:
         parts.append(f"Under Delaware law, {rule}.")
 
-    # 4. Application without duplicating the rule.
-    if analysis_sentences:
-        first = analysis_sentences[0]
-        if not rule or first.lower() not in rule.lower():
-            parts.append(f"Applied here, {first}.")
+        # 4. Application / conclusion without duplicating the rule.
+    nonduplicative_analysis = []
 
-    if len(analysis_sentences) > 1:
-        second = analysis_sentences[1]
-        if not rule or second.lower() not in rule.lower():
-            parts.append(f"That conclusion follows because {second}.")
+    for sentence in analysis_sentences:
+        s_l = sentence.lower()
+        rule_l = rule.lower()
+        rule_comparison_l = rule_comparison.lower()
 
-    if len(analysis_sentences) > 2:
-        third = analysis_sentences[2]
-        parts.append(f"Accordingly, {third}.")
+        if rule_l and s_l in rule_l:
+            continue
+        if rule_comparison_l and s_l in rule_comparison_l:
+            continue
+
+        # Avoid generic restatements that add no value.
+        if "supplies the governing fiduciary framework" in s_l:
+            continue
+        if "doctrine governs defensive responses" in s_l:
+            continue
+        if "doctrine governs" in s_l and "where directors must show" in s_l:
+            continue
+
+        nonduplicative_analysis.append(sentence)
+
+    if nonduplicative_analysis:
+        final_sentence = nonduplicative_analysis[-1]
+        parts.append(f"Accordingly, {final_sentence}.")
 
     opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
