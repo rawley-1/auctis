@@ -1957,7 +1957,11 @@ SUPPORTING CASES:
     sections_for_display = extract_sections(ai_answer, query_plan)
 
     memo_answer = synthesize_memo_answer(sections_for_display, query_plan)
-    opinion_answer = synthesize_opinion_answer(sections_for_display, query_plan)
+    opinion_answer = synthesize_opinion_answer(
+    sections_for_display,
+    query_plan,
+    role_quote_map,
+)
 
         # --- Retrieval confidence ---
     top_scores = [float(c.get("score", 0.0)) for c in cases[:3]]

@@ -661,10 +661,12 @@ def synthesize_memo_answer(
 def synthesize_opinion_answer(
     sections: Dict[str, str],
     query_plan: Dict[str, Any],
+    role_quote_map: Dict[str, Dict[str, str]] | None = None,
 ) -> str:
     """
-    Delaware litigation / Chancery-style opinion paragraph
-    with deterministic inline case citations.
+    Delaware litigation / Chancery-style opinion paragraph.
+    Deterministic. Uses actual retrieved quote anchors from role_quote_map,
+    with doctrine-specific case citations as fallback.
     """
 
     import re
@@ -679,6 +681,72 @@ def synthesize_opinion_answer(
         )
         return text.rstrip(".")
 
+    def quote_anchor_sentences(
+        role_quote_map: Dict[str, Dict[str, str]] | None,
+    ) -> list[str]:
+        if not role_quote_map:
+            return []
+
+        PINPOINT_CITES = {
+            "Caremark": "In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959, 971 (Del. Ch. 1996)",
+            "Stone": "Stone v. Ritter, 911 A.2d 362, 370 (Del. 2006)",
+            "Marchand": "Marchand v. Barnhill, 212 A.3d 805, 821 (Del. 2019)",
+            "Unocal": "Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946, 955 (Del. 1985)",
+            "Unitrin": "Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361, 1387-88 (Del. 1995)",
+            "Revlon": "Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173, 182 (Del. 1986)",
+            "QVC": "Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34, 47-48 (Del. 1994)",
+            "MFW": "Kahn v. M&F Worldwide Corp., 88 A.3d 635, 644 (Del. 2014)",
+            "Corwin": "Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304, 308-09 (Del. 2015)",
+            "Aronson": "Aronson v. Lewis, 473 A.2d 805, 814 (Del. 1984)",
+            "Rales": "Rales v. Blasband, 634 A.2d 927, 934 (Del. 1993)",
+            "Zuckerberg": "United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034, 1058-59 (Del. 2021)",
+            "Malone": "Malone v. Brincat, 722 A.2d 5, 10 (Del. 1998)",
+            "Weinberger": "Weinberger v. UOP, Inc., 457 A.2d 701, 711 (Del. 1983)",
+            "Blasius": "Blasius Indus., Inc. v. Atlas Corp., 564 A.2d 651, 661 (Del. Ch. 1988)",
+            "Schnell": "Schnell v. Chris-Craft Indus., Inc., 285 A.2d 437, 439 (Del. 1971)",
+        }
+
+        ROLE_LEADS = {
+            "foundation": "sets the doctrinal foundation",
+            "supreme_refinement": "refines that foundation",
+            "refinement": "further refines the standard",
+            "modern_application": "applies the doctrine in modern form",
+        }
+
+        sentences = []
+
+        for role in [
+            "foundation",
+            "supreme_refinement",
+            "refinement",
+            "modern_application",
+        ]:
+            item = role_quote_map.get(role)
+            if not item:
+                continue
+
+            case = clean(item.get("case", ""))
+            quote = clean(item.get("quote", ""))
+
+            if not case or not quote:
+                continue
+
+            cite = PINPOINT_CITES.get(case, case)
+            lead = ROLE_LEADS.get(role, "states the governing rule")
+
+            sentences.append(
+                f"{case} {lead}: “{quote}” ({cite})."
+            )
+
+        return sentences
+
+    target_lines = [
+        line for line in query_plan.get("target_lines", [])
+        if line != "unknown"
+    ]
+
+    query_type = query_plan.get("query_type", "")
+
     short_answer = clean(sections.get("short_answer", ""))
     key_distinction = clean(sections.get("key_distinction", ""))
     rule = clean(sections.get("rule", ""))
@@ -691,126 +759,136 @@ def synthesize_opinion_answer(
         if s.strip()
     ]
 
-    text_blob = " ".join(
-        [short_answer, key_distinction, rule, rule_comparison, analysis]
-    ).lower()
-
-    citations = {
-        "caremark": "In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959 (Del. Ch. 1996)",
-        "stone": "Stone v. Ritter, 911 A.2d 362 (Del. 2006)",
-        "marchand": "Marchand v. Barnhill, 212 A.3d 805 (Del. 2019)",
-        "unocal": "Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946 (Del. 1985)",
-        "unitrin": "Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361 (Del. 1995)",
-        "revlon": "Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173 (Del. 1986)",
-        "qvc": "Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34 (Del. 1994)",
-        "mfw": "Kahn v. M&F Worldwide Corp., 88 A.3d 635 (Del. 2014)",
-        "corwin": "Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304 (Del. 2015)",
-        "aronson": "Aronson v. Lewis, 473 A.2d 805 (Del. 1984)",
-        "rales": "Rales v. Blasband, 634 A.2d 927 (Del. 1993)",
-        "zuckerberg": "United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034 (Del. 2021)",
-        "malone": "Malone v. Brincat, 722 A.2d 5 (Del. 1998)",
+    DOCTRINE_ANCHORS = {
+        "oversight": ["caremark", "stone", "marchand"],
+        "takeover_defense": ["unocal", "unitrin"],
+        "sale_of_control": ["revlon", "qvc"],
+        "controller_transactions": ["mfw"],
+        "stockholder_vote_cleansing": ["corwin"],
+        "demand_futility": ["aronson", "rales", "zuckerberg"],
+        "disclosure_loyalty": ["malone"],
+        "entire_fairness": ["weinberger"],
+        "shareholder_franchise": ["blasius"],
+        "equitable_intervention": ["schnell"],
     }
+
+    CASE_SENTENCES = {
+        "caremark": (
+            "As Caremark holds, oversight liability arises only upon an utter failure to attempt to assure "
+            "a reasonable reporting or information system exists "
+            "(In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959, 971 (Del. Ch. 1996))."
+        ),
+        "stone": (
+            "Stone makes clear that such a failure constitutes bad faith and implicates the duty of loyalty "
+            "(Stone v. Ritter, 911 A.2d 362, 370 (Del. 2006))."
+        ),
+        "marchand": (
+            "Marchand further clarifies that directors must make a good faith effort to implement and monitor "
+            "an oversight system "
+            "(Marchand v. Barnhill, 212 A.3d 805, 821 (Del. 2019))."
+        ),
+        "unocal": (
+            "Unocal supplies enhanced scrutiny for defensive measures adopted in response to a perceived threat "
+            "(Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946, 955 (Del. 1985))."
+        ),
+        "unitrin": (
+            "Unitrin asks whether the defensive response is coercive, preclusive, or outside a range of reasonableness "
+            "(Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361, 1387-88 (Del. 1995))."
+        ),
+        "revlon": (
+            "Revlon requires directors, once the company is for sale, to seek the best value reasonably available "
+            "(Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173, 182 (Del. 1986))."
+        ),
+        "qvc": (
+            "QVC confirms that Revlon duties arise when a transaction effects a change of control "
+            "(Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34, 47-48 (Del. 1994))."
+        ),
+        "mfw": (
+            "MFW permits business judgment review in controller transactions only when dual procedural protections "
+            "are satisfied from the outset "
+            "(Kahn v. M&F Worldwide Corp., 88 A.3d 635, 644 (Del. 2014))."
+        ),
+        "corwin": (
+            "Corwin gives cleansing effect to a fully informed and uncoerced vote of disinterested stockholders "
+            "(Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304, 308-09 (Del. 2015))."
+        ),
+        "aronson": (
+            "Aronson frames demand futility around reasonable doubt concerning director disinterest, independence, "
+            "or valid business judgment "
+            "(Aronson v. Lewis, 473 A.2d 805, 814 (Del. 1984))."
+        ),
+        "rales": (
+            "Rales asks whether the board could impartially consider a litigation demand "
+            "(Rales v. Blasband, 634 A.2d 927, 934 (Del. 1993))."
+        ),
+        "zuckerberg": (
+            "Zuckerberg modernizes demand futility through a director-by-director inquiry "
+            "(United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034, 1058-59 (Del. 2021))."
+        ),
+        "malone": (
+            "Malone requires directors who communicate with stockholders to speak truthfully and completely "
+            "(Malone v. Brincat, 722 A.2d 5, 10 (Del. 1998))."
+        ),
+        "weinberger": (
+            "Weinberger defines entire fairness as an inquiry into fair dealing and fair price "
+            "(Weinberger v. UOP, Inc., 457 A.2d 701, 711 (Del. 1983))."
+        ),
+        "blasius": (
+            "Blasius requires a compelling justification when board action primarily interferes with the stockholder franchise "
+            "(Blasius Indus., Inc. v. Atlas Corp., 564 A.2d 651, 661 (Del. Ch. 1988))."
+        ),
+        "schnell": (
+            "Schnell teaches that inequitable action does not become permissible merely because it is legally authorized "
+            "(Schnell v. Chris-Craft Indus., Inc., 285 A.2d 437, 439 (Del. 1971))."
+        ),
+    }
+
+    selected_cases = []
+    for line in target_lines:
+        selected_cases.extend(DOCTRINE_ANCHORS.get(line, []))
+
+    seen = set()
+    selected_cases = [
+        case for case in selected_cases
+        if not (case in seen or seen.add(case))
+    ]
 
     parts = []
 
-    if "caremark" in text_blob:
+    # 1. Lead sentence.
+    if query_type == "comparison" and key_distinction:
         parts.append(
-            f"As Caremark establishes, oversight liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. {citations['caremark']}."
+            f"The distinction between the governing standards is as follows: {key_distinction}."
         )
+    elif short_answer:
+        parts.append(short_answer + ".")
 
-    if "stone" in text_blob:
-        parts.append(
-            f"Stone makes clear that such a failure sounds in bad faith and therefore implicates the duty of loyalty. {citations['stone']}."
-        )
+    # 2. Retrieved quote anchors first; static case anchors as fallback.
+    retrieved_quote_sentences = quote_anchor_sentences(role_quote_map)
 
-    if "marchand" in text_blob:
-        parts.append(
-            f"Marchand further confirms that directors must make a good faith effort to implement and monitor an oversight system. {citations['marchand']}."
-        )
+    if retrieved_quote_sentences:
+        parts.extend(retrieved_quote_sentences)
+    else:
+        for case in selected_cases:
+            sentence = CASE_SENTENCES.get(case)
+            if sentence:
+                parts.append(sentence)
 
-    if "unocal" in text_blob:
-        parts.append(
-            f"Unocal supplies the enhanced-scrutiny framework for defensive measures adopted in response to a perceived threat. {citations['unocal']}."
-        )
+    # 3. Synthesis.
+    if query_type == "comparison" and rule_comparison:
+        parts.append(f"Taken together, {rule_comparison}.")
+    elif rule:
+        parts.append(f"Under Delaware law, {rule}.")
 
-    if "unitrin" in text_blob:
-        parts.append(
-            f"Unitrin refines that inquiry by asking whether the defensive response is coercive, preclusive, or outside a range of reasonableness. {citations['unitrin']}."
-        )
-
-    if "revlon" in text_blob:
-        parts.append(
-            f"Revlon requires directors, once the company is for sale, to seek the best value reasonably available. {citations['revlon']}."
-        )
-
-    if "qvc" in text_blob:
-        parts.append(
-            f"QVC confirms that sale-of-control duties arise when the transaction effects a change of control. {citations['qvc']}."
-        )
-
-    if "mfw" in text_blob:
-        parts.append(
-            f"MFW permits business judgment review in controller transactions only when dual procedural protections are satisfied from the outset. {citations['mfw']}."
-        )
-
-    if "corwin" in text_blob:
-        parts.append(
-            f"Corwin gives cleansing effect to a fully informed and uncoerced vote of disinterested stockholders. {citations['corwin']}."
-        )
-
-    if "aronson" in text_blob:
-        parts.append(
-            f"Aronson frames demand futility around reasonable doubt concerning director disinterest, independence, or valid business judgment. {citations['aronson']}."
-        )
-
-    if "rales" in text_blob:
-        parts.append(
-            f"Rales asks whether the board could impartially consider a litigation demand. {citations['rales']}."
-        )
-
-    if "zuckerberg" in text_blob:
-        parts.append(
-            f"Zuckerberg modernizes demand futility through a director-by-director inquiry. {citations['zuckerberg']}."
-        )
-
-    if "malone" in text_blob:
-        parts.append(
-            f"Malone requires directors who communicate with stockholders to speak truthfully and completely. {citations['malone']}."
-        )
-
-        already_case_anchored = any(
-        name in text_blob
-        for name in [
-            "caremark",
-            "stone",
-            "marchand",
-            "unocal",
-            "unitrin",
-            "revlon",
-            "qvc",
-            "mfw",
-            "corwin",
-            "aronson",
-            "rales",
-            "zuckerberg",
-            "malone",
-        ]
-    )
-
-        if not already_case_anchored:
-            if rule_comparison:
-                parts.append(rule_comparison + ".")
-        elif rule:
-            parts.append("Under Delaware law, " + rule + ".")
-
+    # 4. Application.
     if analysis_sentences:
-        parts.append("Applied here, " + analysis_sentences[0] + ".")
+        parts.append(f"Applied here, {analysis_sentences[0]}.")
 
     if len(analysis_sentences) > 1:
-        parts.append("That conclusion follows because " + analysis_sentences[1] + ".")
+        parts.append(f"That conclusion follows because {analysis_sentences[1]}.")
 
     if len(analysis_sentences) > 2:
-        parts.append("Accordingly, " + analysis_sentences[2] + ".")
+        parts.append(f"Accordingly, {analysis_sentences[2]}.")
 
     opinion = " ".join(parts)
     opinion = re.sub(r"\s+", " ", opinion).strip()
