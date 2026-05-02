@@ -664,8 +664,8 @@ def synthesize_opinion_answer(
     role_quote_map: Dict[str, Dict[str, str]] | None = None,
 ) -> str:
     """
-    Delaware / Chancery-style opinion output.
-    Deterministic. Uses structured sections + role_quote_map.
+    Delaware Supreme Court-style opinion output.
+    Deterministic. Rule-first, restrained, case-anchored, and non-repetitive.
     """
 
     import re
@@ -680,52 +680,79 @@ def synthesize_opinion_answer(
         )
         return text.rstrip(".")
 
+    def add_once(parts: list[str], seen: set[str], text: str) -> None:
+        text = clean(text)
+        if not text:
+            return
+
+        key = text.lower()
+        if key in seen:
+            return
+
+        seen.add(key)
+        parts.append(text + ".")
+
     def build_chancery_application(question: str, target_lines: list[str]) -> str:
         q = (question or "").lower()
         target_set = set(target_lines)
 
+        if "demand_futility" in target_set:
+            return (
+                "The consequence is straightforward: demand is excused only where the pleaded facts support "
+                "a reasonable doubt that a majority of the board could exercise independent and disinterested "
+                "judgment in responding to a demand"
+            )
+
         if "takeover_defense" in target_set:
             if any(term in q for term in ["poison pill", "rights plan", "hostile bid", "defensive measure", "threat"]):
                 return (
-                    "That standard focuses the inquiry on whether the board identified a cognizable threat "
-                    "and selected a defensive response that did not preclude stockholders from accepting an offer "
-                    "or coerce them into supporting management’s preferred course."
+                    "The inquiry therefore turns on whether the board identified a legally cognizable threat "
+                    "and adopted a response that was neither coercive nor preclusive"
                 )
+            return (
+                "The consequence is straightforward: enhanced scrutiny applies, and the defensive response must "
+                "fall within a range of reasonableness"
+            )
 
         if "oversight" in target_set:
             if any(term in q for term in ["red flag", "ignored", "warning", "mission critical"]):
                 return (
-                    "That framework makes the critical question whether the directors knew of mission-critical red flags "
-                    "and consciously failed to respond, because bad-faith inaction supplies the path to loyalty-based oversight liability."
+                    "The inquiry therefore turns on whether the directors consciously failed to respond to "
+                    "mission-critical red flags in a manner supporting an inference of bad faith"
                 )
             if any(term in q for term in ["no system", "no reporting system", "no controls", "utter failure"]):
                 return (
-                    "That framework makes the critical question whether the board failed at the threshold level to establish "
-                    "any reasonable reporting or information system."
+                    "The inquiry therefore turns on whether the board failed at the threshold level to establish "
+                    "a reasonable reporting or information system"
                 )
+            return (
+                "The consequence is straightforward: oversight liability depends on bad-faith failure to implement "
+                "or monitor a reasonable reporting system"
+            )
 
         if "controller_transactions" in target_set:
             return (
-                "That framework makes process outcome-determinative: unless the controller disabled its influence through both "
-                "an independent special committee and a majority-of-the-minority vote from the outset, entire fairness remains the operative standard."
+                "The consequence is straightforward: absent both procedural protections from the outset, "
+                "the controller transaction remains subject to entire fairness"
             )
 
         if "stockholder_vote_cleansing" in target_set:
             return (
-                "That framework makes the quality of the vote dispositive: cleansing depends on whether the approval was fully informed, "
-                "uncoerced, and given by disinterested stockholders."
+                "The consequence is straightforward: cleansing depends on a fully informed, uncoerced vote "
+                "of disinterested stockholders"
             )
 
         if "sale_of_control" in target_set:
             return (
-                "That framework makes the board’s transactional posture central: once the company enters a sale-of-control setting, "
-                "the directors’ task is to act reasonably to secure the best value reasonably available."
+                "The consequence is straightforward: once the company enters a sale-of-control setting, "
+                "the directors must act reasonably to secure the best value reasonably available"
             )
 
         return ""
 
     def quote_anchor_sentences(
         role_quote_map: Dict[str, Dict[str, str]] | None,
+        target_lines: list[str],
     ) -> list[str]:
         if not role_quote_map:
             return []
@@ -750,11 +777,33 @@ def synthesize_opinion_answer(
         }
 
         ROLE_LEADS = {
-            "foundation": "sets the doctrinal foundation",
-            "supreme_refinement": "refines that foundation",
-            "refinement": "further refines the standard",
-            "modern_application": "applies the doctrine in modern form",
+            "foundation": "states the starting point",
+            "supreme_refinement": "confirms the governing limitation",
+            "refinement": "confirms the governing limitation",
+            "modern_application": "applies that rule",
         }
+
+        if "demand_futility" in target_lines:
+            ROLE_LEADS = {
+                "foundation": "states the original formulation",
+                "supreme_refinement": "confirms the board-capacity inquiry",
+                "refinement": "confirms the board-capacity inquiry",
+                "modern_application": "supplies the modern formulation",
+            }
+        elif "oversight" in target_lines:
+            ROLE_LEADS = {
+                "foundation": "states the starting point",
+                "supreme_refinement": "links the doctrine to bad faith and loyalty",
+                "refinement": "confirms the governing limitation",
+                "modern_application": "applies that rule",
+            }
+        elif "takeover_defense" in target_lines:
+            ROLE_LEADS = {
+                "foundation": "states the starting point",
+                "supreme_refinement": "confirms the proportionality limitation",
+                "refinement": "confirms the proportionality limitation",
+                "modern_application": "applies that rule",
+            }
 
         ROLE_PRIORITY = {
             "foundation": 0,
@@ -789,6 +838,7 @@ def synthesize_opinion_answer(
             "credible basis",
             "compelling justification",
             "inequitable",
+            "director-by-director",
         ]
 
         BAD_MARKERS = [
@@ -939,7 +989,6 @@ def synthesize_opinion_answer(
 
         for candidate in candidates:
             case = candidate["case"]
-
             if case in seen_cases:
                 continue
 
@@ -983,101 +1032,31 @@ def synthesize_opinion_answer(
         if s.strip()
     ]
 
-    DOCTRINE_ANCHORS = {
-        "oversight": ["caremark", "stone", "marchand"],
-        "takeover_defense": ["unocal", "unitrin"],
-        "sale_of_control": ["revlon", "qvc"],
-        "controller_transactions": ["mfw"],
-        "stockholder_vote_cleansing": ["corwin"],
-        "demand_futility": ["aronson", "rales", "zuckerberg"],
-        "disclosure_loyalty": ["malone"],
-        "entire_fairness": ["weinberger"],
-        "shareholder_franchise": ["blasius"],
-        "equitable_intervention": ["schnell"],
-        "books_and_records": ["section_220"],
-    }
-
     CASE_SENTENCES = {
-        "caremark": (
-            "Caremark sets the doctrinal foundation: oversight liability arises only upon an utter failure "
-            "to attempt to assure that a reasonable reporting or information system exists "
-            "(In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959, 971 (Del. Ch. 1996))."
-        ),
-        "stone": (
-            "Stone refines that foundation: a failure to act in good faith implicates the duty of loyalty "
-            "(Stone v. Ritter, 911 A.2d 362, 370 (Del. 2006))."
-        ),
-        "marchand": (
-            "Marchand applies the doctrine in modern form: directors must make a good faith effort to "
-            "implement and monitor an oversight system "
-            "(Marchand v. Barnhill, 212 A.3d 805, 821 (Del. 2019))."
-        ),
-        "unocal": (
-            "Unocal sets the doctrinal foundation: directors must show reasonable grounds for believing "
-            "that a threat to corporate policy and effectiveness existed "
-            "(Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946, 955 (Del. 1985))."
-        ),
-        "unitrin": (
-            "Unitrin refines that foundation: the response must be neither coercive nor preclusive and "
-            "must fall within a range of reasonableness "
-            "(Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361, 1387-88 (Del. 1995))."
-        ),
-        "revlon": (
-            "Revlon sets the doctrinal foundation: once the company is for sale, directors must seek the "
-            "best value reasonably available "
-            "(Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173, 182 (Del. 1986))."
-        ),
-        "qvc": (
-            "QVC refines that foundation: Revlon duties arise when the transaction effects a change of control "
-            "(Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34, 47-48 (Del. 1994))."
-        ),
-        "mfw": (
-            "MFW supplies the controlling framework: business judgment review may apply in controller "
-            "transactions only when dual procedural protections are satisfied from the outset "
-            "(Kahn v. M&F Worldwide Corp., 88 A.3d 635, 644 (Del. 2014))."
-        ),
-        "corwin": (
-            "Corwin supplies the controlling framework: a fully informed and uncoerced vote of disinterested "
-            "stockholders can restore business judgment review "
-            "(Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304, 308-09 (Del. 2015))."
-        ),
-        "aronson": (
-            "Aronson frames demand futility around reasonable doubt concerning director disinterest, independence, "
-            "or valid business judgment "
-            "(Aronson v. Lewis, 473 A.2d 805, 814 (Del. 1984))."
-        ),
-        "rales": (
-            "Rales asks whether the board could impartially consider a litigation demand "
-            "(Rales v. Blasband, 634 A.2d 927, 934 (Del. 1993))."
-        ),
-        "zuckerberg": (
-            "Zuckerberg modernizes demand futility through a director-by-director inquiry "
-            "(United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034, 1058-59 (Del. 2021))."
-        ),
-        "malone": (
-            "Malone supplies the controlling disclosure principle: directors who communicate with stockholders "
-            "must speak truthfully and completely "
-            "(Malone v. Brincat, 722 A.2d 5, 10 (Del. 1998))."
-        ),
-        "weinberger": (
-            "Weinberger supplies the entire-fairness framework: the inquiry examines fair dealing and fair price "
-            "(Weinberger v. UOP, Inc., 457 A.2d 701, 711 (Del. 1983))."
-        ),
-        "blasius": (
-            "Blasius supplies the stockholder-franchise framework: board action primarily interfering with "
-            "the franchise requires a compelling justification "
-            "(Blasius Indus., Inc. v. Atlas Corp., 564 A.2d 651, 661 (Del. Ch. 1988))."
-        ),
-        "schnell": (
-            "Schnell supplies the equitable-intervention principle: inequitable action does not become "
-            "permissible merely because it is legally authorized "
-            "(Schnell v. Chris-Craft Indus., Inc., 285 A.2d 437, 439 (Del. 1971))."
-        ),
-        "section_220": (
-            "Section 220 supplies the inspection framework: a stockholder must show a proper purpose and, "
-            "when investigating wrongdoing, a credible basis "
-            "(Seinfeld v. Verizon Commc’ns, Inc., 909 A.2d 117, 123 (Del. 2006))."
-        ),
+        "demand_futility": [
+            "Aronson states the original formulation: demand futility turns on reasonable doubt concerning director disinterest, independence, or valid business judgment (Aronson v. Lewis, 473 A.2d 805, 814 (Del. 1984)).",
+            "Rales confirms the board-capacity inquiry: the question is whether the board could impartially consider a litigation demand (Rales v. Blasband, 634 A.2d 927, 934 (Del. 1993)).",
+            "Zuckerberg supplies the modern formulation: the inquiry proceeds director by director (United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034, 1058-59 (Del. 2021)).",
+        ],
+        "takeover_defense": [
+            "Unocal states the starting point: directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed (Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946, 955 (Del. 1985)).",
+            "Unitrin confirms the governing limitation: the response may not be coercive or preclusive and must fall within a range of reasonableness (Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361, 1387-88 (Del. 1995)).",
+        ],
+        "oversight": [
+            "Caremark states the starting point: oversight liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists (In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959, 971 (Del. Ch. 1996)).",
+            "Stone links that doctrine to bad faith and the duty of loyalty (Stone v. Ritter, 911 A.2d 362, 370 (Del. 2006)).",
+            "Marchand applies that rule by requiring a good-faith effort to implement and monitor an oversight system (Marchand v. Barnhill, 212 A.3d 805, 821 (Del. 2019)).",
+        ],
+        "sale_of_control": [
+            "Revlon states the starting point: once the company is for sale, directors must seek the best value reasonably available (Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173, 182 (Del. 1986)).",
+            "QVC confirms the governing trigger: Revlon duties arise when the transaction effects a change of control (Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34, 47-48 (Del. 1994)).",
+        ],
+        "controller_transactions": [
+            "MFW supplies the governing framework: business judgment review may apply in controller transactions only when dual procedural protections are satisfied from the outset (Kahn v. M&F Worldwide Corp., 88 A.3d 635, 644 (Del. 2014)).",
+        ],
+        "stockholder_vote_cleansing": [
+            "Corwin supplies the governing framework: a fully informed and uncoerced vote of disinterested stockholders can restore business judgment review (Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304, 308-09 (Del. 2015)).",
+        ],
     }
 
     CONTROLLING_CASE_BY_DOCTRINE = {
@@ -1094,63 +1073,54 @@ def synthesize_opinion_answer(
         "books_and_records": "Section 220",
     }
 
-    selected_cases: list[str] = []
-    for line in target_lines:
-        selected_cases.extend(DOCTRINE_ANCHORS.get(line, []))
-
-    seen = set()
-    selected_cases = [
-        case for case in selected_cases
-        if not (case in seen or seen.add(case))
-    ]
-
     parts: list[str] = []
-    rule_inserted = False
+    seen: set[str] = set()
 
     primary_line = target_lines[0] if target_lines else ""
     controlling_case = CONTROLLING_CASE_BY_DOCTRINE.get(primary_line)
 
-    # 1. Delaware-style lead sentence.
+    # 1. Delaware Supreme Court-style lead.
     if query_type == "comparison" and key_distinction:
-        parts.append(
-            f"Delaware law draws the relevant distinction this way: {key_distinction}."
+        add_once(
+            parts,
+            seen,
+            f"The distinction is doctrinal, not semantic. {key_distinction}",
         )
-    elif controlling_case and rule:
-        parts.append(
-            f"The governing standard comes from {controlling_case}: {rule[0].lower() + rule[1:]}."
-        )
-        rule_inserted = True
+    elif rule:
+        if controlling_case:
+            add_once(parts, seen, f"{controlling_case} supplies the governing framework. {rule}")
+        else:
+            add_once(parts, seen, f"Delaware law supplies the governing framework. {rule}")
     elif short_answer:
-        parts.append(short_answer + ".")
+        add_once(parts, seen, short_answer)
 
-    # 2. Authority anchors.
-    retrieved_quote_sentences = quote_anchor_sentences(role_quote_map)
+    # 2. Authority hierarchy.
+    retrieved_quote_sentences = quote_anchor_sentences(role_quote_map, target_lines)
 
     if retrieved_quote_sentences:
-        parts.extend(retrieved_quote_sentences)
+        for sentence in retrieved_quote_sentences:
+            add_once(parts, seen, sentence)
     else:
-        for case in selected_cases:
-            sentence = CASE_SENTENCES.get(case)
-            if sentence:
-                parts.append(sentence)
+        for sentence in CASE_SENTENCES.get(primary_line, []):
+            add_once(parts, seen, sentence)
 
-    # 3. Synthesis without repetition.
+    # 3. Comparison synthesis.
     if query_type == "comparison" and rule_comparison:
-        parts.append(
-            f"Those authorities fit together in a settled doctrinal sequence: {rule_comparison}."
+        add_once(
+            parts,
+            seen,
+            f"Read together, those authorities establish the governing rule. {rule_comparison}",
         )
-    elif rule and not rule_inserted:
-        parts.append(f"The rule is therefore straightforward: {rule}.")
 
-    # 4. Chancery-style fact-sensitive application.
+    # 4. Final application.
     chancery_application = build_chancery_application(question, target_lines)
 
     if chancery_application:
-        parts.append(chancery_application)
+        add_once(parts, seen, chancery_application)
     else:
-        nonduplicative_analysis = []
         rule_l = rule.lower()
         rule_comparison_l = rule_comparison.lower()
+        nonduplicative_analysis = []
 
         for sentence in analysis_sentences:
             s_l = sentence.lower()
@@ -1161,16 +1131,16 @@ def synthesize_opinion_answer(
                 continue
             if "supplies the governing fiduciary framework" in s_l:
                 continue
-            if "doctrine governs defensive responses" in s_l:
-                continue
             if "doctrine governs" in s_l and "where directors must show" in s_l:
                 continue
 
             nonduplicative_analysis.append(sentence)
 
         if nonduplicative_analysis:
-            parts.append(
-                f"The result follows from that doctrinal structure: {nonduplicative_analysis[-1]}."
+            add_once(
+                parts,
+                seen,
+                f"The consequence is straightforward. {nonduplicative_analysis[-1]}",
             )
 
     opinion = " ".join(parts)
