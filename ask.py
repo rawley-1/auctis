@@ -12,6 +12,7 @@ from synthesis import synthesize_memo_answer
 
 from openai import OpenAI
 
+
 from doctrine_config import (
     DOCTRINE_LABELS,
     FALLBACK_QUOTES,
@@ -28,6 +29,7 @@ from quotes import (
     extract_case_quotes,
     normalize_quote_fragment,
     build_role_based_quote_map,
+    gatekeep_case_quotes,
 )
 
 from synthesis import (
@@ -1717,10 +1719,18 @@ def run_query(question: str):
     }
 
     case_quotes = extract_case_quotes(
+    top_chunks,
+    fallback_quotes=FALLBACK_QUOTES,
+    max_quotes_per_case=5,
+)
+
+    case_quotes = extract_case_quotes(
         top_chunks,
         fallback_quotes=FALLBACK_QUOTES,
         max_quotes_per_case=5,
     )
+
+    case_quotes = gatekeep_case_quotes(case_quotes)
 
     cases = aggregate_by_case(top_chunks)
     doctrine_buckets = bucket_cases_by_doctrine_line(cases)

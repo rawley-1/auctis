@@ -26,6 +26,17 @@ def synthesize_structured_short_answer(target_lines: List[str]) -> str:
 
     return "The governing doctrinal framework depends on the fiduciary setting."
 
+def dedupe_phrases(text: str) -> str:
+    sentences = text.split(". ")
+    seen = set()
+    out = []
+    for s in sentences:
+        norm = s.lower().strip()
+        if norm not in seen:
+            seen.add(norm)
+            out.append(s)
+    return ". ".join(out)
+
 
 def synthesize_short_answer(
     target_lines: List[str],
@@ -705,10 +716,16 @@ def synthesize_opinion_answer(
     # 2. RULE (FOUNDATION)
     # --------------------------------------------------
     rule_sentence = ""
-    if foundation_quote:
-        rule_sentence = foundation_quote
-        if foundation_case:
-            rule_sentence += f" ({foundation_case})."
+
+    # Use quote ONLY if it's clean and long enough
+    if foundation_quote and len(foundation_quote.split()) >= 8:
+     rule_sentence = foundation_quote
+    if foundation_case:
+        rule_sentence += f" ({foundation_case})."
+
+# 🔥 FALLBACK: deterministic doctrinal rule
+    else:
+        rule_sentence = synthesize_rule_from_quotes(role_quote_map, target_lines)
 
     # --------------------------------------------------
     # 3. REFINEMENT (SUPREME COURT)
