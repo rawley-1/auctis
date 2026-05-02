@@ -612,214 +612,447 @@ def synthesize_memo_answer(
     query_plan: Dict[str, Any],
 ) -> str:
     """
-    Deterministic memo-style paragraph.
-    Built purely from validated sections.
+    Deterministic memo paragraph.
+
+    Enforces:
+    - no labels
+    - no filler phrases
+    - no repeated rule language
+    - rule -> trigger -> consequence
+    - max 3 sentences
     """
 
-    query_type = query_plan.get("query_type", "")
-    multi = query_plan.get("multi_doctrine", False)
+    target_lines = [x for x in query_plan.get("target_lines", []) if x != "unknown"]
+    target_set = set(target_lines)
 
-    short_answer = _clean_sentence(sections.get("short_answer", ""))
-    key_distinction = _clean_sentence(sections.get("key_distinction", ""))
-    rule = _clean_sentence(sections.get("rule", ""))
-    rule_comparison = _clean_sentence(sections.get("rule_comparison", ""))
-    analysis = sections.get("analysis", "")
+    def clean(text: str) -> str:
+        text = re.sub(r"\s+", " ", (text or "").strip())
 
-    analysis_sentences = [
-        _clean_sentence(s)
-        for s in re.split(r"(?<=[.!?])\s+", analysis)
-        if s.strip()
-    ]
+        text = re.sub(
+            r"\b(Short Answer|Rule|Analysis|Key Distinction|Rule Comparison|Confidence)\s*:\s*",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
 
-    # ========================
-    # STRUCTURE LOGIC
-    # ========================
+        text = re.sub(
+            r"\b(This matters because|The significance is that|As a result,?|Accordingly,?)\b",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
 
-    if query_type == "comparison":
-        lead = key_distinction or short_answer
-        governing_rule = rule_comparison or rule
-    else:
-        lead = short_answer
-        governing_rule = rule
+        text = re.sub(r"\s+", " ", text).strip()
+        return text.rstrip(".")
 
-    parts = []
+    def doctrine_label() -> str:
+        if not target_lines:
+            return "The doctrine"
+        line = target_lines[0]
+        return DOCTRINE_LABELS.get(line) or line.replace("_", " ").title()
 
-    if lead:
-        parts.append(lead)
+    def semantic_key(text: str) -> str:
+        text = re.sub(r"[^a-z0-9\s]", "", text.lower())
 
-    if governing_rule:
-        parts.append(governing_rule)
+        # collapse common doctrinal equivalents
+        replacements = {
+            "governs transactions that place the company in sale mode": "sale of control",
+            "governs changeofcontrol transactions": "sale of control",
+            "change of control": "change control",
+            "will result in": "results in",
+            "must seek the best value reasonably available": "best value",
+            "secure the best value reasonably available": "best value",
+            "focus on securing the best value reasonably available": "best value",
+            "fiduciary framework": "framework",
+            "doctrinal framework": "framework",
+        }
 
-    # add 3 analysis sentences
-    for sentence in analysis_sentences[:3]:
-        if sentence:
-            parts.append(sentence)
+        for old, new in replacements.items():
+            text = text.replace(old, new)
 
-    memo = " ".join(
-        part.rstrip(".") + "." for part in parts if part.strip()
-    )
+        stop = {
+            "the", "and", "that", "this", "where", "when", "with",
+            "under", "doctrine", "directors", "board", "corporation",
+            "transaction", "transactions", "stockholders", "available",
+            "reasonably", "supplies", "governs",
+        }
 
-    # final cleanup
-    memo = re.sub(
-        r"\b(Short Answer|Rule|Rule Comparison|Analysis|Confidence):",
-        "",
-        memo,
-    )
-    memo = re.sub(r"\s+", " ", memo).strip()
+        words = [w for w in text.split() if len(w) > 3 and w not in stop]
+        return " ".join(words[:10])
 
-    return memo
-def synthesize_opinion_answer(
-    role_quote_map: Dict[str, Dict[str, str]],
-    target_lines: List[str],
-    question: str = "",
-) -> str:
-    """
-    Produces a single-paragraph Delaware Supreme Court–style opinion.
-
-    Structure:
-    Authority → Governing Rule → Refinement → Application Layer → Legal Consequence → Conclusion
-    """
-
-    def clean(q: str) -> str:
-        return (q or "").strip()
-
-    def dedupe_sentences(sentences: List[str]) -> List[str]:
+    def dedupe(sentences: List[str]) -> List[str]:
+        out: List[str] = []
         seen = set()
-        out = []
+
         for s in sentences:
-            norm = re.sub(r"\W+", "", s.lower())
-            if norm and norm not in seen:
-                seen.add(norm)
-                out.append(s.strip())
+            s = clean(s)
+            if not s:
+                continue
+
+            key = semantic_key(s)
+            if key in seen:
+                continue
+
+            # extra overlap check
+            s_words = set(key.split())
+            duplicate = False
+            for existing in out:
+                e_words = set(semantic_key(existing).split())
+                if s_words and e_words:
+                    overlap = len(s_words & e_words) / max(1, min(len(s_words), len(e_words)))
+                    if overlap >= 0.65:
+                        duplicate = True
+                        break
+
+            if duplicate:
+                continue
+
+            seen.add(key)
+            out.append(s)
+
         return out
 
-    def extract(role: str):
-        entry = role_quote_map.get(role) or {}
-        return (
-            entry.get("case", ""),
-            clean(entry.get("quote", "")),
+    def trigger_sentence() -> str:
+        if "sale_of_control" in target_set:
+            return (
+                "Because the transaction results in a change of control, "
+                "the board’s duty is to secure the best value reasonably available."
+            )
+
+        if "entire_fairness" in target_set:
+            return (
+                "Because the fiduciary stands on both sides of the transaction, "
+                "the analysis turns on whether the process and price were entirely fair."
+            )
+
+        if "controller_transactions" in target_set:
+            return (
+                "Because the transaction involves a controlling stockholder, "
+                "the standard of review depends on whether procedural protections restore business judgment review."
+            )
+
+        if "stockholder_vote_cleansing" in target_set:
+            return (
+                "Because the transaction was approved by stockholders, "
+                "the analysis turns on whether the vote was fully informed and uncoerced."
+            )
+
+        if "oversight" in target_set:
+            return (
+                "Because the claim sounds in oversight, liability turns on whether the board failed "
+                "to implement or consciously disregarded a reporting system."
+            )
+
+        if "takeover_defense" in target_set:
+            return (
+                "Because the board adopted defensive measures, the response must fall within "
+                "a range of reasonableness relative to the threat."
+            )
+
+        if "demand_futility" in target_set:
+            return (
+                "Because the claim is derivative, the analysis turns on whether the board "
+                "could have impartially considered demand."
+            )
+
+        return ""
+
+    def conclusion_sentence() -> str:
+        if "sale_of_control" in target_set:
+            return "Accordingly, once Revlon duties are triggered, directors must focus on securing that value."
+
+        if "entire_fairness" in target_set:
+            return "Accordingly, fiduciaries must prove that both the process and price were entirely fair."
+
+        if "controller_transactions" in target_set:
+            return "Accordingly, the standard of review turns on whether the transaction was properly cleansed."
+
+        if "stockholder_vote_cleansing" in target_set:
+            return "Accordingly, business judgment review depends on a fully informed and uncoerced vote."
+
+        if "oversight" in target_set:
+            return "Accordingly, liability depends on a failure to implement or monitor oversight systems."
+
+        if "takeover_defense" in target_set:
+            return "Accordingly, the board’s actions must be proportionate to the threat."
+
+        if "demand_futility" in target_set:
+            return "Accordingly, demand is excused only if the board cannot act impartially."
+
+        return ""
+
+    short_answer = clean(sections.get("short_answer", ""))
+    rule = clean(sections.get("rule", ""))
+
+    parts: List[str] = []
+
+    parts.append(short_answer or f"{doctrine_label()} supplies the governing doctrinal framework.")
+
+    # Only use the rule if it adds something new.
+    if rule:
+        parts.append(rule)
+
+    trigger = trigger_sentence()
+    if trigger:
+        parts.append(trigger)
+
+    conclusion = conclusion_sentence()
+    if conclusion:
+        parts.append(conclusion)
+
+    parts = dedupe(parts)
+
+    # Hard cap memo mode to 3 sentences.
+    parts = parts[:3]
+
+    paragraph = " ".join(p.rstrip(".") + "." for p in parts)
+
+    paragraph = re.sub(r"\s+", " ", paragraph).strip()
+    paragraph = re.sub(r"\.\.+", ".", paragraph)
+    paragraph = re.sub(r"\s+\.", ".", paragraph)
+
+    return paragraph
+
+def synthesize_opinion_answer(
+    sections: Dict[str, str],
+    query_plan: Dict[str, Any],
+    role_quote_map: Dict[str, Dict[str, str]] | None = None,
+) -> str:
+    """
+    Delaware Supreme Court-style opinion paragraph.
+
+    Enforces:
+    - authority-first cadence
+    - clean parenthetical citations
+    - no "recent decisions" summary voice
+    - no raw OCR/citation garbage
+    - concise rule -> consequence -> disposition flow
+    """
+
+    role_quote_map = role_quote_map or {}
+    target_lines = [x for x in query_plan.get("target_lines", []) if x != "unknown"]
+    target_set = set(target_lines)
+
+    def clean(text: str) -> str:
+        text = re.sub(r"\s+", " ", (text or "").strip())
+        text = re.sub(
+            r"\b(This matters because|The significance is that|As a result,?)\b",
+            "",
+            text,
+            flags=re.IGNORECASE,
         )
+        text = re.sub(
+            r"\b(Short Answer|Rule|Analysis|Confidence|Rule Comparison|Key Distinction)\s*:\s*",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+        text = re.sub(
+            r"\b(Recent decisions, including|Cases like|Courts have also held)[^.]*\.",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+        text = re.sub(r"\s+", " ", text).strip()
+        return text.rstrip(".")
 
-    foundation_case, foundation_quote = extract("foundation")
-    refinement_case, refinement_quote = extract("supreme_refinement")
-    modern_case, modern_quote = extract("modern_application")
+    def doctrine_label() -> str:
+        if not target_lines:
+            return "Delaware law"
+        line = target_lines[0]
+        if line == "sale_of_control":
+            return "Revlon"
+        if line == "takeover_defense":
+            return "Unocal"
+        if line == "oversight":
+            return "Caremark"
+        if line == "controller_transactions":
+            return "MFW"
+        if line == "stockholder_vote_cleansing":
+            return "Corwin"
+        if line == "demand_futility":
+            return "Zuckerberg"
+        if line == "entire_fairness":
+            return "Weinberger"
+        return DOCTRINE_LABELS.get(line) or line.replace("_", " ").title()
 
-    # --------------------------------------------------
-    # 1. AUTHORITY LEAD
-    # --------------------------------------------------
-    if foundation_case:
-        lead = f"{foundation_case} supplies the governing framework."
-    else:
-        lead = "Delaware law supplies the governing framework."
+    def citation_for(role: str) -> str:
+        item = role_quote_map.get(role) or {}
+        case = (item.get("case") or "").strip()
+        if not case:
+            return ""
+        return f" ({case})."
 
-    # --------------------------------------------------
-    # 2. RULE (FOUNDATION)
-    # --------------------------------------------------
-    rule_sentence = ""
+    def quote_for(role: str) -> str:
+        item = role_quote_map.get(role) or {}
+        return clean(item.get("quote", ""))
 
-    # Use quote ONLY if it's clean and long enough
-    if foundation_quote and len(foundation_quote.split()) >= 8:
-     rule_sentence = foundation_quote
-    if foundation_case:
-        rule_sentence += f" ({foundation_case})."
+    def add_cite(sentence: str, role: str) -> str:
+        sentence = clean(sentence)
+        if not sentence:
+            return ""
+        cite = citation_for(role)
+        if cite and not sentence.endswith(cite.rstrip(".")):
+            return sentence.rstrip(".") + cite
+        return sentence.rstrip(".") + "."
 
-# 🔥 FALLBACK: deterministic doctrinal rule
-    else:
-        rule_sentence = synthesize_rule_from_quotes(role_quote_map, target_lines)
-
-    # --------------------------------------------------
-    # 3. REFINEMENT (SUPREME COURT)
-    # --------------------------------------------------
-    refinement_sentence = ""
-    if refinement_quote:
-        if refinement_case:
-            refinement_sentence = f"{refinement_case} confirms that {refinement_quote.lower()}"
-            if not refinement_sentence.endswith("."):
-                refinement_sentence += "."
-        else:
-            refinement_sentence = refinement_quote
-
-    # --------------------------------------------------
-    # 4. MODERN APPLICATION
-    # --------------------------------------------------
-    application_sentence = ""
-    if modern_quote:
-        if modern_case:
-            application_sentence = f"Recent decisions, including {modern_case}, apply that framework to hold that {modern_quote.lower()}"
-            if not application_sentence.endswith("."):
-                application_sentence += "."
-        else:
-            application_sentence = modern_quote
-
-    # --------------------------------------------------
-    # 5. DOCTRINAL CONSEQUENCE (CRITICAL)
-    # --------------------------------------------------
-    doctrine_sentence = ""
-
-    target_set = set(x for x in target_lines if x != "unknown")
+        def doctrine_rule() -> str:
+            if "sale_of_control" in target_set:
+                return (
+            "Under Revlon and QVC, once the corporation is for sale, directors must seek "
+            "the best value reasonably available to stockholders, and that duty applies "
+            "when a transaction will result in a change of control"
+        )
 
     if "entire_fairness" in target_set:
-        doctrine_sentence = (
-            "Because the transaction involves a conflicted fiduciary standing on both sides, "
-            "the analysis turns on whether the process and price together satisfy entire fairness."
+        return (
+            "Under Weinberger, entire fairness requires fiduciaries to establish both "
+            "fair dealing and fair price"
         )
 
-    elif "controller_transactions" in target_set:
-        doctrine_sentence = (
-            "Because the transaction involves a controlling stockholder, "
-            "the standard of review depends on whether dual procedural protections restore business judgment review."
+    if "controller_transactions" in target_set:
+        return (
+            "Under MFW, business judgment review may apply to a controller transaction "
+            "only if effective procedural protections are in place from the outset"
         )
 
-    elif "oversight" in target_set:
-        doctrine_sentence = (
-            "Because the claim sounds in oversight, liability turns on whether the board failed to implement or consciously disregarded a monitoring system."
+    if "stockholder_vote_cleansing" in target_set:
+        return (
+            "Under Corwin, a fully informed and uncoerced vote of disinterested stockholders "
+            "restores business judgment review"
         )
 
-    elif "takeover_defense" in target_set:
-        doctrine_sentence = (
-            "Because the board adopted defensive measures, the analysis turns on whether the response was proportionate to a legitimate threat."
+    if "oversight" in target_set:
+        return (
+            "Under Caremark and Stone, directors breach the duty of loyalty only through "
+            "bad-faith failure to implement or monitor a reporting system"
         )
 
-    elif "sale_of_control" in target_set:
-        doctrine_sentence = (
-            "Because the transaction constitutes a change of control, the board’s duty is to secure the best value reasonably available."
+    if "takeover_defense" in target_set:
+        return (
+            "Under Unocal and Unitrin, defensive measures must respond to a legitimate threat "
+            "and must be neither coercive nor preclusive"
         )
 
-    elif "stockholder_vote_cleansing" in target_set:
-        doctrine_sentence = (
-            "Because the transaction was approved by stockholders, the analysis turns on whether the vote was fully informed and uncoerced."
+    if "demand_futility" in target_set:
+        return (
+            "Under Zuckerberg, demand futility turns on whether a majority of the board "
+            "could consider demand impartially"
         )
 
-    elif "demand_futility" in target_set:
-        doctrine_sentence = (
-            "Because the claim is derivative, the analysis turns on whether the board could have impartially considered a demand."
-        )
+    rule = clean(sections.get("rule", ""))
 
-    # --------------------------------------------------
-    # 6. CONCLUSION (NO FLUFF)
-    # --------------------------------------------------
-    conclusion = ""
-    if doctrine_sentence:
-        conclusion = "Thus, the doctrine determines the applicable standard of review and the plaintiff’s burden."
+    return rule or clean(synthesize_rule_from_quotes(role_quote_map, target_lines))
+    def disposition_sentence() -> str:
+        if "sale_of_control" in target_set:
+            return "Thus, once Revlon duties attach, directors must pursue the best value reasonably available to stockholders."
 
-    # --------------------------------------------------
-    # BUILD FINAL PARAGRAPH
-    # --------------------------------------------------
-    sentences = [
-        lead,
-        rule_sentence,
-        refinement_sentence,
-        application_sentence,
-        doctrine_sentence,
-        conclusion,
-    ]
+        if "entire_fairness" in target_set:
+            return "Thus, fiduciaries bear the burden of proving entire fairness."
 
-    sentences = [s for s in sentences if s]
-    sentences = dedupe_sentences(sentences)
+        if "controller_transactions" in target_set:
+            return "Thus, absent effective cleansing, the transaction remains subject to entire fairness review."
 
-    paragraph = " ".join(sentences)
+        if "stockholder_vote_cleansing" in target_set:
+            return "Thus, business judgment review follows only from a fully informed and uncoerced stockholder vote."
 
-    # Final cleanup
+        if "oversight" in target_set:
+            return "Thus, the doctrine imposes liability only for bad-faith oversight failure, not ordinary business error."
+
+        if "takeover_defense" in target_set:
+            return "Thus, the defensive measure must be neither coercive nor preclusive and must fall within a range of reasonableness."
+
+        if "demand_futility" in target_set:
+            return "Thus, demand is excused only where the complaint pleads a disabling risk to board impartiality."
+
+        return "Thus, the doctrine determines the applicable standard of review and the fiduciary burden."
+
+    def sentence_key(text: str) -> str:
+        text = clean(text).lower()
+        text = re.sub(r"[^a-z0-9\s]", "", text)
+
+        replacements = {
+            "best value reasonably available to stockholders": "best value",
+            "best value reasonably available": "best value",
+            "change of control": "change control",
+            "will result in": "results in",
+            "supplies the governing framework": "framework",
+            "supplies the governing doctrinal framework": "framework",
+        }
+
+        for old, new in replacements.items():
+            text = text.replace(old, new)
+
+        stop = {
+            "the", "and", "that", "this", "where", "when", "with",
+            "under", "doctrine", "directors", "board", "corporation",
+            "transaction", "transactions", "stockholders", "available",
+            "reasonably", "supplies", "governs", "framework",
+        }
+
+        words = [w for w in text.split() if len(w) > 3 and w not in stop]
+        return " ".join(words[:12])
+
+    def dedupe(sentences: List[str]) -> List[str]:
+        out: List[str] = []
+
+        for s in sentences:
+            s = clean(s)
+            if not s:
+                continue
+
+            key = sentence_key(s)
+            s_words = set(key.split())
+
+            duplicate = False
+            for existing in out:
+                e_words = set(sentence_key(existing).split())
+                if s_words and e_words:
+                    overlap = len(s_words & e_words) / max(1, min(len(s_words), len(e_words)))
+                    if overlap >= 0.68:
+                        duplicate = True
+                        break
+
+            if not duplicate:
+                out.append(s)
+
+        return out
+
+    lead = f"{doctrine_label()} supplies the governing framework."
+
+    rule = doctrine_rule()
+
+    # Delaware-style citation handling:
+    # sentence 1: case authority
+    # sentence 2: rule, cited to foundation if available
+    # sentence 3: refinement only if clean and not repetitive
+    foundation_quote = quote_for("foundation")
+    refinement_quote = quote_for("supreme_refinement") or quote_for("refinement")
+
+    parts: List[str] = [lead]
+
+    if rule:
+        parts.append(add_cite(rule, "foundation"))
+
+    if refinement_quote:
+        refinement_case = (role_quote_map.get("supreme_refinement") or role_quote_map.get("refinement") or {}).get("case", "")
+        if refinement_case:
+            parts.append(add_cite(f"{refinement_case} confirms that {refinement_quote[0].lower() + refinement_quote[1:]}", "supreme_refinement"))
+        else:
+            parts.append(refinement_quote)
+
+    parts.append(consequence_sentence())
+    parts.append(disposition_sentence())
+
+    parts = dedupe(parts)
+
+    # Opinion mode should be tight: 4 sentences max.
+    parts = parts[:4]
+
+    paragraph = " ".join(p.rstrip(".") + "." for p in parts)
+
     paragraph = re.sub(r"\s+", " ", paragraph).strip()
+    paragraph = re.sub(r"\.\.+", ".", paragraph)
+    paragraph = re.sub(r"\s+\.", ".", paragraph)
 
     return paragraph

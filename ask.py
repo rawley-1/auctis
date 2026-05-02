@@ -1730,7 +1730,7 @@ def run_query(question: str):
         max_quotes_per_case=5,
     )
 
-    case_quotes = gatekeep_case_quotes(case_quotes)
+    case_quotes = gatekeep_case_quotes(case_quotes, min_score=10.0)
 
     cases = aggregate_by_case(top_chunks)
     doctrine_buckets = bucket_cases_by_doctrine_line(cases)
@@ -1969,9 +1969,9 @@ SUPPORTING CASES:
     memo_answer = synthesize_memo_answer(sections_for_display, query_plan)
 
     opinion_answer = synthesize_opinion_answer(
+    sections_for_display,
+    query_plan,
     role_quote_map=role_quote_map,
-    target_lines=query_plan.get("target_lines", []),
-    question=question,
 )
 
         # --- Retrieval confidence ---
