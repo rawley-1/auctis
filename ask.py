@@ -1957,10 +1957,11 @@ SUPPORTING CASES:
     sections_for_display = extract_sections(ai_answer, query_plan)
 
     memo_answer = synthesize_memo_answer(sections_for_display, query_plan)
+
     opinion_answer = synthesize_opinion_answer(
-    sections_for_display,
-    query_plan,
-    role_quote_map,
+    role_quote_map=role_quote_map,
+    target_lines=query_plan.get("target_lines", []),
+    question=question,
 )
 
         # --- Retrieval confidence ---

@@ -657,493 +657,152 @@ def synthesize_memo_answer(
     memo = re.sub(r"\s+", " ", memo).strip()
 
     return memo
-
 def synthesize_opinion_answer(
-    sections: Dict[str, str],
-    query_plan: Dict[str, Any],
-    role_quote_map: Dict[str, Dict[str, str]] | None = None,
+    role_quote_map: Dict[str, Dict[str, str]],
+    target_lines: List[str],
+    question: str = "",
 ) -> str:
     """
-    Delaware Supreme Court-style opinion output.
-    Deterministic. Rule-first, restrained, case-anchored, and non-repetitive.
+    Produces a single-paragraph Delaware Supreme Court–style opinion.
+
+    Structure:
+    Authority → Governing Rule → Refinement → Application Layer → Legal Consequence → Conclusion
     """
 
-    import re
+    def clean(q: str) -> str:
+        return (q or "").strip()
 
-    def clean(text: str) -> str:
-        text = re.sub(r"\s+", " ", (text or "").strip())
-        text = re.sub(
-            r"^(This matters because|The significance is that|As a result,|As a result)\s+",
-            "",
-            text,
-            flags=re.IGNORECASE,
-        )
-        return text.rstrip(".")
+    def dedupe_sentences(sentences: List[str]) -> List[str]:
+        seen = set()
+        out = []
+        for s in sentences:
+            norm = re.sub(r"\W+", "", s.lower())
+            if norm and norm not in seen:
+                seen.add(norm)
+                out.append(s.strip())
+        return out
 
-    def add_once(parts: list[str], seen: set[str], text: str) -> None:
-        text = clean(text)
-        if not text:
-            return
-
-        key = text.lower()
-        if key in seen:
-            return
-
-        seen.add(key)
-        parts.append(text + ".")
-
-    def build_chancery_application(question: str, target_lines: list[str]) -> str:
-        q = (question or "").lower()
-        target_set = set(target_lines)
-
-        if "demand_futility" in target_set:
-            return (
-                "The consequence is straightforward: demand is excused only where the pleaded facts support "
-                "a reasonable doubt that a majority of the board could exercise independent and disinterested "
-                "judgment in responding to a demand"
-            )
-
-        if "takeover_defense" in target_set:
-            if any(term in q for term in ["poison pill", "rights plan", "hostile bid", "defensive measure", "threat"]):
-                return (
-                    "The inquiry therefore turns on whether the board identified a legally cognizable threat "
-                    "and adopted a response that was neither coercive nor preclusive"
-                )
-            return (
-                "The consequence is straightforward: enhanced scrutiny applies, and the defensive response must "
-                "fall within a range of reasonableness"
-            )
-
-        if "oversight" in target_set:
-            if any(term in q for term in ["red flag", "ignored", "warning", "mission critical"]):
-                return (
-                    "The inquiry therefore turns on whether the directors consciously failed to respond to "
-                    "mission-critical red flags in a manner supporting an inference of bad faith"
-                )
-            if any(term in q for term in ["no system", "no reporting system", "no controls", "utter failure"]):
-                return (
-                    "The inquiry therefore turns on whether the board failed at the threshold level to establish "
-                    "a reasonable reporting or information system"
-                )
-            return (
-                "The consequence is straightforward: oversight liability depends on bad-faith failure to implement "
-                "or monitor a reasonable reporting system"
-            )
-
-        if "controller_transactions" in target_set:
-            return (
-                "The consequence is straightforward: absent both procedural protections from the outset, "
-                "the controller transaction remains subject to entire fairness"
-            )
-
-        if "stockholder_vote_cleansing" in target_set:
-            return (
-                "The consequence is straightforward: cleansing depends on a fully informed, uncoerced vote "
-                "of disinterested stockholders"
-            )
-
-        if "sale_of_control" in target_set:
-            return (
-                "The consequence is straightforward: once the company enters a sale-of-control setting, "
-                "the directors must act reasonably to secure the best value reasonably available"
-            )
-
-        return ""
-
-    def quote_anchor_sentences(
-        role_quote_map: Dict[str, Dict[str, str]] | None,
-        target_lines: list[str],
-    ) -> list[str]:
-        if not role_quote_map:
-            return []
-
-        PINPOINT_CITES = {
-            "Caremark": "In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959, 971 (Del. Ch. 1996)",
-            "Stone": "Stone v. Ritter, 911 A.2d 362, 370 (Del. 2006)",
-            "Marchand": "Marchand v. Barnhill, 212 A.3d 805, 821 (Del. 2019)",
-            "Unocal": "Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946, 955 (Del. 1985)",
-            "Unitrin": "Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361, 1387-88 (Del. 1995)",
-            "Revlon": "Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173, 182 (Del. 1986)",
-            "QVC": "Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34, 47-48 (Del. 1994)",
-            "MFW": "Kahn v. M&F Worldwide Corp., 88 A.3d 635, 644 (Del. 2014)",
-            "Corwin": "Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304, 308-09 (Del. 2015)",
-            "Aronson": "Aronson v. Lewis, 473 A.2d 805, 814 (Del. 1984)",
-            "Rales": "Rales v. Blasband, 634 A.2d 927, 934 (Del. 1993)",
-            "Zuckerberg": "United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034, 1058-59 (Del. 2021)",
-            "Malone": "Malone v. Brincat, 722 A.2d 5, 10 (Del. 1998)",
-            "Weinberger": "Weinberger v. UOP, Inc., 457 A.2d 701, 711 (Del. 1983)",
-            "Blasius": "Blasius Indus., Inc. v. Atlas Corp., 564 A.2d 651, 661 (Del. Ch. 1988)",
-            "Schnell": "Schnell v. Chris-Craft Indus., Inc., 285 A.2d 437, 439 (Del. 1971)",
-        }
-
-        ROLE_LEADS = {
-            "foundation": "states the starting point",
-            "supreme_refinement": "confirms the governing limitation",
-            "refinement": "confirms the governing limitation",
-            "modern_application": "applies that rule",
-        }
-
-        if "demand_futility" in target_lines:
-            ROLE_LEADS = {
-                "foundation": "states the original formulation",
-                "supreme_refinement": "confirms the board-capacity inquiry",
-                "refinement": "confirms the board-capacity inquiry",
-                "modern_application": "supplies the modern formulation",
-            }
-        elif "oversight" in target_lines:
-            ROLE_LEADS = {
-                "foundation": "states the starting point",
-                "supreme_refinement": "links the doctrine to bad faith and loyalty",
-                "refinement": "confirms the governing limitation",
-                "modern_application": "applies that rule",
-            }
-        elif "takeover_defense" in target_lines:
-            ROLE_LEADS = {
-                "foundation": "states the starting point",
-                "supreme_refinement": "confirms the proportionality limitation",
-                "refinement": "confirms the proportionality limitation",
-                "modern_application": "applies that rule",
-            }
-
-        ROLE_PRIORITY = {
-            "foundation": 0,
-            "supreme_refinement": 1,
-            "refinement": 2,
-            "modern_application": 3,
-        }
-
-        STRONG_MARKERS = [
-            "utter failure",
-            "good faith",
-            "duty of loyalty",
-            "oversight system",
-            "reporting system",
-            "monitor",
-            "business judgment",
-            "entire fairness",
-            "fair dealing",
-            "fair price",
-            "fully informed",
-            "uncoerced",
-            "special committee",
-            "majority of the minority",
-            "best value reasonably available",
-            "change of control",
-            "coercive",
-            "preclusive",
-            "range of reasonableness",
-            "reasonable doubt",
-            "impartially consider",
-            "proper purpose",
-            "credible basis",
-            "compelling justification",
-            "inequitable",
-            "director-by-director",
-        ]
-
-        BAD_MARKERS = [
-            "plaintiff",
-            "complaint",
-            "motion to dismiss",
-            "compensation",
-            "contract",
-            "patient",
-            "drugs",
-            "committee assistance",
-            "semi-anemployees",
-            "pliance",
-            "scription",
-            "preor",
-            "mity",
-            "anemployees",
-            "repurchase conduct",
-            "proamined",
-            "exhad",
-        ]
-
-        PINPOINT_ANCHORS = [
-            "utter failure to attempt to assure",
-            "failure to act in good faith",
-            "good faith effort to implement",
-            "reasonable grounds for believing",
-            "threat to corporate policy and effectiveness",
-            "coercive",
-            "preclusive",
-            "range of reasonableness",
-            "best value reasonably available",
-            "change of control",
-            "special committee",
-            "majority of the minority",
-            "fully informed",
-            "uncoerced",
-            "reasonable doubt",
-            "impartially consider",
-            "director-by-director",
-            "fair dealing",
-            "fair price",
-            "compelling justification",
-            "proper purpose",
-            "credible basis",
-        ]
-
-        ROLE_WEIGHT = {
-            "foundation": 4,
-            "supreme_refinement": 5,
-            "refinement": 3,
-            "modern_application": 4,
-        }
-
-        def quote_quality_score(quote: str, role: str) -> int:
-            q = clean(quote)
-            q_l = q.lower()
-            words = q.split()
-
-            if len(words) < 8 or len(words) > 45:
-                return -100
-
-            if any(bad in q_l for bad in BAD_MARKERS):
-                return -100
-
-            marker_hits = sum(1 for marker in STRONG_MARKERS if marker in q_l)
-            if marker_hits == 0:
-                return -100
-
-            weird_count = sum(
-                1
-                for w in words
-                if len(w) <= 2
-                and w.lower()
-                not in {"or", "to", "of", "in", "is", "an", "a", "by", "as", "at", "it"}
-            )
-            if weird_count >= 5:
-                return -100
-
-            if re.search(r"[A-Z][a-z]+ [A-Z][a-z]+ [a-z]{1,3} of the [A-Z][a-z]+", q):
-                return -100
-
-            bad_caps = sum(
-                1 for w in words
-                if w and w[0].isupper() and not w.isupper()
-            )
-            if bad_caps > len(words) * 0.6:
-                return -100
-
-            if not any(
-                v in q_l
-                for v in [" must ", " is ", " are ", " requires ", " provides ", " where "]
-            ):
-                return -100
-
-            score = 0
-            score += marker_hits * 8
-            score += ROLE_WEIGHT.get(role, 1)
-
-            if 12 <= len(words) <= 32:
-                score += 6
-
-            if any(term in q_l for term in ["must", "requires", "only", "unless", "where"]):
-                score += 4
-
-            pinpoint_hits = sum(1 for anchor in PINPOINT_ANCHORS if anchor in q_l)
-            score += pinpoint_hits * 12
-
-            if "the court" in q_l:
-                score -= 4
-
-            return score
-
-        candidates: list[dict] = []
-
-        for role, item in role_quote_map.items():
-            if role not in ROLE_LEADS:
-                continue
-
-            case = clean(item.get("case", ""))
-            quote = clean(item.get("quote", ""))
-
-            if not case or not quote:
-                continue
-
-            score = quote_quality_score(quote, role)
-            if score <= 0:
-                continue
-
-            candidates.append(
-                {
-                    "role": role,
-                    "case": case,
-                    "quote": quote,
-                    "score": score,
-                }
-            )
-
-        candidates.sort(
-            key=lambda x: (
-                ROLE_PRIORITY.get(x["role"], 10),
-                -x["score"],
-            )
+    def extract(role: str):
+        entry = role_quote_map.get(role) or {}
+        return (
+            entry.get("case", ""),
+            clean(entry.get("quote", "")),
         )
 
-        selected = []
-        seen_cases = set()
+    foundation_case, foundation_quote = extract("foundation")
+    refinement_case, refinement_quote = extract("supreme_refinement")
+    modern_case, modern_quote = extract("modern_application")
 
-        for candidate in candidates:
-            case = candidate["case"]
-            if case in seen_cases:
-                continue
+    # --------------------------------------------------
+    # 1. AUTHORITY LEAD
+    # --------------------------------------------------
+    if foundation_case:
+        lead = f"{foundation_case} supplies the governing framework."
+    else:
+        lead = "Delaware law supplies the governing framework."
 
-            selected.append(candidate)
-            seen_cases.add(case)
+    # --------------------------------------------------
+    # 2. RULE (FOUNDATION)
+    # --------------------------------------------------
+    rule_sentence = ""
+    if foundation_quote:
+        rule_sentence = foundation_quote
+        if foundation_case:
+            rule_sentence += f" ({foundation_case})."
 
-            if len(selected) >= 3:
-                break
-
-        sentences: list[str] = []
-
-        for item in selected:
-            case = item["case"]
-            quote = item["quote"]
-            role = item["role"]
-
-            cite = PINPOINT_CITES.get(case, case)
-            lead = ROLE_LEADS.get(role, "states the governing rule")
-
-            sentences.append(f"{case} {lead}: “{quote}” ({cite}).")
-
-        return sentences
-
-    target_lines = [
-        line for line in query_plan.get("target_lines", [])
-        if line != "unknown"
-    ]
-
-    query_type = query_plan.get("query_type", "")
-    question = query_plan.get("question", "")
-
-    short_answer = clean(sections.get("short_answer", ""))
-    key_distinction = clean(sections.get("key_distinction", ""))
-    rule = clean(sections.get("rule", ""))
-    rule_comparison = clean(sections.get("rule_comparison", ""))
-    analysis = sections.get("analysis", "")
-
-    analysis_sentences = [
-        clean(s)
-        for s in re.split(r"(?<=[.!?])\s+", analysis)
-        if s.strip()
-    ]
-
-    CASE_SENTENCES = {
-        "demand_futility": [
-            "Aronson states the original formulation: demand futility turns on reasonable doubt concerning director disinterest, independence, or valid business judgment (Aronson v. Lewis, 473 A.2d 805, 814 (Del. 1984)).",
-            "Rales confirms the board-capacity inquiry: the question is whether the board could impartially consider a litigation demand (Rales v. Blasband, 634 A.2d 927, 934 (Del. 1993)).",
-            "Zuckerberg supplies the modern formulation: the inquiry proceeds director by director (United Food & Com. Workers Union v. Zuckerberg, 262 A.3d 1034, 1058-59 (Del. 2021)).",
-        ],
-        "takeover_defense": [
-            "Unocal states the starting point: directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed (Unocal Corp. v. Mesa Petroleum Co., 493 A.2d 946, 955 (Del. 1985)).",
-            "Unitrin confirms the governing limitation: the response may not be coercive or preclusive and must fall within a range of reasonableness (Unitrin, Inc. v. American Gen. Corp., 651 A.2d 1361, 1387-88 (Del. 1995)).",
-        ],
-        "oversight": [
-            "Caremark states the starting point: oversight liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists (In re Caremark Int’l Inc. Deriv. Litig., 698 A.2d 959, 971 (Del. Ch. 1996)).",
-            "Stone links that doctrine to bad faith and the duty of loyalty (Stone v. Ritter, 911 A.2d 362, 370 (Del. 2006)).",
-            "Marchand applies that rule by requiring a good-faith effort to implement and monitor an oversight system (Marchand v. Barnhill, 212 A.3d 805, 821 (Del. 2019)).",
-        ],
-        "sale_of_control": [
-            "Revlon states the starting point: once the company is for sale, directors must seek the best value reasonably available (Revlon, Inc. v. MacAndrews & Forbes Holdings, Inc., 506 A.2d 173, 182 (Del. 1986)).",
-            "QVC confirms the governing trigger: Revlon duties arise when the transaction effects a change of control (Paramount Commc’ns Inc. v. QVC Network Inc., 637 A.2d 34, 47-48 (Del. 1994)).",
-        ],
-        "controller_transactions": [
-            "MFW supplies the governing framework: business judgment review may apply in controller transactions only when dual procedural protections are satisfied from the outset (Kahn v. M&F Worldwide Corp., 88 A.3d 635, 644 (Del. 2014)).",
-        ],
-        "stockholder_vote_cleansing": [
-            "Corwin supplies the governing framework: a fully informed and uncoerced vote of disinterested stockholders can restore business judgment review (Corwin v. KKR Fin. Holdings LLC, 125 A.3d 304, 308-09 (Del. 2015)).",
-        ],
-    }
-
-    CONTROLLING_CASE_BY_DOCTRINE = {
-        "oversight": "Caremark",
-        "takeover_defense": "Unocal",
-        "sale_of_control": "Revlon",
-        "controller_transactions": "MFW",
-        "stockholder_vote_cleansing": "Corwin",
-        "demand_futility": "Zuckerberg",
-        "disclosure_loyalty": "Malone",
-        "entire_fairness": "Weinberger",
-        "shareholder_franchise": "Blasius",
-        "equitable_intervention": "Schnell",
-        "books_and_records": "Section 220",
-    }
-
-    parts: list[str] = []
-    seen: set[str] = set()
-
-    primary_line = target_lines[0] if target_lines else ""
-    controlling_case = CONTROLLING_CASE_BY_DOCTRINE.get(primary_line)
-
-    # 1. Delaware Supreme Court-style lead.
-    if query_type == "comparison" and key_distinction:
-        add_once(
-            parts,
-            seen,
-            f"The distinction is doctrinal, not semantic. {key_distinction}",
-        )
-    elif rule:
-        if controlling_case:
-            add_once(parts, seen, f"{controlling_case} supplies the governing framework. {rule}")
+    # --------------------------------------------------
+    # 3. REFINEMENT (SUPREME COURT)
+    # --------------------------------------------------
+    refinement_sentence = ""
+    if refinement_quote:
+        if refinement_case:
+            refinement_sentence = f"{refinement_case} confirms that {refinement_quote.lower()}"
+            if not refinement_sentence.endswith("."):
+                refinement_sentence += "."
         else:
-            add_once(parts, seen, f"Delaware law supplies the governing framework. {rule}")
-    elif short_answer:
-        add_once(parts, seen, short_answer)
+            refinement_sentence = refinement_quote
 
-    # 2. Authority hierarchy.
-    retrieved_quote_sentences = quote_anchor_sentences(role_quote_map, target_lines)
+    # --------------------------------------------------
+    # 4. MODERN APPLICATION
+    # --------------------------------------------------
+    application_sentence = ""
+    if modern_quote:
+        if modern_case:
+            application_sentence = f"Recent decisions, including {modern_case}, apply that framework to hold that {modern_quote.lower()}"
+            if not application_sentence.endswith("."):
+                application_sentence += "."
+        else:
+            application_sentence = modern_quote
 
-    if retrieved_quote_sentences:
-        for sentence in retrieved_quote_sentences:
-            add_once(parts, seen, sentence)
-    else:
-        for sentence in CASE_SENTENCES.get(primary_line, []):
-            add_once(parts, seen, sentence)
+    # --------------------------------------------------
+    # 5. DOCTRINAL CONSEQUENCE (CRITICAL)
+    # --------------------------------------------------
+    doctrine_sentence = ""
 
-    # 3. Comparison synthesis.
-    if query_type == "comparison" and rule_comparison:
-        add_once(
-            parts,
-            seen,
-            f"Read together, those authorities establish the governing rule. {rule_comparison}",
+    target_set = set(x for x in target_lines if x != "unknown")
+
+    if "entire_fairness" in target_set:
+        doctrine_sentence = (
+            "Because the transaction involves a conflicted fiduciary standing on both sides, "
+            "the analysis turns on whether the process and price together satisfy entire fairness."
         )
 
-    # 4. Final application.
-    chancery_application = build_chancery_application(question, target_lines)
+    elif "controller_transactions" in target_set:
+        doctrine_sentence = (
+            "Because the transaction involves a controlling stockholder, "
+            "the standard of review depends on whether dual procedural protections restore business judgment review."
+        )
 
-    if chancery_application:
-        add_once(parts, seen, chancery_application)
-    else:
-        rule_l = rule.lower()
-        rule_comparison_l = rule_comparison.lower()
-        nonduplicative_analysis = []
+    elif "oversight" in target_set:
+        doctrine_sentence = (
+            "Because the claim sounds in oversight, liability turns on whether the board failed to implement or consciously disregarded a monitoring system."
+        )
 
-        for sentence in analysis_sentences:
-            s_l = sentence.lower()
+    elif "takeover_defense" in target_set:
+        doctrine_sentence = (
+            "Because the board adopted defensive measures, the analysis turns on whether the response was proportionate to a legitimate threat."
+        )
 
-            if rule_l and s_l in rule_l:
-                continue
-            if rule_comparison_l and s_l in rule_comparison_l:
-                continue
-            if "supplies the governing fiduciary framework" in s_l:
-                continue
-            if "doctrine governs" in s_l and "where directors must show" in s_l:
-                continue
+    elif "sale_of_control" in target_set:
+        doctrine_sentence = (
+            "Because the transaction constitutes a change of control, the board’s duty is to secure the best value reasonably available."
+        )
 
-            nonduplicative_analysis.append(sentence)
+    elif "stockholder_vote_cleansing" in target_set:
+        doctrine_sentence = (
+            "Because the transaction was approved by stockholders, the analysis turns on whether the vote was fully informed and uncoerced."
+        )
 
-        if nonduplicative_analysis:
-            add_once(
-                parts,
-                seen,
-                f"The consequence is straightforward. {nonduplicative_analysis[-1]}",
-            )
+    elif "demand_futility" in target_set:
+        doctrine_sentence = (
+            "Because the claim is derivative, the analysis turns on whether the board could have impartially considered a demand."
+        )
 
-    opinion = " ".join(parts)
-    opinion = re.sub(r"\s+", " ", opinion).strip()
+    # --------------------------------------------------
+    # 6. CONCLUSION (NO FLUFF)
+    # --------------------------------------------------
+    conclusion = ""
+    if doctrine_sentence:
+        conclusion = "Thus, the doctrine determines the applicable standard of review and the plaintiff’s burden."
 
-    return opinion
+    # --------------------------------------------------
+    # BUILD FINAL PARAGRAPH
+    # --------------------------------------------------
+    sentences = [
+        lead,
+        rule_sentence,
+        refinement_sentence,
+        application_sentence,
+        doctrine_sentence,
+        conclusion,
+    ]
+
+    sentences = [s for s in sentences if s]
+    sentences = dedupe_sentences(sentences)
+
+    paragraph = " ".join(sentences)
+
+    # Final cleanup
+    paragraph = re.sub(r"\s+", " ", paragraph).strip()
+
+    return paragraph
