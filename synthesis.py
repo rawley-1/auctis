@@ -818,233 +818,310 @@ def synthesize_opinion_answer(
     query_plan: Dict[str, Any],
     role_quote_map: Dict[str, Dict[str, str]] | None = None,
 ) -> str:
-    """
-    Delaware court-style Opinion Mode.
-
-    Structure:
-    case-anchored rule -> doctrinal consequence -> disposition
-
-    Goals:
-    - no labels
-    - no "doctrine governs" summary voice
-    - no "This matters because" / "The significance is" / "As a result"
-    - no recent-decisions filler
-    - no repeated rule language
-    - max 3 sentences
-    """
-
     role_quote_map = role_quote_map or {}
     target_lines = [x for x in query_plan.get("target_lines", []) if x != "unknown"]
     target_set = set(target_lines)
 
     def clean(text: str) -> str:
         text = re.sub(r"\s+", " ", (text or "").strip())
-
         text = re.sub(
             r"\b(Short Answer|Rule|Analysis|Confidence|Rule Comparison|Key Distinction)\s*:\s*",
             "",
             text,
             flags=re.IGNORECASE,
         )
-
         text = re.sub(
             r"\b(This matters because|The significance is that|As a result,?|Accordingly,?)\b",
             "",
             text,
             flags=re.IGNORECASE,
         )
-
         text = re.sub(
             r"\b(Recent decisions, including|Cases like|Courts have also held)[^.]*\.",
             "",
             text,
             flags=re.IGNORECASE,
         )
-
         text = re.sub(r"\s+", " ", text).strip()
         return text.rstrip(".")
 
-    def opening_sentence() -> str:
+    def authority_prefix() -> str:
         if "sale_of_control" in target_set:
-            return (
-                "Under Revlon and QVC, once the corporation is for sale, directors must seek "
-                "the best value reasonably available to stockholders, and that duty applies "
-                "when a transaction will result in a change of control"
-            )
-
+            return "Revlon and its progeny establishes that"
         if "entire_fairness" in target_set:
-            return (
-                "Under Weinberger, entire fairness requires fiduciaries to establish both "
-                "fair dealing and fair price"
-            )
-
+            return "Weinberger establishes that"
         if "controller_transactions" in target_set:
-            return (
-                "Under MFW, business judgment review applies to a controller transaction "
-                "only if effective procedural protections are in place from the outset"
-            )
-
+            return "MFW establishes that"
         if "stockholder_vote_cleansing" in target_set:
-            return (
-                "Under Corwin, a fully informed and uncoerced vote of disinterested stockholders "
-                "restores business judgment review"
-            )
-
+            return "Corwin establishes that"
         if "oversight" in target_set:
-            return (
-                "Under Caremark and Stone, directors breach the duty of loyalty only through "
-                "bad-faith failure to implement or monitor a reporting system"
-            )
-
+            return "Caremark, Stone, and Marchand establish that"
         if "takeover_defense" in target_set:
-            return (
-                "Under Unocal and Unitrin, defensive measures must respond to a legitimate threat "
-                "and must be neither coercive nor preclusive"
-            )
-
+            return "Unocal and Unitrin establish that"
         if "demand_futility" in target_set:
-            return (
-                "Under Zuckerberg, demand futility turns on whether a majority of the board "
-                "could consider demand impartially"
-            )
+            return "Aronson, Rales, and Zuckerberg establish that"
 
-        if "disclosure_loyalty" in target_set or "disclosure" in target_set:
-            return (
-                "Under Malone, directors who communicate with stockholders must do so truthfully "
-                "and may not knowingly disseminate materially misleading information"
-            )
+        cases: List[str] = []
+        for role in ["foundation", "supreme_refinement", "refinement", "modern_application"]:
+            item = role_quote_map.get(role) or {}
+            case = clean(item.get("case", ""))
+            if case:
+                cases.append(case)
 
-        if "shareholder_franchise" in target_set:
-            return (
-                "Under Blasius, board action taken for the primary purpose of interfering with "
-                "the stockholder franchise requires a compelling justification"
-            )
+        cases = list(dict.fromkeys(cases))
 
-        if "equitable_intervention" in target_set:
-            return (
-                "Under Schnell, inequitable action does not become permissible merely because "
-                "it is legally authorized"
-            )
+        if len(cases) >= 3:
+            return f"{cases[0]}, {cases[1]}, and {cases[2]} establish that"
+        if len(cases) == 2:
+            return f"{cases[0]} and {cases[1]} establish that"
+        if len(cases) == 1:
+            return f"{cases[0]} establishes that"
 
-        if "books_and_records" in target_set:
-            return (
-                "Under Section 220, a stockholder may inspect books and records upon showing "
-                "a proper purpose supported by a credible basis where wrongdoing is alleged"
-            )
+        return "Delaware fiduciary law establishes that"
 
+    def rule_clause() -> str:
         rule = clean(sections.get("rule", ""))
-        return rule or "Delaware fiduciary law supplies the governing framework"
+        return rule[0].lower() + rule[1:] if rule else "the governing standard follows from the fiduciary setting"
+
+    def cases_for_citation() -> List[str]:
+        if "sale_of_control" in target_set:
+            return ["Revlon", "QVC"]
+        if "entire_fairness" in target_set:
+            return ["Weinberger"]
+        if "controller_transactions" in target_set:
+            return ["MFW"]
+        if "stockholder_vote_cleansing" in target_set:
+            return ["Corwin"]
+        if "oversight" in target_set:
+            return ["Caremark", "Stone", "Marchand"]
+        if "takeover_defense" in target_set:
+            return ["Unocal", "Unitrin"]
+        if "demand_futility" in target_set:
+            return ["Aronson", "Rales", "Zuckerberg"]
+
+        cases: List[str] = []
+        for role in ["foundation", "supreme_refinement", "refinement", "modern_application"]:
+            item = role_quote_map.get(role) or {}
+            case = clean(item.get("case", ""))
+            if case:
+                cases.append(case)
+
+        return list(dict.fromkeys(cases))
+
+    def cite(cases: List[str]) -> str:
+        cases = [c.strip() for c in cases if c and c.strip()]
+        cases = list(dict.fromkeys(cases))
+
+        if not cases:
+            return "."
+        if len(cases) == 1:
+            return f" ({cases[0]})."
+        return f" ({'; '.join(cases[:3])})."
+
+    def with_cite(sentence: str, cases: List[str]) -> str:
+        sentence = clean(sentence)
+        if not sentence:
+            return ""
+        if re.search(r"\([A-Za-z0-9;,\s]+\)$", sentence):
+            return sentence + "."
+        return sentence.rstrip(".") + cite(cases)
+
+    def trigger_sentence() -> str:
+        if "sale_of_control" in target_set:
+            return "That obligation is triggered when the transaction results in a change of control"
+        if "entire_fairness" in target_set:
+            return "That standard applies when fiduciary conflict disables ordinary business judgment deference"
+        if "controller_transactions" in target_set:
+            return "Those protections must include independent committee review and an informed majority-of-the-minority vote"
+        if "stockholder_vote_cleansing" in target_set:
+            return "That cleansing effect depends on stockholder approval that is both fully informed and uncoerced"
+        if "oversight" in target_set:
+            return "That inquiry focuses on implementation failure, conscious monitoring failure, or ignored red flags"
+        if "takeover_defense" in target_set:
+            return "That inquiry asks whether the response falls within a range of reasonableness relative to the threat"
+        if "demand_futility" in target_set:
+            return "That inquiry asks whether demand could have been considered by a disinterested and independent board majority"
+        return ""
 
     def consequence_sentence() -> str:
         if "sale_of_control" in target_set:
-            return (
-                "Because the transaction constitutes a change of control, the board’s obligation "
-                "is to secure that value"
-            )
-
+            return "Because the transaction constitutes such a change, the board must secure that value"
         if "entire_fairness" in target_set:
-            return (
-                "Because the fiduciary stands on both sides of the transaction, the analysis turns "
-                "on whether both process and price were entirely fair"
-            )
-
+            return "Because that standard applies, the analysis turns on whether both process and price were entirely fair"
         if "controller_transactions" in target_set:
-            return (
-                "Because the transaction involves a controller, the standard of review turns on "
-                "whether those protections restore business judgment review"
-            )
-
+            return "Because controller influence otherwise disables ordinary deference, strict compliance is necessary to change the standard of review"
         if "stockholder_vote_cleansing" in target_set:
-            return (
-                "Because stockholders approved the transaction, the cleansing effect turns on "
-                "whether the vote was fully informed and uncoerced"
-            )
-
+            return "Because stockholders approved the transaction, judicial review becomes deferential unless waste is pleaded"
         if "oversight" in target_set:
-            return (
-                "Because the claim sounds in oversight, liability turns on whether the board "
-                "failed to implement or consciously disregarded a monitoring system"
-            )
-
+            return "Because the claim sounds in loyalty, liability turns on scienter, not on whether directors made a poor business judgment"
         if "takeover_defense" in target_set:
-            return (
-                "Because the board adopted defensive measures, enhanced scrutiny requires a "
-                "response proportionate to a legitimate threat"
-            )
-
+            return "Because the board acts in a defensive posture, the response must be neither coercive nor preclusive and must fall within a range of reasonableness"
         if "demand_futility" in target_set:
-            return (
-                "Because the claim is derivative, the question is whether a majority of the board "
-                "could consider demand impartially"
-            )
-
-        if "disclosure_loyalty" in target_set or "disclosure" in target_set:
-            return (
-                "Because stockholder action depends on truthful disclosure, materially misleading "
-                "communications may constitute a fiduciary breach"
-            )
-
-        if "shareholder_franchise" in target_set:
-            return (
-                "Because the stockholder vote is the foundation of corporate legitimacy, board action "
-                "that impairs that vote receives exacting review"
-            )
-
-        if "equitable_intervention" in target_set:
-            return (
-                "Because equity looks to purpose as well as legal form, Delaware courts may restrain "
-                "corporate action used inequitably"
-            )
-
-        if "books_and_records" in target_set:
-            return (
-                "Because inspection rights serve stockholder oversight, the demand turns on proper "
-                "purpose and a credible basis for investigation"
-            )
-
-        return "Because Delaware fiduciary doctrine is context specific, the governing standard follows from the fiduciary setting"
+            return "Because derivative litigation belongs to the corporation, demand is excused only when board impartiality is disabled"
+        return ""
 
     def disposition_sentence() -> str:
         if "sale_of_control" in target_set:
-            return (
-                "Thus, once Revlon duties attach, directors must pursue the best value reasonably "
-                "available to stockholders"
-            )
-
+            return "Thus, once Revlon duties attach, directors must pursue the transaction reasonably designed to produce the highest value reasonably attainable"
         if "entire_fairness" in target_set:
-            return "Thus, fiduciaries bear the burden of proving entire fairness"
-
+            return "Thus, conflicted fiduciaries must prove that the transaction was entirely fair"
         if "controller_transactions" in target_set:
-            return "Thus, absent effective cleansing, the transaction remains subject to entire fairness review"
-
+            return "Thus, absent effective MFW cleansing, entire fairness remains the governing standard"
         if "stockholder_vote_cleansing" in target_set:
-            return "Thus, business judgment review follows only from a fully informed and uncoerced vote"
+            return "Thus, Corwin cleansing ordinarily forecloses post-closing damages claims"
+        if "oversight" in target_set:
+            return "Thus, a Caremark claim survives only where the pleaded facts support a reasonable inference of bad-faith oversight failure"
+        if "takeover_defense" in target_set:
+            return "Thus, the measure stands only if the threat is real and the response is proportionate"
+        if "demand_futility" in target_set:
+            return "Thus, the complaint must plead particularized facts showing that demand would have been futile"
+        return "Thus, the doctrine determines the applicable standard of review and the fiduciary burden"
+
+    def doctrine_voice_block() -> Dict[str, str]:
+        if "sale_of_control" in target_set:
+            return {
+                "authority": "Revlon and its progeny establishes that",
+                "rule": (
+                    "when a corporation enters sale mode, the directors’ role changes from preserving "
+                    "the corporate enterprise to securing the best value reasonably available to stockholders"
+                ),
+                "trigger": "That obligation is triggered by a transaction that effects a change of control",
+                "consequence": (
+                    "Because control will pass from the public stockholders, the board must focus on "
+                    "value maximization rather than ordinary business strategy"
+                ),
+                "disposition": (
+                    "Thus, once Revlon duties attach, directors must pursue the transaction reasonably "
+                    "designed to produce the highest value reasonably attainable"
+                ),
+            }
 
         if "oversight" in target_set:
-            return "Thus, the doctrine imposes liability only for bad-faith oversight failure, not ordinary business error"
+            return {
+                "authority": "Caremark, Stone, and Marchand establish that",
+                "rule": (
+                    "oversight liability is not ordinary negligence, but a narrow bad-faith theory requiring "
+                    "an utter failure to implement reporting systems or a conscious failure to monitor them"
+                ),
+                "trigger": (
+                    "That inquiry is most serious where mission-critical risk or red flags make board-level "
+                    "attention necessary"
+                ),
+                "consequence": (
+                    "Because the claim sounds in loyalty, liability turns on scienter, not on whether "
+                    "directors made a poor business judgment"
+                ),
+                "disposition": (
+                    "Thus, a Caremark claim survives only where the pleaded facts support a reasonable "
+                    "inference of bad-faith oversight failure"
+                ),
+            }
 
         if "takeover_defense" in target_set:
-            return (
-                "Thus, the defensive measure must be neither coercive nor preclusive and must fall "
-                "within a range of reasonableness"
-            )
+            return {
+                "authority": "Unocal and Unitrin establish that",
+                "rule": (
+                    "defensive measures receive enhanced scrutiny because directors acting to resist a threat "
+                    "may also be acting to entrench themselves"
+                ),
+                "trigger": (
+                    "That standard requires the board to identify a legitimate threat to corporate policy "
+                    "and effectiveness"
+                ),
+                "consequence": (
+                    "Because the board acts in a defensive posture, the response must be neither coercive "
+                    "nor preclusive and must fall within a range of reasonableness"
+                ),
+                "disposition": (
+                    "Thus, the measure stands only if the threat is real and the response is proportionate"
+                ),
+            }
+
+        if "entire_fairness" in target_set:
+            return {
+                "authority": "Weinberger establishes that",
+                "rule": (
+                    "entire fairness is Delaware’s most exacting standard, requiring fiduciaries to prove "
+                    "both fair dealing and fair price"
+                ),
+                "trigger": (
+                    "That standard applies when fiduciary conflict disables the ordinary presumption of "
+                    "business judgment"
+                ),
+                "consequence": (
+                    "Because the burden rests on the fiduciaries, the court examines process and price "
+                    "as a unitary fairness inquiry"
+                ),
+                "disposition": (
+                    "Thus, conflicted fiduciaries must prove that the transaction was entirely fair"
+                ),
+            }
+
+        if "controller_transactions" in target_set:
+            return {
+                "authority": "MFW establishes that",
+                "rule": (
+                    "controller transactions receive business judgment review only when dual procedural "
+                    "protections replicate arm’s-length bargaining from the outset"
+                ),
+                "trigger": (
+                    "Those protections require an empowered independent committee and an informed, "
+                    "uncoerced majority-of-the-minority vote"
+                ),
+                "consequence": (
+                    "Because controller influence otherwise disables ordinary deference, strict compliance "
+                    "is necessary to change the standard of review"
+                ),
+                "disposition": (
+                    "Thus, absent effective MFW cleansing, entire fairness remains the governing standard"
+                ),
+            }
+
+        if "stockholder_vote_cleansing" in target_set:
+            return {
+                "authority": "Corwin establishes that",
+                "rule": (
+                    "a fully informed and uncoerced vote of disinterested stockholders restores business "
+                    "judgment deference"
+                ),
+                "trigger": (
+                    "That cleansing effect depends on disclosure sufficient to permit stockholders to make "
+                    "an informed choice"
+                ),
+                "consequence": (
+                    "Because the stockholders have approved the transaction, judicial review becomes "
+                    "deferential unless waste is pleaded"
+                ),
+                "disposition": (
+                    "Thus, Corwin cleansing ordinarily forecloses post-closing damages claims"
+                ),
+            }
 
         if "demand_futility" in target_set:
-            return "Thus, demand is excused only where the complaint pleads a disabling risk to board impartiality"
+            return {
+                "authority": "Aronson, Rales, and Zuckerberg establish that",
+                "rule": (
+                    "demand futility asks whether the board can exercise independent and disinterested "
+                    "judgment in deciding whether to pursue the claim"
+                ),
+                "trigger": "That inquiry is conducted director by director",
+                "consequence": (
+                    "Because derivative litigation belongs to the corporation, demand is excused only "
+                    "when board impartiality is disabled"
+                ),
+                "disposition": (
+                    "Thus, the complaint must plead particularized facts showing that demand would have "
+                    "been futile"
+                ),
+            }
 
-        if "disclosure_loyalty" in target_set or "disclosure" in target_set:
-            return "Thus, fiduciary liability turns on whether the communication was materially misleading"
-
-        if "shareholder_franchise" in target_set:
-            return "Thus, the board must justify interference with the stockholder franchise"
-
-        if "equitable_intervention" in target_set:
-            return "Thus, formally authorized action may still be invalid if used for an inequitable purpose"
-
-        if "books_and_records" in target_set:
-            return "Thus, inspection depends on a proper stockholder purpose and a credible basis for the requested records"
-
-        return "Thus, the doctrine determines the applicable standard of review and the fiduciary burden"
+        return {
+            "authority": authority_prefix(),
+            "rule": rule_clause(),
+            "trigger": trigger_sentence(),
+            "consequence": consequence_sentence(),
+            "disposition": disposition_sentence(),
+        }
 
     def sentence_key(text: str) -> str:
         text = clean(text).lower()
@@ -1053,22 +1130,22 @@ def synthesize_opinion_answer(
         replacements = {
             "best value reasonably available to stockholders": "best value",
             "best value reasonably available": "best value",
+            "highest value reasonably attainable": "best value",
             "change of control": "change control",
             "will result in": "results in",
             "business judgment review": "business judgment",
+            "business judgment deference": "business judgment",
             "fully informed and uncoerced": "informed uncoerced",
-            "supplies the governing framework": "framework",
-            "supplies the governing doctrinal framework": "framework",
         }
 
         for old, new in replacements.items():
             text = text.replace(old, new)
 
         stop = {
-            "the", "and", "that", "this", "where", "when", "with",
-            "under", "doctrine", "directors", "board", "corporation",
-            "transaction", "transactions", "stockholders", "available",
-            "reasonably", "supplies", "governs", "framework",
+            "the", "and", "that", "this", "where", "when", "with", "under",
+            "doctrine", "directors", "board", "corporation", "transaction",
+            "transactions", "stockholders", "available", "reasonably",
+            "establish", "establishes",
         }
 
         words = [w for w in text.split() if len(w) > 3 and w not in stop]
@@ -1084,13 +1161,13 @@ def synthesize_opinion_answer(
 
             key = sentence_key(s)
             s_words = set(key.split())
-
             duplicate = False
+
             for existing in out:
                 e_words = set(sentence_key(existing).split())
                 if s_words and e_words:
                     overlap = len(s_words & e_words) / max(1, min(len(s_words), len(e_words)))
-                    if overlap >= 0.68:
+                    if overlap >= 0.72:
                         duplicate = True
                         break
 
@@ -1099,19 +1176,32 @@ def synthesize_opinion_answer(
 
         return out
 
+    voice = doctrine_voice_block()
+    citation_cases = cases_for_citation()
+
+    first_sentence = with_cite(
+        f"{voice['authority']} {voice['rule']}",
+        citation_cases[:2],
+    )
+
+    trigger = with_cite(
+        voice["trigger"],
+        citation_cases[1:2] or citation_cases[:1],
+    )
+
     parts = [
-        opening_sentence(),
-        consequence_sentence(),
-        disposition_sentence(),
+        first_sentence,
+        trigger,
+        voice["consequence"],
+        voice["disposition"],
     ]
 
-    parts = dedupe(parts)
-    parts = parts[:3]
+    parts = dedupe(parts)[:4]
 
     paragraph = " ".join(part.rstrip(".") + "." for part in parts)
-
     paragraph = re.sub(r"\s+", " ", paragraph).strip()
     paragraph = re.sub(r"\.\.+", ".", paragraph)
     paragraph = re.sub(r"\s+\.", ".", paragraph)
+    paragraph = re.sub(r"\.\s+\(", " (", paragraph)
 
     return paragraph
