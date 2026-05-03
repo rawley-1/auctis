@@ -20,7 +20,11 @@ def clean_doctrinal_quote(quote: str) -> str:
     if not q:
         return ""
 
-    # Remove citation/OCR noise
+    # Normalize punctuation / spacing
+    q = q.replace("“", '"').replace("”", '"').replace("’", "'")
+    q = re.sub(r"\s+", " ", q).strip()
+
+    # Remove citation / reporter / WL noise
     q = re.sub(r"\b\d+\s+A\.?2d\s+\d+\b", " ", q, flags=re.IGNORECASE)
     q = re.sub(r"\b\d+\s+A\.?3d\s+\d+\b", " ", q, flags=re.IGNORECASE)
     q = re.sub(r"\b\d{1,4}\s*WL\s*\d+\b", " ", q, flags=re.IGNORECASE)
@@ -32,14 +36,17 @@ def clean_doctrinal_quote(quote: str) -> str:
 
     words = q.split()
 
-    if len(words) < 8 or len(words) > 60:
+    # Hard length gate: avoid fragments and stitched paragraphs
+    if len(words) < 8 or len(words) > 48:
         return ""
 
+    # Must start like a real sentence
     if not q[0].isupper():
         return ""
 
     q_l = q.lower()
 
+    # Reject metadata, OCR, secondary-source, and litigation-noise fragments
     bad_markers = [
         "court:",
         "year:",
@@ -63,11 +70,43 @@ def clean_doctrinal_quote(quote: str) -> str:
         "found application",
         "ha-",
         "id.",
+        "fordham",
+        "law review",
+        "laster",
+        "article",
+        "journal",
+        "citation",
+        "supra",
+        "infra",
+        "appellant",
+        "appellee",
     ]
 
     if any(marker in q_l for marker in bad_markers):
         return ""
 
+    # Reject overly stitched sentences
+    if q.count(",") > 3:
+        return ""
+
+    if q.count(";") > 1:
+        return ""
+
+    # Reject ellipsis / obvious truncation
+    if "..." in q or q.endswith(("...", "…")):
+        return ""
+
+    # Reject OCR-ish word salad
+    weird_tokens = re.findall(r"\b[a-zA-Z]{1,2}[-']?[a-zA-Z]?\b", q)
+    allowed_short = {
+        "a", "an", "as", "at", "be", "by", "if", "in", "is",
+        "it", "of", "on", "or", "to", "we", "do", "no"
+    }
+    weird_count = sum(1 for w in weird_tokens if w.lower() not in allowed_short)
+    if weird_count >= 4:
+        return ""
+
+    # Must contain doctrinal signal language
     doctrinal_markers = [
         "must",
         "requires",
@@ -107,11 +146,22 @@ def clean_doctrinal_quote(quote: str) -> str:
     if not any(marker in q_l for marker in doctrinal_markers):
         return ""
 
+    # Must read as a complete legal sentence
+    complete_sentence_pattern = (
+        r"^[A-Z][^.!?]*\b("
+        r"must|requires|require|is|are|was|were|turns|applies|depends|"
+        r"constitutes|invokes|restores|precludes|governs"
+        r")\b[^.!?]*[.!?]?$"
+    )
+
+    if not re.match(complete_sentence_pattern, q):
+        return ""
+
+    # Add final punctuation only after structural checks
     if q[-1] not in ".!?":
         q += "."
 
     return q
-
 
 # backwards compatibility with your previous function name
 def clean_doctrinal_sentence(quote: str) -> str:

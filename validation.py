@@ -625,6 +625,138 @@ def validate_quote_grounding(
 
     return errors, delta
 
+def validate_style_lock(
+    text: str,
+    sections: Dict[str, str],
+    query_plan: Dict[str, Any],
+) -> Tuple[List[str], int]:
+    errors: List[str] = []
+    delta = 0
+
+    full_text = (text or "").lower()
+    target_lines = [x for x in query_plan.get("target_lines", []) if x != "unknown"]
+
+    # Hard ban obvious contaminated quote / OCR / secondary-source leakage
+    forbidden_fragments = [
+        "j.corp.law",
+        "corp.law",
+        "fordham",
+        "law review",
+        "journal",
+        "article",
+        "citation",
+        "laster",
+        "blatt",
+        "zelett",
+        "strip-casting",
+        "ha-",
+        "in this views",
+        "found application",
+        "travis",
+        "supra",
+        "infra",
+    ]
+
+    for frag in forbidden_fragments:
+        if frag in full_text:
+            errors.append(f"Output contains contaminated source fragment: {frag}")
+            delta -= 15
+
+    # Ban casual / summarizer language
+    forbidden_style = [
+        "this case shows",
+        "the court held",
+        "the court explained",
+        "the court stated",
+        "in simple terms",
+        "basically",
+        "it means that",
+        "this means that",
+    ]
+
+    for phrase in forbidden_style:
+        if phrase in full_text:
+            errors.append(f"Output contains non-court style phrase: {phrase}")
+            delta -= 8
+
+    # Rule must not be bloated
+    rule = (sections.get("rule", "") or "").strip()
+    if rule:
+        rule_sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", rule) if s.strip()]
+        if len(rule_sentences) > 3:
+            errors.append("Rule is too long; must be no more than three sentences")
+            delta -= 10
+
+    # Analysis must stay exactly three sentences in Structured mode
+    analysis = (sections.get("analysis", "") or "").strip()
+    if analysis:
+        analysis_sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", analysis) if s.strip()]
+        if len(analysis_sentences) != 3:
+            errors.append("Analysis must remain exactly three sentences")
+            delta -= 10
+
+    # Detect near-duplicate sentences across Rule + Analysis
+    combined = " ".join([
+        sections.get("rule", "") or "",
+        sections.get("analysis", "") or "",
+        sections.get("rule_comparison", "") or "",
+    ])
+
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", combined) if len(s.split()) >= 7]
+
+    def sig(sentence: str) -> set[str]:
+        stop = {
+            "the", "a", "an", "and", "or", "of", "to", "for", "in", "on",
+            "that", "this", "where", "when", "with", "under", "doctrine",
+            "directors", "board", "must", "requires", "require",
+        }
+        return {
+            w for w in re.findall(r"[a-z]+", sentence.lower())
+            if len(w) >= 4 and w not in stop
+        }
+
+    for i in range(len(sentences)):
+        for j in range(i + 1, len(sentences)):
+            a = sig(sentences[i])
+            b = sig(sentences[j])
+            if not a or not b:
+                continue
+            overlap = len(a & b) / max(1, min(len(a), len(b)))
+            if overlap >= 0.75:
+                errors.append("Output contains repetitive rule/analysis sentence")
+                delta -= 8
+                return errors, delta
+
+    # Doctrine-specific anchor lock
+    target_set = set(target_lines)
+    if "sale_of_control" in target_set:
+        needed = ["change of control", "best value reasonably available"]
+        for phrase in needed:
+            if phrase not in full_text:
+                errors.append(f"Sale-of-control answer missing required phrase: {phrase}")
+                delta -= 8
+
+    if "entire_fairness" in target_set:
+        needed = ["entire fairness", "fair dealing", "fair price"]
+        for phrase in needed:
+            if phrase not in full_text:
+                errors.append(f"Entire-fairness answer missing required phrase: {phrase}")
+                delta -= 8
+
+    if "takeover_defense" in target_set:
+        needed_any = ["coercive", "preclusive", "range of reasonableness"]
+        if sum(1 for phrase in needed_any if phrase in full_text) < 2:
+            errors.append("Takeover-defense answer missing coercive/preclusive/range-of-reasonableness anchors")
+            delta -= 10
+
+    if "stockholder_vote_cleansing" in target_set:
+        needed = ["fully informed", "uncoerced"]
+        for phrase in needed:
+            if phrase not in full_text:
+                errors.append(f"Stockholder-vote-cleansing answer missing required phrase: {phrase}")
+                delta -= 8
+
+    return errors, delta
 
 def validate_ai_answer(
     ai_answer: str,
@@ -650,7 +782,7 @@ def validate_ai_answer(
     if not target_lines or "unknown" in target_lines:
         errors.append("Query did not map to a recognized doctrine")
         score -= 40
-        
+
     def apply_result(result: Tuple[List[str], int]) -> None:
         nonlocal score, errors
         section_errors, delta = result
@@ -736,7 +868,13 @@ def validate_ai_answer(
             target_lines=target_lines,
         )
     )
-
+    apply_result(
+        validate_style_lock(
+            text,
+            sections,
+            query_plan,
+        )
+    )
 
     if not target_lines or "unknown" in target_lines:
         errors.append("Query did not map to a recognized doctrine")

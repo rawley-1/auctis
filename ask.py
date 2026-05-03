@@ -648,7 +648,75 @@ LEGAL_TERMS = [
     "doctrine",
     "standard",
 ]
+def link_cited_cases(answer: str, case_cards: list) -> str:
+    html = answer or ""
 
+    for card in case_cards or []:
+        name = card.get("name", "")
+        anchor = card.get("anchor", "")
+        if not name or not anchor:
+            continue
+
+        html = html.replace(
+            name,
+            f'<a href="#{anchor}" style="color:#22C55E; text-decoration:none; font-weight:700;">{name}</a>'
+        )
+
+    return html
+
+def build_case_cards(cases, role_quote_map, query_plan=None):
+    query_plan = query_plan or {}
+    target_lines = set(query_plan.get("target_lines", []))
+
+    def why_matters(case_name: str, role: str) -> str:
+        c = case_name.lower()
+
+        if "revlon" in c:
+            return "Revlon matters here because it supplies the sale-of-control value-maximization duty."
+        if "qvc" in c:
+            return "QVC matters here because it clarifies when a transaction results in a change of control."
+        if "caremark" in c:
+            return "Caremark matters here because it supplies the foundational oversight-liability framework."
+        if "stone" in c:
+            return "Stone matters here because it links oversight failure to bad faith and the duty of loyalty."
+        if "marchand" in c:
+            return "Marchand matters here because it applies Caremark to mission-critical compliance risk."
+        if "unocal" in c:
+            return "Unocal matters here because it supplies enhanced scrutiny for defensive measures."
+        if "unitrin" in c:
+            return "Unitrin matters here because it sharpens the coercive/preclusive and reasonableness inquiry."
+        if "mfw" in c:
+            return "MFW matters here because it identifies the procedural protections needed to restore business judgment review."
+        if "corwin" in c:
+            return "Corwin matters here because it explains when stockholder approval cleanses fiduciary challenges."
+        if "weinberger" in c:
+            return "Weinberger matters here because it supplies the entire-fairness framework."
+
+        return "This case matters here because it helps define the governing doctrinal framework."
+
+    cards = []
+
+    for case in cases:
+        source = case.get("source", "") if isinstance(case, dict) else str(case)
+        role = case.get("role", "related_case") if isinstance(case, dict) else "related_case"
+        case_name = source.replace(".txt", "").replace("_", " ").title()
+
+        quote = ""
+        for r, item in (role_quote_map or {}).items():
+            if item.get("source") == source or case_name.lower() in item.get("case", "").lower():
+                quote = item.get("quote", "")
+                break
+
+        cards.append({
+            "name": case_name,
+            "source": source,
+            "role": role,
+            "quote": quote,
+            "why_matters": why_matters(case_name, role),
+            "anchor": case_name.lower().replace(" ", "-"),
+        })
+
+    return cards
 
 def autocorrect_legal_query(question: str) -> tuple[str, list[tuple[str, str]]]:
     if not question:
@@ -1966,13 +2034,23 @@ SUPPORTING CASES:
     )
     sections_for_display = extract_sections(ai_answer, query_plan)
 
-    memo_answer = synthesize_memo_answer(sections_for_display, query_plan)
+    output_mode = query_plan.get("output_mode", "structured")
 
-    opinion_answer = synthesize_opinion_answer(
-    sections_for_display,
-    query_plan,
-    role_quote_map=role_quote_map,
-)
+    if output_mode == "opinion":
+        final_answer = synthesize_opinion_answer(
+        sections_for_display,
+        query_plan,
+        role_quote_map=role_quote_map,
+    )
+
+    elif output_mode == "memo":
+        final_answer = synthesize_memo_answer(
+        sections_for_display,
+        query_plan,
+    )
+
+    else:
+        final_answer = ai_answer  # structured
 
         # --- Retrieval confidence ---
     top_scores = [float(c.get("score", 0.0)) for c in cases[:3]]
@@ -2000,16 +2078,30 @@ SUPPORTING CASES:
         query_plan,
     )
     sections = build_sections_from_answer(ai_answer)
+    sections_for_display = extract_sections(ai_answer, query_plan)
+
+    memo_answer = synthesize_memo_answer(
+    sections_for_display,
+    query_plan,
+)
+
+    opinion_answer = synthesize_opinion_answer(
+    sections_for_display,
+    query_plan,
+    role_quote_map=role_quote_map,
+)
 
     return {
         "query_plan": query_plan,
         "cases": cases,
         "doctrine_buckets": doctrine_buckets,
         "doctrine_leaders": doctrine_leaders,
+        "role_quote_map": role_quote_map,
         "answer": ai_answer,
         "memo_answer": memo_answer,
         "opinion_answer": opinion_answer,
         "sections": sections,
+        "case_cards": build_case_cards(cases, role_quote_map, query_plan),
         "validation_score": validation_score,
         "validation_errors": validation_errors,
         "retrieval_confidence": retrieval_confidence,

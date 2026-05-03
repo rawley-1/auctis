@@ -19,6 +19,47 @@ if "last_result" not in st.session_state:
     st.session_state["last_result"] = None
 
 
+def link_cited_cases(answer: str, case_cards: list) -> str:
+    html = answer or ""
+
+    for card in case_cards or []:
+        name = card.get("name", "")
+        anchor = card.get("anchor", name.lower().replace(" ", "-"))
+
+        if not name:
+            continue
+
+        html = html.replace(
+            name,
+            f'<a href="#{anchor}" style="color:#22C55E; font-weight:700; text-decoration:none;">{name}</a>',
+        )
+
+    return html
+
+
+def cited_cases_from_answer(answer: str) -> set[str]:
+    known = {
+        "Revlon",
+        "QVC",
+        "Unocal",
+        "Unitrin",
+        "Weinberger",
+        "MFW",
+        "Corwin",
+        "Caremark",
+        "Stone",
+        "Marchand",
+        "Aronson",
+        "Rales",
+        "Zuckerberg",
+        "Malone",
+        "Blasius",
+        "Schnell",
+        "Section 220",
+    }
+    return {case for case in known if case in (answer or "")}
+
+
 def score_color(score):
     score = int(score or 0)
     if score >= 85:
@@ -26,6 +67,27 @@ def score_color(score):
     if score >= 70:
         return "#FACC15"
     return "#EF4444"
+
+
+def highlight_quote_in_answer(answer: str, role_quote_map: dict) -> str:
+    html = answer or ""
+
+    for role, item in (role_quote_map or {}).items():
+        quote = item.get("quote", "")
+        case = item.get("case", "")
+
+        if not quote or not case:
+            continue
+
+        short = " ".join(quote.split()[:6])
+
+        if short in html:
+            html = html.replace(
+                short,
+                f'<mark title="{case}" style="background:rgba(59,130,246,0.25); padding:2px 4px; border-radius:4px;">{short}</mark>',
+            )
+
+    return html
 
 
 st.markdown(
@@ -101,7 +163,10 @@ if not st.session_state["show_demo"]:
 
     cols = st.columns(3)
     cards = [
-        ("Doctrine classification", "Routes questions into Delaware fiduciary law frameworks."),
+        (
+            "Doctrine classification",
+            "Routes questions into Delaware fiduciary law frameworks.",
+        ),
         ("Role mapping", "Separates foundation, refinement, and application cases."),
         ("Validation scoring", "Flags weak answers before they reach the user."),
     ]
@@ -117,6 +182,7 @@ if not st.session_state["show_demo"]:
                 """,
                 unsafe_allow_html=True,
             )
+
 
 # =========================
 # DEMO PAGE
@@ -137,7 +203,6 @@ if st.session_state["show_demo"]:
     if user_input:
         with st.spinner("Reasoning through doctrine..."):
             result = run_query(user_input)
-
             st.session_state["last_result"] = result
             st.session_state["last_question"] = user_input
 
@@ -146,7 +211,6 @@ if st.session_state["show_demo"]:
     if result:
         st.markdown("---")
 
-        # REJECTION: bad/nonsense queries stop here only
         if result.get("rejected"):
             st.warning(
                 result.get(
@@ -154,14 +218,11 @@ if st.session_state["show_demo"]:
                     "Auctis could not identify a Delaware corporate law doctrine in that question.",
                 )
             )
-
             st.markdown("### Try one of these:")
             st.markdown("- Compare Caremark and Marchand")
             st.markdown("- What is the Unocal standard?")
             st.markdown("- What triggers Revlon duties?")
             st.stop()
-
-        st.subheader("Answer")
 
         output_mode = st.radio(
             "Output Mode",
@@ -169,19 +230,52 @@ if st.session_state["show_demo"]:
             horizontal=True,
         )
 
+        role_quote_map = result.get("role_quote_map", {})
+        case_cards = result.get("case_cards", [])
+
         st.subheader("Answer")
 
         if output_mode == "Memo Mode":
             st.markdown(
-                result.get("memo_answer")
-                or result.get("answer", "No answer returned.")
+                result.get("memo_answer") or result.get("answer", "No answer returned.")
             )
+
         elif output_mode == "Opinion Mode":
-            st.markdown(
+            opinion = (
                 result.get("opinion_answer")
                 or result.get("memo_answer")
                 or result.get("answer", "No answer returned.")
             )
+
+            highlighted = highlight_quote_in_answer(opinion, role_quote_map)
+            linked = link_cited_cases(highlighted, case_cards)
+
+            st.markdown(linked, unsafe_allow_html=True)
+
+            with st.expander("Citation + quote map"):
+                cited_cases = cited_cases_from_answer(opinion)
+                shown_any = False
+
+                for role, item in (role_quote_map or {}).items():
+                    if not isinstance(item, dict):
+                        continue
+
+                    case_name = item.get("case", "Unknown")
+
+                    if cited_cases and case_name not in cited_cases:
+                        continue
+
+                    shown_any = True
+                    st.markdown(f"**{case_name}** — `{role}`")
+                    st.markdown(f"> {item.get('quote', '')}")
+                    st.caption(f"Source: {item.get('source', '')}")
+
+                if not shown_any:
+                    st.caption(
+                        "No selected quote available for the cited cases. "
+                        "See Supporting Cases below for retrieved excerpts."
+                    )
+
         else:
             st.markdown(result.get("answer", "No answer returned."))
 
@@ -191,7 +285,7 @@ if st.session_state["show_demo"]:
         if (
             legal_corrections
             and corrected_question
-            and corrected_question != st.session_state.get("question", "")
+            and corrected_question != st.session_state.get("last_question", "")
         ):
             correction_text = ", ".join(
                 [f"{old} → {new}" for old, new in legal_corrections]
@@ -201,28 +295,40 @@ if st.session_state["show_demo"]:
             st.caption(f"Legal term correction: {correction_text}")
 
             if st.button("Use corrected query"):
-                st.session_state["question"] = corrected_question
-                st.session_state["last_result"] = None
-                st.rerun()
+                with st.spinner("Reasoning through corrected doctrine..."):
+                    corrected_result = run_query(corrected_question)
+                    st.session_state["last_result"] = corrected_result
+                    st.session_state["last_question"] = corrected_question
+                    st.rerun()
 
-        cases = result.get("cases", [])
-
-        if cases:
+        if case_cards:
             st.markdown("### Supporting Cases")
+            st.markdown("#### Click a case to explore reasoning")
 
-            case_html = ""
+            for card in case_cards[:8]:
+                name = card.get("name", "Unknown Case")
+                role = card.get("role", "related_case")
+                source = card.get("source", "")
+                quote = card.get("quote", "")
+                why = card.get("why_matters", "")
+                anchor = card.get("anchor", name.lower().replace(" ", "-"))
 
-            for case in cases[:8]:
-                if isinstance(case, dict):
-                    raw_name = case.get("source", "Unknown case")
-                else:
-                    raw_name = str(case)
+                st.markdown(f'<div id="{anchor}"></div>', unsafe_allow_html=True)
 
-                name = raw_name.replace(".txt", "").replace("_", " ").title()
+                with st.expander(f"{name} · {role}"):
+                    st.markdown(f"**Role in doctrine:** `{role}`")
 
-                case_html += f'<span class="case-chip">{name}</span>'
+                    if why:
+                        st.markdown("**Why this case matters here**")
+                        st.write(why)
 
-            st.markdown(case_html, unsafe_allow_html=True)
+                    if quote:
+                        st.markdown("**Key Quote**")
+                        st.markdown(f"> {quote}")
+                    else:
+                        st.caption("No selected quote available for this case.")
+
+                    st.caption(f"Source: {source}")
 
         if result.get("validation_score") is not None:
             score = int(result.get("validation_score") or 0)
