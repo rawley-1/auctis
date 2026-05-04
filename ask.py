@@ -57,9 +57,16 @@ MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4.1-mini")
 EMBED_MODEL = os.getenv("OPENAI_EMBED_MODEL", "text-embedding-3-small")
 
 SYSTEM_PROMPT_PATH = BASE_DIR / "system_prompt.txt"
-SYSTEM_PROMPT = SYSTEM_PROMPT_PATH.read_text(encoding="utf-8") if SYSTEM_PROMPT_PATH.exists() else ""
+SYSTEM_PROMPT = (
+    SYSTEM_PROMPT_PATH.read_text(encoding="utf-8")
+    if SYSTEM_PROMPT_PATH.exists()
+    else ""
+)
 
-client = OpenAI()
+import os
+from openai import OpenAI
+
+client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 # ============================================================
 # LOAD INDEX
@@ -100,7 +107,6 @@ def dot(a: List[float], b: List[float]) -> float:
 def embed_text(text: str) -> List[float]:
     response = client.embeddings.create(model=EMBED_MODEL, input=text)
     return response.data[0].embedding
-
 
 
 def clean_case_name(source: str) -> str:
@@ -145,8 +151,9 @@ def get_retrieval_budget(query_plan: Dict[str, Any]) -> Dict[str, int]:
     return {"k": 12, "max_per_source": 4}
 
 
-
-def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[str, Any]]:
+def retrieve(
+    question: str, k: int = 12, max_per_source: int = 4
+) -> List[Dict[str, Any]]:
     q_emb = embed_text(question)
     query_plan = build_query_plan_cached(question)
     target_lines = query_plan.get("target_lines", ["unknown"])
@@ -161,7 +168,9 @@ def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[s
             continue
 
         source = chunk.get("source", "")
-        doctrine_line = chunk.get("doctrine_line") or infer_doctrine_line_from_source(source)
+        doctrine_line = chunk.get("doctrine_line") or infer_doctrine_line_from_source(
+            source
+        )
         role = get_case_role(source)
         chunk_role = chunk.get("chunk_role", "")
         score = dot(q_emb, emb)
@@ -214,9 +223,23 @@ def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[s
 
     return selected
 
+
 STOPWORDS = {
-    "and", "or", "the", "is", "are", "what", "how", "why",
-    "compare", "with", "vs", "versus", "of", "in", "to",
+    "and",
+    "or",
+    "the",
+    "is",
+    "are",
+    "what",
+    "how",
+    "why",
+    "compare",
+    "with",
+    "vs",
+    "versus",
+    "of",
+    "in",
+    "to",
 }
 
 # ============================================================
@@ -239,20 +262,29 @@ def aggregate_by_case(top_chunks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                 "role": role,
             }
         by_case[source]["chunks"].append(chunk)
-        by_case[source]["case_score"] = max(by_case[source]["case_score"], chunk.get("score", 0.0))
+        by_case[source]["case_score"] = max(
+            by_case[source]["case_score"], chunk.get("score", 0.0)
+        )
 
     cases = list(by_case.values())
     cases.sort(key=lambda c: (-c["case_score"], ROLE_PRIORITY.get(c["role"], 99)))
     return cases
 
 
-def bucket_cases_by_doctrine_line(cases: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
+def bucket_cases_by_doctrine_line(
+    cases: List[Dict[str, Any]],
+) -> Dict[str, List[Dict[str, Any]]]:
     buckets: Dict[str, List[Dict[str, Any]]] = {}
     for case in cases:
         line = infer_doctrine_line_from_source(case.get("source", ""))
         buckets.setdefault(line, []).append(case)
     for line, bucket in buckets.items():
-        bucket.sort(key=lambda c: (ROLE_PRIORITY.get(c.get("role", "related_case"), 99), -c.get("case_score", 0.0)))
+        bucket.sort(
+            key=lambda c: (
+                ROLE_PRIORITY.get(c.get("role", "related_case"), 99),
+                -c.get("case_score", 0.0),
+            )
+        )
     return buckets
 
 
@@ -286,7 +318,6 @@ def select_doctrine_leaders(
     return selected
 
 
-
 # ============================================================
 # OUTPUT
 # ============================================================
@@ -294,7 +325,10 @@ def select_doctrine_leaders(
 
 def get_multi_doctrine_labels(query_plan: Dict[str, Any]) -> List[str]:
     lines = [line for line in query_plan.get("target_lines", []) if line != "unknown"]
-    return [DOCTRINE_LABELS.get(line) or line.replace("_", " ").title() for line in lines[:2]]
+    return [
+        DOCTRINE_LABELS.get(line) or line.replace("_", " ").title()
+        for line in lines[:2]
+    ]
 
 
 def get_answer_template(query_plan):
@@ -423,7 +457,10 @@ High
 """
 
         # generic multi-doctrine fallback
-        labels = [DOCTRINE_LABELS.get(line) or line.replace("_", " ").title() for line in target_lines[:2]]
+        labels = [
+            DOCTRINE_LABELS.get(line) or line.replace("_", " ").title()
+            for line in target_lines[:2]
+        ]
         label_a = labels[0] if len(labels) >= 1 else "Doctrine A"
         label_b = labels[1] if len(labels) >= 2 else "Doctrine B"
 
@@ -566,6 +603,7 @@ Confidence:
 High
 """
 
+
 # ============================================================
 # TEXT HELPERS
 # ============================================================
@@ -609,8 +647,21 @@ import difflib
 import re
 
 STOPWORDS = {
-    "and", "or", "the", "is", "are", "what", "how", "why",
-    "compare", "with", "vs", "versus", "of", "in", "to",
+    "and",
+    "or",
+    "the",
+    "is",
+    "are",
+    "what",
+    "how",
+    "why",
+    "compare",
+    "with",
+    "vs",
+    "versus",
+    "of",
+    "in",
+    "to",
 }
 
 LEGAL_TERMS = [
@@ -648,6 +699,8 @@ LEGAL_TERMS = [
     "doctrine",
     "standard",
 ]
+
+
 def link_cited_cases(answer: str, case_cards: list) -> str:
     html = answer or ""
 
@@ -659,61 +712,304 @@ def link_cited_cases(answer: str, case_cards: list) -> str:
 
         html = html.replace(
             name,
-            f'<a href="#{anchor}" style="color:#22C55E; text-decoration:none; font-weight:700;">{name}</a>'
+            f'<a href="#{anchor}" style="color:#22C55E; text-decoration:none; font-weight:700;">{name}</a>',
         )
 
     return html
 
-def build_case_cards(cases, role_quote_map, query_plan=None):
-    query_plan = query_plan or {}
+def build_doctrinal_thread(query_plan):
     target_lines = set(query_plan.get("target_lines", []))
 
-    def why_matters(case_name: str, role: str) -> str:
+    threads = {
+        "sale_of_control": [
+            {"case": "Revlon", "role": "foundation", "point": "Directors must seek the best value reasonably available once sale duties attach."},
+            {"case": "QVC", "role": "supreme_refinement", "point": "Clarifies change-of-control triggers."},
+            {"case": "Lyondell", "role": "modern_application", "point": "Confirms Revlon requires reasonableness, not perfection."},
+        ],
+        "oversight": [
+            {"case": "Caremark", "role": "foundation", "point": "Establishes oversight liability as a narrow bad-faith theory."},
+            {"case": "Stone", "role": "supreme_refinement", "point": "Links oversight failure to bad faith and loyalty."},
+            {"case": "Marchand", "role": "modern_application", "point": "Applies Caremark to mission-critical compliance risk."},
+        ],
+        "takeover_defense": [
+            {"case": "Unocal", "role": "foundation", "point": "Creates enhanced scrutiny for defensive measures."},
+            {"case": "Unitrin", "role": "supreme_refinement", "point": "Sharpens coercive, preclusive, and reasonableness review."},
+            {"case": "Airgas", "role": "modern_application", "point": "Applies defensive-measure review in a modern takeover setting."},
+        ],
+        "controller_transactions": [
+            {"case": "MFW", "role": "foundation", "point": "Restores business judgment review through dual procedural protections."},
+            {"case": "Kahn", "role": "related_case", "point": "Frames controller conflict and entire fairness concerns."},
+        ],
+        "stockholder_vote_cleansing": [
+            {"case": "Corwin", "role": "foundation", "point": "Cleanses claims through fully informed, uncoerced stockholder approval."},
+            {"case": "Singh", "role": "modern_application", "point": "Applies Corwin cleansing to post-closing fiduciary claims."},
+        ],
+        "entire_fairness": [
+            {"case": "Weinberger", "role": "foundation", "point": "Defines entire fairness as fair dealing and fair price."},
+            {"case": "MFW", "role": "procedural_escape", "point": "Shows how procedural protections can restore business judgment review."},
+        ],
+        "demand_futility": [
+            {"case": "Aronson", "role": "foundation", "point": "Legacy test for demand futility in board-action cases."},
+            {"case": "Rales", "role": "refinement", "point": "Applies where the challenged decision was not made by the current board."},
+            {"case": "Zuckerberg", "role": "modern_unification", "point": "Unifies demand futility into a director-by-director inquiry."},
+        ],
+    }
+
+    for line in target_lines:
+        if line in threads:
+            return {
+                "doctrine": line,
+                "thread": threads[line],
+            }
+
+    return {
+        "doctrine": "",
+        "thread": [],
+    }
+
+import re
+
+def build_case_cards(cases, role_quote_map=None, query_plan=None, case_quotes=None):
+    import os
+    import re
+
+    role_quote_map = role_quote_map or {}
+    case_quotes = case_quotes or {}
+    query_plan = query_plan or {}
+
+    # =========================
+    # HELPERS
+    # =========================
+
+    def make_anchor(name):
+        return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+
+    def clean_text(text):
+        if not text:
+            return ""
+
+        text = text.replace("“", '"').replace("”", '"').replace("’", "'")
+        text = re.sub(r"\s+", " ", text).strip()
+
+        # remove metadata noise
+        patterns = [
+            r"SECTION:.*?",
+            r"CASE:.*?",
+            r"COURT:.*?",
+            r"YEAR:\s*\d{4}",
+            r"DOCTRINE:.*?",
+            r"AUTHORITY:.*?",
+            r"KEY TOPIC:.*?",
+        ]
+
+        for p in patterns:
+            text = re.sub(p, "", text, flags=re.I)
+
+        return re.sub(r"\s+", " ", text).strip(" -:;,")
+
+    def is_garbage(text):
+        if not text:
+            return True
+
+        words = text.split()
+
+        if len(words) < 8:
+            return True
+
+        if len(text) > 500:
+            return True
+
+        if len([w for w in words if len(w) <= 2]) / len(words) > 0.33:
+            return True
+
+        bad = [
+            "supra", "infra", "ibid", "footnote", "appendix",
+            "law review", "article", "plaintiffs argue", "defendants argue",
+            "created supreme delaware court", "more satisfy the court",
+        ]
+
+        return any(b in text.lower() for b in bad)
+
+    # =========================
+    # QUOTE EXTRACTION
+    # =========================
+
+    def get_quote(case, source, role):
+        # 1. role map
+        item = role_quote_map.get(role)
+        if isinstance(item, dict) and item.get("source") == source:
+            q = clean_text(item.get("quote", ""))
+            if q and not is_garbage(q):
+                return q
+
+        # 2. case quotes
+        for q in case_quotes.get(source, []):
+            raw = q.get("quote", q.get("text", "")) if isinstance(q, dict) else str(q)
+            cleaned = clean_text(raw)
+            if cleaned and not is_garbage(cleaned):
+                return cleaned
+
+        # 3. chunks fallback
+        markers = [
+            "best value reasonably available",
+            "change of control",
+            "sale of control",
+            "enhanced scrutiny",
+            "entire fairness",
+            "range of reasonableness",
+            "duty", "must", "requires",
+        ]
+
+        for chunk in case.get("chunks", []) or []:
+            text = clean_text(chunk.get("text", ""))
+
+            for sentence in re.split(r"(?<=[.!?])\s+", text):
+                s = clean_text(sentence)
+                if not s or is_garbage(s):
+                    continue
+
+                if any(m in s.lower() for m in markers):
+                    return s
+
+        return ""
+
+    # =========================
+    # CONTEXT + EXCERPTS
+    # =========================
+
+    def build_context(case, quote):
+        if not quote:
+            return ""
+
+        seed = " ".join(quote.split()[:6]).lower()
+
+        for chunk in case.get("chunks", []) or []:
+            text = clean_text(chunk.get("text", ""))
+
+            if seed in text.lower():
+                sentences = re.split(r"(?<=[.!?])\s+", text)
+
+                for i, s in enumerate(sentences):
+                    if seed in s.lower():
+                        context = " ".join(sentences[max(i-1, 0):i+2])
+                        context = clean_text(context)
+
+                        words = context.split()
+                        if len(words) > 120:
+                            context = " ".join(words[:120]) + "..."
+
+                        return context
+
+        return ""
+
+    def build_excerpts(case, limit=2):
+        seen = set()
+        excerpts = []
+
+        for chunk in case.get("chunks", []) or []:
+            text = clean_text(chunk.get("text", ""))
+
+            if not text or is_garbage(text):
+                continue
+
+            key = text[:120]
+            if key in seen:
+                continue
+
+            seen.add(key)
+
+            words = text.split()
+            if len(words) > 100:
+                text = " ".join(words[:100]) + "..."
+
+            excerpts.append(text)
+
+            if len(excerpts) >= limit:
+                break
+
+        return excerpts
+
+    # =========================
+    # FULL OPINION (Phase 1.2)
+    # =========================
+
+    def load_full_text(source):
+        if not source:
+            return ""
+
+        path = os.path.join("opinions", source)
+
+        if not os.path.exists(path):
+            return ""
+
+        try:
+            with open(path, "r", encoding="utf-8", errors="ignore") as f:
+                text = f.read()
+        except Exception:
+            return ""
+
+        text = clean_text(text)
+
+        if len(text) > 12000:
+            text = text[:12000] + "..."
+
+        return text
+
+    # =========================
+    # WHY MATTERS
+    # =========================
+
+    def why(case_name, role):
         c = case_name.lower()
 
         if "revlon" in c:
-            return "Revlon matters here because it supplies the sale-of-control value-maximization duty."
+            return "Revlon defines value-maximization in a sale of control."
         if "qvc" in c:
-            return "QVC matters here because it clarifies when a transaction results in a change of control."
-        if "caremark" in c:
-            return "Caremark matters here because it supplies the foundational oversight-liability framework."
-        if "stone" in c:
-            return "Stone matters here because it links oversight failure to bad faith and the duty of loyalty."
-        if "marchand" in c:
-            return "Marchand matters here because it applies Caremark to mission-critical compliance risk."
-        if "unocal" in c:
-            return "Unocal matters here because it supplies enhanced scrutiny for defensive measures."
-        if "unitrin" in c:
-            return "Unitrin matters here because it sharpens the coercive/preclusive and reasonableness inquiry."
-        if "mfw" in c:
-            return "MFW matters here because it identifies the procedural protections needed to restore business judgment review."
-        if "corwin" in c:
-            return "Corwin matters here because it explains when stockholder approval cleanses fiduciary challenges."
-        if "weinberger" in c:
-            return "Weinberger matters here because it supplies the entire-fairness framework."
+            return "QVC clarifies when control shifts trigger Revlon duties."
+        if "lyondell" in c:
+            return "Lyondell shows Revlon requires reasonableness, not perfection."
+        if "barkan" in c:
+            return "Barkan confirms no single blueprint is required for sale processes."
 
-        return "This case matters here because it helps define the governing doctrinal framework."
+        if role == "foundation":
+            return f"{case_name} establishes the governing rule."
+        if role == "supreme_refinement":
+            return f"{case_name} refines the governing standard."
+        if role == "modern_application":
+            return f"{case_name} applies the doctrine in practice."
+
+        return f"{case_name} supports the doctrinal framework."
+
+    # =========================
+    # BUILD CARDS
+    # =========================
 
     cards = []
 
-    for case in cases:
-        source = case.get("source", "") if isinstance(case, dict) else str(case)
-        role = case.get("role", "related_case") if isinstance(case, dict) else "related_case"
+    for case in cases or []:
+        if not isinstance(case, dict):
+            continue
+
+        source = case.get("source", "")
+        role = case.get("role", "related_case")
         case_name = source.replace(".txt", "").replace("_", " ").title()
 
-        quote = ""
-        for r, item in (role_quote_map or {}).items():
-            if item.get("source") == source or case_name.lower() in item.get("case", "").lower():
-                quote = item.get("quote", "")
-                break
+        quote = get_quote(case, source, role)
+
+        # 🔥 HARD FILTER
+        if not quote:
+            continue
 
         cards.append({
             "name": case_name,
             "source": source,
             "role": role,
             "quote": quote,
-            "why_matters": why_matters(case_name, role),
-            "anchor": case_name.lower().replace(" ", "-"),
+            "why_matters": why(case_name, role),
+            "anchor": make_anchor(case_name),
+            "context": build_context(case, quote),
+            "excerpts": build_excerpts(case),
+            "full_text": load_full_text(source),  # 🔥 Phase 1.2 ready
         })
 
     return cards
@@ -770,7 +1066,10 @@ def autocorrect_legal_query(question: str) -> tuple[str, list[tuple[str, str]]]:
     corrected_question = "".join(corrected_tokens)
     return corrected_question, corrections
 
-def build_context_from_cases(cases: List[Dict[str, Any]], target_lines: List[str]) -> Tuple[str, str]:
+
+def build_context_from_cases(
+    cases: List[Dict[str, Any]], target_lines: List[str]
+) -> Tuple[str, str]:
     context_parts: List[str] = []
     timeline_parts: List[str] = []
 
@@ -779,8 +1078,12 @@ def build_context_from_cases(cases: List[Dict[str, Any]], target_lines: List[str
         role = case.get("role", "related_case")
         display = get_case_display_name(case)
         chunks = case.get("chunks", [])[:2]
-        chunk_text = "\n".join(chunk.get("text", "")[:700] for chunk in chunks if chunk.get("text"))
-        context_parts.append(f"[{display} | role={role} | source={source}]\n{chunk_text}")
+        chunk_text = "\n".join(
+            chunk.get("text", "")[:700] for chunk in chunks if chunk.get("text")
+        )
+        context_parts.append(
+            f"[{display} | role={role} | source={source}]\n{chunk_text}"
+        )
         timeline_parts.append(f"- {display}: {role}")
 
     return "\n\n".join(context_parts), "\n".join(timeline_parts)
@@ -795,17 +1098,22 @@ def build_multi_doctrine_context(
         if doctrine_line == "unknown":
             continue
         cases = doctrine_leaders.get(doctrine_line, [])
-        label = DOCTRINE_LABELS.get(doctrine_line, doctrine_line.replace("_", " ").title())
+        label = DOCTRINE_LABELS.get(
+            doctrine_line, doctrine_line.replace("_", " ").title()
+        )
         parts.append(f"[DOCTRINE LINE: {label}]")
         for case in cases:
             display = get_case_display_name(case)
             role = case.get("role", "related_case")
             source = case.get("source", "")
             chunks = case.get("chunks", [])[:2]
-            chunk_text = "\n".join(chunk.get("text", "")[:500] for chunk in chunks if chunk.get("text"))
+            chunk_text = "\n".join(
+                chunk.get("text", "")[:500] for chunk in chunks if chunk.get("text")
+            )
             parts.append(f"{display} | role={role} | source={source}\n{chunk_text}")
         parts.append("")
     return "\n".join(parts).strip()
+
 
 def build_sections_from_answer(ai_answer: str) -> dict:
     text = (ai_answer or "").strip()
@@ -833,7 +1141,10 @@ def build_sections_from_answer(ai_answer: str) -> dict:
 
     return sections
 
-def build_supporting_cases_block(cases: List[Dict[str, Any]], max_supporting: int = 2) -> str:
+
+def build_supporting_cases_block(
+    cases: List[Dict[str, Any]], max_supporting: int = 2
+) -> str:
     lines: List[str] = []
     seen = set()
     for case in cases:
@@ -850,9 +1161,11 @@ def build_supporting_cases_block(cases: List[Dict[str, Any]], max_supporting: in
             break
     return "\n".join(lines)
 
+
 def remove_section(text: str, section_name: str) -> str:
     pattern = rf"{re.escape(section_name)}\s*:\s*\n?(.*?)(?=\n[A-Z][A-Za-z ]+\s*:|\Z)"
     return re.sub(pattern, "", text, flags=re.DOTALL).strip()
+
 
 def replace_section(answer: str, section_name: str, new_body: str) -> str:
     pattern = rf"({re.escape(section_name)}\s*:\s*)(.*?)(?=\n[A-Z][A-Za-z ]*:\s*|\Z)"
@@ -866,9 +1179,7 @@ def extract_sections(ai_answer: str, query_plan: Dict[str, Any]) -> Dict[str, st
     def section_body(name: str, following: List[str]) -> str:
         header = rf"(?mi)^\s*{re.escape(name)}\s*:\s*"
         if following:
-            next_headers = "|".join(
-                rf"^\s*{re.escape(x)}\s*:" for x in following
-            )
+            next_headers = "|".join(rf"^\s*{re.escape(x)}\s*:" for x in following)
             pattern = header + rf"(.*?)(?=(?:{next_headers})|\Z)"
         else:
             pattern = header + r"(.*)\Z"
@@ -878,9 +1189,24 @@ def extract_sections(ai_answer: str, query_plan: Dict[str, Any]) -> Dict[str, st
 
     sections = {
         "text": text,
-        "short_answer": section_body("Short Answer", ["Key Distinction", "Rule Comparison", "Rule", "Analysis", "Confidence"]),
-        "key_distinction": section_body("Key Distinction", ["Controller Transactions", "Stockholder Vote Cleansing", "Rule Comparison", "Rule", "Analysis", "Confidence"]),
-        "rule_comparison": section_body("Rule Comparison", ["Rule", "Analysis", "Confidence"]),
+        "short_answer": section_body(
+            "Short Answer",
+            ["Key Distinction", "Rule Comparison", "Rule", "Analysis", "Confidence"],
+        ),
+        "key_distinction": section_body(
+            "Key Distinction",
+            [
+                "Controller Transactions",
+                "Stockholder Vote Cleansing",
+                "Rule Comparison",
+                "Rule",
+                "Analysis",
+                "Confidence",
+            ],
+        ),
+        "rule_comparison": section_body(
+            "Rule Comparison", ["Rule", "Analysis", "Confidence"]
+        ),
         "rule": section_body("Rule", ["Analysis", "Confidence"]),
         "analysis": section_body("Analysis", ["Confidence"]),
         "confidence": section_body("Confidence", []),
@@ -891,10 +1217,16 @@ def extract_sections(ai_answer: str, query_plan: Dict[str, Any]) -> Dict[str, st
         if len(labels) >= 1:
             sections[labels[0].lower()] = section_body(
                 labels[0],
-                [labels[1]] + ["Rule Comparison", "Analysis", "Confidence"] if len(labels) >= 2 else ["Rule Comparison", "Analysis", "Confidence"],
+                (
+                    [labels[1]] + ["Rule Comparison", "Analysis", "Confidence"]
+                    if len(labels) >= 2
+                    else ["Rule Comparison", "Analysis", "Confidence"]
+                ),
             )
         if len(labels) >= 2:
-            sections[labels[1].lower()] = section_body(labels[1], ["Rule Comparison", "Analysis", "Confidence"])
+            sections[labels[1].lower()] = section_body(
+                labels[1], ["Rule Comparison", "Analysis", "Confidence"]
+            )
 
     return sections
 
@@ -965,7 +1297,7 @@ def enforce_analysis_structure(sentences: List[str]) -> List[str]:
             changed = False
             for p in prefixes:
                 if t.startswith(p):
-                    t = t[len(p):].strip()
+                    t = t[len(p) :].strip()
                     changed = True
         return t.rstrip(".")
 
@@ -1012,6 +1344,7 @@ def relock_answer_sections(
     ai_answer = replace_section(ai_answer, "Analysis", locked_analysis)
     return ai_answer
 
+
 # ============================================================
 # CAREMARK TREE
 # ============================================================
@@ -1020,48 +1353,60 @@ def relock_answer_sections(
 def infer_caremark_facts_from_question(question: str) -> Dict[str, bool]:
     q = (question or "").lower()
 
-    has_reporting_system = not any(phrase in q for phrase in [
-        "no reporting system",
-        "no compliance system",
-        "no oversight system",
-        "no controls",
-        "utter failure",
-        "never implemented",
-        "no board-level system",
-        "no board level system",
-    ])
+    has_reporting_system = not any(
+        phrase in q
+        for phrase in [
+            "no reporting system",
+            "no compliance system",
+            "no oversight system",
+            "no controls",
+            "utter failure",
+            "never implemented",
+            "no board-level system",
+            "no board level system",
+        ]
+    )
 
-    monitors_reporting_system = not any(phrase in q for phrase in [
-        "failed to monitor",
-        "failure to monitor",
-        "consciously failed to monitor",
-        "did not monitor",
-        "never reviewed reports",
-        "ignored monitoring",
-    ])
+    monitors_reporting_system = not any(
+        phrase in q
+        for phrase in [
+            "failed to monitor",
+            "failure to monitor",
+            "consciously failed to monitor",
+            "did not monitor",
+            "never reviewed reports",
+            "ignored monitoring",
+        ]
+    )
 
-    mission_critical_risk = any(phrase in q for phrase in [
-        "mission critical",
-        "mission-critical",
-        "core mission",
-        "mission",
-        "central compliance risk",
-        "food safety",
-        "core compliance",
-        "regulatory risk",
-        "safety issue",
-    ])
+    mission_critical_risk = any(
+        phrase in q
+        for phrase in [
+            "mission critical",
+            "mission-critical",
+            "core mission",
+            "mission",
+            "central compliance risk",
+            "food safety",
+            "core compliance",
+            "regulatory risk",
+            "safety issue",
+        ]
+    )
 
-    red_flags_ignored = any(phrase in q for phrase in [
-        "red flags",
-        "red flag",
-        "ignored red flags",
-        "ignored red flag",
-        "warning signs",
-        "warnings ignored",
-        "board ignored warnings",
-        "ignored warnings",
-    ])
+    red_flags_ignored = any(
+        phrase in q
+        for phrase in [
+            "red flags",
+            "red flag",
+            "ignored red flags",
+            "ignored red flag",
+            "warning signs",
+            "warnings ignored",
+            "board ignored warnings",
+            "ignored warnings",
+        ]
+    )
 
     # Red-flags fact patterns are a monitoring failure even if a system exists.
     if red_flags_ignored:
@@ -1095,7 +1440,9 @@ def evaluate_caremark_tree(facts: Dict[str, bool]) -> Dict[str, Any]:
         result["outcome"] = "potential_oversight_breach"
         result["risk_level"] = "high"
         result["primary_failure"] = "utter_failure"
-        result["reason"] = "The facts suggest an utter failure to attempt to assure a reasonable reporting or information system exists."
+        result["reason"] = (
+            "The facts suggest an utter failure to attempt to assure a reasonable reporting or information system exists."
+        )
         return result
 
     result["path"].append("reporting_system_exists")
@@ -1105,7 +1452,9 @@ def evaluate_caremark_tree(facts: Dict[str, bool]) -> Dict[str, Any]:
         result["outcome"] = "potential_oversight_breach"
         result["risk_level"] = "high"
         result["primary_failure"] = "failure_to_monitor"
-        result["reason"] = "The facts suggest a conscious failure to monitor or oversee an existing reporting or information system."
+        result["reason"] = (
+            "The facts suggest a conscious failure to monitor or oversee an existing reporting or information system."
+        )
         return result
 
     result["path"].append("monitoring_exists")
@@ -1115,14 +1464,18 @@ def evaluate_caremark_tree(facts: Dict[str, bool]) -> Dict[str, Any]:
         result["outcome"] = "heightened_oversight_risk"
         result["risk_level"] = "medium_high"
         result["primary_failure"] = "red_flags"
-        result["reason"] = "The board appears to have monitoring structures, but ignored red flags in a mission-critical area."
+        result["reason"] = (
+            "The board appears to have monitoring structures, but ignored red flags in a mission-critical area."
+        )
         return result
 
     result["path"].append("basic_oversight_present")
     result["outcome"] = "lower_oversight_risk"
     result["risk_level"] = "low"
     result["primary_failure"] = "none"
-    result["reason"] = "The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory."
+    result["reason"] = (
+        "The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory."
+    )
     return result
 
 
@@ -1136,6 +1489,7 @@ def build_caremark_tree_summary(tree_result: Dict[str, Any]) -> str:
         f"Primary Failure: {tree_result.get('primary_failure', '')}\n"
         f"Reason: {tree_result.get('reason', '')}"
     )
+
 
 # ============================================================
 # VALIDATION
@@ -1168,13 +1522,21 @@ def validate_short_answer(
         errors.append("Short Answer is too long")
         delta -= 6
 
-    for term in ["the court held", "the court explained", "the court stated", "this case shows"]:
+    for term in [
+        "the court held",
+        "the court explained",
+        "the court stated",
+        "this case shows",
+    ]:
         if term in short_l:
             errors.append(f"Short Answer contains forbidden term: '{term}'")
             delta -= 5
 
     if len(target_set) >= 2:
-        labels = [DOCTRINE_LABELS.get(line) or line.replace("_", " ").title() for line in real_lines[:2]]
+        labels = [
+            DOCTRINE_LABELS.get(line) or line.replace("_", " ").title()
+            for line in real_lines[:2]
+        ]
         if len(labels) >= 1 and labels[0].lower() not in short_l:
             errors.append(f"Short Answer must mention {labels[0]}")
             delta -= 5
@@ -1187,8 +1549,13 @@ def validate_short_answer(
         return errors, delta
 
     if target_set == {"oversight"}:
-        if not any(term in short_l for term in ["utter failure", "good faith", "monitor", "oversight"]):
-            errors.append("Short Answer should capture the controlling oversight distinction")
+        if not any(
+            term in short_l
+            for term in ["utter failure", "good faith", "monitor", "oversight"]
+        ):
+            errors.append(
+                "Short Answer should capture the controlling oversight distinction"
+            )
             delta -= 6
 
     return errors, delta
@@ -1292,13 +1659,21 @@ def validate_rule_comparison_v2(
             errors.append("Rule Comparison must expressly include Stone")
             delta -= 6
         if not fragment_present("utter failure to attempt to assure", s1_l):
-            errors.append("Rule Comparison sentence 1 must state Caremark's utter-failure baseline")
+            errors.append(
+                "Rule Comparison sentence 1 must state Caremark's utter-failure baseline"
+            )
             delta -= 8
-        if not fragment_present("good faith effort to implement an oversight system", s2_l):
-            errors.append("Rule Comparison missing grounded fragment: Marchand (modern_application) -> \"good faith effort to implement an oversight system\"")
+        if not fragment_present(
+            "good faith effort to implement an oversight system", s2_l
+        ):
+            errors.append(
+                'Rule Comparison missing grounded fragment: Marchand (modern_application) -> "good faith effort to implement an oversight system"'
+            )
             delta -= 8
         if "monitor" not in s2_l:
-            errors.append("Rule Comparison sentence 2 must state Marchand's monitoring requirement")
+            errors.append(
+                "Rule Comparison sentence 2 must state Marchand's monitoring requirement"
+            )
             delta -= 8
         if "whereas" not in s3_l:
             errors.append("Rule Comparison sentence 3 must contain 'whereas'")
@@ -1306,7 +1681,10 @@ def validate_rule_comparison_v2(
         return errors, delta
 
     if len(target_set) >= 2:
-        labels = [DOCTRINE_LABELS.get(line) or line.replace("_", " ").title() for line in target_lines[:2]]
+        labels = [
+            DOCTRINE_LABELS.get(line) or line.replace("_", " ").title()
+            for line in target_lines[:2]
+        ]
         if len(labels) >= 1 and labels[0].lower() not in rc_l:
             errors.append(f"Rule Comparison must expressly include {labels[0]}")
             delta -= 6
@@ -1407,7 +1785,9 @@ def validate_analysis(
                 delta -= 6
         else:
             if oversight_hits < 1:
-                errors.append("Analysis should integrate at least one doctrinal anchor phrase")
+                errors.append(
+                    "Analysis should integrate at least one doctrinal anchor phrase"
+                )
                 delta -= 4
 
     return errors, delta
@@ -1441,7 +1821,10 @@ def validate_quote_grounding(
     if not fragments:
         return errors, delta
 
-    oversight_mode = "oversight" in target_lines and len([x for x in target_lines if x != "unknown"]) <= 1
+    oversight_mode = (
+        "oversight" in target_lines
+        and len([x for x in target_lines if x != "unknown"]) <= 1
+    )
     if not oversight_mode:
         return errors, delta
 
@@ -1452,7 +1835,9 @@ def validate_quote_grounding(
         if fragment_present(fragment, rule_text):
             delta += 4
         else:
-            errors.append(f'Rule missing grounded fragment: {case_name} ({role}) -> "{fragment}"')
+            errors.append(
+                f'Rule missing grounded fragment: {case_name} ({role}) -> "{fragment}"'
+            )
             delta -= 4
 
     if query_type == "comparison":
@@ -1463,7 +1848,9 @@ def validate_quote_grounding(
             if fragment_present(fragment, rule_comparison_text):
                 delta += 4
             else:
-                errors.append(f'Rule Comparison missing grounded fragment: {case_name} ({role}) -> "{fragment}"')
+                errors.append(
+                    f'Rule Comparison missing grounded fragment: {case_name} ({role}) -> "{fragment}"'
+                )
                 delta -= 4
 
     analysis_hits = 0
@@ -1481,7 +1868,9 @@ def validate_quote_grounding(
         if analysis_hits >= 1:
             delta += 3
         else:
-            errors.append("Analysis must reflect at least one doctrinal anchor fragment")
+            errors.append(
+                "Analysis must reflect at least one doctrinal anchor fragment"
+            )
             delta -= 3
 
     return errors, delta
@@ -1519,7 +1908,9 @@ def validate_ai_answer(
         labels = get_multi_doctrine_labels(query_plan)
         label_a = labels[0] if len(labels) >= 1 else "Doctrine A"
         label_b = labels[1] if len(labels) >= 2 else "Doctrine B"
-        required_sections.extend(["key_distinction", label_a.lower(), label_b.lower(), "rule_comparison"])
+        required_sections.extend(
+            ["key_distinction", label_a.lower(), label_b.lower(), "rule_comparison"]
+        )
     elif query_type == "comparison":
         required_sections.extend(["key_distinction", "rule", "rule_comparison"])
     else:
@@ -1552,8 +1943,16 @@ def validate_ai_answer(
         errors.append("Confidence must be exactly one word: High, Medium, or Low")
         score -= 8
 
-    apply_result(validate_short_answer(sections, query_type=query_type, target_lines=target_lines))
-    apply_result(validate_key_distinction(sections, query_type=query_type, target_lines=target_lines))
+    apply_result(
+        validate_short_answer(
+            sections, query_type=query_type, target_lines=target_lines
+        )
+    )
+    apply_result(
+        validate_key_distinction(
+            sections, query_type=query_type, target_lines=target_lines
+        )
+    )
 
     if query_type == "comparison":
         apply_result(
@@ -1609,6 +2008,7 @@ def validate_ai_answer(
     score = max(0, min(100, score))
     return len(deduped_errors) == 0, deduped_errors, score
 
+
 # ============================================================
 # DEBUG / DISPLAY
 # ============================================================
@@ -1631,23 +2031,34 @@ def print_query_plan(
         source = case.get("source", "")
         star = " *" if source in query_plan.get("named_sources", []) else ""
         doctrine_line = infer_doctrine_line_from_source(source)
-        print(f"- {source} (case_score={case.get('case_score', 0):.4f}, role={case.get('role', 'related_case')}, line={doctrine_line}){star}")
+        print(
+            f"- {source} (case_score={case.get('case_score', 0):.4f}, role={case.get('role', 'related_case')}, line={doctrine_line}){star}"
+        )
 
     if doctrine_buckets:
         print("\nDOCTRINE BUCKETS:")
         for doctrine_line, bucket in doctrine_buckets.items():
-            label = DOCTRINE_LABELS.get(doctrine_line, doctrine_line.replace("_", " ").title())
+            label = DOCTRINE_LABELS.get(
+                doctrine_line, doctrine_line.replace("_", " ").title()
+            )
             print(f"- {label}:")
             for case in bucket[:5]:
-                print(f"    {case.get('source', '')} ({case.get('role', 'related_case')}, {case.get('case_score', 0):.4f})")
+                print(
+                    f"    {case.get('source', '')} ({case.get('role', 'related_case')}, {case.get('case_score', 0):.4f})"
+                )
 
     if doctrine_leaders:
         print("\nDOCTRINE LEADERS:")
         for doctrine_line, leaders in doctrine_leaders.items():
-            label = DOCTRINE_LABELS.get(doctrine_line, doctrine_line.replace("_", " ").title())
+            label = DOCTRINE_LABELS.get(
+                doctrine_line, doctrine_line.replace("_", " ").title()
+            )
             print(f"- {label}:")
             for case in leaders:
-                print(f"    {case.get('source', '')} (role={case.get('role', 'related_case')}, case_score={case.get('case_score', 0):.4f})")
+                print(
+                    f"    {case.get('source', '')} (role={case.get('role', 'related_case')}, case_score={case.get('case_score', 0):.4f})"
+                )
+
 
 def assess_retrieval_confidence(
     top_chunks: List[Dict[str, Any]],
@@ -1682,10 +2093,10 @@ def assess_retrieval_confidence(
 
     if doctrine_counts:
         dominant_doctrine = sorted(
-        doctrine_counts.items(),
-        key=lambda item: item[1],
-        reverse=True,
-    )[0][0]
+            doctrine_counts.items(),
+            key=lambda item: item[1],
+            reverse=True,
+        )[0][0]
     else:
         dominant_doctrine = "unknown"
     dominant_count = doctrine_counts.get(dominant_doctrine, 0)
@@ -1721,6 +2132,7 @@ def assess_retrieval_confidence(
 
     return status, diagnostics
 
+
 def is_nonsense_query(query, retrieved_chunks):
     if not query or len(query.strip()) < 5:
         return True
@@ -1729,9 +2141,10 @@ def is_nonsense_query(query, retrieved_chunks):
     max_score = max([c.get("score", 0) for c in retrieved_chunks], default=0)
 
     if max_score < 0.75:
-     return True
+        return True
 
     return False
+
 
 def run_query(question: str):
     question = (question or "").strip()
@@ -1751,10 +2164,11 @@ def run_query(question: str):
     query_plan = build_query_plan_cached(question_for_engine)
 
     budget = get_retrieval_budget(query_plan)
-    top_chunks = retrieve(question_for_engine, k=budget["k"], max_per_source=budget["max_per_source"])
+    top_chunks = retrieve(
+        question_for_engine, k=budget["k"], max_per_source=budget["max_per_source"]
+    )
     recognized_doctrine = any(
-        line != "unknown"
-        for line in query_plan.get("target_lines", [])
+        line != "unknown" for line in query_plan.get("target_lines", [])
     )
 
     if not recognized_doctrine and is_nonsense_query(question_for_engine, top_chunks):
@@ -1764,7 +2178,9 @@ def run_query(question: str):
             "answer": "",
             "sections": {},
             "validation_score": 0,
-            "validation_errors": ["Query did not map to a recognized Delaware doctrine."],
+            "validation_errors": [
+                "Query did not map to a recognized Delaware doctrine."
+            ],
             "retrieval_confidence": "low",
             "retrieval_diagnostics": {
                 "reason": "No recognized Delaware doctrine detected."
@@ -1775,22 +2191,16 @@ def run_query(question: str):
             "rejected": True,
             "rejection_message": "Auctis could not identify a Delaware corporate law doctrine in that question.",
         }
-    
+
     if not top_chunks and not recognized_doctrine:
         return {
-        "query_plan": query_plan,
-        "cases": [],
-        "answer": "",
-        "validation_score": 0,
-        "validation_errors": ["No doctrinal match"],
-        "rejected": True,
-    }
-
-    case_quotes = extract_case_quotes(
-    top_chunks,
-    fallback_quotes=FALLBACK_QUOTES,
-    max_quotes_per_case=5,
-)
+            "query_plan": query_plan,
+            "cases": [],
+            "answer": "",
+            "validation_score": 0,
+            "validation_errors": ["No doctrinal match"],
+            "rejected": True,
+        }
 
     case_quotes = extract_case_quotes(
         top_chunks,
@@ -1798,7 +2208,13 @@ def run_query(question: str):
         max_quotes_per_case=5,
     )
 
-    case_quotes = gatekeep_case_quotes(case_quotes, min_score=10.0)
+    case_quotes = extract_case_quotes(
+        top_chunks,
+        fallback_quotes=FALLBACK_QUOTES,
+        max_quotes_per_case=5,
+    )
+
+    case_quotes = gatekeep_case_quotes(case_quotes, min_score=5.0)
 
     cases = aggregate_by_case(top_chunks)
     doctrine_buckets = bucket_cases_by_doctrine_line(cases)
@@ -1814,7 +2230,9 @@ def run_query(question: str):
     tree_result = None
     tree_summary = ""
 
-    if "oversight" in query_plan.get("target_lines", []) and not query_plan.get("multi_doctrine"):
+    if "oversight" in query_plan.get("target_lines", []) and not query_plan.get(
+        "multi_doctrine"
+    ):
         try:
             facts = infer_caremark_facts_from_question(question_for_engine)
             tree_result = evaluate_caremark_tree(facts)
@@ -1824,10 +2242,14 @@ def run_query(question: str):
             tree_summary = ""
 
     if query_plan.get("multi_doctrine"):
-        context = build_multi_doctrine_context(doctrine_leaders, query_plan.get("target_lines", []))
+        context = build_multi_doctrine_context(
+            doctrine_leaders, query_plan.get("target_lines", [])
+        )
         timeline = ""
     else:
-        context, timeline = build_context_from_cases(cases, query_plan.get("target_lines", []))
+        context, timeline = build_context_from_cases(
+            cases, query_plan.get("target_lines", [])
+        )
 
     answer_template = get_answer_template(query_plan)
     supporting_cases_block = build_supporting_cases_block(cases, max_supporting=2)
@@ -1838,10 +2260,13 @@ def run_query(question: str):
         case = item.get("case", "Unknown")
         if fragment:
             required_quote_fragments_block.append(f'- {case}: "{fragment}"')
-    if not required_quote_fragments_block and "oversight" in query_plan.get("target_lines", []):
-        required_quote_fragments_block.append('- Marchand: "good faith effort to implement an oversight system"')
+    if not required_quote_fragments_block and "oversight" in query_plan.get(
+        "target_lines", []
+    ):
+        required_quote_fragments_block.append(
+            '- Marchand: "good faith effort to implement an oversight system"'
+        )
     required_quote_fragments_block = "\n".join(required_quote_fragments_block)
-    
 
     locked_short_answer = ""
     locked_key_distinction = ""
@@ -1915,7 +2340,9 @@ SUPPORTING CASES:
 """.strip()
 
     else:
-        short_answer_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
+        short_answer_tree_result = (
+            None if query_plan.get("query_type") == "comparison" else tree_result
+        )
         locked_short_answer = synthesize_short_answer(
             query_plan.get("target_lines", []),
             tree_result=short_answer_tree_result,
@@ -1927,9 +2354,7 @@ SUPPORTING CASES:
         line = target_lines[0] if target_lines else "unknown"
         locked_rule = hard_lock_rule(
             polish_synthesized_rule(
-                compress_rule(
-                    synthesize_structured_doctrine_section(line)
-                )
+                compress_rule(synthesize_structured_doctrine_section(line))
             )
         )
 
@@ -1943,7 +2368,9 @@ SUPPORTING CASES:
             )
         )
 
-        analysis_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
+        analysis_tree_result = (
+            None if query_plan.get("query_type") == "comparison" else tree_result
+        )
         target_lines = query_plan.get("target_lines", [])
 
         if analysis_tree_result and "oversight" in target_lines:
@@ -1953,7 +2380,9 @@ SUPPORTING CASES:
                 target_lines=target_lines,
             )
         else:
-            locked_analysis = synthesize_structured_single_doctrine_analysis(target_lines)
+            locked_analysis = synthesize_structured_single_doctrine_analysis(
+                target_lines
+            )
 
         analysis_sentences = re.findall(r"[^.!?]+[.!?]", locked_analysis)
         analysis_sentences = [s.strip() for s in analysis_sentences if s.strip()]
@@ -1961,7 +2390,9 @@ SUPPORTING CASES:
             analysis_sentences = enforce_analysis_structure(analysis_sentences[:3])
             locked_analysis = " ".join(analysis_sentences)
 
-        locked_analysis = hard_lock_analysis(polish_synthesized_analysis(locked_analysis))
+        locked_analysis = hard_lock_analysis(
+            polish_synthesized_analysis(locked_analysis)
+        )
 
         user_content = f"""
 QUESTION:
@@ -2011,10 +2442,14 @@ SUPPORTING CASES:
 
     if query_plan.get("multi_doctrine"):
         ai_answer = replace_section(ai_answer, "Short Answer", locked_short_answer)
-        ai_answer = replace_section(ai_answer, "Key Distinction", locked_key_distinction)
+        ai_answer = replace_section(
+            ai_answer, "Key Distinction", locked_key_distinction
+        )
         ai_answer = replace_section(ai_answer, label_a, locked_rule_a)
         ai_answer = replace_section(ai_answer, label_b, locked_rule_b)
-        ai_answer = replace_section(ai_answer, "Rule Comparison", locked_rule_comparison)
+        ai_answer = replace_section(
+            ai_answer, "Rule Comparison", locked_rule_comparison
+        )
         ai_answer = replace_section(ai_answer, "Analysis", locked_analysis)
     else:
         ai_answer = replace_section(ai_answer, "Short Answer", locked_short_answer)
@@ -2025,7 +2460,9 @@ SUPPORTING CASES:
         ai_answer = remove_section(ai_answer, "Rule Comparison")
         ai_answer = remove_section(ai_answer, "Key Distinction")
 
-    validation_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
+    validation_tree_result = (
+        None if query_plan.get("query_type") == "comparison" else tree_result
+    )
     is_valid, validation_errors, validation_score = validate_ai_answer(
         ai_answer,
         query_plan,
@@ -2038,16 +2475,16 @@ SUPPORTING CASES:
 
     if output_mode == "opinion":
         final_answer = synthesize_opinion_answer(
-        sections_for_display,
-        query_plan,
-        role_quote_map=role_quote_map,
-    )
+            sections_for_display,
+            query_plan,
+            role_quote_map=role_quote_map,
+        )
 
     elif output_mode == "memo":
         final_answer = synthesize_memo_answer(
-        sections_for_display,
-        query_plan,
-    )
+            sections_for_display,
+            query_plan,
+        )
 
     else:
         final_answer = ai_answer  # structured
@@ -2081,16 +2518,29 @@ SUPPORTING CASES:
     sections_for_display = extract_sections(ai_answer, query_plan)
 
     memo_answer = synthesize_memo_answer(
-    sections_for_display,
-    query_plan,
-)
+        sections_for_display,
+        query_plan,
+    )
 
     opinion_answer = synthesize_opinion_answer(
-    sections_for_display,
-    query_plan,
-    role_quote_map=role_quote_map,
-)
+        sections_for_display,
+        query_plan,
+        role_quote_map=role_quote_map,
+    )
 
+    print("DEBUG CASES COUNT:", len(cases))
+    print("DEBUG FIRST CASE:", cases[0] if cases else None)
+    print(
+        "DEBUG CASE CARDS BUILT:",
+        build_case_cards(cases, role_quote_map, query_plan, case_quotes),
+    )
+    # --- SAFETY: ensure cases is never empty ---
+    if not cases:   
+        if doctrine_leaders:
+            cases = doctrine_leaders
+    elif doctrine_buckets:
+        # flatten buckets into a list
+        cases = [c for bucket in doctrine_buckets.values() for c in bucket]
     return {
         "query_plan": query_plan,
         "cases": cases,
@@ -2101,7 +2551,9 @@ SUPPORTING CASES:
         "memo_answer": memo_answer,
         "opinion_answer": opinion_answer,
         "sections": sections,
-        "case_cards": build_case_cards(cases, role_quote_map, query_plan),
+        "case_cards": build_case_cards(cases, role_quote_map, query_plan, case_quotes),
+        "case_quotes": case_quotes,
+        "doctrinal_thread": build_doctrinal_thread(query_plan),
         "validation_score": validation_score,
         "validation_errors": validation_errors,
         "retrieval_confidence": retrieval_confidence,
@@ -2114,6 +2566,7 @@ SUPPORTING CASES:
             if new.lower() in LEGAL_TERMS and old.lower() not in STOPWORDS
         ],
     }
+
 
 # ============================================================
 # MAIN
@@ -2133,36 +2586,57 @@ def main() -> None:
     oversight_debug = "oversight" in query_plan.get("target_lines", [])
 
     budget = get_retrieval_budget(query_plan)
-    
 
-    top_chunks = retrieve(question, k=budget["k"], max_per_source=budget["max_per_source"])
+    top_chunks = retrieve(
+        question, k=budget["k"], max_per_source=budget["max_per_source"]
+    )
     if not top_chunks:
         print("No chunks retrieved.")
         return
 
     case_quotes = extract_case_quotes(
-    top_chunks,
-    fallback_quotes=FALLBACK_QUOTES,
-    max_quotes_per_case=5,
-)
+        top_chunks,
+        fallback_quotes=FALLBACK_QUOTES,
+        max_quotes_per_case=5,
+    )
+    print("\nDEBUG CASE_QUOTES TYPE:", type(case_quotes))
+    print(
+        "DEBUG CASE_QUOTES KEYS:",
+        list(case_quotes.keys())[:20] if isinstance(case_quotes, dict) else "not dict",
+    )
+
+    for k, v in (case_quotes.items() if isinstance(case_quotes, dict) else []):
+        if any(
+            name in str(k).lower()
+            for name in ["barkan", "qvc", "lyondell", "paramount"]
+        ):
+            print("\nDEBUG CASE_QUOTES MATCH:", k)
+            print(v[:2] if isinstance(v, list) else v)
     cases = aggregate_by_case(top_chunks)
 
     doctrine_buckets = bucket_cases_by_doctrine_line(cases)
     doctrine_leaders = select_doctrine_leaders(doctrine_buckets)
 
-    print_query_plan(query_plan, cases, doctrine_buckets=doctrine_buckets, doctrine_leaders=doctrine_leaders)
+    print_query_plan(
+        query_plan,
+        cases,
+        doctrine_buckets=doctrine_buckets,
+        doctrine_leaders=doctrine_leaders,
+    )
 
     role_quote_map = build_role_based_quote_map(
-    cases,
-    case_quotes,
-    get_case_role=get_case_role,
-    get_case_display_name=get_case_display_name,
-)
+        cases,
+        case_quotes,
+        get_case_role=get_case_role,
+        get_case_display_name=get_case_display_name,
+    )
 
     tree_result = None
     tree_summary = ""
 
-    if "oversight" in query_plan.get("target_lines", []) and not query_plan.get("multi_doctrine"):
+    if "oversight" in query_plan.get("target_lines", []) and not query_plan.get(
+        "multi_doctrine"
+    ):
         try:
             facts = infer_caremark_facts_from_question(question)
             tree_result = evaluate_caremark_tree(facts)
@@ -2175,10 +2649,14 @@ def main() -> None:
             tree_summary = ""
 
     if query_plan.get("multi_doctrine"):
-        context = build_multi_doctrine_context(doctrine_leaders, query_plan.get("target_lines", []))
+        context = build_multi_doctrine_context(
+            doctrine_leaders, query_plan.get("target_lines", [])
+        )
         timeline = ""
     else:
-        context, timeline = build_context_from_cases(cases, query_plan.get("target_lines", []))
+        context, timeline = build_context_from_cases(
+            cases, query_plan.get("target_lines", [])
+        )
 
     answer_template = get_answer_template(query_plan)
     supporting_cases_block = build_supporting_cases_block(cases, max_supporting=2)
@@ -2189,8 +2667,12 @@ def main() -> None:
         case = item.get("case", "Unknown")
         if fragment:
             required_quote_fragments_block.append(f'- {case}: "{fragment}"')
-    if not required_quote_fragments_block and "oversight" in query_plan.get("target_lines", []):
-        required_quote_fragments_block.append('- Marchand: "good faith effort to implement an oversight system"')
+    if not required_quote_fragments_block and "oversight" in query_plan.get(
+        "target_lines", []
+    ):
+        required_quote_fragments_block.append(
+            '- Marchand: "good faith effort to implement an oversight system"'
+        )
     required_quote_fragments_block = "\n".join(required_quote_fragments_block)
 
     print("DEBUG REQUIRED QUOTE FRAGMENTS:")
@@ -2223,16 +2705,15 @@ def main() -> None:
         locked_rule_b = synthesize_structured_doctrine_section(line_b)
 
         locked_rule_comparison = polish_synthesized_rule_comparison(
-    enforce_three_sentences(
-        compress_rule_comparison(
-            synthesize_multi_doctrine_rule_comparison(target_lines)
+            enforce_three_sentences(
+                compress_rule_comparison(
+                    synthesize_multi_doctrine_rule_comparison(target_lines)
+                )
+            )
         )
-    )
-)
         locked_analysis = hard_lock_analysis(
             synthesize_multi_doctrine_analysis(target_lines)
-)
-
+        )
 
         user_content = f"""
 QUESTION:
@@ -2267,10 +2748,16 @@ SUPPORTING CASES:
 """.strip()
 
     else:
-        short_answer_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
-        locked_short_answer = synthesize_short_answer(query_plan.get("target_lines", []), tree_result=short_answer_tree_result)
+        short_answer_tree_result = (
+            None if query_plan.get("query_type") == "comparison" else tree_result
+        )
+        locked_short_answer = synthesize_short_answer(
+            query_plan.get("target_lines", []), tree_result=short_answer_tree_result
+        )
 
-        key_distinction_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
+        key_distinction_tree_result = (
+            None if query_plan.get("query_type") == "comparison" else tree_result
+        )
         target_lines = query_plan.get("target_lines", [])
         locked_key_distinction = synthesize_key_distinction(target_lines)
 
@@ -2278,35 +2765,39 @@ SUPPORTING CASES:
         line = target_lines[0] if target_lines else "unknown"
 
         locked_rule = hard_lock_rule(
-        polish_synthesized_rule(
-            compress_rule(
-                synthesize_structured_doctrine_section(line)
+            polish_synthesized_rule(
+                compress_rule(synthesize_structured_doctrine_section(line))
+            )
         )
-    )
-)
-        comparison_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
-        
-        locked_rule_comparison = polish_synthesized_rule_comparison(    
+        comparison_tree_result = (
+            None if query_plan.get("query_type") == "comparison" else tree_result
+        )
+
+        locked_rule_comparison = polish_synthesized_rule_comparison(
             enforce_three_sentences(
                 compress_rule_comparison(
                     synthesize_multi_doctrine_rule_comparison(
                         query_plan.get("target_lines", [])
+                    )
+                )
             )
         )
-    )
-)
 
-        analysis_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
+        analysis_tree_result = (
+            None if query_plan.get("query_type") == "comparison" else tree_result
+        )
         target_lines = query_plan.get("target_lines", [])
 
         if analysis_tree_result and "oversight" in target_lines:
             locked_analysis = synthesize_analysis_from_tree_and_quotes(
-        tree_result=analysis_tree_result,
-        role_quote_map=role_quote_map,
-        target_lines=target_lines,
-    )
+                tree_result=analysis_tree_result,
+                role_quote_map=role_quote_map,
+                target_lines=target_lines,
+            )
         else:
-            locked_analysis = synthesize_structured_single_doctrine_analysis(target_lines)
+            locked_analysis = synthesize_structured_single_doctrine_analysis(
+                target_lines
+            )
 
             target_lines = query_plan.get("target_lines", [])
 
@@ -2316,7 +2807,9 @@ SUPPORTING CASES:
             analysis_sentences = enforce_analysis_structure(analysis_sentences[:3])
             locked_analysis = " ".join(analysis_sentences)
 
-        locked_analysis = hard_lock_analysis(polish_synthesized_analysis(locked_analysis))
+        locked_analysis = hard_lock_analysis(
+            polish_synthesized_analysis(locked_analysis)
+        )
 
         user_content = f"""
 QUESTION:
@@ -2366,29 +2859,44 @@ SUPPORTING CASES:
 
     if query_plan.get("multi_doctrine"):
         ai_answer = replace_section(ai_answer, "Short Answer", locked_short_answer)
-        ai_answer = replace_section(ai_answer, "Key Distinction", locked_key_distinction)
+        ai_answer = replace_section(
+        ai_answer, "Key Distinction", locked_key_distinction
+    )
         ai_answer = replace_section(ai_answer, label_a, locked_rule_a)
         ai_answer = replace_section(ai_answer, label_b, locked_rule_b)
-        ai_answer = replace_section(ai_answer, "Rule Comparison", locked_rule_comparison)
+        ai_answer = replace_section(
+        ai_answer, "Rule Comparison", locked_rule_comparison
+    )
         ai_answer = replace_section(ai_answer, "Analysis", locked_analysis)
     else:
         ai_answer = replace_section(ai_answer, "Short Answer", locked_short_answer)
         ai_answer = replace_section(ai_answer, "Rule", locked_rule)
         ai_answer = replace_section(ai_answer, "Analysis", locked_analysis)
 
+# Quote-grounded Rule override must run AFTER locked_rule,
+# otherwise locked_rule overwrites it.
+    quote_rule = synthesize_rule_from_quotes(
+    role_quote_map,
+    query_plan.get("target_lines", [])
+)
+
+    if quote_rule and not query_plan.get("multi_doctrine"):
+        ai_answer = replace_section(ai_answer, "Rule", quote_rule)
+
     if query_plan.get("query_type") != "comparison":
         ai_answer = remove_section(ai_answer, "Rule Comparison")
-
-    if query_plan.get("query_type") != "comparison":
         ai_answer = remove_section(ai_answer, "Key Distinction")
 
-    validation_tree_result = None if query_plan.get("query_type") == "comparison" else tree_result
+    validation_tree_result = (
+    None if query_plan.get("query_type") == "comparison" else tree_result
+)
+
     is_valid, validation_errors, validation_score = validate_ai_answer(
-        ai_answer,
-        query_plan,
-        role_quote_map,
-        tree_result=validation_tree_result,
-    )
+    ai_answer,
+    query_plan,
+    role_quote_map,
+    tree_result=validation_tree_result,
+)
 
     print(f"VALIDATION SCORE: {validation_score}/100")
 

@@ -8,6 +8,33 @@ from typing import Any, Dict, List, Set
 # BASIC CLEANING
 # ============================================================
 
+def clean_sentence(text: str) -> str:
+    if not text:
+        return ""
+
+    # remove metadata junk
+    junk_patterns = [
+        r"SECTION:.*",
+        r"CASE:.*",
+        r"COURT:.*",
+        r"YEAR:.*",
+        r"DOCTRINE:.*",
+        r"AUTHORITY:.*",
+        r"KEY TOPIC:.*",
+    ]
+
+    for pattern in junk_patterns:
+        text = re.sub(pattern, "", text, flags=re.IGNORECASE)
+
+    # normalize whitespace
+    text = re.sub(r"\s+", " ", text).strip()
+
+    # keep only clean sentences
+    if len(text.split()) < 8:
+        return ""
+
+    return text
+
 def _normalize_quote_text(text: str) -> str:
     text = (text or "").replace("\n", " ").replace("\xad", "")
     text = re.sub(r"\s+", " ", text).strip()
@@ -187,57 +214,92 @@ def extract_case_quotes_from_text(text: str) -> List[str]:
     return clean
 
 
-def extract_case_quotes(
-    chunks: List[Dict[str, Any]],
-    fallback_quotes: Dict[str, str],
-    max_quotes_per_case: int = 5,
-) -> Dict[str, List[str]]:
-    result: Dict[str, List[str]] = {}
-    by_source: Dict[str, List[str]] = {}
+def extract_case_quotes(chunks, fallback_quotes=None, max_quotes_per_case=5):
+    fallback_quotes = fallback_quotes or {}
+    case_quotes = {}
 
-    for chunk in chunks:
-        source = chunk.get("source", "")
+    def clean_text(text: str) -> str:
+        text = re.sub(r"\s+", " ", text or "").strip()
+        text = re.sub(r"SECTION:\s*", "", text, flags=re.I)
+        return text
+
+    def split_candidates(text: str):
+        text = clean_text(text)
+
+        # Split by sentence, but preserve useful long doctrinal sentences.
+        sentences = re.split(r"(?<=[.!?])\s+", text)
+
+        candidates = []
+
+        for s in sentences:
+            s = clean_text(s)
+
+            if not s:
+                continue
+
+            # Remove metadata-only junk
+            if re.fullmatch(r"(CASE|COURT|YEAR|DOCTRINE|AUTHORITY|KEY TOPIC):.*", s, flags=re.I):
+                continue
+
+            if len(s.split()) >= 8:
+                candidates.append(s)
+
+        return candidates
+
+    def source_from_chunk(chunk):
+        return chunk.get("source") or chunk.get("case") or chunk.get("file") or "unknown"
+
+    for chunk in chunks or []:
+        if not isinstance(chunk, dict):
+            continue
+
+        source = source_from_chunk(chunk)
         text = chunk.get("text", "") or ""
 
-        if not source or not text:
+        candidates = split_candidates(text)
+
+        if not candidates:
             continue
 
-        extracted = extract_case_quotes_from_text(text)
-        if not extracted:
-            continue
+        existing = case_quotes.setdefault(source, [])
 
-        by_source.setdefault(source, [])
-        by_source[source].extend(extracted)
+        for cand in candidates:
+            if cand not in existing:
+                existing.append(cand)
 
-    all_sources = {chunk.get("source", "") for chunk in chunks if chunk.get("source")}
+    # Add fallback doctrinal quotes when extraction found nothing.
+    for source, quotes in fallback_quotes.items():
+        if source not in case_quotes or not case_quotes[source]:
+            if isinstance(quotes, list):
+                case_quotes[source] = quotes[:max_quotes_per_case]
+            elif isinstance(quotes, str):
+                case_quotes[source] = [quotes]
 
-    for source in all_sources:
-        quotes = by_source.get(source, [])
-        deduped: List[str] = []
-        seen: Set[str] = set()
+    # Pick top quotes per case using improved picker.
+    cleaned = {}
 
-        for quote in quotes:
-            cleaned = clean_doctrinal_quote(quote)
-            if not cleaned:
-                continue
+    for source, quotes in case_quotes.items():
+        selected = []
 
-            quote_key = re.sub(r"\s+", " ", cleaned.lower()).strip()
-            if quote_key in seen:
-                continue
+        for _ in range(max_quotes_per_case):
+            best = pick_best_quote(
+                quotes,
+                source=source,
+                doctrine_line="",
+            )
 
-            seen.add(quote_key)
-            deduped.append(cleaned)
-
-            if len(deduped) >= max_quotes_per_case:
+            if not best or best in selected:
                 break
 
-        if deduped:
-            result[source] = deduped
-        elif source in fallback_quotes:
-            fallback = clean_doctrinal_quote(fallback_quotes[source])
-            result[source] = [fallback or fallback_quotes[source]]
+            selected.append(best)
 
-    return result
+            # Remove selected from candidate pool
+            quotes = [q for q in quotes if str(q) != best]
+
+        if selected:
+            cleaned[source] = selected
+
+    return cleaned
 
 
 # ============================================================
@@ -332,25 +394,456 @@ def quote_precision_score(quote: str, source: str = "", role: str = "") -> float
 
     return score
 
-
-def pick_best_quote(quotes: List[str], source: str = "", role: str = "") -> str:
-    cleaned = []
-
-    for quote in quotes or []:
-        q = clean_doctrinal_quote(quote)
-        if q:
-            cleaned.append(q)
-
-    if not cleaned:
+def pick_best_quote(
+    quotes,
+    source: str = "",
+    role: str = "",
+    doctrine_line: str = "",
+):
+    if not quotes:
         return ""
 
-    ranked = sorted(
-        cleaned,
-        key=lambda q: quote_precision_score(q, source=source, role=role),
-        reverse=True,
-    )
+    source_l = (source or "").lower()
+    role_l = (role or "").lower()
+    doctrine_l = (doctrine_line or "").lower()
 
-    return ranked[0]
+    def clean_quote(q: str) -> str:
+        q = re.sub(r"\s+", " ", q or "").strip()
+        q = q.replace("“", '"').replace("”", '"').replace("’", "'")
+        q = re.sub(
+            r"^(SECTION|CASE|COURT|YEAR|DOCTRINE|AUTHORITY|KEY TOPIC):\s*",
+            "",
+            q,
+            flags=re.I,
+        )
+        return q.strip()
+
+    def is_garbage(q: str) -> bool:
+        q = clean_quote(q)
+        q_l = q.lower()
+
+        if not q:
+            return True
+
+        if len(q.split()) < 8:
+            return True
+
+        if len(q) > 360:
+            return True
+
+        if len(re.findall(r"\b\d+\b", q)) >= 3:
+            return True
+
+        if q.count(",") > 6:
+            return True
+
+        tiny_words = [w for w in q.split() if len(w) <= 2]
+        if len(tiny_words) / max(1, len(q.split())) > 0.30:
+            return True
+
+        garbage_markers = [
+            "supra",
+            "infra",
+            "ibid",
+            "footnote",
+            "appendix",
+            "see also",
+            "plaintiffs argue",
+            "defendants argue",
+            "j.corp.law",
+            "j. corp. law",
+            "fordham",
+            "law review",
+            "article",
+            "professor",
+            "available at",
+            "created supreme delaware court",
+            "the po in that",
+            "more satisfy the court",
+            "there is a vast difference be",
+            "declined iconic",
+            "intermediate standard the that",
+        ]
+
+        if any(g in q_l for g in garbage_markers):
+            return True
+
+        return False
+
+    def looks_like_rule(q: str) -> bool:
+        q_l = q.lower()
+
+        rule_signals = [
+            "must",
+            "requires",
+            "required",
+            "duty",
+            "obligation",
+            "is triggered",
+            "are triggered",
+            "applies when",
+            "applies where",
+            "standard",
+            "review",
+            "turns on",
+            "the question is",
+            "directors",
+            "board",
+            "fiduciary",
+            "stockholders",
+        ]
+
+        return any(signal in q_l for signal in rule_signals)
+
+    def anchor_bonus(q: str) -> int:
+        q_l = q.lower()
+
+        anchors = {
+            "revlon": [
+                "best value reasonably available",
+                "auctioneers",
+                "stockholders' benefit",
+                "for sale",
+            ],
+            "qvc": [
+                "change of control",
+                "results in a change of control",
+                "sale of control",
+                "control of the corporation",
+                "best value reasonably available",
+            ],
+            "paramount": [
+                "change of control",
+                "sale of control",
+                "control of the corporation",
+                "best value reasonably available",
+            ],
+            "lyondell": [
+                "no single blueprint",
+                "reasonable decision",
+                "not perfection",
+                "utterly failed",
+                "bad faith",
+                "revlon duties",
+            ],
+            "barkan": [
+                "no single blueprint",
+                "reasonable course",
+                "active and direct role",
+                "market check",
+                "best value",
+            ],
+            "metro": [
+                "financial advisors",
+                "informed and reasonable",
+                "board reliance",
+                "sale process",
+            ],
+            "rural metro": [
+                "financial advisors",
+                "sale process",
+                "informed and reasonable",
+            ],
+            "unocal": [
+                "threat to corporate policy",
+                "enhanced scrutiny",
+                "reasonable grounds",
+            ],
+            "unitrin": [
+                "coercive",
+                "preclusive",
+                "range of reasonableness",
+            ],
+            "airgas": [
+                "coercive",
+                "preclusive",
+                "range of reasonableness",
+                "reasonable grounds",
+            ],
+            "caremark": [
+                "utter failure",
+                "reporting system",
+                "information and reporting system",
+            ],
+            "stone": [
+                "bad faith",
+                "duty of loyalty",
+                "failure to act in good faith",
+            ],
+            "marchand": [
+                "good faith effort",
+                "mission critical",
+                "red flags",
+            ],
+            "mfw": [
+                "majority of the minority",
+                "special committee",
+                "from the outset",
+                "business judgment",
+            ],
+            "corwin": [
+                "fully informed",
+                "uncoerced",
+                "business judgment",
+            ],
+            "weinberger": [
+                "entire fairness",
+                "fair dealing",
+                "fair price",
+            ],
+            "aronson": [
+                "reasonable doubt",
+                "demand futility",
+            ],
+            "rales": [
+                "impartially consider",
+                "demand futility",
+            ],
+            "zuckerberg": [
+                "director-by-director",
+                "demand futility",
+            ],
+            "malone": [
+                "truthfully",
+                "materially misleading",
+            ],
+            "blasius": [
+                "compelling justification",
+                "stockholder franchise",
+            ],
+            "schnell": [
+                "inequitable",
+            ],
+            "section 220": [
+                "proper purpose",
+                "credible basis",
+            ],
+        }
+
+        bonus = 0
+
+        for case_key, phrases in anchors.items():
+            if case_key in source_l:
+                for phrase in phrases:
+                    if phrase in q_l:
+                        bonus += 20
+
+        return bonus
+
+    def marker_score(q: str) -> int:
+        q_l = q.lower()
+        score = 0
+
+        universal = {
+            "must": 6,
+            "requires": 6,
+            "required": 5,
+            "duty": 6,
+            "obligation": 5,
+            "standard": 5,
+            "review": 5,
+            "board": 4,
+            "directors": 5,
+            "fiduciary": 5,
+            "stockholders": 5,
+            "reasonable": 4,
+            "reasonably": 4,
+        }
+
+        sale = {
+            "best value reasonably available": 22,
+            "highest value reasonably attainable": 20,
+            "change of control": 18,
+            "for sale": 12,
+            "sale of control": 12,
+            "auction": 10,
+            "auctioneers": 14,
+            "maximize": 10,
+            "maximization": 10,
+            "stockholders' benefit": 12,
+            "revlon duties": 10,
+            "sale process": 8,
+        }
+
+        takeover = {
+            "enhanced scrutiny": 18,
+            "coercive": 14,
+            "preclusive": 14,
+            "range of reasonableness": 18,
+            "threat to corporate policy": 18,
+            "reasonable grounds": 12,
+            "defensive measure": 10,
+        }
+
+        fairness = {
+            "entire fairness": 18,
+            "fair dealing": 14,
+            "fair price": 14,
+            "burden": 8,
+        }
+
+        controller = {
+            "majority of the minority": 18,
+            "special committee": 14,
+            "business judgment": 12,
+            "controller": 10,
+            "from the outset": 10,
+        }
+
+        oversight = {
+            "utter failure": 18,
+            "good faith effort": 18,
+            "bad faith": 14,
+            "reporting system": 12,
+            "red flags": 12,
+            "mission critical": 12,
+            "duty of loyalty": 10,
+        }
+
+        demand = {
+            "demand futility": 16,
+            "particularized facts": 14,
+            "independent and disinterested": 14,
+            "reasonable doubt": 10,
+            "impartially consider": 10,
+            "director-by-director": 10,
+        }
+
+        books_records = {
+            "proper purpose": 16,
+            "credible basis": 16,
+            "necessary and essential": 12,
+        }
+
+        franchise = {
+            "compelling justification": 18,
+            "stockholder franchise": 16,
+            "inequitable": 12,
+        }
+
+        disclosure = {
+            "truthfully": 14,
+            "materially misleading": 16,
+            "material information": 12,
+        }
+
+        groups = [universal]
+
+        if "sale_of_control" in doctrine_l or any(
+            x in source_l for x in ["revlon", "qvc", "barkan", "lyondell", "paramount", "metro"]
+        ):
+            groups.append(sale)
+
+        if "takeover_defense" in doctrine_l or any(
+            x in source_l for x in ["unocal", "unitrin", "airgas"]
+        ):
+            groups.append(takeover)
+
+        if "entire_fairness" in doctrine_l or any(
+            x in source_l for x in ["weinberger", "entire fairness"]
+        ):
+            groups.append(fairness)
+
+        if "controller" in doctrine_l or any(
+            x in source_l for x in ["mfw", "tesla", "kahn"]
+        ):
+            groups.append(controller)
+
+        if "oversight" in doctrine_l or any(
+            x in source_l for x in ["caremark", "stone", "marchand"]
+        ):
+            groups.append(oversight)
+
+        if "demand_futility" in doctrine_l or any(
+            x in source_l for x in ["aronson", "rales", "zuckerberg"]
+        ):
+            groups.append(demand)
+
+        if "books" in doctrine_l or "220" in doctrine_l or "section 220" in source_l:
+            groups.append(books_records)
+
+        if any(x in doctrine_l for x in ["blasius", "schnell", "franchise", "equitable_intervention"]):
+            groups.append(franchise)
+
+        if "disclosure" in doctrine_l or "malone" in source_l:
+            groups.append(disclosure)
+
+        for group in groups:
+            for marker, weight in group.items():
+                if marker in q_l:
+                    score += weight
+
+        score += anchor_bonus(q)
+
+        if looks_like_rule(q):
+            score += 10
+        else:
+            score -= 16
+
+        length = len(q.split())
+
+        if 10 <= length <= 28:
+            score += 10
+        elif 29 <= length <= 45:
+            score += 4
+        elif length > 60:
+            score -= 14
+
+        if q.strip().endswith("."):
+            score += 2
+
+        if role_l == "foundation" and any(
+            x in q_l for x in ["must", "duty", "requires", "standard", "best value"]
+        ):
+            score += 8
+
+        if role_l in {"supreme_refinement", "refinement"} and any(
+            x in q_l for x in ["clarifies", "triggered", "change of control", "standard", "applies"]
+        ):
+            score += 8
+
+        if role_l == "modern_application" and any(
+            x in q_l for x in ["applies", "reasonable", "reliance", "process", "informed"]
+        ):
+            score += 6
+
+        weak_markers = [
+            "helps define",
+            "generally speaking",
+            "in this case",
+            "the court considered",
+            "the court noted",
+            "the court stated",
+            "the court explained",
+        ]
+
+        if any(w in q_l for w in weak_markers):
+            score -= 10
+
+        if is_garbage(q):
+            score -= 100
+
+        return score
+
+    scored = []
+
+    for q in quotes:
+        raw = q.get("quote", q.get("text", "")) if isinstance(q, dict) else str(q)
+        cleaned = clean_quote(raw)
+
+        if not cleaned:
+            continue
+
+        score = marker_score(cleaned)
+
+        if score > 0:
+            scored.append((score, cleaned))
+
+    if not scored:
+        return ""
+
+    scored.sort(key=lambda item: item[0], reverse=True)
+    return scored[0][1]
 
 
 # ============================================================
@@ -467,9 +960,14 @@ def build_role_based_quote_map(
                 continue
 
             quotes = case_quotes.get(source, [])
-            filtered_quotes = [quote for quote in quotes if is_valid_doctrinal_quote(quote)]
+            filtered_quotes = quotes
 
-            best_quote = pick_best_quote(filtered_quotes, source=source, role=role) if filtered_quotes else ""
+            best_quote = pick_best_quote(
+                filtered_quotes,
+                source=source,
+                role=role,
+                doctrine_line="",   # or pass real doctrine_line later if you want
+            ) if filtered_quotes else ""
 
             if not best_quote:
                 continue

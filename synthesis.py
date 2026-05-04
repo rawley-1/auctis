@@ -83,114 +83,44 @@ def synthesize_key_distinction(target_lines: List[str]) -> str:
     return f"{label_a} doctrine governs one fiduciary setting, whereas {label_b} doctrine governs a distinct one."
 
 
-def synthesize_rule_from_quotes(
-    role_quote_map: Dict[str, Dict[str, str]],
-    target_lines: List[str],
-) -> str:
-    target_set = set(x for x in target_lines if x != "unknown")
+def synthesize_rule_from_quotes(role_quote_map, target_lines=None):
+    target_lines = target_lines or []
 
-    if "oversight" in target_set:
-        foundation_frag = get_rule_text("oversight", "foundation")
-        refinement_frag = get_rule_text("oversight", "supreme_refinement")
-        modern_frag = get_rule_text("oversight", "modern_application")
+    quotes = []
+    for role in ["foundation", "supreme_refinement", "refinement", "modern_application"]:
+        item = (role_quote_map or {}).get(role)
+        if isinstance(item, dict) and item.get("quote"):
+            quotes.append(item["quote"])
 
+    joined = " ".join(quotes).lower()
+
+    if "best value reasonably available" in joined or "change of control" in joined:
         return (
-            "A board breaches the duty of loyalty where there is an "
-            f"{foundation_frag}, or where a {refinement_frag} includes the conscious failure to monitor such a system once implemented, "
-            f"because directors must make a {modern_frag}."
+            "Sale of Control doctrine governs change-of-control transactions, "
+            "where once the corporation is for sale, directors must seek the best value "
+            "reasonably available to stockholders."
         )
 
-    if "takeover_defense" in target_set:
-        foundation_frag = get_rule_text("takeover_defense", "foundation")
-        refinement_frag = get_rule_text("takeover_defense", "supreme_refinement")
-        modern_frag = get_rule_text("takeover_defense", "modern_application")
-
+    if "enhanced scrutiny" in joined or "coercive" in joined or "preclusive" in joined:
         return (
-            "Under Unocal, directors must show that they had "
-            f"{foundation_frag}, and that their defensive response was {refinement_frag} "
-            f"and {modern_frag}."
+            "Takeover Defense doctrine subjects defensive measures to enhanced scrutiny, "
+            "requiring directors to identify a legitimate threat and adopt a response "
+            "that is neither coercive nor preclusive and falls within a range of reasonableness."
         )
 
-    if "controller_transactions" in target_set:
-        foundation_frag = get_rule_text("controller_transactions", "foundation")
-        refinement_frag = get_rule_text("controller_transactions", "supreme_refinement")
-        modern_frag = get_rule_text("controller_transactions", "modern_application")
-
+    if "entire fairness" in joined or "fair dealing" in joined or "fair price" in joined:
         return (
-            "In a controller transaction, "
-            f"{foundation_frag}, but business judgment review may apply only where the transaction is {refinement_frag}; "
-            f"otherwise, {modern_frag}."
+            "Entire Fairness requires fiduciaries to prove both fair dealing and fair price "
+            "when they stand on both sides of a transaction or operate under a disabling conflict."
         )
 
-    if "stockholder_vote_cleansing" in target_set:
-        foundation_frag = get_rule_text("stockholder_vote_cleansing", "foundation")
-        refinement_frag = get_rule_text("stockholder_vote_cleansing", "supreme_refinement")
-        modern_frag = get_rule_text("stockholder_vote_cleansing", "modern_application")
-
+    if "good faith effort" in joined or "utter failure" in joined or "bad faith" in joined:
         return (
-            "Under Corwin, "
-            f"{foundation_frag}, provided that {refinement_frag} and {modern_frag}."
+            "Oversight liability requires a showing that directors utterly failed to implement "
+            "a reasonable reporting system or consciously failed to monitor red flags, reflecting bad faith."
         )
 
-    if "sale_of_control" in target_set:
-        foundation_frag = get_rule_text("sale_of_control", "foundation")
-        refinement_frag = get_rule_text("sale_of_control", "supreme_refinement")
-        modern_frag = get_rule_text("sale_of_control", "modern_application")
-
-        return (
-            "Under Revlon and QVC, "
-            f"{foundation_frag}, and {refinement_frag}; "
-            f"accordingly, {modern_frag}."
-        )
-
-    if "demand_futility" in target_set:
-        foundation_frag = get_rule_text("demand_futility", "foundation")
-        refinement_frag = get_rule_text("demand_futility", "supreme_refinement")
-        modern_frag = get_rule_text("demand_futility", "modern_application")
-
-        return (
-            "Under Aronson, Rales, and Zuckerberg, "
-            f"{foundation_frag}; {refinement_frag}; and {modern_frag}."
-        )
-
-    if "disclosure_loyalty" in target_set:
-        foundation_frag = get_rule_text("disclosure_loyalty", "foundation")
-        refinement_frag = get_rule_text("disclosure_loyalty", "supreme_refinement")
-        modern_frag = get_rule_text("disclosure_loyalty", "modern_application")
-
-        return (
-            "Under Malone, "
-            f"{foundation_frag}, and {refinement_frag}; accordingly, {modern_frag}."
-        )
-    
-    if "entire_fairness" in target_set:
-        return (
-            "Entire fairness is Delaware’s most rigorous standard of review and requires fiduciaries to demonstrate "
-            "both fair dealing and fair price where they stand on both sides of a transaction or otherwise face disabling conflicts."
-        )
-    if "disclosure" in target_set or "disclosure_loyalty" in target_set:
-        return (
-            "Under Delaware law, directors have a duty to communicate truthfully with stockholders, and materially "
-            "misleading statements or omissions may constitute a breach of fiduciary duty, particularly where "
-            "stockholder action depends on a fully informed vote."
-        )
-    if "shareholder_franchise" in target_set:
-        return (
-            "Under Blasius, board action taken for the primary purpose of interfering with the stockholder franchise "
-            "requires a compelling justification."
-        )
-    if "equitable_intervention" in target_set:
-        return (
-            "Under Schnell, inequitable conduct does not become permissible simply because it is legally authorized, "
-            "and Delaware courts may restrain corporate action taken for an improper purpose."
-        )
-    if "books_and_records" in target_set:
-        return (
-            "Under DGCL Section 220, a stockholder may inspect books and records upon demonstrating a proper purpose "
-            "reasonably related to stockholder status, supported by a credible basis where wrongdoing is alleged."
-        )
-    
-    return "The governing rule depends on the doctrinal framework identified by the question."
+    return ""
 
 
 def synthesize_multi_doctrine_rule_comparison(target_lines: List[str]) -> str:
