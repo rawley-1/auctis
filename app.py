@@ -310,39 +310,12 @@ if st.session_state["show_demo"]:
         role_quote_map = result.get("role_quote_map", {}) or {}
         case_cards = result.get("case_cards", []) or []
 
-        if not case_cards:
-            raw_cases = (
-                result.get("cases", []) or result.get("doctrine_leaders", []) or []
-            )
-            case_cards = []
-
-            for case in raw_cases[:8]:
-                if isinstance(case, dict):
-                    source = case.get("source", "Unknown case")
-                    role = case.get("role", "related_case")
-                else:
-                    source = str(case)
-                    role = "related_case"
-
-                name = source.replace(".txt", "").replace("_", " ").title()
-                anchor = name.lower().replace(" ", "-")
-
-                case_cards.append(
-                    {
-                        "name": name,
-                        "source": source,
-                        "role": role,
-                        "quote": "",
-                        "why_matters": "This case matters here because it helps define the governing doctrinal framework.",
-                        "anchor": anchor,
-                    }
-                )
-
         st.subheader("Answer")
 
         if output_mode == "Memo Mode":
             st.markdown(
-                result.get("memo_answer") or result.get("answer", "No answer returned.")
+                result.get("memo_answer")
+                or result.get("answer", "No answer returned.")
             )
 
         elif output_mode == "Opinion Mode":
@@ -352,32 +325,10 @@ if st.session_state["show_demo"]:
                 or result.get("answer", "No answer returned.")
             )
 
-            highlighted = highlight_quote_in_answer(opinion, role_quote_map)
-            linked = link_cited_cases(highlighted, case_cards)
+            linked = link_cited_cases(opinion, case_cards)
             st.markdown(linked, unsafe_allow_html=True)
 
             cited_cases = cited_cases_from_answer(opinion)
-
-            inline_cards = [
-                card for card in case_cards if card.get("name") in cited_cases
-            ]
-
-            if inline_cards:
-                st.markdown("#### Cited Case Quick View")
-
-                for card in inline_cards:
-                    with st.expander(f"{card.get('name', 'Unknown Case')} quick view"):
-                        st.markdown(f"**Role:** `{card.get('role', 'related_case')}`")
-
-                        if card.get("why_matters"):
-                            st.markdown("**Why it matters here**")
-                            st.write(card.get("why_matters"))
-
-                        if card.get("quote"):
-                            st.markdown("**Key quote**")
-                            st.markdown(f"> {card.get('quote')}")
-
-                        st.caption(f"Source: {card.get('source', '')}")
 
             with st.expander("Citation + quote map"):
                 shown_any = False
@@ -399,7 +350,7 @@ if st.session_state["show_demo"]:
                 if not shown_any:
                     st.caption(
                         "No selected quote available for the cited cases. "
-                        "See Supporting Cases below for retrieved excerpts."
+                        "See Supporting Cases below."
                     )
 
         else:
@@ -427,69 +378,72 @@ if st.session_state["show_demo"]:
                     st.session_state["last_question"] = corrected_question
                     st.rerun()
 
-        if case_cards:
+        # =========================
+        # SUPPORTING CASES
+        # =========================
+        usable_cards = [
+            card for card in case_cards[:8]
+            if card.get("quote") or card.get("context")
+        ]
+
+        if usable_cards:
             st.markdown("### Supporting Cases")
             st.markdown("#### Click a case to explore reasoning")
 
-            for card in case_cards[:8]:
+            for card in usable_cards:
                 name = card.get("name", "Unknown Case")
                 role = card.get("role", "related_case")
                 source = card.get("source", "")
                 quote = card.get("quote", "")
                 why = card.get("why_matters", "")
-                anchor = card.get("anchor", name.lower().replace(" ", "-"))
                 context = card.get("context", "")
-                excerpts = card.get("excerpts", [])
 
-                # Skip weak/empty cards (defensive safety)
-                if not quote and not context and not excerpts:
-                    continue
+                with st.expander(name):
+                    if role:
+                        st.markdown(f"**Role:** `{role}`")
 
-                st.markdown(f'<div id="{anchor}"></div>', unsafe_allow_html=True)
+                    if why:
+                        st.markdown(f"**Why it matters:** {why}")
 
-                with st.expander(f"{name} · {role}"):
-                    st.markdown(f"**Role:** `{role}`")
+                    if quote:
+                        st.markdown("**Key quote**")
+                        st.markdown(f"> {quote}")
 
-                if why:
-                    st.markdown(f"**Why it matters:** {why}")
+                    if context:
+                        with st.expander("Show context"):
+                            st.write(context)
 
-                if quote:
-                    st.markdown("**Key quote**")
-                    st.markdown(f"> {quote}")
-
-                if context:
-                    with st.expander("Show context"):
-                     st.write(context)
-
-                if source:
-                    st.caption(f"Source: {source}")
-
+                    if source:
+                        st.caption(f"Source: {source}")
         else:
             st.warning("No supporting cases were returned.")
 
-        doctrinal_thread = result.get("doctrinal_thread", {})
-        thread = doctrinal_thread.get("thread", [])
+        # =========================
+        # DOCTRINAL THREAD
+        # =========================
+        doctrinal_thread = result.get("doctrinal_thread", {}) or {}
+        thread = doctrinal_thread.get("thread", []) or []
 
         if thread:
             st.markdown("### Doctrinal Thread")
             st.caption("How the doctrine develops across leading cases.")
 
-        cols = st.columns(len(thread))
+            cols = st.columns(len(thread))
 
-        for col, node in zip(cols, thread):
-            with col:
-                st.markdown(
-                    f"""
-                <div class="section-card">
-                    <div class="label">{node.get("case", "Unknown")}</div>
-                    <div class="value"><b>{node.get("role", "")}</b></div>
-                    <div class="value" style="margin-top:8px;">
-                        {node.get("point", "")}
-                    </div>
-                </div>
-                """,
-                    unsafe_allow_html=True,
-                )
+            for col, node in zip(cols, thread):
+                with col:
+                    st.markdown(
+                        f"""
+                        <div class="section-card">
+                            <div class="label">{node.get("case", "Unknown")}</div>
+                            <div class="value"><b>{node.get("role", "")}</b></div>
+                            <div class="value" style="margin-top:8px;">
+                                {node.get("point", "")}
+                            </div>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
 
         if result.get("validation_score") is not None:
             score = int(result.get("validation_score") or 0)
@@ -497,14 +451,14 @@ if st.session_state["show_demo"]:
 
             st.markdown(
                 f"""
-                    <div style="
-                        margin-top:18px;
-                        font-size:1.35rem;
-                        font-weight:800;
-                        color:{color};
-                    ">
-                        Validation Score: {score}/100
-                    </div>
-                    """,
+                <div style="
+                    margin-top:18px;
+                    font-size:1.35rem;
+                    font-weight:800;
+                    color:{color};
+                ">
+                    Validation Score: {score}/100
+                </div>
+                """,
                 unsafe_allow_html=True,
             )
