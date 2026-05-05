@@ -448,33 +448,19 @@ if st.session_state["show_demo"]:
                 st.markdown(f'<div id="{anchor}"></div>', unsafe_allow_html=True)
 
                 with st.expander(f"{name} · {role}"):
-                    st.markdown(f"**Role in doctrine:** `{role}`")
+                    st.markdown(f"**Role:** `{role}`")
 
                 if why:
-                    st.markdown("**Why this case matters here**")
-                    st.write(why)
+                    st.markdown(f"**Why it matters:** {why}")
 
-                # 🔑 Key Quote (primary signal)
                 if quote:
-                    st.markdown("**Key Quote**")
+                    st.markdown("**Key quote**")
                     st.markdown(f"> {quote}")
-                else:
-                    st.caption("No selected quote available.")
 
-                # 🧠 Context (second layer)
                 if context:
-                    with st.expander("Context — quote highlighted"):
-                        highlighted_context = highlight_quote_in_context(context, quote)
-                        st.markdown(highlighted_context, unsafe_allow_html=True)
+                    with st.expander("Show context"):
+                     st.write(context)
 
-                # 📚 Supporting passages (deep layer)
-                if excerpts:
-                    with st.expander("Additional supporting passages"):
-                        for i, excerpt in enumerate(excerpts, start=1):
-                            st.markdown(f"**Passage {i}**")
-                            st.write(excerpt)
-
-                # 📍 Source (lightweight footer)
                 if source:
                     st.caption(f"Source: {source}")
 
