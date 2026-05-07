@@ -767,8 +767,6 @@ def build_doctrinal_thread(query_plan):
         "thread": [],
     }
 
-import re
-
 def build_case_cards(cases, role_quote_map=None, query_plan=None, case_quotes=None):
     import os
     import re
@@ -777,151 +775,277 @@ def build_case_cards(cases, role_quote_map=None, query_plan=None, case_quotes=No
     case_quotes = case_quotes or {}
     query_plan = query_plan or {}
 
-    # =========================
-    # HELPERS
-    # =========================
+    def make_anchor(case_name: str) -> str:
+        return re.sub(r"[^a-z0-9]+", "-", case_name.lower()).strip("-")
 
-    def make_anchor(name):
-        return re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-
-    def clean_text(text):
+    def clean_text(text: str, min_words: int = 0) -> str:
         if not text:
             return ""
 
         text = text.replace("“", '"').replace("”", '"').replace("’", "'")
+        text = text.replace("\xad", "")
         text = re.sub(r"\s+", " ", text).strip()
 
-        # remove metadata noise
-        patterns = [
-            r"SECTION:.*?",
-            r"CASE:.*?",
-            r"COURT:.*?",
-            r"YEAR:\s*\d{4}",
-            r"DOCTRINE:.*?",
-            r"AUTHORITY:.*?",
-            r"KEY TOPIC:.*?",
+        metadata_patterns = [
+            r"\bSECTION:\s*[^A-Z]*",
+            r"\bCASE:\s*[^A-Z]*",
+            r"\bCOURT:\s*[^A-Z]*",
+            r"\bYEAR:\s*\d{4}",
+            r"\bDOCTRINE:\s*[^A-Z]*",
+            r"\bAUTHORITY:\s*[^A-Z]*",
+            r"\bKEY TOPIC:\s*",
         ]
 
-        for p in patterns:
-            text = re.sub(p, "", text, flags=re.I)
+        for pattern in metadata_patterns:
+            text = re.sub(pattern, "", text, flags=re.I)
 
-        return re.sub(r"\s+", " ", text).strip(" -:;,")
+        text = re.sub(r"\s+", " ", text).strip(" -:;,")
 
-    def is_garbage(text):
-        if not text:
+        if min_words and len(text.split()) < min_words:
+            return ""
+
+        return text
+
+    def is_garbage(text: str, allow_context: bool = False) -> bool:
+        s = clean_text(text)
+        s_l = s.lower()
+
+        if not s:
             return True
 
-        words = text.split()
+        min_words = 12 if allow_context else 8
+        max_chars = 18000 if allow_context else 380
+        max_numbers = 40 if allow_context else 4
 
-        if len(words) < 8:
+        if len(s.split()) < min_words:
             return True
 
-        if len(text) > 500:
+        if len(s) > max_chars:
             return True
 
-        if len([w for w in words if len(w) <= 2]) / len(words) > 0.33:
+        if len(re.findall(r"\b\d+\b", s)) >= max_numbers:
             return True
 
-        bad = [
-            "supra", "infra", "ibid", "footnote", "appendix",
-            "law review", "article", "plaintiffs argue", "defendants argue",
-            "created supreme delaware court", "more satisfy the court",
+        tiny_words = [w for w in s.split() if len(w) <= 2]
+        if len(tiny_words) / max(1, len(s.split())) > 0.35:
+            return True
+
+        garbage_markers = [
+            "supra",
+            "infra",
+            "ibid",
+            "footnote",
+            "appendix",
+            "plaintiffs argue",
+            "defendants argue",
+            "law review",
+            "j.corp.law",
+            "j. corp. law",
+            "fordham",
+            "article",
+            "created supreme delaware court",
+            "the po in that",
+            "more satisfy the court",
+            "there is a vast difference be",
+            "intermediate standard the that",
+            "declined iconic",
+            "reashowing",
+            "dangrounds",
+            "seismic and its not this",
+            "judge process conduct neither",
         ]
 
-        return any(b in text.lower() for b in bad)
+        return any(marker in s_l for marker in garbage_markers)
 
-    # =========================
-    # QUOTE EXTRACTION
-    # =========================
+    def why_case_matters(case_name: str, role: str) -> str:
+        c = case_name.lower()
+        role_l = (role or "").lower()
 
-    def get_quote(case, source, role):
-        # 1. role map
+        if "revlon" in c:
+            return "Revlon supplies the sale-of-control value-maximization duty."
+        if "qvc" in c:
+            return "QVC clarifies when a transaction results in a change of control."
+        if "lyondell" in c:
+            return "Lyondell shows that Revlon duties require reasonableness, not perfection."
+        if "barkan" in c:
+            return "Barkan confirms that directors must act reasonably to secure stockholder value in a sale process."
+        if "metro" in c and "rural" not in c:
+            return "Metro applies sale-process principles to advisor reliance and board reasonableness."
+        if "rural metro" in c:
+            return "Rural Metro applies sale-process doctrine to advisor conflicts, board reliance, and transactional reasonableness."
+        if "caremark" in c:
+            return "Caremark supplies the foundational oversight-liability framework."
+        if "stone" in c:
+            return "Stone links oversight failure to bad faith and the duty of loyalty."
+        if "marchand" in c:
+            return "Marchand applies Caremark to mission-critical compliance risk."
+        if "unocal" in c:
+            return "Unocal supplies enhanced scrutiny for defensive measures."
+        if "unitrin" in c:
+            return "Unitrin sharpens the coercive/preclusive and reasonableness inquiry."
+        if "airgas" in c:
+            return "Airgas applies Unocal/Unitrin review in a modern takeover-defense setting."
+        if "mfw" in c:
+            return "MFW identifies the procedural protections needed to restore business judgment review."
+        if "corwin" in c:
+            return "Corwin explains when stockholder approval cleanses fiduciary challenges."
+        if "weinberger" in c:
+            return "Weinberger supplies the entire-fairness framework."
+        if "aronson" in c:
+            return "Aronson supplies the legacy demand-futility framework."
+        if "rales" in c:
+            return "Rales refines demand futility where the current board did not make the challenged decision."
+        if "zuckerberg" in c:
+            return "Zuckerberg unifies demand futility into a director-by-director inquiry."
+
+        if role_l == "foundation":
+            return f"{case_name} establishes the governing doctrinal rule."
+        if role_l in {"supreme_refinement", "refinement"}:
+            return f"{case_name} clarifies and sharpens the governing standard."
+        if role_l == "modern_application":
+            return f"{case_name} applies the doctrine in a concrete factual setting."
+
+        return f"{case_name} reinforces the governing doctrine."
+
+    def quote_from_role_map(source: str, role: str) -> str:
         item = role_quote_map.get(role)
-        if isinstance(item, dict) and item.get("source") == source:
-            q = clean_text(item.get("quote", ""))
-            if q and not is_garbage(q):
-                return q
 
-        # 2. case quotes
-        for q in case_quotes.get(source, []):
+        if not isinstance(item, dict):
+            return ""
+
+        if item.get("source") != source:
+            return ""
+
+        quote = clean_text(item.get("quote", ""), min_words=8)
+
+        if quote and not is_garbage(quote):
+            return quote
+
+        return ""
+
+    def quote_from_case_quotes(source: str) -> str:
+        for q in case_quotes.get(source, []) or []:
             raw = q.get("quote", q.get("text", "")) if isinstance(q, dict) else str(q)
-            cleaned = clean_text(raw)
-            if cleaned and not is_garbage(cleaned):
-                return cleaned
+            quote = clean_text(raw, min_words=8)
 
-        # 3. chunks fallback
+            if quote and not is_garbage(quote):
+                return quote
+
+        return ""
+
+    def quote_from_chunks(case: dict) -> str:
         markers = [
             "best value reasonably available",
+            "highest value reasonably attainable",
             "change of control",
             "sale of control",
+            "for sale",
+            "auctioneers",
             "enhanced scrutiny",
-            "entire fairness",
             "range of reasonableness",
-            "duty", "must", "requires",
+            "coercive",
+            "preclusive",
+            "entire fairness",
+            "fair dealing",
+            "fair price",
+            "business judgment",
+            "special committee",
+            "majority of the minority",
+            "good faith",
+            "bad faith",
+            "reporting system",
+            "red flags",
+            "reasonable",
+            "reasonably",
+            "duty",
+            "requires",
+            "must",
         ]
 
         for chunk in case.get("chunks", []) or []:
-            text = clean_text(chunk.get("text", ""))
+            raw = chunk.get("text", "") if isinstance(chunk, dict) else str(chunk)
+            text = clean_text(raw)
+
+            if not text:
+                continue
 
             for sentence in re.split(r"(?<=[.!?])\s+", text):
-                s = clean_text(sentence)
+                s = clean_text(sentence, min_words=8)
+                s_l = s.lower()
+
                 if not s or is_garbage(s):
                     continue
 
-                if any(m in s.lower() for m in markers):
+                if any(marker in s_l for marker in markers):
                     return s
 
         return ""
 
-    # =========================
-    # CONTEXT + EXCERPTS
-    # =========================
-
-    def build_context(case, quote):
+    def build_clean_context(case: dict, quote: str) -> str:
         if not quote:
             return ""
 
-        seed = " ".join(quote.split()[:6]).lower()
+        chunks = case.get("chunks", []) or []
+        quote_seed = clean_text(quote).lower()[:55]
 
-        for chunk in case.get("chunks", []) or []:
-            text = clean_text(chunk.get("text", ""))
+        for chunk in chunks:
+            raw = chunk.get("text", "") if isinstance(chunk, dict) else str(chunk)
+            text = clean_text(raw)
 
-            if seed in text.lower():
+            if not text:
+                continue
+
+            if quote_seed and quote_seed in text.lower():
                 sentences = re.split(r"(?<=[.!?])\s+", text)
 
-                for i, s in enumerate(sentences):
-                    if seed in s.lower():
-                        context = " ".join(sentences[max(i-1, 0):i+2])
-                        context = clean_text(context)
+                for i, sentence in enumerate(sentences):
+                    if quote_seed in sentence.lower():
+                        start = max(i - 1, 0)
+                        end = min(i + 3, len(sentences))
+                        context = clean_text(" ".join(sentences[start:end]), min_words=12)
 
-                        words = context.split()
-                        if len(words) > 120:
-                            context = " ".join(words[:120]) + "..."
+                        if context and not is_garbage(context, allow_context=True):
+                            words = context.split()
+                            return (
+                                " ".join(words[:140]).rstrip(" ,;:") + "..."
+                                if len(words) > 140
+                                else context
+                            )
 
-                        return context
+        for chunk in chunks:
+            raw = chunk.get("text", "") if isinstance(chunk, dict) else str(chunk)
+            context = clean_text(raw, min_words=12)
+
+            if context and not is_garbage(context, allow_context=True):
+                words = context.split()
+                return (
+                    " ".join(words[:140]).rstrip(" ,;:") + "..."
+                    if len(words) > 140
+                    else context
+                )
 
         return ""
 
-    def build_excerpts(case, limit=2):
-        seen = set()
+    def build_excerpts(case: dict, limit: int = 2) -> list[str]:
         excerpts = []
+        seen = set()
 
         for chunk in case.get("chunks", []) or []:
-            text = clean_text(chunk.get("text", ""))
+            raw = chunk.get("text", "") if isinstance(chunk, dict) else str(chunk)
+            text = clean_text(raw, min_words=12)
 
-            if not text or is_garbage(text):
+            if not text or is_garbage(text, allow_context=True):
                 continue
 
-            key = text[:120]
+            words = text.split()
+            if len(words) > 120:
+                text = " ".join(words[:120]).rstrip(" ,;:") + "..."
+
+            key = re.sub(r"\W+", "", text.lower())[:160]
             if key in seen:
                 continue
 
             seen.add(key)
-
-            words = text.split()
-            if len(words) > 100:
-                text = " ".join(words[:100]) + "..."
-
             excerpts.append(text)
 
             if len(excerpts) >= limit:
@@ -929,17 +1053,19 @@ def build_case_cards(cases, role_quote_map=None, query_plan=None, case_quotes=No
 
         return excerpts
 
-    # =========================
-    # FULL OPINION (Phase 1.2)
-    # =========================
-
-    def load_full_text(source):
+    def load_full_case_text(source: str, max_chars: int = 18000) -> str:
         if not source:
             return ""
 
-        path = os.path.join("opinions", source)
+        possible_paths = [
+            os.path.join("opinions", source),
+            os.path.join("opinions", source.replace("_", " ")),
+            source,
+        ]
 
-        if not os.path.exists(path):
+        path = next((p for p in possible_paths if os.path.exists(p)), "")
+
+        if not path:
             return ""
 
         try:
@@ -948,41 +1074,15 @@ def build_case_cards(cases, role_quote_map=None, query_plan=None, case_quotes=No
         except Exception:
             return ""
 
-        text = clean_text(text)
+        text = clean_text(text, min_words=20)
 
-        if len(text) > 12000:
-            text = text[:12000] + "..."
+        if not text:
+            return ""
+
+        if len(text) > max_chars:
+            text = text[:max_chars].rstrip() + "\n\n[Full opinion truncated for display.]"
 
         return text
-
-    # =========================
-    # WHY MATTERS
-    # =========================
-
-    def why(case_name, role):
-        c = case_name.lower()
-
-        if "revlon" in c:
-            return "Revlon defines value-maximization in a sale of control."
-        if "qvc" in c:
-            return "QVC clarifies when control shifts trigger Revlon duties."
-        if "lyondell" in c:
-            return "Lyondell shows Revlon requires reasonableness, not perfection."
-        if "barkan" in c:
-            return "Barkan confirms no single blueprint is required for sale processes."
-
-        if role == "foundation":
-            return f"{case_name} establishes the governing rule."
-        if role == "supreme_refinement":
-            return f"{case_name} refines the governing standard."
-        if role == "modern_application":
-            return f"{case_name} applies the doctrine in practice."
-
-        return f"{case_name} supports the doctrinal framework."
-
-    # =========================
-    # BUILD CARDS
-    # =========================
 
     cards = []
 
@@ -992,25 +1092,53 @@ def build_case_cards(cases, role_quote_map=None, query_plan=None, case_quotes=No
 
         source = case.get("source", "")
         role = case.get("role", "related_case")
+        case_score = case.get("case_score", 0)
+
+        if not source:
+            continue
+
         case_name = source.replace(".txt", "").replace("_", " ").title()
 
-        quote = get_quote(case, source, role)
+        quote = ""
+        quote_source = ""
 
-        # 🔥 HARD FILTER
+        q = quote_from_role_map(source, role)
+        if q:
+            quote = q
+            quote_source = "role_quote_map"
+
+        if not quote:
+            q = quote_from_case_quotes(source)
+            if q:
+                quote = q
+                quote_source = "case_quotes"
+
+        if not quote:
+            q = quote_from_chunks(case)
+            if q:
+                quote = q
+                quote_source = "chunks"
+
         if not quote:
             continue
 
-        cards.append({
-            "name": case_name,
-            "source": source,
-            "role": role,
-            "quote": quote,
-            "why_matters": why(case_name, role),
-            "anchor": make_anchor(case_name),
-            "context": build_context(case, quote),
-            "excerpts": build_excerpts(case),
-            "full_text": load_full_text(source),  # 🔥 Phase 1.2 ready
-        })
+        full_text = load_full_case_text(source)
+
+        cards.append(
+            {
+                "name": case_name,
+                "source": source,
+                "role": role,
+                "case_score": case_score,
+                "quote": quote,
+                "quote_source": quote_source,
+                "why_matters": why_case_matters(case_name, role),
+                "anchor": make_anchor(case_name),
+                "context": build_clean_context(case, quote),
+                "excerpts": build_excerpts(case),
+                "full_text": load_full_case_text(source),
+            }
+        )
 
     return cards
 

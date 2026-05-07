@@ -260,6 +260,40 @@ if not st.session_state["show_demo"]:
                 unsafe_allow_html=True,
             )
 
+def normalize_for_search(text: str) -> str:
+    if not text:
+        return ""
+
+    text = str(text).lower()
+    text = text.replace("“", '"').replace("”", '"').replace("’", "'")
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def opinion_match_found(search_term: str, full_text: str) -> bool:
+    search_norm = normalize_for_search(search_term)
+    full_norm = normalize_for_search(full_text)
+
+    if not search_norm or not full_norm:
+        return False
+
+    if search_norm in full_norm:
+        return True
+
+    # Fallback: use strongest 6-word phrase from the quote.
+    words = search_norm.split()
+
+    for window_size in [10, 8, 6, 5]:
+        if len(words) < window_size:
+            continue
+
+        for i in range(0, len(words) - window_size + 1):
+            phrase = " ".join(words[i:i + window_size])
+
+            if phrase in full_norm:
+                return True
+
+    return False
 
 # =========================
 # DEMO PAGE
@@ -310,6 +344,57 @@ if st.session_state["show_demo"]:
         role_quote_map = result.get("role_quote_map", {}) or {}
         case_cards = result.get("case_cards", []) or []
 
+        def render_quote_map():
+            shown_any = False
+            shown_sources = set()
+
+            for role, item in role_quote_map.items():
+                if not isinstance(item, dict):
+                    continue
+
+                case_name = item.get("case", "Unknown")
+                quote = item.get("quote", "")
+                source = item.get("source", "")
+
+                if source:
+                    shown_sources.add(source)
+
+                shown_any = True
+                st.markdown(f"**{case_name}** — `{role}`")
+
+                if quote:
+                    st.markdown(f"> {quote}")
+                else:
+                    st.caption("No selected quote available for this case.")
+
+                if source:
+                    st.caption(f"Source: {source}")
+
+            for card in case_cards:
+                case_name = card.get("name", "Unknown")
+                role = card.get("role", "related_case")
+                quote = card.get("quote", "")
+                source = card.get("source", "")
+
+                if not quote:
+                    continue
+
+                if source and source in shown_sources:
+                    continue
+
+                shown_any = True
+                st.markdown(f"**{case_name}** — `{role}`")
+                st.markdown(f"> {quote}")
+
+                if source:
+                    st.caption(f"Source: {source}")
+
+            if not shown_any:
+                st.caption(
+                    "No quote map was returned for this answer. "
+                    "See Supporting Cases below."
+                )
+
         st.subheader("Answer")
 
         if output_mode == "Memo Mode":
@@ -317,6 +402,9 @@ if st.session_state["show_demo"]:
                 result.get("memo_answer")
                 or result.get("answer", "No answer returned.")
             )
+
+            with st.expander("Citation + quote map"):
+                render_quote_map()
 
         elif output_mode == "Opinion Mode":
             opinion = (
@@ -328,30 +416,8 @@ if st.session_state["show_demo"]:
             linked = link_cited_cases(opinion, case_cards)
             st.markdown(linked, unsafe_allow_html=True)
 
-            cited_cases = cited_cases_from_answer(opinion)
-
             with st.expander("Citation + quote map"):
-                shown_any = False
-
-                for role, item in role_quote_map.items():
-                    if not isinstance(item, dict):
-                        continue
-
-                    case_name = item.get("case", "Unknown")
-
-                    if cited_cases and case_name not in cited_cases:
-                        continue
-
-                    shown_any = True
-                    st.markdown(f"**{case_name}** — `{role}`")
-                    st.markdown(f"> {item.get('quote', '')}")
-                    st.caption(f"Source: {item.get('source', '')}")
-
-                if not shown_any:
-                    st.caption(
-                        "No selected quote available for the cited cases. "
-                        "See Supporting Cases below."
-                    )
+                render_quote_map()
 
         else:
             st.markdown(result.get("answer", "No answer returned."))
@@ -378,12 +444,10 @@ if st.session_state["show_demo"]:
                     st.session_state["last_question"] = corrected_question
                     st.rerun()
 
-        # =========================
-        # SUPPORTING CASES
-        # =========================
         usable_cards = [
-            card for card in case_cards[:8]
-            if card.get("quote") or card.get("context")
+            card
+            for card in case_cards[:8]
+            if card.get("quote") or card.get("context") or card.get("full_text")
         ]
 
         if usable_cards:
@@ -397,6 +461,7 @@ if st.session_state["show_demo"]:
                 quote = card.get("quote", "")
                 why = card.get("why_matters", "")
                 context = card.get("context", "")
+                full_text = card.get("full_text", "")
 
                 with st.expander(name):
                     if role:
@@ -413,14 +478,34 @@ if st.session_state["show_demo"]:
                         with st.expander("Show context"):
                             st.write(context)
 
+                    if full_text:
+                        with st.expander("View full opinion"):
+                            search_default = quote[:120] if quote else name
+
+                            search_term = st.text_input(
+                            "Find in opinion",
+                            value=search_default,
+                            key=f"find_{source}_{name}",
+                        )
+
+                        if search_term:
+                            if opinion_match_found(search_term, full_text):
+                                st.success("Match found in full opinion.")
+                            else:
+                                st.caption("No close match found. Try a shorter phrase or case name.")
+
+                        st.text_area(
+                        "Full opinion text",
+                        full_text,
+                        height=500,
+                        label_visibility="collapsed",
+                    )
+
                     if source:
                         st.caption(f"Source: {source}")
         else:
             st.warning("No supporting cases were returned.")
 
-        # =========================
-        # DOCTRINAL THREAD
-        # =========================
         doctrinal_thread = result.get("doctrinal_thread", {}) or {}
         thread = doctrinal_thread.get("thread", []) or []
 
