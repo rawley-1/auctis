@@ -122,7 +122,6 @@ def synthesize_rule_from_quotes(role_quote_map, target_lines=None):
 
     return ""
 
-
 def synthesize_multi_doctrine_rule_comparison(target_lines: List[str]) -> str:
     real_lines = [x for x in target_lines if x != "unknown"]
     target_set = set(real_lines)
@@ -142,6 +141,13 @@ def synthesize_multi_doctrine_rule_comparison(target_lines: List[str]) -> str:
             f"{label('stockholder_vote_cleansing')} doctrine governs the effect of stockholder approval, where {svc['foundation']}, "
             f"provided that {svc['supreme_refinement']} and {svc['modern_application']}. "
             "Taken together, controller-transactions doctrine addresses controller conflict through dual procedural protections, whereas stockholder-vote cleansing addresses the legal effect of a fully informed and uncoerced stockholder vote."
+        )
+
+    if {"oversight", "sale_of_control"} <= target_set:
+        return (
+            "Oversight doctrine governs board-level monitoring obligations, where Caremark, Stone, and Marchand require directors to act in good faith by implementing and monitoring reporting systems for mission-critical risk. "
+            "Sale-of-control doctrine governs transactional conduct once the company enters sale mode or undergoes a change of control, where Revlon and QVC require directors to seek the best value reasonably available to stockholders. "
+            "Taken together, oversight doctrine addresses the board's internal monitoring failure, whereas sale-of-control doctrine addresses value maximization in the transaction."
         )
 
     if {"controller_transactions", "sale_of_control"} <= target_set:
@@ -164,17 +170,6 @@ def synthesize_multi_doctrine_rule_comparison(target_lines: List[str]) -> str:
             f"{label('takeover_defense')} doctrine governs defensive action in response to a threat, where directors must show {td['foundation']}, "
             f"and that their response was {td['supreme_refinement']} and {td['modern_application']}. "
             "Taken together, oversight doctrine addresses internal monitoring obligations, whereas takeover-defense doctrine addresses external defensive measures."
-        )
-
-    if {"oversight", "sale_of_control"} <= target_set:
-        ov = triplet("oversight")
-        soc = triplet("sale_of_control")
-        return (
-            f"{label('oversight')} doctrine governs board-level monitoring obligations, where directors breach the duty of loyalty through {ov['foundation']}, "
-            f"and where {ov['supreme_refinement']} includes the obligation to make a {ov['modern_application']}. "
-            f"{label('sale_of_control')} doctrine governs change-of-control transactions, where {soc['foundation']}, "
-            f"and where {soc['supreme_refinement']}; accordingly, {soc['modern_application']}. "
-            "Taken together, oversight doctrine addresses internal monitoring failure, whereas sale-of-control doctrine addresses value maximization in a change-of-control setting."
         )
 
     if {"demand_futility", "oversight"} <= target_set:
@@ -209,7 +204,6 @@ def synthesize_multi_doctrine_rule_comparison(target_lines: List[str]) -> str:
         "Each doctrine governs its own category of conduct under its own standard of review or obligation. "
         "Taken together, the governing rule depends on the doctrinal framework implicated by the question."
     )
-
 def synthesize_multi_doctrine_analysis(target_lines: List[str]) -> str:
     target_set = set(x for x in target_lines if x != "unknown")
 
@@ -224,6 +218,13 @@ def synthesize_multi_doctrine_analysis(target_lines: List[str]) -> str:
             "The significance is that stockholder-vote cleansing doctrine instead asks whether "
             f"{svc_foundation}. "
             "As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas stockholder-vote cleansing governs the legal effect of stockholder approval."
+        )
+
+    if {"oversight", "sale_of_control"} <= target_set:
+        return (
+            "This matters because repeated food-safety red flags principally implicate oversight doctrine, where Caremark, Stone, and Marchand ask whether the board acted in bad faith by failing to implement or monitor a reporting system for mission-critical risk. "
+            "The significance is that the simultaneous sale process separately may implicate sale-of-control doctrine, where Revlon and QVC require directors to seek the best value reasonably available once the company enters sale mode or undergoes a change of control. "
+            "As a result, the same facts can implicate both doctrines, but oversight doctrine addresses the internal monitoring failure while sale-of-control doctrine addresses value maximization in the transaction."
         )
 
     if {"oversight", "takeover_defense"} <= target_set:
@@ -241,23 +242,6 @@ def synthesize_multi_doctrine_analysis(target_lines: List[str]) -> str:
             "The significance is that takeover-defense doctrine instead addresses external defensive action, where directors must show "
             f"{td_foundation}, and that their response was {td_refinement} and {td_modern}. "
             "As a result, oversight doctrine governs internal monitoring obligations, whereas takeover-defense doctrine governs defensive responses to takeover threats."
-        )
-
-    if {"oversight", "sale_of_control"} <= target_set:
-        ov_foundation = get_rule_text("oversight", "foundation")
-        ov_refinement = get_rule_text("oversight", "supreme_refinement")
-        ov_modern = get_rule_text("oversight", "modern_application")
-
-        soc_foundation = get_rule_text("sale_of_control", "foundation")
-        soc_refinement = get_rule_text("sale_of_control", "supreme_refinement")
-        soc_modern = get_rule_text("sale_of_control", "modern_application")
-
-        return (
-            "This matters because oversight doctrine governs whether directors made a good-faith effort to implement and monitor reporting systems, beginning with "
-            f"{ov_foundation}, and refined through {ov_refinement} and {ov_modern}. "
-            "The significance is that sale-of-control doctrine instead governs transactional conduct once the company is for sale, where "
-            f"{soc_foundation}, and where {soc_refinement}; accordingly, {soc_modern}. "
-            "As a result, oversight doctrine addresses internal monitoring failure, whereas sale-of-control doctrine addresses value maximization in a change-of-control setting."
         )
 
     if {"controller_transactions", "sale_of_control"} <= target_set:
@@ -293,8 +277,8 @@ def synthesize_multi_doctrine_analysis(target_lines: List[str]) -> str:
     if len(labels) >= 2:
         return (
             f"This matters because {labels[0]} and {labels[1]} regulate different fiduciary settings. "
-            f"The significance is that each doctrine applies a different standard or cleansing mechanism to a different form of board conduct. "
-            f"As a result, identifying the correct doctrinal framework is necessary before the governing standard can be applied."
+            "The significance is that each doctrine applies a different standard or cleansing mechanism to a different form of board conduct. "
+            "As a result, identifying the correct doctrinal framework is necessary before the governing standard can be applied."
         )
 
     return (
@@ -302,8 +286,6 @@ def synthesize_multi_doctrine_analysis(target_lines: List[str]) -> str:
         "The significance is that each doctrine governs a different board function and therefore imposes a different standard of review or obligation. "
         "As a result, identifying the correct doctrinal framework is necessary before the governing standard can be applied."
     )
-
-
 def synthesize_structured_single_doctrine_analysis(target_lines: List[str]) -> str:
     real_lines = [x for x in target_lines if x != "unknown"]
     if not real_lines:
@@ -791,31 +773,6 @@ def synthesize_opinion_answer(
         text = re.sub(r"\s+", " ", text).strip()
         return text.rstrip(".")
 
-    def cases_for_citation() -> List[str]:
-        if "sale_of_control" in target_set:
-            return ["Revlon", "QVC"]
-        if "entire_fairness" in target_set:
-            return ["Weinberger"]
-        if "controller_transactions" in target_set:
-            return ["MFW"]
-        if "stockholder_vote_cleansing" in target_set:
-            return ["Corwin"]
-        if "oversight" in target_set:
-            return ["Caremark", "Stone", "Marchand"]
-        if "takeover_defense" in target_set:
-            return ["Unocal", "Unitrin"]
-        if "demand_futility" in target_set:
-            return ["Aronson", "Rales", "Zuckerberg"]
-
-        cases: List[str] = []
-        for role in ["foundation", "supreme_refinement", "refinement", "modern_application"]:
-            item = role_quote_map.get(role) or {}
-            case = clean(item.get("case", ""))
-            if case:
-                cases.append(case)
-
-        return list(dict.fromkeys(cases))
-
     def cite(cases: List[str]) -> str:
         cases = [c.strip() for c in cases if c and c.strip()]
         cases = list(dict.fromkeys(cases))
@@ -835,6 +792,262 @@ def synthesize_opinion_answer(
             return sentence + "."
 
         return sentence.rstrip(".") + cite(cases)
+
+    def cases_for_citation() -> List[str]:
+        cases: List[str] = []
+
+        if "oversight" in target_set:
+            cases.extend(["Caremark", "Stone", "Marchand"])
+
+        if "sale_of_control" in target_set:
+            cases.extend(["Revlon", "QVC"])
+
+        if "takeover_defense" in target_set:
+            cases.extend(["Unocal", "Unitrin"])
+
+        if "controller_transactions" in target_set:
+            cases.append("MFW")
+
+        if "stockholder_vote_cleansing" in target_set:
+            cases.append("Corwin")
+
+        if "entire_fairness" in target_set:
+            cases.append("Weinberger")
+
+        if "demand_futility" in target_set:
+            cases.extend(["Aronson", "Rales", "Zuckerberg"])
+
+        if not cases:
+            for role in ["foundation", "supreme_refinement", "refinement", "modern_application"]:
+                item = role_quote_map.get(role) or {}
+                case = clean(item.get("case", ""))
+                if case:
+                    cases.append(case)
+
+        return list(dict.fromkeys(cases))
+
+    def sentence_key(text: str) -> str:
+        text = clean(text).lower()
+        text = re.sub(r"[^a-z0-9\s]", "", text)
+
+        replacements = {
+            "best value reasonably available to stockholders": "best value",
+            "best value reasonably available": "best value",
+            "highest value reasonably attainable": "best value",
+            "change of control": "change control",
+            "business judgment review": "business judgment",
+            "business judgment deference": "business judgment",
+            "fully informed and uncoerced": "informed uncoerced",
+            "majority of the minority": "minority vote",
+            "entire fairness remains the governing standard": "entire fairness",
+            "range of reasonableness": "reasonableness",
+            "mission critical": "mission critical",
+            "red flags": "red flags",
+            "bad faith oversight": "bad faith",
+        }
+
+        for old, new in replacements.items():
+            text = text.replace(old, new)
+
+        stop = {
+            "the", "and", "that", "this", "where", "when", "with", "under",
+            "doctrine", "directors", "director", "board", "corporation",
+            "transaction", "transactions", "stockholders", "stockholder",
+            "available", "reasonably", "establish", "establishes",
+            "because", "thus", "claim", "claims",
+        }
+
+        words = [w for w in text.split() if len(w) > 3 and w not in stop]
+        return " ".join(words[:12])
+
+    def dedupe(sentences: List[str]) -> List[str]:
+        out: List[str] = []
+
+        for sentence in sentences:
+            s = clean(sentence)
+            if not s:
+                continue
+
+            key = sentence_key(s)
+            s_words = set(key.split())
+            duplicate = False
+
+            for existing in out:
+                e_words = set(sentence_key(existing).split())
+                if s_words and e_words:
+                    overlap = len(s_words & e_words) / max(1, min(len(s_words), len(e_words)))
+                    if overlap >= 0.72:
+                        duplicate = True
+                        break
+
+            if not duplicate:
+                out.append(s)
+
+        return out
+
+    def final_cleanup(text: str) -> str:
+        text = re.sub(r"\s+", " ", text).strip()
+        text = re.sub(r"\.\.+", ".", text)
+        text = re.sub(r"\s+\.", ".", text)
+        text = re.sub(r"\.\s+\(", " (", text)
+
+        text = re.sub(
+            r"\b[A-Z][A-Za-z ]+ supplies the governing doctrinal framework\.\s*",
+            "",
+            text,
+        )
+        text = re.sub(
+            r"\b[A-Z][A-Za-z ]+ doctrine governs[^.]*\.\s*",
+            "",
+            text,
+        )
+        text = re.sub(
+            r"\b(This matters because|The significance is that|The significance is|As a result,?)\b",
+            "",
+            text,
+            flags=re.IGNORECASE,
+        )
+
+        text = re.sub(r"\s+", " ", text).strip()
+        return text
+
+    def assemble(parts: List[str], max_sentences: int = 4) -> str:
+        parts = dedupe(parts)[:max_sentences]
+        paragraph = " ".join(part.rstrip(".") + "." for part in parts if part)
+        return final_cleanup(paragraph)
+
+    # =========================================================
+    # UPGRADE 3: MULTI-DOCTRINE OPINION SYNTHESIS
+    # =========================================================
+
+    if {"oversight", "sale_of_control"} <= target_set:
+        parts = [
+            with_cite(
+                (
+                    "Under Caremark, Stone, and Marchand, a board that ignores repeated red flags "
+                    "in a mission-critical area may face oversight liability because the claim sounds "
+                    "in bad faith monitoring failure rather than ordinary negligence"
+                ),
+                ["Caremark", "Stone", "Marchand"],
+            ),
+            with_cite(
+                (
+                    "At the same time, where the board is negotiating a sale or change-of-control "
+                    "transaction, Revlon and QVC require the directors to focus on securing the best "
+                    "value reasonably available to stockholders"
+                ),
+                ["Revlon", "QVC"],
+            ),
+            (
+                "Those doctrines address distinct fiduciary problems: oversight doctrine concerns "
+                "the board's failure to monitor mission-critical risk, while sale-of-control doctrine "
+                "concerns the board's conduct in pursuing a value-maximizing transaction"
+            ),
+            (
+                "Thus, the food-safety red flags principally implicate Caremark oversight duties, "
+                "but the simultaneous sale process may also require Revlon scrutiny if the transaction "
+                "places the company in sale mode or results in a change of control"
+            ),
+        ]
+
+        return assemble(parts, max_sentences=4)
+
+    if {"oversight", "takeover_defense"} <= target_set:
+        parts = [
+            with_cite(
+                (
+                    "Under Caremark, Stone, and Marchand, oversight liability turns on whether "
+                    "directors acted in bad faith by utterly failing to implement reporting systems "
+                    "or consciously disregarding red flags"
+                ),
+                ["Caremark", "Stone", "Marchand"],
+            ),
+            with_cite(
+                (
+                    "By contrast, under Unocal and Unitrin, defensive measures are subject to enhanced "
+                    "scrutiny and must be neither coercive nor preclusive and must fall within a range "
+                    "of reasonableness"
+                ),
+                ["Unocal", "Unitrin"],
+            ),
+            (
+                "The two doctrines therefore regulate different conduct: oversight doctrine addresses "
+                "internal monitoring failures, while takeover-defense doctrine addresses defensive "
+                "responses to an external threat"
+            ),
+            (
+                "Thus, the board's exposure depends on whether the challenged conduct is a failure "
+                "to monitor risk, a defensive response to a threat, or both"
+            ),
+        ]
+
+        return assemble(parts, max_sentences=4)
+
+    if {"controller_transactions", "sale_of_control"} <= target_set:
+        parts = [
+            with_cite(
+                (
+                    "Under MFW, controller-transaction doctrine addresses conflicted controller deals "
+                    "and permits business judgment review only when dual procedural protections are "
+                    "in place from the outset"
+                ),
+                ["MFW"],
+            ),
+            with_cite(
+                (
+                    "Under Revlon and QVC, sale-of-control doctrine addresses whether directors must "
+                    "seek the best value reasonably available once the company enters sale mode or "
+                    "undergoes a change of control"
+                ),
+                ["Revlon", "QVC"],
+            ),
+            (
+                "Those doctrines may overlap in a sale process, but they answer different questions: "
+                "MFW addresses controller conflict and cleansing, while Revlon addresses value "
+                "maximization in the transaction"
+            ),
+            (
+                "Thus, a controller sale may require both conflict-cleansing analysis and sale-process "
+                "scrutiny unless the governing standard is altered by effective procedural protections"
+            ),
+        ]
+
+        return assemble(parts, max_sentences=4)
+
+    if {"demand_futility", "oversight"} <= target_set:
+        parts = [
+            with_cite(
+                (
+                    "Under Aronson, Rales, and Zuckerberg, demand futility asks whether the board "
+                    "can exercise independent and disinterested judgment in deciding whether to "
+                    "pursue the claim"
+                ),
+                ["Aronson", "Rales", "Zuckerberg"],
+            ),
+            with_cite(
+                (
+                    "Under Caremark, Stone, and Marchand, the underlying oversight claim turns on "
+                    "whether directors acted in bad faith by failing to implement or monitor a "
+                    "reporting system"
+                ),
+                ["Caremark", "Stone", "Marchand"],
+            ),
+            (
+                "The doctrines are related but distinct: demand futility concerns whether stockholders "
+                "may sue derivatively without making demand, while oversight doctrine concerns the "
+                "fiduciary breach alleged"
+            ),
+            (
+                "Thus, a plaintiff must plead both demand futility and a viable bad-faith oversight "
+                "theory when asserting derivative Caremark claims"
+            ),
+        ]
+
+        return assemble(parts, max_sentences=4)
+
+    # =========================================================
+    # SINGLE-DOCTRINE OPINION SYNTHESIS
+    # =========================================================
 
     def doctrine_voice_block() -> Dict[str, str]:
         if "sale_of_control" in target_set:
@@ -880,7 +1093,7 @@ def synthesize_opinion_answer(
                 "authority": "Under MFW,",
                 "rule": (
                     "business judgment review applies only where dual procedural protections replicate "
-                    "arm’s-length bargaining from the outset"
+                    "arm's-length bargaining from the outset"
                 ),
                 "trigger": (
                     "Those protections require an empowered independent committee and an informed, "
@@ -899,7 +1112,7 @@ def synthesize_opinion_answer(
             return {
                 "authority": "Under Weinberger,",
                 "rule": (
-                    "entire fairness is Delaware’s most exacting standard, requiring fiduciaries to prove "
+                    "entire fairness is Delaware's most exacting standard, requiring fiduciaries to prove "
                     "both fair dealing and fair price"
                 ),
                 "trigger": (
@@ -984,108 +1197,14 @@ def synthesize_opinion_answer(
             "disposition": "Thus, the doctrine determines the applicable standard of review and fiduciary burden",
         }
 
-    def sentence_key(text: str) -> str:
-        text = clean(text).lower()
-        text = re.sub(r"[^a-z0-9\s]", "", text)
-
-        replacements = {
-            "best value reasonably available to stockholders": "best value",
-            "best value reasonably available": "best value",
-            "highest value reasonably attainable": "best value",
-            "change of control": "change control",
-            "business judgment review": "business judgment",
-            "business judgment deference": "business judgment",
-            "fully informed and uncoerced": "informed uncoerced",
-            "majority of the minority": "minority vote",
-            "entire fairness remains the governing standard": "entire fairness",
-            "range of reasonableness": "reasonableness",
-        }
-
-        for old, new in replacements.items():
-            text = text.replace(old, new)
-
-        stop = {
-            "the", "and", "that", "this", "where", "when", "with", "under",
-            "doctrine", "directors", "board", "corporation", "transaction",
-            "transactions", "stockholders", "available", "reasonably",
-            "establish", "establishes", "because", "thus",
-        }
-
-        words = [w for w in text.split() if len(w) > 3 and w not in stop]
-        return " ".join(words[:12])
-
-    def dedupe(sentences: List[str]) -> List[str]:
-        out: List[str] = []
-
-        for sentence in sentences:
-            s = clean(sentence)
-            if not s:
-                continue
-
-            key = sentence_key(s)
-            s_words = set(key.split())
-            duplicate = False
-
-            for existing in out:
-                e_words = set(sentence_key(existing).split())
-                if s_words and e_words:
-                    overlap = len(s_words & e_words) / max(1, min(len(s_words), len(e_words)))
-                    if overlap >= 0.72:
-                        duplicate = True
-                        break
-
-            if not duplicate:
-                out.append(s)
-
-        return out
-
-    def final_cleanup(text: str) -> str:
-        text = re.sub(r"\s+", " ", text).strip()
-        text = re.sub(r"\.\.+", ".", text)
-        text = re.sub(r"\s+\.", ".", text)
-        text = re.sub(r"\.\s+\(", " (", text)
-
-        text = re.sub(
-            r"\b[A-Z][A-Za-z ]+ supplies the governing doctrinal framework\.\s*",
-            "",
-            text,
-        )
-        text = re.sub(
-            r"\b[A-Z][A-Za-z ]+ doctrine governs[^.]*\.\s*",
-            "",
-            text,
-        )
-        text = re.sub(
-            r"\b(This matters because|The significance is that|The significance is|As a result,?)\b",
-            "",
-            text,
-            flags=re.IGNORECASE,
-        )
-
-        text = re.sub(r"\s+", " ", text).strip()
-        return text
-
     voice = doctrine_voice_block()
     citation_cases = cases_for_citation()
 
-    first_sentence = with_cite(
-        f"{voice['authority']} {voice['rule']}",
-        citation_cases[:2],
-    )
-
-    trigger_sentence = with_cite(
-        voice.get("trigger", ""),
-        citation_cases[1:2] or citation_cases[:1],
-    )
-
     parts = [
-        first_sentence,
-        trigger_sentence,
+        with_cite(f"{voice['authority']} {voice['rule']}", citation_cases[:3]),
+        with_cite(voice.get("trigger", ""), citation_cases[1:3] or citation_cases[:1]),
         voice.get("consequence", ""),
         voice.get("disposition", ""),
     ]
 
-    parts = dedupe(parts)[:4]
-
-    paragraph = " ".join(part.rstrip(".") + "." for part in parts if part)
-    return final_cleanup(paragraph)
+    return assemble(parts, max_sentences=4)

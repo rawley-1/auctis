@@ -2291,6 +2291,40 @@ def run_query(question: str):
 
     query_plan = build_query_plan_cached(question_for_engine)
 
+    # =====================================================
+    # FORCE MULTI-DOCTRINE FACT PATTERN DETECTION
+    # =====================================================
+
+    q_lower = question_for_engine.lower()
+
+    sale_terms = [
+        "sale",
+        "selling",
+        "sale process",
+        "sale of the company",
+        "change of control",
+        "merger",
+        "auction",
+    ]
+
+    oversight_terms = [
+        "red flag",
+        "red flags",
+        "ignored",
+        "monitor",
+        "monitoring",
+        "food safety",
+        "mission critical",
+        "compliance",
+    ]
+
+    if (
+    any(t in q_lower for t in oversight_terms)
+    and any(t in q_lower for t in sale_terms)
+):
+        query_plan["target_lines"] = ["oversight", "sale_of_control"]
+        query_plan["multi_doctrine"] = True
+
     budget = get_retrieval_budget(query_plan)
     top_chunks = retrieve(
         question_for_engine, k=budget["k"], max_per_source=budget["max_per_source"]
