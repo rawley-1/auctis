@@ -1,4 +1,5 @@
 from __future__ import annotations
+import re
 
 from typing import Dict, List, Optional, Any
 
@@ -85,6 +86,14 @@ def synthesize_key_distinction(target_lines: List[str]) -> str:
 
 def synthesize_rule_from_quotes(role_quote_map, target_lines=None):
     target_lines = target_lines or []
+    if "oversight" in target_lines:
+        return (
+            "Caremark oversight liability arises where directors make an utter failure to attempt "
+            "to assure that a reasonable reporting or information system exists, and Stone further "
+            "clarifies that such misconduct constitutes a failure to act in good faith as a subsidiary "
+            "element of the duty of loyalty. Marchand further requires directors to make a good faith "
+            "effort to implement an oversight system capable of monitoring mission-critical risk."
+        )
 
     quotes = []
     for role in ["foundation", "supreme_refinement", "refinement", "modern_application"]:
@@ -114,12 +123,22 @@ def synthesize_rule_from_quotes(role_quote_map, target_lines=None):
             "when they stand on both sides of a transaction or operate under a disabling conflict."
         )
 
-    if "good faith effort" in joined or "utter failure" in joined or "bad faith" in joined:
-        return (
-            "Oversight liability requires a showing that directors utterly failed to implement "
-            "a reasonable reporting system or consciously failed to monitor red flags, reflecting bad faith."
-        )
-
+    if any(
+    phrase in joined
+    for phrase in [
+        "good faith effort",
+        "utter failure",
+        "bad faith",
+        "failure to act in good faith",
+        "duty of loyalty",
+        "mission critical",
+    ]
+):
+       return (
+    "Oversight liability arises where directors utterly fail to implement "
+    "a reasonable reporting or information system or consciously fail to monitor "
+    "mission-critical red flags, constituting bad faith under the duty of loyalty."
+)
     return ""
 
 def synthesize_multi_doctrine_rule_comparison(target_lines: List[str]) -> str:
@@ -424,13 +443,11 @@ def synthesize_structured_doctrine_section(doctrine_line: str) -> str:
     label = DOCTRINE_LABELS.get(doctrine_line) or doctrine_line.replace("_", " ").title()
 
     if doctrine_line == "oversight":
-        foundation = get_rule_text("oversight", "foundation")
-        refinement = get_rule_text("oversight", "supreme_refinement")
-        modern = get_rule_text("oversight", "modern_application")
         return (
-            f"{label} doctrine addresses board-level monitoring obligations, where liability begins with an {foundation}. "
-            f"Stone links that doctrine to the duty of loyalty through {refinement}. "
-            f"Marchand clarifies that directors must make a {modern}."
+            "Oversight doctrine addresses board-level monitoring obligations, where liability begins "
+            "with an utter failure to attempt to assure that a reasonable reporting or information system exists. "
+            "Stone links that doctrine to the duty of loyalty through a failure to act in good faith. "
+            "Marchand clarifies that directors must make a good faith effort to implement an oversight system."
         )
 
     if doctrine_line == "takeover_defense":
@@ -492,17 +509,15 @@ def synthesize_structured_doctrine_section(doctrine_line: str) -> str:
             f"It also recognizes that {refinement}. "
             f"Accordingly, {modern}."
         )
-      
+
     if doctrine_line == "entire_fairness":
-     return (
-        "Entire fairness is Delaware’s most exacting standard of review and requires fiduciaries "
-        "to demonstrate both fair dealing and fair price when they stand on both sides of a transaction "
-        "or otherwise operate under a disabling conflict."
-    )
+        return (
+            "Entire fairness is Delaware's most exacting standard of review and requires fiduciaries "
+            "to demonstrate both fair dealing and fair price when they stand on both sides of a transaction "
+            "or otherwise operate under a disabling conflict."
+        )
 
     return f"{label} doctrine supplies the governing doctrinal framework for this category of conduct."
-import re
-from typing import Dict, Any
 
 
 def _clean_sentence(text: str) -> str:

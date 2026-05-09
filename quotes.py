@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import re
-from typing import Any, Dict, List, Set
+
+from typing import Any, Dict, List, Set, Optional
 
 
 # ============================================================
@@ -393,889 +394,377 @@ def quote_precision_score(quote: str, source: str = "", role: str = "") -> float
         score -= 8
 
     return score
+
 def pick_best_quote(
-    quotes,
+    quotes: List[str],
+    doctrine_line: str = "unknown",
+    role: str = "unknown",
     source: str = "",
-    role: str = "",
-    doctrine_line: str = "",
-):
+) -> Optional[str]:
+    """
+    Select the cleanest, most doctrinally useful quote.
+
+    Design goal:
+    - Prefer doctrinal rule / holding language.
+    - Reject OCR garbage, captions, reporter metadata, and malformed fragments.
+    - Prefer doctrine-specific anchors.
+    - Return None rather than a bad quote.
+    """
+
+    import re
+
+    if not quotes:
+        return None
+
+    doctrine_line = doctrine_line or "unknown"
+    role = role or "unknown"
     source_l = (source or "").lower()
-    role_l = (role or "").lower()
-    doctrine_l = (doctrine_line or "").lower()
-
-    WEAK_OCR_SOURCES = {
-        "metro.txt",
-        "rural metro.txt",
-        "rural_metro.txt",
-        "barkan.txt",
-    }
-
-    CANONICAL_QUOTES = {
-        "caremark.txt": [
-            "Utter failure to attempt to assure a reasonable information and reporting system exists.",
-        ],
-        "in re caremark.txt": [
-            "Utter failure to attempt to assure a reasonable information and reporting system exists.",
-        ],
-        "stone.txt": [
-            "Failure to act in good faith is a breach of the duty of loyalty.",
-            "Where directors fail to act in the face of a known duty to act, thereby demonstrating a conscious disregard for their responsibilities, they breach their duty of loyalty by failing to discharge that fiduciary obligation in good faith.",
-        ],
-        "marchand.txt": [
-            "Directors must make a good faith effort to implement an oversight system.",
-            "Caremark requires that a board make a good faith effort to put in place a reasonable system of monitoring and reporting about the corporation's central compliance risks.",
-        ],
-        "revlon.txt": [
-            "Directors become auctioneers charged with getting the best price reasonably available for the stockholders' benefit.",
-        ],
-        "qvc.txt": [
-            "The directors' obligation is to seek the best value reasonably available for the stockholders where there is a pending sale of control.",
-        ],
-        "paramount v qvc.txt": [
-            "The directors' obligation is to seek the best value reasonably available for the stockholders where there is a pending sale of control.",
-        ],
-        "lyondell.txt": [
-            "There are no legally prescribed steps that directors must follow to satisfy their Revlon duties.",
-        ],
-        "barkan.txt": [
-            "There is no single blueprint that a board must follow to fulfill its duties.",
-        ],
-        "metro.txt": [
-            "Board reliance on advisors must be informed and reasonable.",
-        ],
-        "rural metro.txt": [
-            "Board reliance on advisors must be informed and reasonable.",
-        ],
-        "rural_metro.txt": [
-            "Board reliance on advisors must be informed and reasonable.",
-        ],
-        "unocal.txt": [
-            "Directors must show that they had reasonable grounds for believing that a danger to corporate policy and effectiveness existed.",
-        ],
-        "unitrin.txt": [
-            "A defensive measure cannot be coercive or preclusive and must fall within a range of reasonableness.",
-        ],
-        "airgas.txt": [
-            "The defensive measures must not be coercive or preclusive and must fall within a range of reasonableness.",
-        ],
-        "mfw.txt": [
-            "Business judgment review applies if and only if the controller conditions the transaction from the outset on approval by both an independent special committee and a majority of the minority stockholders.",
-        ],
-        "corwin.txt": [
-            "When a transaction not subject to the entire fairness standard is approved by a fully informed, uncoerced vote of disinterested stockholders, the business judgment rule applies.",
-        ],
-        "weinberger.txt": [
-            "The concept of fairness has two basic aspects: fair dealing and fair price.",
-        ],
-        "aronson.txt": [
-            "Demand is excused where particularized facts create a reasonable doubt that the directors are disinterested and independent or that the challenged transaction was otherwise the product of a valid exercise of business judgment.",
-        ],
-        "rales.txt": [
-            "The inquiry is whether the board could have properly exercised its independent and disinterested business judgment in responding to a demand.",
-        ],
-        "zuckerberg.txt": [
-            "Demand futility turns on a director-by-director inquiry.",
-        ],
-    }
 
     def clean_quote(q: str) -> str:
-        if not q:
-            return ""
-
-        q = str(q)
+        q = (q or "").strip()
         q = q.replace("“", '"').replace("”", '"').replace("’", "'")
-        q = q.replace("\xad", "")
-        q = q.replace("—", "-")
-        q = re.sub(r"\s+", " ", q).strip()
+        q = re.sub(r"\s+", " ", q)
+        q = re.sub(r"\s+([,.;:])", r"\1", q)
+        return q.strip()
 
-        metadata_patterns = [
-            r"\bSECTION:\s*",
-            r"\bCASE:\s*",
-            r"\bCOURT:\s*",
-            r"\bYEAR:\s*\d{4}",
-            r"\bDOCTRINE:\s*",
-            r"\bAUTHORITY:\s*",
-            r"\bKEY TOPIC:\s*",
-            r"\bIMPORTANT HOLDING:\s*",
-            r"\bRELATION TO OTHER [A-Z\- ]+:\s*",
-        ]
-
-        for pattern in metadata_patterns:
-            q = re.sub(pattern, "", q, flags=re.I)
-
-        q = re.sub(r"([A-Za-z])- ([A-Za-z])", r"\1\2", q)
-        q = re.sub(r"\s+", " ", q).strip(" -:;,\n\t")
-
-        return q
-
-    def source_matches(key: str) -> bool:
-        key_l = key.lower().replace("_", " ").strip()
-        normalized_source = source_l.replace("_", " ").strip()
-
-        return (
-            key_l == normalized_source
-            or key_l.replace(".txt", "") == normalized_source.replace(".txt", "")
-            or key_l.replace(".txt", "") in normalized_source.replace(".txt", "")
-        )
-
-    def is_weak_ocr_source() -> bool:
-        normalized_source = source_l.replace("_", " ").strip()
-        return any(source_matches(src) for src in WEAK_OCR_SOURCES) or any(
-            weak.replace(".txt", "") in normalized_source.replace(".txt", "")
-            for weak in WEAK_OCR_SOURCES
-        )
-
-    def sentence_integrity_penalty(q: str) -> int:
-        q = clean_quote(q)
-        q_l = q.lower()
-        penalty = 0
-        words = q.split()
-
-        if not q:
-            return 100
-
-        if re.match(r"^[\]\)\.,;:\-–—'\"]", q):
-            penalty += 30
-
-        if re.match(r"^\d+[\.\)]?\s+", q):
-            penalty += 22
-
-        if q and q[0].islower():
-            penalty += 14
-
-        ugly_fragments = [
-            "posed.",
-            "reashowing",
-            "dangrounds",
-            "selectresponse",
-            "the po in that",
-            "there is a vast difference be",
-            "intermediate standard the that",
-            "declined iconic",
-            "not seismic and its not this",
-            "judge process conduct neither",
-            "substantial basis, ...",
-            "more satisfy the court",
-            "they selectresponse",
-            "that sonable",
-            "our of corp",
-            "corpothe",
-            "thestockhold",
-            "revlon as to fairness tive effect",
-            "insubstantial basis",
-            "retroacthe revlon",
-            "judicial expansive corporate policy",
-            "comfortably permit also do not but",
-            "threat and that proper and not selfish",
-            "their actions one v. objective",
-            "the selectresponse",
-            "that their motiva to show persuasion",
-            "corporation the sale of a for cash",
-            "enhanced 506",
-            "rbc never- least",
-            "must respond theless",
-            "serve as the ad hoe",
-            "valua- fairness committee",
-            "at pany for valuation purposes",
-            "tion football field",
-        ]
-
-        if any(x in q_l for x in ugly_fragments):
-            penalty += 90
-
-        if "[]" in q:
-            penalty += 45
-
-        if re.search(r"\b[a-zA-Z]+\[\]\b", q):
-            penalty += 45
-
-        numeric_citations = len(re.findall(r"\b\d+\b", q))
-
-        if numeric_citations >= 4:
-            penalty += 22
-
-        if numeric_citations >= 7:
-            penalty += 18
-
-        if re.search(r"\bA\.?2d\b|\bA\.?3d\b|\bDel\.?\b|\bWL\b", q, flags=re.I):
-            penalty += 8
-
-        if q.count('"') >= 4:
-            penalty += 18
-
-        if q.count(",") > 7:
-            penalty += 12
-
-        if q.count(";") >= 3:
-            penalty += 14
-
-        if q and q[-1] not in ".!?":
-            penalty += 8
-
-        if q.count(".") == 0 and len(words) > 22:
-            penalty += 18
-
-        caps_words = [w for w in words if len(w) > 4 and w.isupper()]
-        if len(caps_words) >= 4:
-            penalty += 25
-
-        if words:
-            tiny_words = [
-                w for w in words
-                if len(w.strip(".,;:()[]{}\"'")) <= 2
-            ]
-
-            if len(tiny_words) / max(1, len(words)) > 0.30:
-                penalty += 35
-
-            weird_words = [
-                w for w in words
-                if len(w) > 16 and not re.search(r"[aeiouAEIOU]", w)
-            ]
-
-            penalty += min(30, len(weird_words) * 10)
-
-        metadata_markers = [
-            "important holding",
-            "relation to other",
-            "doctrine:",
-            "authority:",
-            "key topic:",
-            "binding precedent",
-            "section:",
-            "court:",
-            "year:",
-        ]
-
-        metadata_hits = sum(1 for marker in metadata_markers if marker in q_l)
-        penalty += metadata_hits * 12
-
-        doctrinal_terms = [
-            "duty",
-            "board",
-            "director",
-            "fiduciary",
-            "stockholder",
-            "shareholder",
+    DOCTRINE_ANCHORS = {
+        "oversight": [
+            "utter failure",
+            "reporting system",
+            "information system",
             "good faith",
-            "bad faith",
+            "good faith effort",
+            "known duty to act",
+            "conscious disregard",
+            "red flags",
+            "mission critical",
+            "monitoring",
             "oversight",
-            "control",
-            "sale",
-            "transaction",
-            "process",
-            "reasonable",
-            "reasonably",
-            "standard",
-            "review",
-        ]
+        ],
+        "sale_of_control": [
+            "best value reasonably available",
+            "best value",
+            "change of control",
+            "sale of control",
+            "stockholders",
+            "shareholders",
+            "revlon",
+            "auctioneer",
+        ],
+        "takeover_defense": [
+            "coercive",
+            "preclusive",
+            "range of reasonableness",
+            "reasonable grounds",
+            "threat",
+            "defensive measure",
+            "unocal",
+            "unitrin",
+        ],
+        "controller_transactions": [
+            "controller",
+            "entire fairness",
+            "fair dealing",
+            "fair price",
+            "special committee",
+            "majority of the minority",
+            "minority stockholders",
+        ],
+        "stockholder_vote_cleansing": [
+            "fully informed",
+            "uncoerced",
+            "disinterested stockholders",
+            "stockholder approval",
+            "business judgment",
+            "corwin",
+        ],
+        "demand_futility": [
+            "demand futility",
+            "particularized facts",
+            "reasonable doubt",
+            "disinterested",
+            "independent",
+            "aronson",
+            "rales",
+            "zuckerberg",
+        ],
+        "disclosure_loyalty": [
+            "disclosure",
+            "material",
+            "stockholder action",
+            "duty of disclosure",
+            "candor",
+        ],
+        "entire_fairness": [
+            "entire fairness",
+            "fair dealing",
+            "fair price",
+            "utmost good faith",
+            "burden",
+        ],
+        "section_220": [
+            "proper purpose",
+            "books and records",
+            "credible basis",
+            "inspection",
+        ],
+        "schnell": [
+            "inequitable action",
+            "legally possible",
+            "equitable principles",
+        ],
+        "blasius": [
+            "compelling justification",
+            "stockholder franchise",
+            "vote",
+            "election",
+        ],
+    }
 
-        doctrinal_hits = sum(1 for term in doctrinal_terms if term in q_l)
+    GENERAL_RULE_TERMS = [
+        "directors",
+        "board",
+        "fiduciary",
+        "duty",
+        "duty of loyalty",
+        "good faith",
+        "bad faith",
+        "reasonable",
+        "reasonably",
+        "requires",
+        "must",
+        "liability",
+        "standard",
+        "stockholders",
+        "shareholders",
+    ]
 
-        if doctrinal_hits == 0:
-            penalty += 15
+    BAD_TERMS = [
+        "submitted:",
+        "decided:",
+        "attorneys for",
+        "plaintiff",
+        "defendant",
+        "appellant",
+        "appellee",
+        "civil action",
+        "court of chancery",
+        "supreme court of delaware",
+        "esq.",
+        "transcript",
+        "deposition",
+        "trial",
+        "brief",
+        "argued",
+        "testified",
+        "credible if",
+        "our law would be more credible",
+        "not based on any",
+    ]
 
-        if (
-            doctrinal_hits >= 2
-            and q[-1] in ".!?"
-            and numeric_citations < 4
-            and 10 <= len(words) <= 60
-        ):
-            penalty -= 10
+    OCR_BAD_TERMS = [
+        "olated",
+        "refiduciary",
+        "lationship",
+        "prodirectors",
+        "readigood",
+        "have rulings",
+        "albreached",
+        "substan",
+        "fiducia flags",
+        "nizable",
+        "concl uded",
+        "moni tor",
+    ]
 
-        return max(0, penalty)
-
-    def is_garbage(q: str) -> bool:
-        q = clean_quote(q)
+    def is_bad_quote(q: str) -> bool:
         q_l = q.lower()
-
-        if not q:
-            return True
-
         words = q.split()
 
         if len(words) < 8:
             return True
 
-        if len(q) > 460:
+        if len(words) > 85:
             return True
 
-        if sentence_integrity_penalty(q) >= 70:
+        if q[:1].islower():
             return True
 
-        if "[]" in q:
+        if not re.search(r"[A-Za-z]", q):
             return True
 
-        if re.search(r"\b[a-zA-Z]+\[\]\b", q):
+        if sum(1 for term in BAD_TERMS if term in q_l) >= 2:
             return True
 
-        if q.count(".") == 0 and len(words) > 22:
+        if any(term in q_l for term in OCR_BAD_TERMS):
             return True
 
-        if q[0].islower():
+        if len(re.findall(r"\b\d{2,}\b", q)) >= 4:
             return True
 
-        if re.match(r"^[\]\)\.,;:\-–—'\"]", q):
+        if len(re.findall(r"\b[A-Z]{4,}\b", q)) >= 3:
             return True
 
-        if len(re.findall(r"\b\d+\b", q)) >= 4:
+        if q.count(",") > 10:
             return True
 
-        tiny_words = [
-            w for w in words
-            if len(w.strip(".,;:()[]{}\"'")) <= 2
-        ]
-
-        if len(tiny_words) / max(1, len(words)) > 0.32:
+        if q.count("§") >= 2:
             return True
 
-        weird_words = [
-            w for w in words
-            if len(w) > 16 and not re.search(r"[aeiouAEIOU]", w)
-        ]
-
-        if len(weird_words) >= 2:
+        alpha_chars = len(re.findall(r"[A-Za-z]", q))
+        if alpha_chars / max(len(q), 1) < 0.58:
             return True
 
-        garbage_markers = [
-            "supra",
-            "infra",
-            "ibid",
-            "footnote",
-            "appendix",
-            "see also",
-            "plaintiffs argue",
-            "defendants argue",
-            "j.corp.law",
-            "j. corp. law",
-            "fordham",
-            "law review",
-            "article",
-            "professor",
-            "available at",
-            "created supreme delaware court",
-            "the po in that",
-            "more satisfy the court",
-            "there is a vast difference be",
-            "intermediate standard the that",
-            "declined iconic",
-            "reashowing",
-            "dangrounds",
-            "selectresponse",
-            "that sonable",
-            "corpothe",
-            "thestockhold",
-            "insubstantial basis",
-            "judge process conduct neither",
-            "not seismic and its not this",
-            "posed.",
-            "rbc never- least",
-            "must respond theless",
-            "serve as the ad hoe",
-            "valua- fairness committee",
-            "at pany for valuation purposes",
-            "tion football field",
-        ]
-
-        if any(g in q_l for g in garbage_markers):
+        # Reject citation/caption-heavy strings.
+        if re.search(r"\b\d+\s+A\.(2d|3d)\s+\d+\b", q):
             return True
 
-        if q.count('"') >= 4:
+        if re.search(r"\bC\.A\.\s+No\.", q, flags=re.IGNORECASE):
             return True
 
-        if q.count(",") > 8:
+        # Reject obvious broken OCR word runs.
+        if re.search(r"\b[a-z]{1,2}\s+[a-z]{1,2}\s+[a-z]{1,2}\b", q_l):
+            return True
+
+        if re.search(r"\b[A-Za-z]{22,}\b", q):
             return True
 
         return False
 
-    def hard_eligible(q: str) -> bool:
-        q = clean_quote(q)
-
-        if not q:
-            return False
-
-        if is_garbage(q):
-            return False
-
-        penalty_limit = 32 if is_weak_ocr_source() else 45
-
-        if sentence_integrity_penalty(q) >= penalty_limit:
-            return False
-
-        if len(q.split()) < 10:
-            return False
-
-        tiny_word_count = len(
-            [
-                w for w in q.split()
-                if len(w.strip(".,;:()[]{}\"'")) <= 2
-            ]
-        )
-
-        if tiny_word_count >= 5 and q.count(",") > 4:
-            return False
-
-        return True
-
-    def looks_like_rule(q: str) -> bool:
+    def score_quote(q: str) -> float:
         q_l = q.lower()
+        words = q.split()
+        score = 0.0
 
-        rule_signals = [
-            "must",
-            "requires",
-            "required",
-            "duty",
-            "duties",
-            "obligation",
-            "obligated",
-            "is triggered",
-            "are triggered",
-            "applies when",
-            "applies where",
-            "standard",
-            "review",
-            "turns on",
-            "directors",
-            "board",
-            "fiduciary",
-            "stockholders",
-            "shareholders",
-            "plaintiff must",
-            "court will",
-        ]
+        if is_bad_quote(q):
+            return -999.0
 
-        return any(signal in q_l for signal in rule_signals)
-
-    def has_doctrinal_subject(q: str) -> bool:
-        q_l = q.lower()
-
-        subjects = [
-            "directors",
-            "director",
-            "board",
-            "fiduciary",
-            "stockholders",
-            "stockholder",
-            "shareholders",
-            "shareholder",
-            "corporation",
-            "controller",
-            "committee",
-            "plaintiff",
-            "demand",
-            "court",
-        ]
-
-        return any(s in q_l for s in subjects)
-
-    def anchor_bonus(q: str) -> int:
-        q_l = q.lower()
-
-        anchors = {
-            "revlon": [
-                "best value reasonably available",
-                "auctioneers",
-                "stockholders' benefit",
-                "shareholders' benefit",
-                "for sale",
-                "maximization",
-            ],
-            "qvc": [
-                "change of control",
-                "results in a change of control",
-                "sale of control",
-                "control of the corporation",
-                "best value reasonably available",
-                "highest value reasonably attainable",
-            ],
-            "paramount": [
-                "change of control",
-                "sale of control",
-                "control of the corporation",
-                "best value reasonably available",
-                "highest value reasonably attainable",
-            ],
-            "lyondell": [
-                "no single blueprint",
-                "reasonable decision",
-                "not perfection",
-                "utterly failed",
-                "bad faith",
-                "revlon duties",
-            ],
-            "barkan": [
-                "no single blueprint",
-                "reasonable course",
-                "active and direct role",
-                "market check",
-                "best value",
-            ],
-            "metro": [
-                "financial advisors",
-                "informed and reasonable",
-                "board reliance",
-                "sale process",
-            ],
-            "rural metro": [
-                "financial advisors",
-                "sale process",
-                "informed and reasonable",
-                "aiding and abetting",
-            ],
-            "caremark": [
-                "utter failure",
-                "reporting system",
-                "information and reporting system",
-            ],
-            "stone": [
-                "bad faith",
-                "duty of loyalty",
-                "failure to act in good faith",
-                "known duty to act",
-                "conscious disregard",
-            ],
-            "marchand": [
-                "good faith effort",
-                "mission critical",
-                "red flags",
-                "central compliance risks",
-            ],
-            "unocal": [
-                "threat to corporate policy",
-                "enhanced scrutiny",
-                "reasonable grounds",
-            ],
-            "unitrin": [
-                "coercive",
-                "preclusive",
-                "range of reasonableness",
-            ],
-            "airgas": [
-                "coercive",
-                "preclusive",
-                "range of reasonableness",
-                "reasonable grounds",
-            ],
-            "mfw": [
-                "majority of the minority",
-                "special committee",
-                "from the outset",
-                "business judgment",
-            ],
-            "corwin": [
-                "fully informed",
-                "uncoerced",
-                "business judgment",
-            ],
-            "weinberger": [
-                "entire fairness",
-                "fair dealing",
-                "fair price",
-            ],
-            "aronson": [
-                "reasonable doubt",
-                "demand futility",
-            ],
-            "rales": [
-                "impartially consider",
-                "demand futility",
-            ],
-            "zuckerberg": [
-                "director-by-director",
-                "demand futility",
-            ],
-        }
-
-        bonus = 0
-
-        for case_key, phrases in anchors.items():
-            if case_key in source_l:
-                for phrase in phrases:
-                    if phrase in q_l:
-                        bonus += 24
-
-        return bonus
-
-    def doctrine_marker_groups():
-        universal = {
-            "must": 8,
-            "requires": 8,
-            "required": 6,
-            "duty": 8,
-            "duties": 8,
-            "obligation": 7,
-            "obligated": 7,
-            "standard": 6,
-            "review": 5,
-            "board": 5,
-            "directors": 7,
-            "director": 6,
-            "fiduciary": 6,
-            "stockholders": 6,
-            "stockholder": 5,
-            "shareholders": 6,
-            "shareholder": 5,
-            "reasonable": 5,
-            "reasonably": 5,
-        }
-
-        sale = {
-            "best value reasonably available": 30,
-            "highest value reasonably attainable": 28,
-            "change of control": 24,
-            "for sale": 15,
-            "sale of control": 18,
-            "auction": 12,
-            "auctioneers": 20,
-            "maximize": 12,
-            "maximization": 12,
-            "stockholders' benefit": 16,
-            "shareholders' benefit": 16,
-            "revlon duties": 16,
-            "sale process": 12,
-        }
-
-        oversight = {
-            "utter failure": 28,
-            "good faith effort": 28,
-            "bad faith": 22,
-            "reporting system": 20,
-            "information and reporting system": 22,
-            "red flags": 18,
-            "mission critical": 18,
-            "central compliance risks": 18,
-            "duty of loyalty": 18,
-            "conscious failure": 18,
-            "conscious disregard": 18,
-            "known duty to act": 18,
-            "monitor": 12,
-            "oversight": 12,
-        }
-
-        takeover = {
-            "enhanced scrutiny": 24,
-            "coercive": 18,
-            "preclusive": 18,
-            "range of reasonableness": 24,
-            "threat to corporate policy": 24,
-            "reasonable grounds": 16,
-            "defensive measure": 14,
-        }
-
-        fairness = {
-            "entire fairness": 24,
-            "fair dealing": 18,
-            "fair price": 18,
-            "burden": 8,
-        }
-
-        controller = {
-            "majority of the minority": 24,
-            "special committee": 18,
-            "business judgment": 16,
-            "controller": 14,
-            "from the outset": 14,
-        }
-
-        demand = {
-            "demand futility": 22,
-            "particularized facts": 18,
-            "independent and disinterested": 18,
-            "reasonable doubt": 14,
-            "impartially consider": 14,
-            "director-by-director": 14,
-        }
-
-        groups = [universal]
-
-        if "sale_of_control" in doctrine_l or any(
-            x in source_l
-            for x in ["revlon", "qvc", "barkan", "lyondell", "paramount", "metro"]
-        ):
-            groups.append(sale)
-
-        if "oversight" in doctrine_l or any(
-            x in source_l for x in ["caremark", "stone", "marchand"]
-        ):
-            groups.append(oversight)
-
-        if "takeover_defense" in doctrine_l or any(
-            x in source_l for x in ["unocal", "unitrin", "airgas"]
-        ):
-            groups.append(takeover)
-
-        if "entire_fairness" in doctrine_l or "weinberger" in source_l:
-            groups.append(fairness)
-
-        if "controller" in doctrine_l or any(
-            x in source_l for x in ["mfw", "tesla", "kahn"]
-        ):
-            groups.append(controller)
-
-        if "demand_futility" in doctrine_l or any(
-            x in source_l for x in ["aronson", "rales", "zuckerberg"]
-        ):
-            groups.append(demand)
-
-        return groups
-
-    def marker_score(q: str) -> int:
-        q = clean_quote(q)
-        q_l = q.lower()
-
-        score = 0
-
-        for group in doctrine_marker_groups():
-            for marker, weight in group.items():
-                if marker in q_l:
-                    score += weight
-
-        score += anchor_bonus(q)
-
-        if looks_like_rule(q):
-            score += 14
+        # Good length band.
+        if 14 <= len(words) <= 45:
+            score += 4.0
+        elif 46 <= len(words) <= 65:
+            score += 2.0
         else:
-            score -= 25
+            score -= 1.0
 
-        if has_doctrinal_subject(q):
-            score += 8
-        else:
-            score -= 12
+        # General doctrinal utility.
+        for term in GENERAL_RULE_TERMS:
+            if term in q_l:
+                score += 1.0
 
-        length = len(q.split())
+        # Doctrine-specific anchors matter most.
+        for term in DOCTRINE_ANCHORS.get(doctrine_line, []):
+            if term in q_l:
+                score += 3.0
 
-        if 10 <= length <= 32:
-            score += 12
-        elif 33 <= length <= 52:
-            score += 4
-        elif length > 60:
-            score -= 22
+        # Role preference.
+        if role == "foundation":
+            if any(t in q_l for t in ["requires", "standard", "duty", "liability"]):
+                score += 2.0
+        elif role == "supreme_refinement":
+            if any(t in q_l for t in ["held", "requires", "duty", "good faith", "clarifies"]):
+                score += 2.0
+        elif role == "modern_application":
+            if any(t in q_l for t in ["reasonable inference", "particularized facts", "where", "because"]):
+                score += 2.0
 
-        if q.strip().endswith("."):
-            score += 3
+        # Source-specific boosts.
+        if "caremark" in source_l and doctrine_line == "oversight":
+            if any(t in q_l for t in ["utter failure", "reporting system", "information system"]):
+                score += 5.0
 
-        if role_l == "foundation":
-            if any(
-                x in q_l
-                for x in [
-                    "must",
-                    "duty",
-                    "requires",
-                    "standard",
-                    "best value",
-                    "obligation",
-                    "utter failure",
-                ]
-            ):
-                score += 12
+        if "stone" in source_l and doctrine_line == "oversight":
+            if any(t in q_l for t in ["known duty to act", "conscious disregard", "good faith"]):
+                score += 5.0
 
-        if role_l in {"supreme_refinement", "refinement"}:
-            if any(
-                x in q_l
-                for x in [
-                    "good faith",
-                    "duty of loyalty",
-                    "failure to act in good faith",
-                    "known duty to act",
-                    "conscious disregard",
-                    "change of control",
-                    "range of reasonableness",
-                    "obligation",
-                ]
-            ):
-                score += 18
+        if "marchand" in source_l and doctrine_line == "oversight":
+            if any(t in q_l for t in ["good faith effort", "mission critical", "monitoring", "red flags"]):
+                score += 5.0
 
-        if role_l == "modern_application":
-            if any(
-                x in q_l
-                for x in [
-                    "mission critical",
-                    "central compliance risks",
-                    "red flags",
-                    "good faith effort",
-                    "financial advisors",
-                    "sale process",
-                    "informed",
-                    "reasonable",
-                ]
-            ):
-                score += 14
+        if "revlon" in source_l and doctrine_line == "sale_of_control":
+            if any(t in q_l for t in ["best value", "stockholders", "shareholders"]):
+                score += 5.0
 
-        weak_markers = [
-            "helps define",
-            "generally speaking",
-            "in this case",
-            "the court considered",
-            "the court noted",
-            "the court stated",
-            "the court explained",
+        if "qvc" in source_l and doctrine_line == "sale_of_control":
+            if any(t in q_l for t in ["change of control", "best value", "stockholders", "shareholders"]):
+                score += 5.0
+
+        if "airgas" in source_l and doctrine_line == "takeover_defense":
+            if any(t in q_l for t in ["coercive", "preclusive", "range of reasonableness", "reasonable grounds"]):
+                score += 5.0
+
+        if "metro" in source_l or "rural" in source_l:
+            if any(t in q_l for t in ["board reliance", "advisors", "informed", "reasonable"]):
+                score += 4.0
+
+        # Penalize weak / conversational / non-rule language.
+        weak_terms = [
+            "our law would be more credible",
+            "i believe",
+            "i think",
+            "suppose",
+            "perhaps",
+            "argued",
+            "testified",
+            "contends",
+            "asserts",
         ]
+        for term in weak_terms:
+            if term in q_l:
+                score -= 5.0
 
-        if any(w in q_l for w in weak_markers):
-            score -= 12
+        # Penalize procedural or citation-heavy strings.
+        procedural_terms = [
+            "summary judgment",
+            "motion to dismiss",
+            "complaint",
+            "brief",
+            "oral argument",
+            "trial court",
+            "remanded",
+            "reversed",
+        ]
+        for term in procedural_terms:
+            if term in q_l:
+                score -= 1.5
 
-        score -= sentence_integrity_penalty(q)
-
-        if is_garbage(q):
-            score -= 200
-
-        if is_weak_ocr_source():
-            score -= 25
-
-            # Only very strong quotes survive from weak OCR sources.
-            if anchor_bonus(q) >= 24 or (
-                looks_like_rule(q)
-                and has_doctrinal_subject(q)
-                and sentence_integrity_penalty(q) < 25
-            ):
-                score += 30
+        # Prefer complete sentences.
+        if q.endswith((".", "!", "?")):
+            score += 1.0
+        else:
+            score -= 1.0
 
         return score
 
-    # Step 1: canonical anchors first for cornerstone cases and weak OCR sources.
-    for source_key, canonical_quotes in CANONICAL_QUOTES.items():
-        if source_matches(source_key):
-            canonical_scored = []
-
-            for cq in canonical_quotes:
-                cq_clean = clean_quote(cq)
-                if not cq_clean:
-                    continue
-
-                score = marker_score(cq_clean) + 85
-                canonical_scored.append((score, cq_clean))
-
-            if canonical_scored:
-                canonical_scored.sort(key=lambda item: item[0], reverse=True)
-                return canonical_scored[0][1]
-
-    # Step 2: clean all quote candidates.
     cleaned_quotes = []
+    seen = set()
 
-    for q in quotes or []:
-        raw = q.get("quote", q.get("text", "")) if isinstance(q, dict) else str(q)
-        cleaned = clean_quote(raw)
+    for q in quotes:
+        cq = clean_quote(q)
+        if not cq:
+            continue
 
-        if cleaned:
-            cleaned_quotes.append(cleaned)
+        key = re.sub(r"\s+", " ", cq.lower()).strip()
+        if key in seen:
+            continue
 
-    # Step 3: hard eligibility filter.
-    eligible_quotes = [q for q in cleaned_quotes if hard_eligible(q)]
+        seen.add(key)
+        cleaned_quotes.append(cq)
 
-    # Step 4: score eligible quotes only.
-    scored = []
+    if not cleaned_quotes:
+        return None
 
-    for q in eligible_quotes:
-        score = marker_score(q)
+    scored = [(score_quote(q), q) for q in cleaned_quotes]
+    scored.sort(key=lambda item: item[0], reverse=True)
 
-        if score > 10:
-            scored.append((score, q))
+    best_score, best_quote = scored[0]
 
-    if scored:
-        scored.sort(key=lambda item: item[0], reverse=True)
-        return scored[0][1]
+    # Hard gate: no quote is better than a corrupted quote.
+    if best_score < 5.0:
+        return None
 
-    return ""
+    return best_quote
+
 # ============================================================
 # NORMALIZATION
 # ============================================================
@@ -1555,10 +1044,21 @@ def build_role_based_quote_map(
                 else ""
             )
 
-            best_quote = clean_quote_text(best_quote)
+            best_quote = (
+                pick_best_quote(
+                candidates,
+                source=source,
+                role=role,
+                doctrine_line="",
+            )
+                if candidates
+                else ""
+            )
 
-            if not best_quote or is_bad_quote(best_quote):
-                continue
+            if best_quote:
+                best_quote = clean_quote_text(best_quote)
+            else:
+                best_quote = ""
 
             quote_key = re.sub(r"\s+", " ", best_quote.lower()).strip()
 
@@ -1566,6 +1066,11 @@ def build_role_based_quote_map(
                 continue
 
             seen_quotes.add(quote_key)
+
+            best_quote = clean_quote_text(best_quote or "")
+
+            if not best_quote:
+                continue
 
             if best_quote[-1] not in ".!?":
                 best_quote += "."

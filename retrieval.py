@@ -64,9 +64,55 @@ EMBED_CACHE = load_embed_cache()
 def dot(a: List[float], b: List[float]) -> float:
     return sum(x * y for x, y in zip(a, b))
 
-
 def get_case_role(source: str) -> str:
-    return CASE_ROLES.get(source, "related_case")
+    source_l = (source or "").lower()
+
+    # Foundations
+    if any(
+        k in source_l
+        for k in [
+            "caremark",
+            "unocal",
+            "revlon",
+            "aronson",
+            "malone",
+            "weinberger",
+            "schnell",
+        ]
+    ):
+        return "foundation"
+
+    # Supreme refinements
+    if any(
+        k in source_l
+        for k in [
+            "stone",
+            "unitrin",
+            "qvc",
+            "rales",
+            "corwin",
+            "blasius",
+        ]
+    ):
+        return "supreme_refinement"
+
+    # Modern applications
+    if any(
+        k in source_l
+        for k in [
+            "marchand",
+            "airgas",
+            "lyondell",
+            "metro",
+            "rural metro",
+            "mfw",
+            "zuckerberg",
+            "tesla",
+        ]
+    ):
+        return "modern_application"
+
+    return "related_case"
 
 def clean_case_name(source: str) -> str:
     base = (source or "Unknown").replace(".txt", "")
@@ -100,9 +146,19 @@ def get_case_display_name(case: Dict[str, Any]) -> str:
     }
     return mapping.get(source, clean_case_name(source))
 
+ROLE_PRIORITY = {
+    "foundation": 5,
+    "supreme_refinement": 4,
+    "refinement": 3,
+    "modern_application": 2,
+    "related_case": 1,
+}
 
 def infer_doctrine_line_from_source(source: str) -> str:
     s = (source or "").lower()
+
+    if "malone" in s or "disclosure" in s:
+        return "disclosure_loyalty"
 
     if any(k in s for k in ["caremark", "stone", "marchand"]):
         return "oversight"
@@ -110,7 +166,7 @@ def infer_doctrine_line_from_source(source: str) -> str:
     if any(k in s for k in ["unocal", "unitrin", "airgas"]):
         return "takeover_defense"
 
-    if any(k in s for k in ["revlon", "qvc", "lyondell", "metro"]):
+    if any(k in s for k in ["revlon", "qvc", "lyondell", "metro", "rural metro", "rbc"]):
         return "sale_of_control"
 
     if any(k in s for k in ["kahn", "mfw", "tesla"]):
@@ -122,11 +178,13 @@ def infer_doctrine_line_from_source(source: str) -> str:
     if "corwin" in s:
         return "stockholder_vote_cleansing"
 
-    if "malone" in s:
-        return "disclosure_loyalty"
+    if any(k in s for k in ["weinberger", "entire fairness", "fair dealing", "fair price"]):
+        return "entire_fairness"
+
+    if any(k in s for k in ["schnell", "blasius", "section 220", "books and records"]):
+        return s
 
     return "unknown"
-
 
 # ============================================================
 # EMBEDDINGS
@@ -292,18 +350,98 @@ def get_retrieval_budget(query_plan: Dict[str, Any]) -> Dict[str, int]:
         return {"k": 20, "max_per_source": 5}
 
     return {"k": 12, "max_per_source": 4}
-
-
 # ============================================================
 # RETRIEVAL
 # ============================================================
 
 def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[str, Any]]:
+    import re
+
+    ROLE_PRIORITY = {
+        "foundation": 5,
+        "supreme_refinement": 4,
+        "refinement": 3,
+        "modern_application": 2,
+        "related_case": 1,
+        "unknown": 0,
+    }
+
     q_emb = embed_text(question)
     query_plan = build_query_plan_cached(question)
-    target_lines = query_plan.get("target_lines", ["unknown"])
-    named_sources = set(query_plan.get("named_sources", []))
+
+    target_lines = [x for x in query_plan.get("target_lines", ["unknown"]) if x]
+    target_set = set(target_lines)
+
+    query_type = query_plan.get("query_type", "general")
     multi_doctrine = query_plan.get("multi_doctrine", False)
+
+    primary_doctrine = query_plan.get("primary_doctrine", "unknown")
+    primary_issue = query_plan.get("primary_issue", primary_doctrine)
+
+    secondary_issues = set(query_plan.get("secondary_issues", []))
+    contextual_issues = set(query_plan.get("contextual_issues", []))
+    secondary_doctrines = set(query_plan.get("secondary_doctrines", []))
+
+    named_sources = set(query_plan.get("named_sources", []))
+    preferred_sources = set(query_plan.get("preferred_sources", []))
+    suppress_sources = set(query_plan.get("suppress_sources", []))
+
+    issue_priority = query_plan.get("issue_priority", {}) or {}
+    has_advisor_conflict = issue_priority.get("has_advisor_conflict", False)
+
+    q_lower = question.lower()
+
+    is_food_safety_red_flags = any(
+        phrase in q_lower
+        for phrase in [
+            "food safety",
+            "food-safety",
+            "red flag",
+            "red flags",
+            "mission critical",
+            "mission-critical",
+        ]
+    )
+
+    advisor_conflict_sources = {
+        "metro.txt",
+        "rural metro.txt",
+        "rbc.txt",
+        "rbc capital markets.txt",
+    }
+
+    takeover_defense_sources = {
+        "airgas.txt",
+        "unocal.txt",
+        "unitrin.txt",
+    }
+
+    core_sources_by_doctrine = {
+        "oversight": {"caremark.txt", "stone.txt", "marchand.txt"},
+        "sale_of_control": {"revlon.txt", "qvc.txt", "lyondell.txt"},
+        "takeover_defense": {"unocal.txt", "unitrin.txt", "airgas.txt"},
+        "controller_transactions": {"kahn.txt", "mfw.txt", "tesla.txt"},
+        "stockholder_vote_cleansing": {"corwin.txt", "mfw.txt"},
+        "demand_futility": {"aronson.txt", "rales.txt", "zuckerberg.txt"},
+        "disclosure_loyalty": {
+            "malone.txt",
+            "opinions malone.txt",
+            "doctrines disclosure duty malone.txt",
+        },
+        "entire_fairness": {
+            "weinberger.txt",
+            "kahn.txt",
+            "doctrine entire fairness.txt",
+        },
+    }
+
+    blocked_sources: set[str] = set()
+
+    if primary_issue == "oversight" and "sale_of_control" in target_set:
+        blocked_sources.update(takeover_defense_sources)
+
+        if not has_advisor_conflict:
+            blocked_sources.update(advisor_conflict_sources)
 
     scored: List[Dict[str, Any]] = []
 
@@ -313,9 +451,57 @@ def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[s
             continue
 
         source = chunk.get("source", "")
-        doctrine_line = chunk.get("doctrine_line") or infer_doctrine_line_from_source(source)
-        role = get_case_role(source)
+        source_l = source.lower()
+
+        if source_l in blocked_sources:
+            continue
+
+        text = chunk.get("text", "")
+        text_l = text.lower()
+
+        if len(text.split()) < 18:
+            continue
+
+        if text.count("§") > 3:
+            continue
+
+        if text.count("...") > 2:
+            continue
+
+        if re.search(r"\b\d{3,}\b", text):
+            continue
+
+        if "submitted:" in text_l and "decided:" in text_l:
+            continue
+
+        if "before the court" in text_l and len(text) > 1200:
+            continue
+
+        if "court below" in text_l and len(text) > 1000:
+            continue
+
+        if text_l.startswith("in the supreme court"):
+            continue
+
+        doctrine_line = chunk.get("doctrine_line")
+
+        if not doctrine_line or doctrine_line == "unknown":
+            doctrine_line = infer_doctrine_line_from_source(source)
+        role = chunk.get("role")
+
+        if not role or role in {"unknown", "related_case"}:
+            role = get_case_role(source)
         chunk_role = chunk.get("chunk_role", "")
+
+        if "malone" in source_l or "disclosure duty" in source_l:
+            doctrine_line = "disclosure_loyalty"
+            role = "foundation"
+
+        quality_score = chunk.get("quality_score", 100)
+        corrupt = chunk.get("corrupt", False)
+
+        if corrupt or quality_score < 35:
+            continue
 
         if len(q_emb) != len(emb):
             usable = min(len(q_emb), len(emb))
@@ -326,63 +512,270 @@ def retrieve(question: str, k: int = 12, max_per_source: int = 4) -> List[Dict[s
             score = dot(q_emb, emb)
 
         if source in named_sources:
-            score *= 1.25
+            score *= 1.35
 
-        if doctrine_line in target_lines:
-            score *= 1.45
+        if source in preferred_sources:
+            score *= 1.26
+
+        if source in suppress_sources:
+            score *= 0.40
+
+        if doctrine_line == primary_issue:
+            score *= 1.85
+            score += 0.35
+        elif doctrine_line in secondary_issues:
+            score *= 1.35
+            score += 0.22
+        elif doctrine_line in contextual_issues:
+            score *= 0.92
+        elif doctrine_line in target_set:
+            score *= 1.16
+            score += 0.15
+        elif doctrine_line in secondary_doctrines:
+            score *= 1.04
         elif doctrine_line == "unknown":
-            score *= 0.85
+            score *= 0.55
+            score -= 0.25
         else:
-         score *= 0.70
+            score *= 0.45
+            score -= 0.18
 
         if role == "foundation":
-            score *= 1.05
+            score *= 1.16
+            score += 0.22
         elif role == "supreme_refinement":
-            score *= 1.08
-        elif role == "modern_application":
-            score *= 1.06
+            score *= 1.14
+            score += 0.18
         elif role == "refinement":
-            score *= 1.03
+            score *= 1.08
+            score += 0.10
+        elif role == "modern_application":
+            score *= 1.04
+            score += 0.06
+        elif role == "related_case":
+            score *= 0.72
+            score -= 0.18
+
+        core_sources = core_sources_by_doctrine.get(doctrine_line, set())
+
+        if source_l in core_sources:
+            score *= 1.18
+            score += 0.18
+
+        if doctrine_line == "unknown" and role == "related_case":
+            score *= 0.60
+            score -= 0.30
+
+        if primary_issue == "disclosure_loyalty":
+            if doctrine_line == "disclosure_loyalty":
+                score *= 1.75
+                score += 0.50
+            else:
+                score *= 0.25
+
+        if primary_issue == "controller_transactions":
+            if doctrine_line in {"controller_transactions", "stockholder_vote_cleansing"}:
+                score *= 1.35
+                score += 0.18
+            elif doctrine_line in {"sale_of_control", "takeover_defense"}:
+                score *= 0.55
+            elif doctrine_line == "unknown":
+                score *= 0.45
+
+        if is_food_safety_red_flags:
+            if doctrine_line == "oversight":
+                score *= 1.35
+                score += 0.20
+
+            if doctrine_line == "takeover_defense":
+                score *= 0.15
+
+            if (
+                doctrine_line == "sale_of_control"
+                and role in {"modern_application", "related_case"}
+                and not has_advisor_conflict
+            ):
+                score *= 0.50
+
+            if source_l in advisor_conflict_sources and not has_advisor_conflict:
+                score *= 0.20
+
+        if primary_issue == "oversight" and "sale_of_control" in target_set:
+            if doctrine_line == "oversight":
+                score *= 1.25
+
+            if doctrine_line == "sale_of_control":
+                if role in {"foundation", "supreme_refinement"}:
+                    score *= 1.18
+                elif role in {"modern_application", "related_case"} and not has_advisor_conflict:
+                    score *= 0.42
 
         if chunk_role == "rule":
-            score *= 1.18
+            score *= 1.32
+            score += 0.08
         elif chunk_role == "application":
-            score *= 1.05
+            score *= 1.06
+        elif chunk_role == "analysis":
+            score *= 1.03
         elif chunk_role == "facts":
-            score *= 0.92
+            score *= 0.74
         elif chunk_role == "procedural":
-            score *= 0.90
+            score *= 0.50
+        elif chunk_role == "header":
+            score *= 0.25
+
+        if quality_score >= 85:
+            score *= 1.06
+        elif quality_score >= 70:
+            score *= 1.02
+        elif quality_score < 55:
+            score *= 0.70
+
+        if doctrine_line == "unknown" and score < 0.85:
+            continue
 
         enriched = dict(chunk)
         enriched["score"] = score
         enriched["doctrine_line"] = doctrine_line
         enriched["role"] = role
         scored.append(enriched)
-        
-    print("TARGET_LINES:", target_lines)
-    print("TOP ENTIRE FAIRNESS CHUNKS:", [
-    (c.get("source"), c.get("doctrine_line"), round(c.get("score", 0), 4))
-    for c in scored
-    if c.get("doctrine_line") == "entire_fairness"
-][:10])
-    scored.sort(key=lambda x: x["score"], reverse=True)
+
+    # Pure oversight comparison: remove non-oversight doctrine after scoring.
+    if query_type == "comparison" and primary_issue == "oversight" and target_set <= {"oversight", "unknown"}:
+        scored = [
+            c for c in scored
+            if c.get("doctrine_line") == "oversight"
+        ]
+
+    # Disclosure loyalty: keep Malone/disclosure sources from being outranked by sale-process noise.
+    if primary_issue == "disclosure_loyalty":
+        scored = [
+            c for c in scored
+            if c.get("doctrine_line") == "disclosure_loyalty"
+        ]
+
+    scored.sort(key=lambda x: x.get("score", 0.0), reverse=True)
+
+    deduped: List[Dict[str, Any]] = []
+    seen_snippets: set[str] = set()
+
+    for chunk in scored:
+        text = chunk.get("text", "")
+        key = re.sub(r"\s+", " ", text[:220].lower()).strip()
+
+        if key in seen_snippets:
+            continue
+
+        seen_snippets.add(key)
+        deduped.append(chunk)
+
+    scored = deduped
 
     selected: List[Dict[str, Any]] = []
     per_source: Dict[str, int] = {}
+    selected_ids: set[tuple] = set()
 
-    for chunk in scored:
+    def chunk_key(chunk: Dict[str, Any]) -> tuple:
+        return (
+            chunk.get("source", ""),
+            chunk.get("chunk_id", ""),
+            chunk.get("text", "")[:80],
+        )
+
+    def add_chunk(chunk: Dict[str, Any]) -> bool:
         source = chunk.get("source", "")
-        if per_source.get(source, 0) >= max_per_source:
-            continue
+        source_l = source.lower()
+
+        if source_l in blocked_sources:
+            return False
+
+        role = chunk.get("role")
+
+        if not role or role in {"unknown", "related_case"}: 
+         role = get_case_role(source)
+
+        dynamic_cap = max_per_source
+
+        if role in {"foundation", "supreme_refinement"}:
+            dynamic_cap += 1
+
+        if per_source.get(source, 0) >= dynamic_cap:
+            return False
+
+        key = chunk_key(chunk)
+        if key in selected_ids:
+            return False
 
         selected.append(chunk)
+        selected_ids.add(key)
         per_source[source] = per_source.get(source, 0) + 1
 
+        return True
+
+    guaranteed_doctrines: List[str] = []
+
+    if multi_doctrine:
+        guaranteed_doctrines = [primary_issue] + list(secondary_issues)
+    elif primary_issue and primary_issue != "unknown":
+        guaranteed_doctrines = [primary_issue]
+
+    for doctrine in guaranteed_doctrines:
+        if doctrine == "unknown":
+            continue
+
+        doctrine_chunks = [
+            c for c in scored
+            if c.get("doctrine_line") == doctrine
+        ]
+
+        doctrine_chunks.sort(
+            key=lambda c: (
+                ROLE_PRIORITY.get(c.get("role") or "unknown", 0),
+                c.get("score", 0.0),
+            ),
+            reverse=True,
+        )
+
+        added = 0
+        target_adds = 3 if multi_doctrine else 4
+
+        for chunk in doctrine_chunks:
+            if add_chunk(chunk):
+                added += 1
+
+            if added >= target_adds:
+                break
+
+    allowed_fill_doctrines = (
+    set(guaranteed_doctrines)
+    | contextual_issues
+    | target_set
+)
+
+# Pure oversight comparison should remain doctrine-pure.
+    if (
+    query_type == "comparison"
+    and primary_issue == "oversight"
+):
+        allowed_fill_doctrines = {"oversight"}
+
+    for chunk in scored:
         if len(selected) >= k:
             break
 
-    return selected
+        doctrine_line = chunk.get("doctrine_line", "unknown")
+        role = chunk.get("role", "unknown")
 
+        if multi_doctrine:
+            if doctrine_line not in allowed_fill_doctrines:
+                continue
+
+            if doctrine_line == "unknown" and role == "related_case":
+                continue
+
+        add_chunk(chunk)
+
+    return selected
 
 # ============================================================
 # AGGREGATION / CONTEXT
@@ -397,12 +790,21 @@ def aggregate_by_case(top_chunks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             continue
 
         if source not in by_case:
-            role = get_case_role(source)
+            role = chunk.get("role")
+
+            if not role or role in {"unknown", "related_case"}:
+                role = get_case_role(source)
+            doctrine_line = chunk.get("doctrine_line")
+
+            if not doctrine_line or doctrine_line == "unknown":
+                doctrine_line = infer_doctrine_line_from_source(source)
+
             by_case[source] = {
                 "source": source,
                 "chunks": [],
                 "case_score": 0.0,
                 "role": role,
+                "doctrine_line": doctrine_line,
             }
 
         by_case[source]["chunks"].append(chunk)
@@ -412,7 +814,12 @@ def aggregate_by_case(top_chunks: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         )
 
     cases = list(by_case.values())
-    cases.sort(key=lambda c: (-c["case_score"], ROLE_PRIORITY.get(c["role"], 99)))
+    cases.sort(
+        key=lambda c: (
+            ROLE_PRIORITY.get(c.get("role", "related_case"), 99),
+            -c.get("case_score", 0.0),
+        )
+    )
     return cases
 
 
@@ -421,10 +828,10 @@ def bucket_cases_by_doctrine_line(cases: List[Dict[str, Any]]) -> Dict[str, List
 
     for case in cases:
         source = case.get("source", "")
-        doctrine_line = infer_doctrine_line_from_source(source)
+        doctrine_line = case.get("doctrine_line") or infer_doctrine_line_from_source(source)
         buckets.setdefault(doctrine_line, []).append(case)
 
-    for doctrine_line, bucket in buckets.items():
+    for bucket in buckets.values():
         bucket.sort(
             key=lambda c: (
                 ROLE_PRIORITY.get(c.get("role", "related_case"), 99),
@@ -448,19 +855,22 @@ def select_doctrine_leaders(
 
         for role in preferred_roles:
             for case in bucket:
-                if case.get("role") == role and case.get("source") not in seen_sources:
+                source = case.get("source", "")
+                if case.get("role") == role and source not in seen_sources:
                     chosen.append(case)
-                    seen_sources.add(case.get("source"))
+                    seen_sources.add(source)
                     break
 
         for case in bucket:
             if len(chosen) >= max_cases_per_line:
                 break
-            if case.get("source") not in seen_sources:
-                chosen.append(case)
-                seen_sources.add(case.get("source"))
 
-        selected[doctrine_line] = chosen
+            source = case.get("source", "")
+            if source not in seen_sources:
+                chosen.append(case)
+                seen_sources.add(source)
+
+        selected[doctrine_line] = chosen[:max_cases_per_line]
 
     return selected
 
@@ -472,9 +882,22 @@ def build_context_from_cases(
     context_parts: List[str] = []
     timeline_parts: List[str] = []
 
-    for case in cases[:5]:
+    target_set = set(target_lines or [])
+
+    filtered_cases = [
+        case for case in cases
+        if not target_set
+        or case.get("doctrine_line") in target_set
+        or infer_doctrine_line_from_source(case.get("source", "")) in target_set
+    ]
+
+    if not filtered_cases:
+        filtered_cases = cases
+
+    for case in filtered_cases[:5]:
         source = case.get("source", "")
         role = case.get("role", "related_case")
+        doctrine_line = case.get("doctrine_line") or infer_doctrine_line_from_source(source)
         display = get_case_display_name(case)
         chunks = case.get("chunks", [])[:2]
 
@@ -485,7 +908,7 @@ def build_context_from_cases(
         )
 
         context_parts.append(
-            f"[{display} | role={role} | source={source}]\n{chunk_text}"
+            f"[{display} | doctrine={doctrine_line} | role={role} | source={source}]\n{chunk_text}"
         )
         timeline_parts.append(f"- {display}: {role}")
 
@@ -503,7 +926,10 @@ def build_multi_doctrine_context(
             continue
 
         cases = doctrine_leaders.get(doctrine_line, [])
-        label = DOCTRINE_LABELS.get(doctrine_line, doctrine_line.replace("_", " ").title())
+        label = DOCTRINE_LABELS.get(
+            doctrine_line,
+            doctrine_line.replace("_", " ").title(),
+        )
 
         parts.append(f"[DOCTRINE LINE: {label}]")
 
@@ -519,7 +945,9 @@ def build_multi_doctrine_context(
                 if chunk.get("text")
             )
 
-            parts.append(f"{display} | role={role} | source={source}\n{chunk_text}")
+            parts.append(
+                f"{display} | role={role} | source={source}\n{chunk_text}"
+            )
 
         parts.append("")
 

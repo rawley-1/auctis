@@ -2697,11 +2697,9 @@ SUPPORTING CASES:
         build_case_cards(cases, role_quote_map, query_plan, case_quotes),
     )
     # --- SAFETY: ensure cases is never empty ---
-    if not cases:   
-        if doctrine_leaders:
-            cases = doctrine_leaders
-    elif doctrine_buckets:
-        # flatten buckets into a list
+    # Important: do NOT replace canonical cases with doctrine_leaders.
+    # doctrine_leaders are for display/thread support only and may include broader doctrine context.
+    if not cases and doctrine_buckets:
         cases = [c for bucket in doctrine_buckets.values() for c in bucket]
     return {
         "query_plan": query_plan,
