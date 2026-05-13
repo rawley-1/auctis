@@ -219,7 +219,6 @@ RegressionCase(
 
 ]
 
-
 def extract_validation_score(output: str) -> Optional[int]:
     marker = "VALIDATION SCORE:"
     for line in output.splitlines():

@@ -4,6 +4,7 @@ import re
 
 ensure_index_exists()
 import os
+import streamlit as st
 
 try:
     if "OPENAI_API_KEY" in st.secrets:
@@ -11,6 +12,7 @@ try:
 except Exception:
     pass
 
+from ask import run_query
 from ask import run_query
 
 st.set_page_config(page_title="Auctis", layout="wide")
@@ -292,6 +294,7 @@ def opinion_match_found(search_term: str, full_text: str) -> bool:
                 return True
 
     return False
+
 # =========================
 # DEMO PAGE
 # =========================
@@ -302,7 +305,9 @@ if st.session_state["show_demo"]:
         st.rerun()
 
     st.markdown("## Auctis")
-    st.markdown("Delaware corporate law doctrine search.")
+    st.markdown(
+        "Court-ready Delaware law reasoning. Turn case law into governing rules, analysis, and comparisons in seconds."
+    )
 
     user_input = st.chat_input("Ask a Delaware law question...")
 
@@ -332,7 +337,7 @@ if st.session_state["show_demo"]:
 
         output_mode = st.radio(
             "Output Mode",
-            ["Opinion Mode", "Memo Mode", "Structured"],
+            ["Structured", "Memo Mode", "Opinion Mode"],
             horizontal=True,
         )
 
@@ -343,7 +348,7 @@ if st.session_state["show_demo"]:
             shown_any = False
             shown_sources = set()
 
-            for role, item in (role_quote_map or {}).items():
+            for role, item in role_quote_map.items():
                 if not isinstance(item, dict):
                     continue
 
@@ -365,7 +370,7 @@ if st.session_state["show_demo"]:
                 if source:
                     st.caption(f"Source: {source}")
 
-            for card in case_cards or []:
+            for card in case_cards:
                 case_name = card.get("name", "Unknown")
                 role = card.get("role", "related_case")
                 quote = card.get("quote", "")
@@ -385,25 +390,34 @@ if st.session_state["show_demo"]:
                     st.caption(f"Source: {source}")
 
             if not shown_any:
-                st.caption("No quote map was returned for this answer.")
+                st.caption(
+                    "No quote map was returned for this answer. "
+                    "See Supporting Cases below."
+                )
 
         st.subheader("Answer")
 
-        if output_mode == "Opinion Mode":
-            answer_text = (
+        if output_mode == "Memo Mode":
+            st.markdown(
+                result.get("memo_answer")
+                or result.get("answer", "No answer returned.")
+            )
+
+            with st.expander("Citation + quote map"):
+                render_quote_map()
+
+        elif output_mode == "Opinion Mode":
+            opinion = (
                 result.get("opinion_answer")
                 or result.get("memo_answer")
                 or result.get("answer", "No answer returned.")
             )
-            linked = link_cited_cases(answer_text, case_cards)
+
+            linked = link_cited_cases(opinion, case_cards)
             st.markdown(linked, unsafe_allow_html=True)
 
-        elif output_mode == "Memo Mode":
-            answer_text = (
-                result.get("memo_answer")
-                or result.get("answer", "No answer returned.")
-            )
-            st.markdown(answer_text)
+            with st.expander("Citation + quote map"):
+                render_quote_map()
 
         else:
             st.markdown(result.get("answer", "No answer returned."))
@@ -430,18 +444,15 @@ if st.session_state["show_demo"]:
                     st.session_state["last_question"] = corrected_question
                     st.rerun()
 
-        with st.expander("Citation + quote map"):
-            render_quote_map()
-
         usable_cards = [
             card
-            for card in (case_cards or [])[:8]
+            for card in case_cards[:8]
             if card.get("quote") or card.get("context") or card.get("full_text")
         ]
 
         if usable_cards:
             st.markdown("### Supporting Cases")
-            st.caption("Explore the cases Auctis used to ground the answer.")
+            st.markdown("#### Click a case to explore reasoning")
 
             for card in usable_cards:
                 name = card.get("name", "Unknown Case")
@@ -472,25 +483,23 @@ if st.session_state["show_demo"]:
                             search_default = quote[:120] if quote else name
 
                             search_term = st.text_input(
-                                "Find in opinion",
-                                value=search_default,
-                                key=f"find_{source}_{name}",
-                            )
+                            "Find in opinion",
+                            value=search_default,
+                            key=f"find_{source}_{name}",
+                        )
 
-                            if search_term:
-                                if opinion_match_found(search_term, full_text):
-                                    st.success("Match found in full opinion.")
-                                else:
-                                    st.caption(
-                                        "No close match found. Try a shorter phrase or case name."
-                                    )
+                        if search_term:
+                            if opinion_match_found(search_term, full_text):
+                                st.success("Match found in full opinion.")
+                            else:
+                                st.caption("No close match found. Try a shorter phrase or case name.")
 
-                            st.text_area(
-                                "Full opinion text",
-                                full_text,
-                                height=500,
-                                label_visibility="collapsed",
-                            )
+                        st.text_area(
+                        "Full opinion text",
+                        full_text,
+                        height=500,
+                        label_visibility="collapsed",
+                    )
 
                     if source:
                         st.caption(f"Source: {source}")
@@ -521,35 +530,20 @@ if st.session_state["show_demo"]:
                         unsafe_allow_html=True,
                     )
 
-        score = result.get("validation_score")
-
-        if score is not None:
-            score = int(score or 0)
-            confidence = "High" if score >= 85 else "Medium" if score >= 70 else "Low"
+        if result.get("validation_score") is not None:
+            score = int(result.get("validation_score") or 0)
             color = score_color(score)
 
             st.markdown(
                 f"""
                 <div style="
                     margin-top:18px;
-                    font-size:1.15rem;
+                    font-size:1.35rem;
                     font-weight:800;
                     color:{color};
                 ">
-                    Confidence: {confidence}
+                    Validation Score: {score}/100
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-
-            with st.expander("Validation details"):
-                st.markdown(f"**Validation Score:** {score}/100")
-
-                validation_errors = result.get("validation_errors", []) or []
-
-                if validation_errors:
-                    st.markdown("**Validator notes:**")
-                    for err in validation_errors:
-                        st.markdown(f"- {err}")
-                else:
-                    st.caption("No validator issues reported.")
