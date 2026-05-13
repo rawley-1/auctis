@@ -1,0 +1,868 @@
+========================================================================
+RUNNING DELAWARE AI REGRESSION SUITE
+========================================================================
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_marchand_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=3.3562, role=foundation, line=oversight)
+- marchand.txt (case_score=1.8627, role=modern_application, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 3.3562)
+    marchand.txt (modern_application, 1.8627)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=3.3562)
+    marchand.txt (role=modern_application, case_score=1.8627)
+VALIDATION SCORE: 94/100
+VALIDATION ERRORS:
+- Rule Comparison must expressly include Stone
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Oversight supplies the governing doctrinal framework.
+
+Key Distinction:
+Caremark doctrine addresses utter-failure oversight liability, whereas Marchand doctrine addresses mission-critical monitoring obligations.
+
+Rule Comparison:
+Caremark establishes the baseline oversight rule requiring an utter failure to attempt to assure that a reasonable reporting or information system exists. Marchand further requires directors to make a good faith effort to implement and monitor systems addressing mission-critical risk. Taken together, Caremark defines the foundational oversight framework, whereas Marchand extends that framework into active mission-critical monitoring obligations.
+
+Rule:
+The Caremark doctrine requires an utter failure to attempt to assure the existence of a reasonable reporting or information system, while Stone establishes that a conscious failure to monitor such systems constitutes a breach of the duty of loyalty through bad faith; Marchand refines this standard by requiring directors to make a good faith effort to implement and actively monitor oversight systems addressing mission-critical risks, thereby integrating the duty of loyalty with a proactive good faith effort to discharge oversight responsibilities.
+
+Analysis:
+This matters because Caremark establishes the baseline oversight framework requiring an utter failure to attempt to assure a reporting or information system exists. The significance is that Stone clarifies that a conscious failure to monitor constitutes bad faith and Marchand further requires directors to make a good faith effort to implement and monitor systems addressing mission-critical risk. As a result, ignoring red flags tied to mission-critical risk may support Caremark liability.
+
+Confidence:
+High
+
+
+
+==============================================
+
+caremark_marchand_comparison PASSED (score=94)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: mfw_corwin_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['controller_transactions', 'stockholder_vote_cleansing']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- kahn.txt (case_score=2.0759, role=foundation, line=controller_transactions)
+- tesla.txt (case_score=3.5177, role=modern_application, line=controller_transactions)
+
+DOCTRINE BUCKETS:
+- Controller Transactions:
+    kahn.txt (foundation, 2.0759)
+    tesla.txt (modern_application, 3.5177)
+
+DOCTRINE LEADERS:
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=2.0759)
+    tesla.txt (role=modern_application, case_score=3.5177)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Stockholder Vote Cleansing governs a distinct one.
+
+Key Distinction:  
+Controller Transactions doctrine addresses controller-conflict cleansing protections, whereas Stockholder Vote Cleansing doctrine addresses the legal effect of a fully informed stockholder vote.
+
+Controller Transactions:  
+Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. Business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied.
+
+Stockholder Vote Cleansing:  
+Stockholder Vote Cleansing doctrine governs the effect of stockholder approval, where a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review. The cleansing vote must satisfy the condition that the vote must be fully informed. It also must satisfy the condition that the vote must be uncoerced.
+
+Rule Comparison:  
+Controller Transactions doctrine subjects conflicted controller transactions to entire fairness review absent dual procedural protections. Stockholder Vote Cleansing doctrine separately asks whether a fully informed and uncoerced stockholder vote restores business judgment review for a non-controller transaction. Taken together, controller-transactions doctrine addresses controller conflict, whereas stockholder-vote cleansing addresses the legal effect of stockholder approval.
+
+Analysis:  
+This matters because controller-transactions doctrine addresses transactions involving controller conflict, where entire fairness is the standard of review for a controller transaction and business judgment review is restored only if the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. The significance is that stockholder-vote cleansing doctrine instead asks whether a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review. As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas stockholder-vote cleansing governs the legal effect of stockholder approval.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+mfw_corwin_comparison PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_unocal_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight', 'takeover_defense']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=3.2828, role=foundation, line=oversight)
+- unitrin.txt (case_score=2.1761, role=supreme_refinement, line=takeover_defense)
+- marchand.txt (case_score=1.8461, role=modern_application, line=oversight)
+- airgas v .txt (case_score=1.8087, role=modern_application, line=takeover_defense)
+- airgas.txt (case_score=1.5371, role=modern_application, line=takeover_defense)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 3.2828)
+    marchand.txt (modern_application, 1.8461)
+- Takeover Defense:
+    unitrin.txt (supreme_refinement, 2.1761)
+    airgas v .txt (modern_application, 1.8087)
+    airgas.txt (modern_application, 1.5371)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=3.2828)
+    marchand.txt (role=modern_application, case_score=1.8461)
+- Takeover Defense:
+    unitrin.txt (role=supreme_refinement, case_score=2.1761)
+    airgas v .txt (role=modern_application, case_score=1.8087)
+    airgas.txt (role=modern_application, case_score=1.5371)
+VALIDATION SCORE: 88/100
+VALIDATION ERRORS:
+- Key Distinction must be exactly one sentence
+- Key Distinction is too long
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Oversight establishes the governing framework for one fiduciary setting, whereas Takeover Defense governs a distinct one.
+
+Key Distinction:  
+Oversight doctrine addresses internal monitoring failures, whereas Takeover Defense doctrine addresses defensive measures responding to external threats.
+
+Oversight:  
+Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through a failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+
+Takeover Defense:  
+Takeover Defense doctrine governs defensive action in response to takeover threats, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed. The defensive response must be neither coercive nor preclusive. It also must fall within a range of reasonableness.
+
+Rule Comparison:  
+Oversight doctrine governs board-level monitoring obligations and focuses on whether directors acted in bad faith by failing to implement or monitor reporting systems. Takeover Defense doctrine governs defensive measures adopted in response to a perceived threat and requires that the response be neither coercive nor preclusive and fall within a range of reasonableness. Taken together, oversight doctrine addresses internal monitoring obligations, whereas takeover-defense doctrine addresses external defensive measures.
+
+Analysis:  
+This matters because oversight doctrine addresses internal board monitoring, where directors breach the duty of loyalty through utter failure to attempt to assure that a reasonable reporting or information system exists, and where failure to act in good faith includes the obligation to make a good faith effort to implement an oversight system. The significance is that takeover-defense doctrine instead addresses external defensive action, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed, and that their response was neither coercive nor preclusive and within a range of reasonableness. As a result, oversight doctrine governs internal monitoring obligations, whereas takeover-defense doctrine governs defensive responses to takeover threats.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+caremark_unocal_comparison PASSED (score=88)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: controller_vs_sale_of_control
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['controller_transactions', 'sale_of_control']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- kahn.txt (case_score=2.0669, role=foundation, line=controller_transactions)
+- paramount v qvc.txt (case_score=2.3540, role=supreme_refinement, line=sale_of_control)
+- qvc.txt (case_score=2.2159, role=supreme_refinement, line=sale_of_control)
+- tesla.txt (case_score=3.2837, role=modern_application, line=controller_transactions)
+- rural metro.txt (case_score=1.8374, role=modern_application, line=sale_of_control)
+- lyondell.txt (case_score=1.4758, role=modern_application, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Controller Transactions:
+    kahn.txt (foundation, 2.0669)
+    tesla.txt (modern_application, 3.2837)
+- Sale of Control:
+    paramount v qvc.txt (supreme_refinement, 2.3540)
+    qvc.txt (supreme_refinement, 2.2159)
+    rural metro.txt (modern_application, 1.8374)
+    lyondell.txt (modern_application, 1.4758)
+
+DOCTRINE LEADERS:
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=2.0669)
+    tesla.txt (role=modern_application, case_score=3.2837)
+- Sale of Control:
+    paramount v qvc.txt (role=supreme_refinement, case_score=2.3540)
+    rural metro.txt (role=modern_application, case_score=1.8374)
+    qvc.txt (role=supreme_refinement, case_score=2.2159)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Sale of Control governs a distinct one.
+
+Key Distinction:  
+Controller Transactions doctrine addresses controller conflict, whereas Sale of Control doctrine addresses value maximization in a change-of-control transaction.
+
+Controller Transactions:  
+Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. Business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied.
+
+Sale of Control:  
+Sale of Control doctrine governs change-of-control transactions, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders. The doctrine is triggered where the duty applies when a transaction will result in a change of control. Once triggered, directors satisfy their duties if they act reasonably to secure the best value reasonably available.
+
+Rule Comparison:  
+Controller Transactions doctrine governs conflicted-controller transactions and focuses on procedural cleansing protections. Sale of Control doctrine separately governs change-of-control transactions and requires directors to maximize stockholder value. Taken together, controller-transactions doctrine addresses controller conflict, whereas sale-of-control doctrine addresses value maximization.
+
+Analysis:  
+This matters because controller-transactions doctrine addresses controller conflict, where entire fairness is the standard of review for a controller transaction, but business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority; otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied. The significance is that sale-of-control doctrine instead governs whether directors acted reasonably to maximize value, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders, and where the duty applies when a transaction will result in a change of control; accordingly, directors satisfy their duties if they act reasonably to secure the best value reasonably available. As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas sale-of-control doctrine governs value maximization in a change-of-control transaction.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+controller_vs_sale_of_control PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_revlon_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['sale_of_control', 'oversight']
+NAMED SOURCES: ['revlon.txt', 'caremark.txt']
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- paramount v qvc.txt (case_score=1.5546, role=supreme_refinement, line=sale_of_control)
+- qvc.txt (case_score=1.5388, role=supreme_refinement, line=sale_of_control)
+- rural metro.txt (case_score=1.0965, role=modern_application, line=sale_of_control)
+- lyondell.txt (case_score=0.8938, role=modern_application, line=sale_of_control)
+- paramount v time.txt (case_score=0.6518, role=related_case, line=sale_of_control)
+- disney.txt (case_score=0.5995, role=related_case, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Sale of Control:
+    paramount v qvc.txt (supreme_refinement, 1.5546)
+    qvc.txt (supreme_refinement, 1.5388)
+    rural metro.txt (modern_application, 1.0965)
+    lyondell.txt (modern_application, 0.8938)
+    paramount v time.txt (related_case, 0.6518)
+
+DOCTRINE LEADERS:
+- Sale of Control:
+    paramount v qvc.txt (role=supreme_refinement, case_score=1.5546)
+    rural metro.txt (role=modern_application, case_score=1.0965)
+    qvc.txt (role=supreme_refinement, case_score=1.5388)
+VALIDATION SCORE: 88/100
+VALIDATION ERRORS:
+- Key Distinction must be exactly one sentence
+- Key Distinction is too long
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Sale of Control establishes the governing framework for one fiduciary setting, whereas Oversight governs a distinct one.
+
+Key Distinction:
+Oversight doctrine addresses board-level monitoring failures, whereas Sale of Control doctrine addresses value maximization in a change-of-control transaction.
+
+Oversight:
+Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through a failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+
+Sale of Control:
+Sale of Control doctrine governs change-of-control transactions, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders. The doctrine is triggered where the duty applies when a transaction will result in a change of control. Once triggered, directors satisfy their duties if they act reasonably to secure the best value reasonably available.
+
+Rule Comparison:
+Oversight doctrine governs board-level monitoring obligations, where Caremark, Stone, and Marchand require directors to act in good faith by implementing and monitoring reporting systems for mission-critical risk. Sale of Control doctrine governs transactional conduct once the company enters sale mode or undergoes a change of control, where Revlon and QVC require directors to seek the best value reasonably available to stockholders. Taken together, oversight doctrine addresses internal monitoring failure, whereas sale-of-control doctrine addresses value maximization.
+
+Analysis:
+This matters because repeated food-safety red flags principally implicate oversight doctrine, where Caremark, Stone, and Marchand ask whether the board acted in bad faith by failing to implement or monitor a reporting system for mission-critical risk. The significance is that the simultaneous sale process separately may implicate sale-of-control doctrine, where Revlon and QVC require directors to seek the best value reasonably available once the company enters sale mode or undergoes a change of control. As a result, the same facts can implicate both doctrines, but oversight doctrine addresses the internal monitoring failure while sale-of-control doctrine addresses value maximization in the transaction.
+
+Confidence:
+High
+
+
+
+==============================================
+
+caremark_revlon_comparison PASSED (score=88)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: aronson_rales_comparison
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['demand_futility']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- aronson.txt (case_score=2.0243, role=foundation, line=demand_futility)
+- rales.txt (case_score=1.8904, role=supreme_refinement, line=demand_futility)
+
+DOCTRINE BUCKETS:
+- Demand Futility:
+    aronson.txt (foundation, 2.0243)
+    rales.txt (supreme_refinement, 1.8904)
+
+DOCTRINE LEADERS:
+- Demand Futility:
+    aronson.txt (role=foundation, case_score=2.0243)
+    rales.txt (role=supreme_refinement, case_score=1.8904)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Demand Futility supplies the governing doctrinal framework.
+
+Key Distinction:
+Aronson addresses demand futility in one procedural posture, whereas Rales addresses demand futility where the challenged board did not make the business decision.
+
+Rule Comparison:
+Aronson frames demand futility by asking whether particularized facts create a reasonable doubt that directors were disinterested and independent or that the challenged transaction was a valid exercise of business judgment. Rales refines the inquiry by asking whether particularized facts create a reasonable doubt that a majority of the board could impartially consider a demand. Taken together, Aronson and Rales define demand futility by focusing on whether demand should be excused.
+
+Rule:
+Demand futility doctrine requires that a plaintiff plead particularized facts creating a reasonable doubt that the directors are disinterested and independent or that the challenged transaction was a valid exercise of business judgment, establishing an utter failure of board impartiality to consider a demand; this inquiry is refined by a director-by-director review assessing whether a majority of the board could impartially consider the demand, thereby linking the duty of loyalty to the board’s good faith capacity to respond to shareholder demands.
+
+Analysis:
+This matters because Delaware fiduciary doctrine is context specific rather than unitary. The significance is that each doctrine governs a different board function and therefore imposes a different standard of review or obligation. As a result, identifying the correct doctrinal framework is necessary before the governing standard can be applied.
+
+Confidence:
+High
+
+
+
+==============================================
+
+aronson_rales_comparison PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_pleading_standard
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: doctrine_evolution
+TARGET LINES: ['oversight']
+NAMED SOURCES: ['caremark.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=2.8362, role=foundation, line=oversight) *
+- marchand.txt (case_score=1.4477, role=modern_application, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 2.8362)
+    marchand.txt (modern_application, 1.4477)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=2.8362)
+    marchand.txt (role=modern_application, case_score=1.4477)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Caremark requires utter failure, whereas Marchand requires good faith monitoring.
+
+
+Rule:
+Caremark oversight liability arises where directors make an utter failure to attempt to assure that a reasonable reporting or information system exists, and Stone further clarifies that such misconduct constitutes a failure to act in good faith as a subsidiary element of the duty of loyalty. Marchand further requires directors to make a good faith effort to implement an oversight system capable of monitoring mission-critical risk.
+
+Analysis:
+This matters because Caremark liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists or a later failure to monitor such a system in good faith. The significance is that where the board appears to have implemented and monitored an oversight system, the duty of loyalty theory is materially weaker. As a result, the alleged facts suggest lower oversight risk rather than a strong inference of disloyal oversight failure.
+
+Confidence:
+High
+
+
+
+==============================================
+
+caremark_pleading_standard PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: caremark_evolution
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=3.2879, role=foundation, line=oversight)
+- marchand.txt (case_score=1.8069, role=modern_application, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 3.2879)
+    marchand.txt (modern_application, 1.8069)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=3.2879)
+    marchand.txt (role=modern_application, case_score=1.8069)
+VALIDATION SCORE: 94/100
+VALIDATION ERRORS:
+- Rule Comparison must expressly include Stone
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Oversight supplies the governing doctrinal framework.
+
+Key Distinction:
+Caremark doctrine addresses utter-failure oversight liability, whereas Marchand doctrine addresses mission-critical monitoring obligations.
+
+Rule Comparison:
+Caremark establishes the baseline oversight rule requiring an utter failure to attempt to assure that a reasonable reporting or information system exists. Marchand further requires directors to make a good faith effort to implement and monitor systems addressing mission-critical risk. Taken together, Caremark defines the foundational oversight framework, whereas Marchand extends that framework into active mission-critical monitoring obligations.
+
+Rule:
+The Caremark doctrine requires an utter failure to attempt to assure the existence of a reasonable reporting or information system, establishing the foundational standard for oversight liability. Stone clarifies that a conscious failure to monitor implicates the duty of loyalty through bad faith, and Marchand refines this by requiring a good faith effort to implement and monitor an oversight system addressing mission-critical risks.
+
+Analysis:
+This matters because Caremark establishes the baseline oversight framework requiring an utter failure to attempt to assure a reporting or information system exists. The significance is that Stone clarifies that a conscious failure to monitor constitutes bad faith and Marchand further requires directors to make a good faith effort to implement and monitor systems addressing mission-critical risk. As a result, ignoring red flags tied to mission-critical risk may support Caremark liability.
+
+Confidence:
+High
+
+
+
+==============================================
+
+caremark_evolution PASSED (score=94)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: red_flags_plus_defensive_measures
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['oversight', 'takeover_defense']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=4.1796, role=foundation, line=oversight)
+- unitrin.txt (case_score=2.3189, role=supreme_refinement, line=takeover_defense)
+- marchand.txt (case_score=3.2849, role=modern_application, line=oversight)
+- airgas.txt (case_score=2.1512, role=modern_application, line=takeover_defense)
+- airgas v .txt (case_score=2.0187, role=modern_application, line=takeover_defense)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 4.1796)
+    marchand.txt (modern_application, 3.2849)
+- Takeover Defense:
+    unitrin.txt (supreme_refinement, 2.3189)
+    airgas.txt (modern_application, 2.1512)
+    airgas v .txt (modern_application, 2.0187)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=4.1796)
+    marchand.txt (role=modern_application, case_score=3.2849)
+- Takeover Defense:
+    unitrin.txt (role=supreme_refinement, case_score=2.3189)
+    airgas.txt (role=modern_application, case_score=2.1512)
+    airgas v .txt (role=modern_application, case_score=2.0187)
+VALIDATION SCORE: 88/100
+VALIDATION ERRORS:
+- Key Distinction must be exactly one sentence
+- Key Distinction is too long
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Oversight establishes the governing framework for one fiduciary setting, whereas Takeover Defense governs a distinct one.
+
+Key Distinction:  
+Oversight doctrine addresses internal monitoring failures, whereas Takeover Defense doctrine addresses defensive measures responding to external threats.
+
+Oversight:  
+Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through a failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+
+Takeover Defense:  
+Takeover Defense doctrine governs defensive action in response to takeover threats, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed. The defensive response must be neither coercive nor preclusive. It also must fall within a range of reasonableness.
+
+Rule Comparison:  
+Oversight doctrine governs board-level monitoring obligations and focuses on whether directors acted in bad faith by failing to implement or monitor reporting systems. Takeover Defense doctrine governs defensive measures adopted in response to a perceived threat and requires that the response be neither coercive nor preclusive and fall within a range of reasonableness. Taken together, oversight doctrine addresses internal monitoring obligations, whereas takeover-defense doctrine addresses external defensive measures.
+
+Analysis:  
+This matters because oversight doctrine addresses internal board monitoring, where directors breach the duty of loyalty through utter failure to attempt to assure that a reasonable reporting or information system exists, and where failure to act in good faith includes the obligation to make a good faith effort to implement an oversight system. The significance is that takeover-defense doctrine instead addresses external defensive action, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed, and that their response was neither coercive nor preclusive and within a range of reasonableness. As a result, oversight doctrine governs internal monitoring obligations, whereas takeover-defense doctrine governs defensive responses to takeover threats.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+red_flags_plus_defensive_measures PASSED (score=88)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: controller_sale_process_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['controller_transactions', 'sale_of_control']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- kahn.txt (case_score=2.9465, role=foundation, line=controller_transactions)
+- qvc.txt (case_score=3.3354, role=supreme_refinement, line=sale_of_control)
+- paramount v qvc.txt (case_score=3.2243, role=supreme_refinement, line=sale_of_control)
+- tesla.txt (case_score=4.2843, role=modern_application, line=controller_transactions)
+- rural metro.txt (case_score=2.1327, role=modern_application, line=sale_of_control)
+
+DOCTRINE BUCKETS:
+- Controller Transactions:
+    kahn.txt (foundation, 2.9465)
+    tesla.txt (modern_application, 4.2843)
+- Sale of Control:
+    qvc.txt (supreme_refinement, 3.3354)
+    paramount v qvc.txt (supreme_refinement, 3.2243)
+    rural metro.txt (modern_application, 2.1327)
+
+DOCTRINE LEADERS:
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=2.9465)
+    tesla.txt (role=modern_application, case_score=4.2843)
+- Sale of Control:
+    qvc.txt (role=supreme_refinement, case_score=3.3354)
+    rural metro.txt (role=modern_application, case_score=2.1327)
+    paramount v qvc.txt (role=supreme_refinement, case_score=3.2243)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Sale of Control governs a distinct one.
+
+Key Distinction:  
+Controller Transactions doctrine addresses controller conflict, whereas Sale of Control doctrine addresses value maximization in a change-of-control transaction.
+
+Controller Transactions:  
+Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. Business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied.
+
+Sale of Control:  
+Sale of Control doctrine governs change-of-control transactions, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders. The doctrine is triggered where the duty applies when a transaction will result in a change of control. Once triggered, directors satisfy their duties if they act reasonably to secure the best value reasonably available.
+
+Rule Comparison:  
+Controller Transactions doctrine governs conflicted-controller transactions and focuses on procedural cleansing protections. Sale of Control doctrine separately governs change-of-control transactions and requires directors to maximize stockholder value. Taken together, controller-transactions doctrine addresses controller conflict, whereas sale-of-control doctrine addresses value maximization.
+
+Analysis:  
+This matters because controller-transactions doctrine addresses controller conflict, where entire fairness is the standard of review for a controller transaction, but business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority; otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied. The significance is that sale-of-control doctrine instead governs whether directors acted reasonably to maximize value, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders, and where the duty applies when a transaction will result in a change of control; accordingly, directors satisfy their duties if they act reasonably to secure the best value reasonably available. As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas sale-of-control doctrine governs value maximization in a change-of-control transaction.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+controller_sale_process_fact_pattern PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: controller_corwin_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: comparison
+TARGET LINES: ['controller_transactions', 'stockholder_vote_cleansing']
+NAMED SOURCES: []
+MULTI-DOCTRINE: True
+
+SHORTLISTED CASES:
+- kahn.txt (case_score=3.0993, role=foundation, line=controller_transactions)
+- tesla.txt (case_score=4.4481, role=modern_application, line=controller_transactions)
+
+DOCTRINE BUCKETS:
+- Controller Transactions:
+    kahn.txt (foundation, 3.0993)
+    tesla.txt (modern_application, 4.4481)
+
+DOCTRINE LEADERS:
+- Controller Transactions:
+    kahn.txt (role=foundation, case_score=3.0993)
+    tesla.txt (role=modern_application, case_score=4.4481)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Stockholder Vote Cleansing governs a distinct one.
+
+Key Distinction:
+Controller Transactions doctrine addresses controller-conflict cleansing protections, whereas Stockholder Vote Cleansing doctrine addresses the legal effect of a fully informed stockholder vote.
+
+Controller Transactions:
+Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. Business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied.
+
+Stockholder Vote Cleansing:
+Stockholder Vote Cleansing doctrine governs the effect of stockholder approval, where a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review. The cleansing vote must satisfy the condition that the vote must be fully informed. It also must satisfy the condition that the vote must be uncoerced.
+
+Rule Comparison:
+Controller Transactions doctrine subjects conflicted controller transactions to entire fairness review absent dual procedural protections. Stockholder Vote Cleansing doctrine separately asks whether a fully informed and uncoerced stockholder vote restores business judgment review for a non-controller transaction. Taken together, controller-transactions doctrine addresses controller conflict, whereas stockholder-vote cleansing addresses the legal effect of stockholder approval.
+
+Rule:
+A board’s fiduciary duty requires more than an utter failure to attempt to assure a reporting or information system and encompasses a conscious failure to monitor such a system, which must be established by demonstrating the absence of a good faith effort to implement an oversight system consistent with the duty of loyalty; this standard synthesizes Caremark’s foundation, Stone’s duty-of-loyalty and good faith principles, and Marchand’s modern refinement requiring active monitoring and good faith efforts.
+
+Analysis:
+This matters because controller-transactions doctrine addresses transactions involving controller conflict, where entire fairness is the standard of review for a controller transaction and business judgment review is restored only if the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. The significance is that stockholder-vote cleansing doctrine instead asks whether a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review. As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas stockholder-vote cleansing governs the legal effect of stockholder approval.
+
+Confidence:
+High
+
+
+
+==============================================
+
+controller_corwin_fact_pattern PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: oversight_red_flags_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: graph_navigation
+TARGET LINES: ['oversight']
+NAMED SOURCES: ['caremark.txt']
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- caremark.txt (case_score=3.8679, role=foundation, line=oversight) *
+- marchand.txt (case_score=2.2082, role=modern_application, line=oversight)
+
+DOCTRINE BUCKETS:
+- Oversight:
+    caremark.txt (foundation, 3.8679)
+    marchand.txt (modern_application, 2.2082)
+
+DOCTRINE LEADERS:
+- Oversight:
+    caremark.txt (role=foundation, case_score=3.8679)
+    marchand.txt (role=modern_application, case_score=2.2082)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Caremark requires utter failure, whereas Marchand requires good faith monitoring.
+
+Rule:
+Caremark oversight liability arises where directors make an utter failure to attempt to assure that a reasonable reporting or information system exists, and Stone further clarifies that such misconduct constitutes a failure to act in good faith as a subsidiary element of the duty of loyalty. Marchand further requires directors to make a good faith effort to implement an oversight system capable of monitoring mission-critical risk.
+
+
+Analysis:
+This matters because oversight liability may arise where directors fail to monitor an existing reporting system and ignore red flags in a mission-critical area. The significance is that a board's failure to respond to red flags affecting the company's mission supports an inference of bad faith. As a result, ignoring red flags tied to a mission critical risk may give rise to Caremark liability.
+
+Confidence:
+High
+
+
+
+==============================================
+
+oversight_red_flags_fact_pattern PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: malone_disclosure_loyalty_standard
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: governing_standard
+TARGET LINES: ['disclosure_loyalty']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- opinions malone.txt (case_score=7.1711, role=foundation, line=disclosure_loyalty)
+- doctrines disclosure duty malone.txt (case_score=6.7939, role=foundation, line=disclosure_loyalty)
+- malone.txt (case_score=6.0078, role=foundation, line=disclosure_loyalty)
+
+DOCTRINE BUCKETS:
+- Disclosure Loyalty:
+    opinions malone.txt (foundation, 7.1711)
+    doctrines disclosure duty malone.txt (foundation, 6.7939)
+    malone.txt (foundation, 6.0078)
+
+DOCTRINE LEADERS:
+- Disclosure Loyalty:
+    opinions malone.txt (role=foundation, case_score=7.1711)
+    doctrines disclosure duty malone.txt (role=foundation, case_score=6.7939)
+    malone.txt (role=foundation, case_score=6.0078)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:
+Disclosure Loyalty supplies the governing doctrinal framework.
+
+
+Rule:
+Disclosure Loyalty doctrine governs what directors owe when communicating truthfully with stockholders, where directors who communicate with stockholders owe a duty to speak truthfully and completely. It also recognizes that disclosure that is materially misleading may constitute a breach of the duty of loyalty. Accordingly, directors may not knowingly disseminate false information to stockholders.
+
+Analysis:
+This matters because Disclosure Loyalty doctrine governs what directors owe when communicating with stockholders, where directors who communicate with stockholders owe a duty to speak truthfully and completely. The significance is that disclosure that is materially misleading may constitute a breach of the duty of loyalty. As a result, directors may not knowingly disseminate false information to stockholders.
+
+Confidence:
+High
+
+
+
+==============================================
+
+malone_disclosure_loyalty_standard PASSED (score=100)
+
+
+================ DEBUG OUTPUT ================
+
+CASE: takeover_defense_fact_pattern
+Hello! Ask a Delaware law question.
+
+Ask a Delaware law question: 
+QUERY PLAN:
+QUERY TYPE: general
+TARGET LINES: ['takeover_defense']
+NAMED SOURCES: []
+MULTI-DOCTRINE: False
+
+SHORTLISTED CASES:
+- unitrin.txt (case_score=2.0310, role=supreme_refinement, line=takeover_defense)
+- airgas v .txt (case_score=1.8714, role=modern_application, line=takeover_defense)
+- airgas.txt (case_score=1.8434, role=modern_application, line=takeover_defense)
+
+DOCTRINE BUCKETS:
+- Takeover Defense:
+    unitrin.txt (supreme_refinement, 2.0310)
+    airgas v .txt (modern_application, 1.8714)
+    airgas.txt (modern_application, 1.8434)
+
+DOCTRINE LEADERS:
+- Takeover Defense:
+    unitrin.txt (role=supreme_refinement, case_score=2.0310)
+    airgas v .txt (role=modern_application, case_score=1.8714)
+    airgas.txt (role=modern_application, case_score=1.8434)
+VALIDATION SCORE: 100/100
+
+============================================================
+AI ANSWER:
+============================================================
+
+Short Answer:  
+Takeover Defense supplies the governing doctrinal framework.
+
+
+Rule:  
+Takeover Defense doctrine governs defensive action in response to takeover threats, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed. The defensive response must be neither coercive nor preclusive. It also must fall within a range of reasonableness.
+
+Analysis:  
+This matters because Takeover Defense doctrine governs defensive responses to takeover threats, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed. The significance is that the response must be neither coercive nor preclusive and within a range of reasonableness. As a result, Delaware law subjects takeover defenses to enhanced scrutiny rather than ordinary business judgment review.
+
+Confidence:  
+High
+
+
+
+==============================================
+
+takeover_defense_fact_pattern PASSED (score=100)
+
+========================================================================
+PASSED: 14
+FAILED: 0
+========================================================================

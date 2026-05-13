@@ -4,45 +4,33 @@ Ask a Delaware law question:
 QUERY PLAN:
 QUERY TYPE: comparison
 TARGET LINES: ['oversight', 'takeover_defense']
-NAMED SOURCES: ['unocal.txt', 'caremark.txt']
+NAMED SOURCES: []
 MULTI-DOCTRINE: True
 
 SHORTLISTED CASES:
-- caremark.txt (case_score=0.8879, role=foundation, line=oversight) *
-- unocal.txt (case_score=0.7275, role=foundation, line=takeover_defense) *
-- unitrin.txt (case_score=0.6660, role=supreme_refinement, line=takeover_defense)
-- airgas.txt (case_score=0.6587, role=modern_application, line=takeover_defense)
-- marchand.txt (case_score=0.6549, role=modern_application, line=oversight)
-- Airgas v .txt (case_score=0.6058, role=related_case, line=unknown)
-- stone.txt (case_score=0.6044, role=supreme_refinement, line=oversight)
+- caremark.txt (case_score=3.2828, role=foundation, line=oversight)
+- unitrin.txt (case_score=2.1761, role=supreme_refinement, line=takeover_defense)
+- marchand.txt (case_score=1.8461, role=modern_application, line=oversight)
+- airgas v .txt (case_score=1.8087, role=modern_application, line=takeover_defense)
+- airgas.txt (case_score=1.5371, role=modern_application, line=takeover_defense)
 
 DOCTRINE BUCKETS:
 - Oversight:
-    caremark.txt (foundation, 0.8879)
-    stone.txt (supreme_refinement, 0.6044)
-    marchand.txt (modern_application, 0.6549)
+    caremark.txt (foundation, 3.2828)
+    marchand.txt (modern_application, 1.8461)
 - Takeover Defense:
-    unocal.txt (foundation, 0.7275)
-    unitrin.txt (supreme_refinement, 0.6660)
-    airgas.txt (modern_application, 0.6587)
-- Unknown:
-    Airgas v .txt (related_case, 0.6058)
+    unitrin.txt (supreme_refinement, 2.1761)
+    airgas v .txt (modern_application, 1.8087)
+    airgas.txt (modern_application, 1.5371)
 
 DOCTRINE LEADERS:
 - Oversight:
-    caremark.txt (role=foundation, case_score=0.8879)
-    stone.txt (role=supreme_refinement, case_score=0.6044)
-    marchand.txt (role=modern_application, case_score=0.6549)
+    caremark.txt (role=foundation, case_score=3.2828)
+    marchand.txt (role=modern_application, case_score=1.8461)
 - Takeover Defense:
-    unocal.txt (role=foundation, case_score=0.7275)
-    unitrin.txt (role=supreme_refinement, case_score=0.6660)
-    airgas.txt (role=modern_application, case_score=0.6587)
-- Unknown:
-    Airgas v .txt (role=related_case, case_score=0.6058)
-DEBUG REQUIRED QUOTE FRAGMENTS:
-- Caremark: "that undertakes that pliance report must officers semi"
-- Unitrin: "coercive circumstance application erroambiguous exacerbated factual necessity chancery"
-- Airgas: "judgment rule must reasonable wanting objectivity good faith"
+    unitrin.txt (role=supreme_refinement, case_score=2.1761)
+    airgas v .txt (role=modern_application, case_score=1.8087)
+    airgas.txt (role=modern_application, case_score=1.5371)
 VALIDATION SCORE: 88/100
 VALIDATION ERRORS:
 - Key Distinction must be exactly one sentence
@@ -56,16 +44,16 @@ Short Answer:
 Oversight establishes the governing framework for one fiduciary setting, whereas Takeover Defense governs a distinct one.
 
 Key Distinction:  
-Oversight doctrine addresses loyalty linkage, whereas Takeover Defense doctrine addresses outer bounds.
+Oversight doctrine addresses internal monitoring failures, whereas Takeover Defense doctrine addresses defensive measures responding to external threats.
 
 Oversight:  
-Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through a failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
 
 Takeover Defense:  
 Takeover Defense doctrine governs defensive action in response to takeover threats, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed. The defensive response must be neither coercive nor preclusive. It also must fall within a range of reasonableness.
 
 Rule Comparison:  
-Oversight doctrine governs board-level monitoring obligations, where directors breach the duty of loyalty through utter failure to attempt to assure that a reasonable reporting or information system exists, and where failure to act in good faith includes the obligation to make a good faith effort to implement an oversight system. Takeover Defense doctrine governs defensive action in response to a threat, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed, and that their response was neither coercive nor preclusive and within a range of reasonableness. Taken together, oversight doctrine addresses internal monitoring obligations, whereas takeover-defense doctrine addresses external defensive measures.
+Oversight doctrine governs board-level monitoring obligations and focuses on whether directors acted in bad faith by failing to implement or monitor reporting systems. Takeover Defense doctrine governs defensive measures adopted in response to a perceived threat and requires that the response be neither coercive nor preclusive and fall within a range of reasonableness. Taken together, oversight doctrine addresses internal monitoring obligations, whereas takeover-defense doctrine addresses external defensive measures.
 
 Analysis:  
 This matters because oversight doctrine addresses internal board monitoring, where directors breach the duty of loyalty through utter failure to attempt to assure that a reasonable reporting or information system exists, and where failure to act in good faith includes the obligation to make a good faith effort to implement an oversight system. The significance is that takeover-defense doctrine instead addresses external defensive action, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed, and that their response was neither coercive nor preclusive and within a range of reasonableness. As a result, oversight doctrine governs internal monitoring obligations, whereas takeover-defense doctrine governs defensive responses to takeover threats.

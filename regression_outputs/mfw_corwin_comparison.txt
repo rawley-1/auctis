@@ -4,49 +4,22 @@ Ask a Delaware law question:
 QUERY PLAN:
 QUERY TYPE: comparison
 TARGET LINES: ['controller_transactions', 'stockholder_vote_cleansing']
-NAMED SOURCES: ['mfw.txt', 'corwin.txt']
+NAMED SOURCES: []
 MULTI-DOCTRINE: True
 
 SHORTLISTED CASES:
-- corwin.txt (case_score=0.6167, role=supreme_refinement, line=stockholder_vote_cleansing) *
-- paramount.txt (case_score=0.4945, role=related_case, line=unknown)
-- mfw.txt (case_score=0.4613, role=supreme_refinement, line=controller_transactions) *
-- tesla.txt (case_score=0.4380, role=modern_application, line=controller_transactions)
-- kahn.txt (case_score=0.4344, role=foundation, line=controller_transactions)
-- airgas.txt (case_score=0.3748, role=modern_application, line=takeover_defense)
-- disney.txt (case_score=0.3707, role=related_case, line=oversight)
+- kahn.txt (case_score=2.0759, role=foundation, line=controller_transactions)
+- tesla.txt (case_score=3.5177, role=modern_application, line=controller_transactions)
 
 DOCTRINE BUCKETS:
-- Stockholder Vote Cleansing:
-    corwin.txt (supreme_refinement, 0.6167)
-- Unknown:
-    paramount.txt (related_case, 0.4945)
 - Controller Transactions:
-    kahn.txt (foundation, 0.4344)
-    mfw.txt (supreme_refinement, 0.4613)
-    tesla.txt (modern_application, 0.4380)
-- Takeover Defense:
-    airgas.txt (modern_application, 0.3748)
-- Oversight:
-    disney.txt (related_case, 0.3707)
+    kahn.txt (foundation, 2.0759)
+    tesla.txt (modern_application, 3.5177)
 
 DOCTRINE LEADERS:
-- Stockholder Vote Cleansing:
-    corwin.txt (role=supreme_refinement, case_score=0.6167)
-- Unknown:
-    paramount.txt (role=related_case, case_score=0.4945)
 - Controller Transactions:
-    kahn.txt (role=foundation, case_score=0.4344)
-    mfw.txt (role=supreme_refinement, case_score=0.4613)
-    tesla.txt (role=modern_application, case_score=0.4380)
-- Takeover Defense:
-    airgas.txt (role=modern_application, case_score=0.3748)
-- Oversight:
-    disney.txt (role=related_case, case_score=0.3707)
-DEBUG REQUIRED QUOTE FRAGMENTS:
-- Kahn: "this views found application entire fairness exclusive opinions"
-- MFW: "business judgment review applies transaction conditioned from outset"
-- Tesla: "decisionmakers magnitude difference between sizes grant comparable plans"
+    kahn.txt (role=foundation, case_score=2.0759)
+    tesla.txt (role=modern_application, case_score=3.5177)
 VALIDATION SCORE: 100/100
 
 ============================================================
@@ -57,7 +30,7 @@ Short Answer:
 Controller Transactions establishes the governing framework for one fiduciary setting, whereas Stockholder Vote Cleansing governs a distinct one.
 
 Key Distinction:  
-Controller Transactions doctrine addresses dual cleansing protections, whereas Stockholder Vote Cleansing doctrine addresses information condition.
+Controller Transactions doctrine addresses controller-conflict cleansing protections, whereas Stockholder Vote Cleansing doctrine addresses the legal effect of a fully informed stockholder vote.
 
 Controller Transactions:  
 Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. Business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied.
@@ -66,7 +39,7 @@ Stockholder Vote Cleansing:
 Stockholder Vote Cleansing doctrine governs the effect of stockholder approval, where a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review. The cleansing vote must satisfy the condition that the vote must be fully informed. It also must satisfy the condition that the vote must be uncoerced.
 
 Rule Comparison:  
-Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction, but business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Stockholder Vote Cleansing doctrine governs the effect of stockholder approval, where a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review, provided that the vote must be fully informed and the vote must be uncoerced. Taken together, controller-transactions doctrine addresses controller conflict through dual procedural protections, whereas stockholder-vote cleansing addresses the legal effect of a fully informed and uncoerced stockholder vote.
+Controller Transactions doctrine subjects conflicted controller transactions to entire fairness review absent dual procedural protections. Stockholder Vote Cleansing doctrine separately asks whether a fully informed and uncoerced stockholder vote restores business judgment review for a non-controller transaction. Taken together, controller-transactions doctrine addresses controller conflict, whereas stockholder-vote cleansing addresses the legal effect of stockholder approval.
 
 Analysis:  
 This matters because controller-transactions doctrine addresses transactions involving controller conflict, where entire fairness is the standard of review for a controller transaction and business judgment review is restored only if the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. The significance is that stockholder-vote cleansing doctrine instead asks whether a fully informed and uncoerced vote of disinterested stockholders invokes business judgment review. As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas stockholder-vote cleansing governs the legal effect of stockholder approval.

@@ -2,41 +2,35 @@ Hello! Ask a Delaware law question.
 
 Ask a Delaware law question: 
 QUERY PLAN:
-QUERY TYPE: governing_standard
-TARGET LINES: ['controller_transactions']
+QUERY TYPE: comparison
+TARGET LINES: ['controller_transactions', 'sale_of_control']
 NAMED SOURCES: []
-MULTI-DOCTRINE: False
+MULTI-DOCTRINE: True
 
 SHORTLISTED CASES:
-- kahn.txt (case_score=0.8167, role=foundation, line=controller_transactions)
-- mfw.txt (case_score=0.7714, role=supreme_refinement, line=controller_transactions)
-- tesla.txt (case_score=0.6802, role=modern_application, line=controller_transactions)
-- qvc.txt (case_score=0.6525, role=supreme_refinement, line=sale_of_control)
-- paramount.txt (case_score=0.6229, role=related_case, line=unknown)
+- kahn.txt (case_score=2.9465, role=foundation, line=controller_transactions)
+- qvc.txt (case_score=3.3354, role=supreme_refinement, line=sale_of_control)
+- paramount v qvc.txt (case_score=3.2243, role=supreme_refinement, line=sale_of_control)
+- tesla.txt (case_score=4.2843, role=modern_application, line=controller_transactions)
+- rural metro.txt (case_score=2.1327, role=modern_application, line=sale_of_control)
 
 DOCTRINE BUCKETS:
 - Controller Transactions:
-    kahn.txt (foundation, 0.8167)
-    mfw.txt (supreme_refinement, 0.7714)
-    tesla.txt (modern_application, 0.6802)
+    kahn.txt (foundation, 2.9465)
+    tesla.txt (modern_application, 4.2843)
 - Sale of Control:
-    qvc.txt (supreme_refinement, 0.6525)
-- Unknown:
-    paramount.txt (related_case, 0.6229)
+    qvc.txt (supreme_refinement, 3.3354)
+    paramount v qvc.txt (supreme_refinement, 3.2243)
+    rural metro.txt (modern_application, 2.1327)
 
 DOCTRINE LEADERS:
 - Controller Transactions:
-    kahn.txt (role=foundation, case_score=0.8167)
-    mfw.txt (role=supreme_refinement, case_score=0.7714)
-    tesla.txt (role=modern_application, case_score=0.6802)
+    kahn.txt (role=foundation, case_score=2.9465)
+    tesla.txt (role=modern_application, case_score=4.2843)
 - Sale of Control:
-    qvc.txt (role=supreme_refinement, case_score=0.6525)
-- Unknown:
-    paramount.txt (role=related_case, case_score=0.6229)
-DEBUG REQUIRED QUOTE FRAGMENTS:
-- Kahn: "slip upon this predicated entire fairness must agreeexpressed"
-- MFW: "business judgment review applies transaction conditioned from outset"
-- Tesla: "first overturning court chancery application entire fairness second"
+    qvc.txt (role=supreme_refinement, case_score=3.3354)
+    rural metro.txt (role=modern_application, case_score=2.1327)
+    paramount v qvc.txt (role=supreme_refinement, case_score=3.2243)
 VALIDATION SCORE: 100/100
 
 ============================================================
@@ -44,14 +38,22 @@ AI ANSWER:
 ============================================================
 
 Short Answer:  
-Controller Transactions supplies the governing doctrinal framework.
+Controller Transactions establishes the governing framework for one fiduciary setting, whereas Sale of Control governs a distinct one.
 
+Key Distinction:  
+Controller Transactions doctrine addresses controller conflict, whereas Sale of Control doctrine addresses value maximization in a change-of-control transaction.
 
-Rule:  
+Controller Transactions:  
 Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. Business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority. Otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied.
 
+Sale of Control:  
+Sale of Control doctrine governs change-of-control transactions, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders. The doctrine is triggered where the duty applies when a transaction will result in a change of control. Once triggered, directors satisfy their duties if they act reasonably to secure the best value reasonably available.
+
+Rule Comparison:  
+Controller Transactions doctrine governs conflicted-controller transactions and focuses on procedural cleansing protections. Sale of Control doctrine separately governs change-of-control transactions and requires directors to maximize stockholder value. Taken together, controller-transactions doctrine addresses controller conflict, whereas sale-of-control doctrine addresses value maximization.
+
 Analysis:  
-This matters because Controller Transactions doctrine governs conflicted controller transactions, where entire fairness is the standard of review for a controller transaction. The significance is that business judgment review is restored only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority, and otherwise business judgment deference is unavailable if the MFW conditions are not satisfied. As a result, Delaware law treats controller conflict as a distinct fiduciary problem requiring dual cleansing protections.
+This matters because controller-transactions doctrine addresses controller conflict, where entire fairness is the standard of review for a controller transaction, but business judgment review may apply only where the transaction is conditioned from the outset on approval by both an independent special committee and an informed, uncoerced majority of the minority; otherwise, business judgment deference is unavailable if the MFW conditions are not satisfied. The significance is that sale-of-control doctrine instead governs whether directors acted reasonably to maximize value, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders, and where the duty applies when a transaction will result in a change of control; accordingly, directors satisfy their duties if they act reasonably to secure the best value reasonably available. As a result, controller-transactions doctrine governs conflict cleansing in controller deals, whereas sale-of-control doctrine governs value maximization in a change-of-control transaction.
 
 Confidence:  
 High

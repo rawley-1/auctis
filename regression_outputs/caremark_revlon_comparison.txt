@@ -3,56 +3,31 @@ Hello! Ask a Delaware law question.
 Ask a Delaware law question: 
 QUERY PLAN:
 QUERY TYPE: comparison
-TARGET LINES: ['oversight', 'sale_of_control']
-NAMED SOURCES: ['caremark.txt', 'revlon.txt']
+TARGET LINES: ['sale_of_control', 'oversight']
+NAMED SOURCES: ['revlon.txt', 'caremark.txt']
 MULTI-DOCTRINE: True
 
 SHORTLISTED CASES:
-- revlon.txt (case_score=0.7455, role=foundation, line=sale_of_control) *
-- caremark.txt (case_score=0.7377, role=foundation, line=oversight) *
-- rural metro.txt (case_score=0.6455, role=related_case, line=sale_of_control)
-- marchand.txt (case_score=0.5789, role=modern_application, line=oversight)
-- metro.txt (case_score=0.5785, role=modern_application, line=sale_of_control)
-- barkan.txt (case_score=0.5771, role=related_case, line=unknown)
-- qvc.txt (case_score=0.5487, role=supreme_refinement, line=sale_of_control)
-- stone.txt (case_score=0.5301, role=supreme_refinement, line=oversight)
+- paramount v qvc.txt (case_score=1.5546, role=supreme_refinement, line=sale_of_control)
+- qvc.txt (case_score=1.5388, role=supreme_refinement, line=sale_of_control)
+- rural metro.txt (case_score=1.0965, role=modern_application, line=sale_of_control)
+- lyondell.txt (case_score=0.8938, role=modern_application, line=sale_of_control)
+- paramount v time.txt (case_score=0.6518, role=related_case, line=sale_of_control)
+- disney.txt (case_score=0.5995, role=related_case, line=sale_of_control)
 
 DOCTRINE BUCKETS:
 - Sale of Control:
-    revlon.txt (foundation, 0.7455)
-    qvc.txt (supreme_refinement, 0.5487)
-    metro.txt (modern_application, 0.5785)
-    rural metro.txt (related_case, 0.6455)
-- Oversight:
-    caremark.txt (foundation, 0.7377)
-    stone.txt (supreme_refinement, 0.5301)
-    marchand.txt (modern_application, 0.5789)
-- Unknown:
-    barkan.txt (related_case, 0.5771)
-- Stockholder Vote Cleansing:
-    corwin.txt (supreme_refinement, 0.5148)
-- Takeover Defense:
-    airgas.txt (modern_application, 0.5118)
+    paramount v qvc.txt (supreme_refinement, 1.5546)
+    qvc.txt (supreme_refinement, 1.5388)
+    rural metro.txt (modern_application, 1.0965)
+    lyondell.txt (modern_application, 0.8938)
+    paramount v time.txt (related_case, 0.6518)
 
 DOCTRINE LEADERS:
 - Sale of Control:
-    revlon.txt (role=foundation, case_score=0.7455)
-    qvc.txt (role=supreme_refinement, case_score=0.5487)
-    metro.txt (role=modern_application, case_score=0.5785)
-- Oversight:
-    caremark.txt (role=foundation, case_score=0.7377)
-    stone.txt (role=supreme_refinement, case_score=0.5301)
-    marchand.txt (role=modern_application, case_score=0.5789)
-- Unknown:
-    barkan.txt (role=related_case, case_score=0.5771)
-- Stockholder Vote Cleansing:
-    corwin.txt (role=supreme_refinement, case_score=0.5148)
-- Takeover Defense:
-    airgas.txt (role=modern_application, case_score=0.5118)
-DEBUG REQUIRED QUOTE FRAGMENTS:
-- Caremark: "that undertakes that pliance report must officers semi"
-- QVC: "although macmillan barkan clear holding that change control"
-- Marchand: "good faith effort to implement an oversight system"
+    paramount v qvc.txt (role=supreme_refinement, case_score=1.5546)
+    rural metro.txt (role=modern_application, case_score=1.0965)
+    qvc.txt (role=supreme_refinement, case_score=1.5388)
 VALIDATION SCORE: 88/100
 VALIDATION ERRORS:
 - Key Distinction must be exactly one sentence
@@ -62,24 +37,24 @@ VALIDATION ERRORS:
 AI ANSWER:
 ============================================================
 
-Short Answer:  
-Oversight establishes the governing framework for one fiduciary setting, whereas Sale of Control governs a distinct one.
+Short Answer:
+Sale of Control establishes the governing framework for one fiduciary setting, whereas Oversight governs a distinct one.
 
-Key Distinction:  
-Oversight doctrine addresses loyalty linkage, whereas Sale of Control doctrine addresses change-of-control trigger.
+Key Distinction:
+Oversight doctrine addresses board-level monitoring failures, whereas Sale of Control doctrine addresses value maximization in a change-of-control transaction.
 
-Oversight:  
-Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+Oversight:
+Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through a failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
 
-Sale of Control:  
+Sale of Control:
 Sale of Control doctrine governs change-of-control transactions, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders. The doctrine is triggered where the duty applies when a transaction will result in a change of control. Once triggered, directors satisfy their duties if they act reasonably to secure the best value reasonably available.
 
-Rule Comparison:  
-Oversight doctrine governs board-level monitoring obligations, where directors breach the duty of loyalty through utter failure to attempt to assure that a reasonable reporting or information system exists, and where failure to act in good faith includes the obligation to make a good faith effort to implement an oversight system. Sale of Control doctrine governs change-of-control transactions, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders, and where the duty applies when a transaction will result in a change of control; accordingly, directors satisfy their duties if they act reasonably to secure the best value reasonably available. Taken together, oversight doctrine addresses internal monitoring failure, whereas sale-of-control doctrine addresses value maximization in a change-of-control setting.
+Rule Comparison:
+Oversight doctrine governs board-level monitoring obligations, where Caremark, Stone, and Marchand require directors to act in good faith by implementing and monitoring reporting systems for mission-critical risk. Sale of Control doctrine governs transactional conduct once the company enters sale mode or undergoes a change of control, where Revlon and QVC require directors to seek the best value reasonably available to stockholders. Taken together, oversight doctrine addresses internal monitoring failure, whereas sale-of-control doctrine addresses value maximization.
 
-Analysis:  
-This matters because oversight doctrine governs whether directors made a good-faith effort to implement and monitor reporting systems, beginning with utter failure to attempt to assure that a reasonable reporting or information system exists, and refined through failure to act in good faith and good faith effort to implement an oversight system. The significance is that sale-of-control doctrine instead governs transactional conduct once the company is for sale, where once the corporation is for sale, directors must seek the best value reasonably available to stockholders, and where the duty applies when a transaction will result in a change of control; accordingly, directors satisfy their duties if they act reasonably to secure the best value reasonably available. As a result, oversight doctrine addresses internal monitoring failure, whereas sale-of-control doctrine addresses value maximization in a change-of-control setting.
+Analysis:
+This matters because repeated food-safety red flags principally implicate oversight doctrine, where Caremark, Stone, and Marchand ask whether the board acted in bad faith by failing to implement or monitor a reporting system for mission-critical risk. The significance is that the simultaneous sale process separately may implicate sale-of-control doctrine, where Revlon and QVC require directors to seek the best value reasonably available once the company enters sale mode or undergoes a change of control. As a result, the same facts can implicate both doctrines, but oversight doctrine addresses the internal monitoring failure while sale-of-control doctrine addresses value maximization in the transaction.
 
-Confidence:  
+Confidence:
 High
 

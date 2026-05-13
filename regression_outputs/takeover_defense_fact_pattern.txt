@@ -2,52 +2,43 @@ Hello! Ask a Delaware law question.
 
 Ask a Delaware law question: 
 QUERY PLAN:
-QUERY TYPE: governing_standard
+QUERY TYPE: general
 TARGET LINES: ['takeover_defense']
 NAMED SOURCES: []
 MULTI-DOCTRINE: False
 
 SHORTLISTED CASES:
-- unitrin.txt (case_score=0.9707, role=supreme_refinement, line=takeover_defense)
-- unocal.txt (case_score=0.9408, role=foundation, line=takeover_defense)
-- airgas.txt (case_score=0.9136, role=modern_application, line=takeover_defense)
-- Airgas v .txt (case_score=0.8590, role=related_case, line=unknown)
+- unitrin.txt (case_score=2.0310, role=supreme_refinement, line=takeover_defense)
+- airgas v .txt (case_score=1.8714, role=modern_application, line=takeover_defense)
+- airgas.txt (case_score=1.8434, role=modern_application, line=takeover_defense)
 
 DOCTRINE BUCKETS:
 - Takeover Defense:
-    unocal.txt (foundation, 0.9408)
-    unitrin.txt (supreme_refinement, 0.9707)
-    airgas.txt (modern_application, 0.9136)
-- Unknown:
-    Airgas v .txt (related_case, 0.8590)
+    unitrin.txt (supreme_refinement, 2.0310)
+    airgas v .txt (modern_application, 1.8714)
+    airgas.txt (modern_application, 1.8434)
 
 DOCTRINE LEADERS:
 - Takeover Defense:
-    unocal.txt (role=foundation, case_score=0.9408)
-    unitrin.txt (role=supreme_refinement, case_score=0.9707)
-    airgas.txt (role=modern_application, case_score=0.9136)
-- Unknown:
-    Airgas v .txt (role=related_case, case_score=0.8590)
-DEBUG REQUIRED QUOTE FRAGMENTS:
-- Unocal: "this burden satisfied demonstrating good faith reasonable investigation"
-- Unitrin: "bradley michael michael also response defensive board directors"
-- Airgas: "judgment rule must reasonable wanting objectivity good faith"
+    unitrin.txt (role=supreme_refinement, case_score=2.0310)
+    airgas v .txt (role=modern_application, case_score=1.8714)
+    airgas.txt (role=modern_application, case_score=1.8434)
 VALIDATION SCORE: 100/100
 
 ============================================================
 AI ANSWER:
 ============================================================
 
-Short Answer:
+Short Answer:  
 Takeover Defense supplies the governing doctrinal framework.
 
 
-Rule:
+Rule:  
 Takeover Defense doctrine governs defensive action in response to takeover threats, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed. The defensive response must be neither coercive nor preclusive. It also must fall within a range of reasonableness.
 
-Analysis:
+Analysis:  
 This matters because Takeover Defense doctrine governs defensive responses to takeover threats, where directors must show reasonable grounds for believing that a threat to corporate policy and effectiveness existed. The significance is that the response must be neither coercive nor preclusive and within a range of reasonableness. As a result, Delaware law subjects takeover defenses to enhanced scrutiny rather than ordinary business judgment review.
 
-Confidence:
+Confidence:  
 High
 

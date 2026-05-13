@@ -4,51 +4,22 @@ Ask a Delaware law question:
 QUERY PLAN:
 QUERY TYPE: comparison
 TARGET LINES: ['demand_futility']
-NAMED SOURCES: ['aronson.txt', 'rales.txt']
+NAMED SOURCES: []
 MULTI-DOCTRINE: False
 
 SHORTLISTED CASES:
-- rales.txt (case_score=0.4532, role=refinement, line=demand_futility) *
-- aronson.txt (case_score=0.4372, role=foundation, line=demand_futility) *
-- metro.txt (case_score=0.3400, role=modern_application, line=sale_of_control)
-- kahn.txt (case_score=0.3396, role=foundation, line=controller_transactions)
-- paramount.txt (case_score=0.3364, role=related_case, line=unknown)
-- marchand.txt (case_score=0.3331, role=modern_application, line=oversight)
-- unitrin.txt (case_score=0.3296, role=supreme_refinement, line=takeover_defense)
+- aronson.txt (case_score=2.0243, role=foundation, line=demand_futility)
+- rales.txt (case_score=1.8904, role=supreme_refinement, line=demand_futility)
 
 DOCTRINE BUCKETS:
 - Demand Futility:
-    aronson.txt (foundation, 0.4372)
-    rales.txt (refinement, 0.4532)
-- Sale of Control:
-    metro.txt (modern_application, 0.3400)
-- Controller Transactions:
-    kahn.txt (foundation, 0.3396)
-- Unknown:
-    paramount.txt (related_case, 0.3364)
-- Oversight:
-    marchand.txt (modern_application, 0.3331)
-- Takeover Defense:
-    unitrin.txt (supreme_refinement, 0.3296)
+    aronson.txt (foundation, 2.0243)
+    rales.txt (supreme_refinement, 1.8904)
 
 DOCTRINE LEADERS:
 - Demand Futility:
-    aronson.txt (role=foundation, case_score=0.4372)
-    rales.txt (role=refinement, case_score=0.4532)
-- Sale of Control:
-    metro.txt (role=modern_application, case_score=0.3400)
-- Controller Transactions:
-    kahn.txt (role=foundation, case_score=0.3396)
-- Unknown:
-    paramount.txt (role=related_case, case_score=0.3364)
-- Oversight:
-    marchand.txt (role=modern_application, case_score=0.3331)
-- Takeover Defense:
-    unitrin.txt (role=supreme_refinement, case_score=0.3296)
-DEBUG REQUIRED QUOTE FRAGMENTS:
-- Kahn: "this views found application entire fairness exclusive opinions"
-- Unitrin: "corp fairness entire supr entire this requires judiand"
-- Metro: "business judgment rule enhanced apply either business judgment"
+    aronson.txt (role=foundation, case_score=2.0243)
+    rales.txt (role=supreme_refinement, case_score=1.8904)
 VALIDATION SCORE: 100/100
 
 ============================================================
@@ -59,16 +30,16 @@ Short Answer:
 Demand Futility supplies the governing doctrinal framework.
 
 Key Distinction:
-Aronson focuses on the validity of the challenged transaction and the board’s disinterest and independence, whereas Rales centers on the board’s capacity to impartially consider a demand without regard to the challenged transaction.
+Aronson addresses demand futility in one procedural posture, whereas Rales addresses demand futility where the challenged board did not make the business decision.
 
 Rule Comparison:
-Caremark establishes the baseline rule that demand futility requires particularized facts showing an utter failure to attempt to assure a reporting or information system to detect wrongdoing. Marchand refines this by incorporating Stone’s good-faith and duty-of-loyalty bridge, requiring a good faith effort to implement an oversight system and active monitoring to satisfy fiduciary duties. Taken together, whereas Caremark demands an utter failure to attempt to assure oversight, Marchand requires a good faith effort and conscious monitoring consistent with the duty of loyalty.
+Aronson frames demand futility by asking whether particularized facts create a reasonable doubt that directors were disinterested and independent or that the challenged transaction was a valid exercise of business judgment. Rales refines the inquiry by asking whether particularized facts create a reasonable doubt that a majority of the board could impartially consider a demand. Taken together, Aronson and Rales define demand futility by focusing on whether demand should be excused.
 
 Rule:
-Demand Futility doctrine governs whether stockholders may proceed without making a litigation demand, where demand is excused where particularized facts create a reasonable doubt that the directors are disinterested and independent or that the challenged transaction was a valid exercise of business judgment. Rales refines the inquiry by providing that demand is excused where particularized facts create a reasonable doubt that a majority of the board could impartially consider a demand. Zuckerberg modernizes the framework by asking whether the court asks on a director-by-director basis whether at least half of the board could exercise independent and disinterested judgment in responding to a demand.
+Demand futility doctrine requires that a plaintiff plead particularized facts creating a reasonable doubt that the directors are disinterested and independent or that the challenged transaction was a valid exercise of business judgment, establishing an utter failure of board impartiality to consider a demand; this inquiry is refined by a director-by-director review assessing whether a majority of the board could impartially consider the demand, thereby linking the duty of loyalty to the board’s good faith capacity to respond to shareholder demands.
 
 Analysis:
-This matters because Demand Futility doctrine governs whether stockholders may proceed without making a litigation demand, where demand is excused where particularized facts create a reasonable doubt that the directors are disinterested and independent or that the challenged transaction was a valid exercise of business judgment. The significance is that the inquiry was refined by demand is excused where particularized facts create a reasonable doubt that a majority of the board could impartially consider a demand and modernized by the court asks on a director-by-director basis whether at least half of the board could exercise independent and disinterested judgment in responding to a demand. As a result, Delaware law focuses on whether the board could exercise independent and disinterested judgment in responding to a demand.
+This matters because Delaware fiduciary doctrine is context specific rather than unitary. The significance is that each doctrine governs a different board function and therefore imposes a different standard of review or obligation. As a result, identifying the correct doctrinal framework is necessary before the governing standard can be applied.
 
 Confidence:
 High

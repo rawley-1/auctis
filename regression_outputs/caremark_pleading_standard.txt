@@ -2,38 +2,24 @@ Hello! Ask a Delaware law question.
 
 Ask a Delaware law question: 
 QUERY PLAN:
-QUERY TYPE: general
+QUERY TYPE: doctrine_evolution
 TARGET LINES: ['oversight']
 NAMED SOURCES: ['caremark.txt']
 MULTI-DOCTRINE: False
 
 SHORTLISTED CASES:
-- caremark.txt (case_score=1.0061, role=foundation, line=oversight) *
-- marchand.txt (case_score=0.8834, role=modern_application, line=oversight)
-- stone.txt (case_score=0.7339, role=supreme_refinement, line=oversight)
+- caremark.txt (case_score=2.8362, role=foundation, line=oversight) *
+- marchand.txt (case_score=1.4477, role=modern_application, line=oversight)
 
 DOCTRINE BUCKETS:
 - Oversight:
-    caremark.txt (foundation, 1.0061)
-    stone.txt (supreme_refinement, 0.7339)
-    marchand.txt (modern_application, 0.8834)
+    caremark.txt (foundation, 2.8362)
+    marchand.txt (modern_application, 1.4477)
 
 DOCTRINE LEADERS:
 - Oversight:
-    caremark.txt (role=foundation, case_score=1.0061)
-    stone.txt (role=supreme_refinement, case_score=0.7339)
-    marchand.txt (role=modern_application, case_score=0.8834)
-DEBUG CAREMARK TREE:
-Doctrine: oversight
-Path: reporting_system_exists -> monitoring_exists -> basic_oversight_present
-Outcome: lower_oversight_risk
-Risk Level: low
-Primary Failure: none
-Reason: The facts suggest the board established and monitored an oversight system, which weakens an oversight-breach theory.
-DEBUG REQUIRED QUOTE FRAGMENTS:
-- Caremark: "that undertakes that pliance report must officers semi"
-- Stone: "absence oversight flags good faith context actions must"
-- Marchand: "good faith effort to implement an oversight system"
+    caremark.txt (role=foundation, case_score=2.8362)
+    marchand.txt (role=modern_application, case_score=1.4477)
 VALIDATION SCORE: 100/100
 
 ============================================================
@@ -41,11 +27,11 @@ AI ANSWER:
 ============================================================
 
 Short Answer:
-The facts suggest lower oversight risk, not a likely Caremark breach.
+Caremark requires utter failure, whereas Marchand requires good faith monitoring.
 
 
 Rule:
-Oversight doctrine addresses board-level monitoring obligations, where liability begins with an utter failure to attempt to assure that a reasonable reporting or information system exists. Stone links that doctrine to the duty of loyalty through failure to act in good faith. Marchand clarifies that directors must make a good faith effort to implement an oversight system.
+Caremark oversight liability arises where directors make an utter failure to attempt to assure that a reasonable reporting or information system exists, and Stone further clarifies that such misconduct constitutes a failure to act in good faith as a subsidiary element of the duty of loyalty. Marchand further requires directors to make a good faith effort to implement an oversight system capable of monitoring mission-critical risk.
 
 Analysis:
 This matters because Caremark liability begins with an utter failure to attempt to assure a reasonable reporting or information system exists or a later failure to monitor such a system in good faith. The significance is that where the board appears to have implemented and monitored an oversight system, the duty of loyalty theory is materially weaker. As a result, the alleged facts suggest lower oversight risk rather than a strong inference of disloyal oversight failure.

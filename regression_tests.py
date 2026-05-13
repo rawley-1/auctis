@@ -141,7 +141,7 @@ TEST_CASES: List[RegressionCase] = [
     ),
     RegressionCase(
         name="red_flags_plus_defensive_measures",
-        prompt="What standard applies when a board ignored red flags and adopted defensive measures?",
+        prompt="Compare oversight and takeover_defense where a board ignored red flags and adopted defensive measures.",
         required_substrings=[
             "oversight",
             "takeover_defense",
